@@ -13,6 +13,7 @@
  - Why is software engineering challenging?
   	- increasing diversity
    - incresing demand for shorter delivery time 
+   - estimating is difficult
 
  - What are the implications for software engineering?
   	- 
