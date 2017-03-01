@@ -13,3 +13,4 @@
   - management has no direct access
   - confidentiality of personal information
   - NOT a complete medical records system
+  - Data is treated confidentally ( Data Protection Act) 
