@@ -10,6 +10,7 @@
   - generate management information to assess performance against gov targets
   - patient records (basic information)
   - appointments (when and where)
+  - information about facilities (drop-in or just with appointment)
 
 - critical success factors
   - management has no direct access
