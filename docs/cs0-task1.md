@@ -16,4 +16,4 @@
    - estimating is difficult
 
  - What are the implications for software engineering?
-  	- 
+  	- It is important to have a risk management strategy
