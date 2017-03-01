@@ -12,7 +12,8 @@
 
  - Why is software engineering challenging?
 	- increasing diversity
-   	- incresing demand for shorter delivery time 
+	- incresing demand for shorter delivery time 
+	- estimating is difficult
 
  - What are the implications for software engineering?
-  	- 
+  	- It is important to have a risk management strategy
