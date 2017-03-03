@@ -25,7 +25,7 @@
  - Wenn sich Anforderungen ändern ist es Aufwändig diese Änderung umzusetzen.
  - Plan-driven development benötigt gutes Führungspersonal und lässt den Entwicklern wenig Freiheiten.
 
-###Entscheidung: Agile
+##Entscheidung: Agile
 In den Anforderungen sind keine Abhängigkeiten zu erkennen. Deshalb ist es nicht nötig, dass von Anfang an ein Plan existiert der diese Abhängigkeiten regeln würde.
 Es gibt für das Produkt noch keine ganz klare Anforderung, was darauf hindeutet, dass sich
 die Anforderungen der User sich noch ändern könnten. Mit einer agilen Entwicklung kann
