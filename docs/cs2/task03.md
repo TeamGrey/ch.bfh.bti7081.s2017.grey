@@ -10,5 +10,9 @@
  
  ##System Requirements
  ### Functional Requirements
+ - A sensor measures the blood sugar level
+ - A Controlling unit reads the data from the sensor and decides if the level can be considered save.
+ - If the level of blood sugar is too low then insuline is injected.
+ - If an error occurs in the system, then a log file entry is made and an alarm sounds.
  ### Non-Functional Requirements
  ### Domain Requirements
