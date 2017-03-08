@@ -6,23 +6,24 @@
 - Technicians (they get hardware metrics, without personal information, to ensure the device isnt't malfunctioning)
 
 ## Use case diagram and system boundaries
-- [use case diagram for editing](https://yuml.me/)
+- [use case diagram for editing](http://yuml.me/edit/f6351879)
   Paste this 
 ```
 [Patient]-(Wear PIP)
-(Wear PIP)>(Go to doctor when malfunctioning)
-(Wear PIP)>(Go to doctor for refills)
-(Wear PIP)>(Go to technician when broken)
-(Wear PIP)<(Alarm when patient should eat)
-[Doctor]-(Administer higher dose)
-[Doctor]-(Administer lower dose)
-[Doctor]-(Refill Insulin)
-(Administer higher dose)<(Monitor Injections)
-(Administer lower dose)<(Monitor Injections)
-(Refill Insulin)<(Monitor Insulin levels)
-[Technician]-(Fix hardware)
-(Fix hardware)<(Monitor hardware)
+(Wear PIP)>(Monitor)
+(Monitor)>(Alarm)
+(Monitor)>(Inject)
+(Monitor)>(Log)
+(Alarm)<(Alarm when malfunction)
+(Alarm)<(Alarm when supply low)
+(Alarm)<(Alarm when user should eat)
+[Doctor]-(Maintain)
+(Maintain)<(Adjust parameters)
+(Maintain)<(Refill insulin)
+[Technician]-(Maintain hardware)
+(Maintain hardware)<(fix hardware)
+(Maintain hardware)<(check logs)
 ```
-- ![diagram](http://yuml.me/af953538)
+![diagram](http://yuml.me/f6351879)
 
 ## Detailed use cases and scenarios
