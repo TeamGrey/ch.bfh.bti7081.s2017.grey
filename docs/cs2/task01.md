@@ -7,7 +7,7 @@
 
 ## Use case diagram and system boundaries
 - [use case diagram for editing](http://yuml.me/edit/f6351879)
-  Paste this 
+  Paste this
 ```
 [Patient]-(Wear PIP)
 (Wear PIP)>(Monitor)
@@ -25,5 +25,3 @@
 (Maintain hardware)<(check logs)
 ```
 ![diagram](http://yuml.me/f6351879)
-
-## Detailed use cases and scenarios
