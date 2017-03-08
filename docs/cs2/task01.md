@@ -8,12 +8,14 @@
 ## Use case diagram and system boundaries
 - [use case diagram for editing](https://yuml.me/edit)
   Paste this 
-`[Patient]-(Wear PIP)
+```
+[Patient]-(Wear PIP)
 [Doctor]-(Administer higher dose)
 (Administer higher dose)<(Monitor Injections)
 (Administer lower dose)<(Monitor Injections)
 [Technician]-(Fix hardware)
-(Fix hardware)<(Monitor hardware)`
+(Fix hardware)<(Monitor hardware)
+```
 - ![diagram](http://yuml.me/e0ef32e7)
 
 ## Detailed use cases and scenarios
