@@ -1,3 +1,5 @@
+# Activity diagrams
+
 ## Activity diagram for use case \#2
 
 [use case diagram for editing](http://yuml.me/815e895d)
