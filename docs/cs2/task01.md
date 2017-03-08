@@ -6,7 +6,7 @@
 - Technicians (they get hardware metrics, without personal information, to ensure the device isnt't malfunctioning)
 
 ## Use case diagram and system boundaries
-- [use case diagram for editing](https://yuml.me/edit)
+- [use case diagram for editing](https://yuml.me/)
   Paste this 
 ```
 [Patient]-(Wear PIP)
