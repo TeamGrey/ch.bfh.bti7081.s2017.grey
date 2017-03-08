@@ -1,5 +1,13 @@
 # Activity diagrams
 
+## Activity diagram for use case #1 Monitor
+[for editing](http://yuml.me/edit/22f7cab8)
+Paste this
+```
+(start)->(monitor)->(monitor blood sugar),(monitor)->(monitor supply)->[supply level low]->(alarm)->(user sees doctor for refill)->(end),(monitor blood sugar)->[blood sugar high]->(inject insulin)->(end),(monitor blood sugar)->[blood sugar low]->(alarm)->(user eats)->(end),(monitor)->(monitor functionality)->[failure]->(alarm)->(user sees technician)->(end)
+```
+![diagram](http://yuml.me/22f7cab8)
+
 ## Activity diagram for use case *\#2 Alarm*
 
 [use case diagram for editing](http://yuml.me/815e895d)
