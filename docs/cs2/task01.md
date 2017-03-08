@@ -10,12 +10,16 @@
   Paste this 
 ```
 [Patient]-(Wear PIP)
+(Wear PIP)>(Go to doctor when malfunctioning)
+(Wear PIP)>(Go to doctor for refills)
+(Wear PIP)>(Go to technician when broken)
 [Doctor]-(Administer higher dose)
 (Administer higher dose)<(Monitor Injections)
 (Administer lower dose)<(Monitor Injections)
+(Refill Insulin)<(Monitor Insulin levels)
 [Technician]-(Fix hardware)
 (Fix hardware)<(Monitor hardware)
 ```
-- ![diagram](http://yuml.me/e0ef32e7)
+- ![diagram](http://yuml.me/1c554b2d)
 
 ## Detailed use cases and scenarios
