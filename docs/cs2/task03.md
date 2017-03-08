@@ -8,9 +8,12 @@
  - A Doctor can adjust the parameters for the PIP.
  - A Technician can check the log to get failure information.
 
- ##System Requirements
+ ## System Requirements
+
  ### Functional Requirements
+
  ### Non-Functional Requirements
  - The System should always be available.
  - The System should have a removable and replaceable battery
+ 
  ### Domain Requirements
