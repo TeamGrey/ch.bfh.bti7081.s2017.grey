@@ -5,3 +5,6 @@
 
 ## 08.03.2017
 - Team worked on use case for CS2 
+
+## 15.03.2017
+- Team worked on Design Thinking Process for CS1
