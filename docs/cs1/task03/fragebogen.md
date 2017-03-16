@@ -1,8 +1,7 @@
 # Target usergroup: Health Visitor
 
 > In der Schweiz gibt es Personen in diese Richtung nicht zu 100%.
-> Wir haben uns entschieden den Rahmen in Richtung Spitex-Personal einzurichten*
-
+> Wir haben uns entschieden den Rahmen in Richtung Spitex-Personal einzurichten
 
 1. Was bereitet Ihnen im täglichen Umgang mit dementen Menschen am meisten Mühe?
 
