@@ -1,18 +1,18 @@
 # First Analysis
 
-##target users
+## target users
   - doctors, nurses, health visitors
   - receptionists
   - medical records staff
 
-##key features
+## key features
   - provide medical staff with timely information to facilitate the treatment of patients
   - generate management information to assess performance against gov targets
   - patient records (basic information)
   - appointments (when and where)
   - information about facilities (drop-in or just with appointment)
 
-##critical success factors
+## critical success factors
   - management has no direct access
   - NOT a complete medical records system
-  - Data is treated confidentially (Data Protection Act) 
+  - Data is treated confidentially (Data Protection Act)
