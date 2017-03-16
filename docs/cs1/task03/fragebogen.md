@@ -8,16 +8,13 @@
 
 2. Wie ist der Prozess für die Terminvereinbarung?
 
-3. Welche Patienteninformationen sind im Umgang mit Altzheimerpatienten für das Pflegepersonal wichtig?
-  3. Notfallkontakte?
-  3. Krankheitsspezifische informatinen?
-  3. Medikamentation ?
+3. Welche Patienteninformationen sind im Umgang mit Alzheimerpatienten für das Pflegepersonal wichtig? (Notfallkontakte?, krankheitsspezifische Informatonen?, Medikamente?)
 
 4. Ist je nach Situation Pflegepersonal mit bestimmten Ausbildungen nötig?
 
 5. Werden beim Grad der Erkrankung / bei den zu behandelnden Symptomen Abstufungen gemacht, welche das Behandeln nach standartisierten Prozessen ermöglichen?
 
-6. Werden Beobachtungen des Pflegepersonals protokolliert?
+6. Werden die Beobachtungen des Pflegepersonals protokolliert?
 
 7. Gibt es irgenwelche Prozesse, welche als Qualitätskontrolle genutzt werden ?
- z.b. Archivierung der Verspätungsmeldungen, durchschnittliche Zeit beim Kunden etc.
+ z.b. Archivierung der Verspätungsmeldungen, durchschnittliche Zeit beim Kunden, Anzahl Kunde pro Tag etc.
