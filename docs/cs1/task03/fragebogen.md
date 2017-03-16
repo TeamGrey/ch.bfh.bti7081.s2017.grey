@@ -9,9 +9,9 @@
 2. Wie ist der Prozess für die Terminvereinbarung?
 
 3. Welche Patienteninformationen sind im Umgang mit Altzheimerpatienten für das Pflegepersonal wichtig?
-  3.1. Notfallkontakte?
-  3.2. Krankheitsspezifische informatinen?
-  3.3. Medikamentation ?
+  3. Notfallkontakte?
+  3. Krankheitsspezifische informatinen?
+  3. Medikamentation ?
 
 4. Ist je nach Situation Pflegepersonal mit bestimmten Ausbildungen nötig?
 
