@@ -35,7 +35,7 @@ Kim 25 years old works at spitex sense. She works as a FaGe. She's used to commo
 Trudi 61 has worked for spitex since the early 90'. She's team leader and has lots of experience and many responsibilities. She sees fewer new patients since she has a list of base clients she's been visiting for years and knows them by heart. She's very sceptical about new technologies.
 
 ### Main Features
-- (Schedule)/display appointments
+- display appointments
 - display patient information
 - easy to use
 - maintain functionality when internet fails temporarily
@@ -51,8 +51,11 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 - behavior without internet connection
 
 ### Research
-- 
-
+- Researh showed that these different usergroups exits:
+	- Nursing staff wit basic education 
+	- Nursing staff with higher education 
+	- Teamleader
+ 
 
 # Third Iteration
 
@@ -61,4 +64,20 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 ## Scoping
 
 - find out what processes and workflows are in use
-- witch information about the patients specific condition does the health visitor need?
+- which information about the patients specific condition does the health visitor need?
+
+## Synthesize
+### personae
+Define specific tasks
+
+- Kim visits patients at home. After completed tasks she updates the logs and moves to the next patient 
+- Trudi is responsible for making the shiftplans. She takes calls from her coworkers to answer questions and provide assistance in more difficult tasks
+
+
+
+### Main Features 
+- Make/Scheudle Appointments
+
+ 
+
+
