@@ -55,7 +55,7 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 
 20.03.2017
 
-## Scoping
+## Scoping
 
 - find out what processes and workflows are in use
 - witch information about the patients specific condition does the health visitor need?
