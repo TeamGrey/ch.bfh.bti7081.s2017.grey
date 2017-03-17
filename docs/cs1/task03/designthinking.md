@@ -20,8 +20,6 @@
 - no access for non health visitors
 - only Alzheimer disease patients
 
-
-
 ## Research
 - Health visitors need informations about the drugs needed by the patient
 - Health visitors need informations about disease pattern of the patient
@@ -50,7 +48,11 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 
 ### In scope
 - need to make appointments through the application.
-- Behavior without internet connection
+- behavior without internet connection
+
+### Research
+- 
+
 
 # Third Iteration
 
