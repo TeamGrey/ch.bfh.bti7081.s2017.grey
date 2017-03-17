@@ -50,12 +50,21 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 - need to make appointments through the application.
 - behavior without internet connection
 
-### Research
+## Research
 - Researh showed that these different usergroups exits:
-	- Nursing staff wit basic education 
-	- Nursing staff with higher education 
+	- Nursing staff wit basic education
+	- Nursing staff with higher education
 	- Teamleader
- 
+
+## Synthesize
+### personae
+Define specific tasks
+
+- Kim visits patients at home. After completed tasks she updates the logs and moves to the next patient
+- Trudi is responsible for making the shiftplans. She takes calls from her coworkers to answer questions and provide assistance in more difficult tasks
+
+### Main Features
+- Make/Scheudle Appointments
 
 # Third Iteration
 
@@ -65,19 +74,3 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 
 - find out what processes and workflows are in use
 - which information about the patients specific condition does the health visitor need?
-
-## Synthesize
-### personae
-Define specific tasks
-
-- Kim visits patients at home. After completed tasks she updates the logs and moves to the next patient 
-- Trudi is responsible for making the shiftplans. She takes calls from her coworkers to answer questions and provide assistance in more difficult tasks
-
-
-
-### Main Features 
-- Make/Scheudle Appointments
-
- 
-
-
