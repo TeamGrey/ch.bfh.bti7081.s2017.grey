@@ -15,5 +15,5 @@
 
 6. Werden die Beobachtungen des Pflegepersonals protokolliert?
 
-7. Gibt es irgenwelche Prozesse, welche als Qualitätskontrolle genutzt werden ?
+7. Gibt es irgendwelche Prozesse, welche als Qualitätskontrolle genutzt werden ?
  z.b. Archivierung der Verspätungsmeldungen, durchschnittliche Zeit beim Kunden, Anzahl Kunde pro Tag etc.
