@@ -55,7 +55,7 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 	- Nursing staff wit basic education
 	- Nursing staff with higher education
 	- Teamleader
-
+- User may come from different regions that leads to a need for multilingualism
 ## Synthesize
 ### personae
 Define specific tasks
