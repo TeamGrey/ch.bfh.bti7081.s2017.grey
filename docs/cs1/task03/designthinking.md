@@ -49,7 +49,8 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 ## Scoping
 
 ### In scope
-- research showed that there is a need to make appointments through the application.
+- need to make appointments through the application.
+- Behavior without internet connection
 
 # Third Iteration
 
