@@ -1,5 +1,7 @@
-# Iteration 1
+# First Interation
+
 15.03.2017
+
 ## Scoping
 
 #### In scope
@@ -40,7 +42,8 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 - easy to use
 - maintain functionality when internet fails temporarily
 
-# Iteration 2
+# Second Iteration
+
  17.0.2017
 
 ## Scoping
@@ -48,7 +51,8 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 ### In scope
 - research showed that there is a need to make appointments through the application.
 
-# Iteration 3
+# Third Iteration
+
 20.03.2017
 
 ## Scoping
