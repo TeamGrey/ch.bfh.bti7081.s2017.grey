@@ -2,11 +2,12 @@
 15.03.2017
 ## Scoping
 
-#### Get current state.
-- define keyusergroup as health visitors (spitex) who visit altzheimers' patients at home
-- find out what processes and wokflows are in use
-- define what needs are covered by the keyfeatures
-- wich information about the patients specific condition does the health visitor need?
+#### In scope
+- key user group as health visitors (spitex) who visit Alzheimer's patients at home
+- List information about the patient for the health visitor
+- List appointments for the health visitor
+- define key features
+
 
 #### How to measure success
 - less inquiries about patient specific information
@@ -15,13 +16,15 @@
 #### problems out of scope
 - no full medical record
 - no access for non health visitors
-- only altzheimers desease patients
+- only Alzheimer disease patients
 
 
 
 ## Research
-- find out what data is needed for basic health records.
-- find out if there are any quality control processes that could be used to measure the succes of our project
+- Health visitors need informations about the drugs needed by the patient
+- Health visitors need informations about disease pattern of the patient
+- Health visitors could need a checklist with patient specific tasks
+- Health visitors need the address the name of the patient and the time of appointment in their calendar view
 
 
 
@@ -29,10 +32,10 @@
 ### personae
 Kim 25 years old works at spitex sense. She works as a FaGe. She's used to common smartphones and uses one every day. Working with a mobile client should not be a problem. She's new on the job and lacks experience. Due to this circumstance she has to ask a lot of questions and check back with her boss very often.
 
-Trudi 61 has worked for spitex sence since the early 90'. Shes teamleader and has lots of experience and many responsibilities. She sees fewer new patients since she has a list of base clients she's been visiting for years and knows them by heart. She's very spectical about new technologies.
+Trudi 61 has worked for spitex since the early 90'. She's team leader and has lots of experience and many responsibilities. She sees fewer new patients since she has a list of base clients she's been visiting for years and knows them by heart. She's very sceptical about new technologies.
 
 ### Main Features
-- (Scheudle)/display appointments
+- (Schedule)/display appointments
 - display patient information
 - easy to use
 - maintain functionality when internet fails temporarily
@@ -40,8 +43,14 @@ Trudi 61 has worked for spitex sence since the early 90'. Shes teamleader and ha
 # Iteration 2
  17.0.2017
 
-##Scoping
+## Scoping
 
-### Get current state
-- research showed that there is a need to make appointments through the application. 
- 
+### In scope
+- research showed that there is a need to make appointments through the application.
+
+# Iteration 3
+20.03.2017
+
+## Scoping
+- find out what processes and workflows are in use
+- witch information about the patients specific condition does the health visitor need?
