@@ -50,7 +50,7 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 - need to make appointments through the application.
 - behavior without internet connection
 
-### Research
+### Research
 - Researh showed that these different usergroups exits:
 	- Nursing staff wit basic education 
 	- Nursing staff with higher education 
