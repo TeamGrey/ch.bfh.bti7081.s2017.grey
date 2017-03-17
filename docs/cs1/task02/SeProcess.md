@@ -26,5 +26,4 @@
 - Plan-driven development benötigt gutes Führungspersonal und lässt den Entwicklern wenig Freiheiten.
 
 ## Entscheidung: Agile
-In den Anforderungen sind keine Abhängigkeiten zu erkennen. Deshalb ist es nicht nötig, dass von Anfang an ein Plan existiert der diese Abhängigkeiten regeln würde.
 Es gibt für das Produkt noch keine ganz klare Anforderung, was darauf hindeutet, dass sich die Anforderungen der User noch ändern könnten. Mit einer agilen Entwicklung kann das Team besser auf neue, oder andere Anforderungen reagieren. Der User bekommt so auch schneller ein Produkt zu sehen und kann so schneller in die Gestaltung mitwirken.
