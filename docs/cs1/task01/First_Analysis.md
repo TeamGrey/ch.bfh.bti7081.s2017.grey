@@ -7,6 +7,7 @@
 
 ## key features
   - provide medical staff with timely information to facilitate the treatment of patients
+  - provide ability to record unusual patient behavior
   - generate management information to assess performance against gov targets
   - patient records (basic information)
   - appointments (when and where)
@@ -16,3 +17,5 @@
   - management has no direct access
   - NOT a complete medical records system
   - Data is treated confidentially (Data Protection Act)
+  - Usuability for non IT Staff
+  - Mental Health Act
