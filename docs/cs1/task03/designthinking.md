@@ -1,5 +1,5 @@
 # Iteration 1
-
+15.03.2017
 ## Scoping
 
 #### Get current state.
@@ -36,3 +36,12 @@ Trudi 61 has worked for spitex sence since the early 90'. Shes teamleader and ha
 - display patient information
 - easy to use
 - maintain functionality when internet fails temporarily
+
+# Iteration 2
+ 17.0.2017
+
+##Scoping
+
+### Get current state
+- research showed that there is a need to make appointments through the application. 
+ 
