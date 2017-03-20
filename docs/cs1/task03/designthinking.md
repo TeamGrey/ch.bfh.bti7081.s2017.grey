@@ -51,8 +51,8 @@ Trudi 61 has worked for spitex since the early 90'. She's team leader and has lo
 - behavior without internet connection
 
 ## Research
-- Researh showed that these different usergroups exits:
-	- Nursing staff wit basic education
+- Research showed that these different usergroups exits:
+	- Nursing staff with basic education
 	- Nursing staff with higher education
 	- Teamleader
 - User may come from different regions that leads to a need for multilingualism
@@ -74,3 +74,16 @@ Define specific tasks
 
 - find out what processes and workflows are in use
 - which information about the patients specific condition does the health visitor need?
+
+### Main Features
+- duration of tasks performed at patient should be protocolled
+- statistic of average duration of common tasks, that help for planning schedule
+- tasks will be billed by type and duration
+- Basic patient info consists of:
+	- emergency contacts
+	- medicaments
+	- allergies
+	- habits
+	- specific infos about medical condition
+	- key location (if needed)
+	- previous job/activities (for talking)
