@@ -16,7 +16,7 @@ Z.T. ist auch der Schlaf-Wach-Rhythmus verstellt. Pat. wollen nicht aufstehen, m
 
 *Pat. erhalten von Spitex einen Wochenplan, wann Spitex vorbeikommt (ich weiss nicht mehr wie viel im Voraus). Aber i.d.R. geht die Spitex dann sowieso immer, um die gleiche Zeit zu den meisten Pat v.a. zu denen die täglich Spitex brauchen. Bei denen die z.B. nur 2 Mal in der Woche Spitex brauchen, kann die Uhrzeit z.T. ein wenig abweichen, aber der Tag bleibt dann auch immer der Gleiche.*
 
-*In der Spitex wird dann eine gesamte Zeitplanung durch eine Person erstellt mit einem excelartigen Programm und die Pläne werden für alle Mitarbeiter individuell ausgedruckt (dort stehen dann einfach die Pat. darauf die man pflegen muss, diese sind dann auch meistens nach Gemeinden aufgeteilt, damit Mitarbeiter z.B. nicht von Alterswil nach Plaffeien und danach nach Giffers fahren müssen...).*
+*In der Spitex wird dann eine gesamte Zeitplanung durch eine Person (Teamleiter, oder Chef) erstellt mit einem excelartigen Programm und die Pläne werden für alle Mitarbeiter individuell ausgedruckt (dort stehen dann einfach die Pat. darauf die man pflegen muss, diese sind dann auch meistens nach Gemeinden aufgeteilt, damit Mitarbeiter z.B. nicht von Alterswil nach Plaffeien und danach nach Giffers fahren müssen...).*
 
 ### Welche Patienteninformationen sind im Umgang mit Alzheimerpatienten für das Pflegepersonal wichtig? (Notfallkontakte?, krankheitsspezifische Informationen?, Medikamente?)
 _**Notfallkontakte:** Angehörige, Hausarzt, evtl. gewünschtes Krankenhaus (falls sie auf keinen Fall in das nächste Spital gehen möchten)_
