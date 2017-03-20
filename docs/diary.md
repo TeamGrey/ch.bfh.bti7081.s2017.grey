@@ -9,6 +9,10 @@
 ## 15.03.2017
 - Team worked on Design Thinking Process for CS1
 - Task for Friday: Upload Storyboards
+
 ## 17.03.2017
 - Team worked on second iteration from Design Thinking Process for CS1
-- Added some more information we gathered through research 
+- Added some more information we gathered through research
+
+## 18.03.2017
+- Quentin interviewed Danaée Chiquet who is a health visitor
