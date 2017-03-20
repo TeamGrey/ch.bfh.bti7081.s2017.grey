@@ -48,9 +48,10 @@ Körperpflege kann oft auch durch Pflegehilfen durchgeführt werden.*
 *Aber je nach Krankheitsbild existieren schon Pflegemassnahmen, die oft durchgeführt werden: z.B. Diabetes: Messen des BZ, Insulin spritzen, Kontrolle der Hautverhältnisse und der Füsse, etc.*
 
 ### Werden die Beobachtungen des Pflegepersonals protokolliert?
-*Ja immer. Schriftliche Dokumentation im Patientendossier: Was wurde gemacht, was wurde beobachtet, wie war das Befinden des Pat. etc.
-Gibt es irgendwelche Prozesse, welche als Qualitätskontrolle genutzt werden? z.B. Archivierung der Verspätungsmeldungen, durchschnittliche Zeit beim Kunden, Anzahl Kunde pro Tag etc.
-Ich bin da nicht wirklich informiert, aber ich denke schon. Es werden ja auch Statistiken durchgeführt und aus diesem Grund werden diese Informationen ganz sicher archiviert.
+*Ja immer. Schriftliche Dokumentation im Patientendossier: Was wurde gemacht, was wurde beobachtet, wie war das Befinden des Pat. etc.*
+
+### Gibt es irgendwelche Prozesse, welche als Qualitätskontrolle genutzt werden? z.B. Archivierung der Verspätungsmeldungen, durchschnittliche Zeit beim Kunden, Anzahl Kunde pro Tag etc.
+*Ich bin da nicht wirklich informiert, aber ich denke schon. Es werden ja auch Statistiken durchgeführt und aus diesem Grund werden diese Informationen ganz sicher archiviert.
 Wir mussten mit unserem Gerät immer aktualisieren was wir machten.
 Ankunft bei Pat.- Ende der Pflege – Autofahren (wie viele Kilometer wir gefahren sind).
 Verrechnung der durchgeführten Massnahmen: z.B. Wundversorgung 30 min, Körperpflege 15 min, etc.*
