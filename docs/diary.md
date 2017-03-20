@@ -15,4 +15,4 @@
 - Added some more information we gathered through research
 
 ## 18.03.2017
-- Quentin interviewed Danaée Chiquet who is a health visitor
+- Quentin interviewed Danaée Chiquet who made an internship at Spitex Sense during her studies at [heds fribourg](http://www.heds-fr.ch/DE/Seiten/default.aspx) 
