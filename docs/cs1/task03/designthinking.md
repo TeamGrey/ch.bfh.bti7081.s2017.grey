@@ -75,6 +75,22 @@ Define specific tasks
 - find out what processes and workflows are in use
 - which information about the patients specific condition does the health visitor need?
 
+## Research
+What we learned from our interview:
+- Health Visitor need more informations:
+  - informations about allergies
+  - emergency phone numbers (Doctor, hospital, relatives)
+  - habits of the patient
+  - other informations (e.g. where is the key for the house ...)
+
+- Health visitors should be able to update patient informations
+
+- There are standardized processes like wound treatment
+
+- Health visitors do protocol their work day (number of patient, time spent with patient, delays ...)
+
+## Synthesize
+
 ### Main Features
 - duration of tasks performed at patient should be protocolled
 - statistic of average duration of common tasks, that help for planning schedule
