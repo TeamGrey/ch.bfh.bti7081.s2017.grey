@@ -75,7 +75,7 @@ Define specific tasks
 - find out what processes and workflows are in use
 - which information about the patients specific condition does the health visitor need?
 
-## Research
+## Research
 What we learned from our interview:
 - Health Visitor need more informations:
   - informations about allergies
