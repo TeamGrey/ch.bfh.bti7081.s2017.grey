@@ -16,3 +16,6 @@
 
 ## 18.03.2017
 - Quentin interviewed Danaée Chiquet who made an internship at [Spitex Sense](https://www.spitexsense.ch/) during her studies at [HEDS Fribourg](http://www.heds-fr.ch/DE/Seiten/default.aspx) 
+
+## 22.02.2017
+- Team worked on the Requirement Document for CS1
