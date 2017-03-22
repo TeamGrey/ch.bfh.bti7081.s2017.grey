@@ -1,5 +1,5 @@
 ## Termin verwalten
-## Patienten Inforamtionen verwalten
+## Patienten Inforamtionen verwalten
 ## Task abschliessen
-## Medikamenten verwalten
+## Medikamenten verwalten
 
