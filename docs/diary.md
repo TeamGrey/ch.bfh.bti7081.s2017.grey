@@ -17,5 +17,14 @@
 ## 18.03.2017
 - Quentin interviewed Danaée Chiquet who made an internship at [Spitex Sense](https://www.spitexsense.ch/) during her studies at [HEDS Fribourg](http://www.heds-fr.ch/DE/Seiten/default.aspx) 
 
-## 22.02.2017
+## 20.03.2017
+- Team worked on thrid iteration of Design Thinking Process for CS1
+- Created new Prototypes to finish up the task
+
+## 22.03.2017
+- Joel and Nic presented the results of the Design Thinking Process
+- Team worked on the Requirement Document for CS1
+
+## 22.03.2017
+- Joel and Nic presented the results of the Design Thinking Process
 - Team worked on the Requirement Document for CS1
