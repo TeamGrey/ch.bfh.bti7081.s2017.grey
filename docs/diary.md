@@ -25,6 +25,8 @@
 - Joel and Nic presented the results of the Design Thinking Process
 - Team worked on the Requirement Document for CS1
 
-## 22.03.2017
-- Joel and Nic presented the results of the Design Thinking Process
-- Team worked on the Requirement Document for CS1
+## 24.03.2017
+- Team worked on the Requirement Document Review of Team Black for CS1
+
+## 29.03.2017
+- Team worked on Taks 6 for CS1
