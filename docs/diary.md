@@ -30,3 +30,6 @@
 
 ## 29.03.2017
 - Team worked on Taks 6 for CS1
+
+## 05.04.2017
+- Team worked on Task 7 for CS1
