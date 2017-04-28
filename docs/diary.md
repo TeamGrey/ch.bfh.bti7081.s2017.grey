@@ -33,3 +33,9 @@
 
 ## 05.04.2017
 - Team worked on Task 7 for CS1
+
+## 26.04.2017
+- Team created Vaadin Project
+
+## 28.04.2017
+- Team worked on Task 9 for CS1
