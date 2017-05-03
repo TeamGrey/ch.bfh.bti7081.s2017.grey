@@ -1,0 +1,5 @@
+Alle bitte gitflow installieren:
+https://github.com/nvie/gitflow/wiki
+
+und Doku lesen:
+http://nvie.com/posts/a-successful-git-branching-model/
