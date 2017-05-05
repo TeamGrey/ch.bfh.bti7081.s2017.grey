@@ -12,6 +12,8 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.bti7081.s2017.grey.util.Authentication;
+
 public class LoginScreen  extends VerticalLayout implements View {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "";
@@ -34,7 +36,7 @@ public class LoginScreen  extends VerticalLayout implements View {
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				if(username.getValue()=="a" && password.getValue()=="b"){
+				if(Authentication.authenticate(username.getValue(), password.getValue())){
 					Notification.show("Logging in...", Notification.Type.WARNING_MESSAGE);
 				}
 				else{
