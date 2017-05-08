@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -40,6 +41,7 @@ public class LoginScreen  extends VerticalLayout implements View {
 				if(Authentication.authenticate(username.getValue(), password.getValue())){
 					Notification.show("Logging in...", Notification.Type.WARNING_MESSAGE);
 					VaadinSession.getCurrent().setAttribute("user", username.getValue());
+					Page.getCurrent().setUriFragment("!"+AppointmentView.NAME);
 				}
 				else{
 					Notification.show("Invalid credentials", Notification.Type.ERROR_MESSAGE);
