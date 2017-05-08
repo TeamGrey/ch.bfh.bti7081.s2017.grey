@@ -1,9 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -19,12 +16,12 @@ public class Staff {
     private String lastname;
     private String pwhash;
     private String login;
-    private int roleId;
+    @ManyToOne
+    private Role role;
     private Timestamp created;
     private Timestamp changed;
 
-    public Staff(){
-
+    public Staff() {
     }
 
     public int getId() {
@@ -67,12 +64,12 @@ public class Staff {
         this.login = login;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public Role getRoles() {
+        return role;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRoles(Role role) {
+        this.role = role;
     }
 
     public Timestamp getCreated() {
