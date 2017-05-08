@@ -16,8 +16,8 @@ public class Authentication {
      * @return {Boolean}
      */
     public static Boolean authenticate(String login, String password) {
-        var staff = StaffDao.getStaffByUsername(login);
-        return  (staff.getPwhash() == Authentication.createHash(password));
+        Staff staff = StaffDao.getStaffByUsername(login);
+        return  (staff.getPwhash().equals(Authentication.createHash(password)));
     }
 
 
