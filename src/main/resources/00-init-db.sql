@@ -1,4 +1,4 @@
-create table patients
+create table patient
 (
   id bigint not null
     constraint patients_pkey
@@ -28,7 +28,7 @@ create table staff
 comment on column staff.pwhash is 'sha256 hash'
 ;
 
-create table drugs
+create table drug
 (
   id bigint not null
     constraint drugs_pkey
@@ -39,7 +39,7 @@ create table drugs
 )
 ;
 
-create table appointments
+create table appointment
 (
   id bigint not null
     constraint appointments_pkey
@@ -52,7 +52,7 @@ create table appointments
     references staff,
   patient_id bigint not null
     constraint appointments_patients_id_fk
-    references patients,
+    references patient,
   finished timestamp,
   protocol varchar(1000),
   delay integer,
@@ -61,16 +61,16 @@ create table appointments
 )
 ;
 
-comment on column appointments.date is 'planned date and time for appointment'
+comment on column appointment.date is 'planned date and time for appointment'
 ;
 
-comment on column appointments.finished is 'when appointment was finished'
+comment on column appointment.finished is 'when appointment was finished'
 ;
 
-comment on column appointments.delay is 'delay in minutes'
+comment on column appointment.delay is 'delay in minutes'
 ;
 
-create table drug_tasks
+create table drug_task
 (
   id bigint not null
     constraint appointment_drug_pkey
@@ -78,7 +78,7 @@ create table drug_tasks
   task_id bigint not null,
   drug_id bigint not null
     constraint appointment_drug_drugs_id_fk
-    references drugs,
+    references drug,
   amount integer not null,
   amount_units varchar(20),
   created timestamp not null,
@@ -86,10 +86,10 @@ create table drug_tasks
 )
 ;
 
-comment on column drug_tasks.amount_units is 'pieces, mg, ml etc'
+comment on column drug_task.amount_units is 'pieces, mg, ml etc'
 ;
 
-create table roles
+create table role
 (
   id bigint not null
     constraint roles_pkey
@@ -102,10 +102,10 @@ create table roles
 
 alter table staff
   add constraint staff_roles_id_fk
-foreign key (role_id) references roles
+foreign key (role_id) references role
 ;
 
-create table tasks
+create table task
 (
   id bigint not null
     constraint tasks_id_pk
@@ -116,12 +116,12 @@ create table tasks
 )
 ;
 
-alter table drug_tasks
+alter table drug_task
   add constraint drugtasks_tasks_id_fk
-foreign key (task_id) references tasks
+foreign key (task_id) references task
 ;
 
-create table habits
+create table habit
 (
   id bigint not null
     constraint habits_id_pk
@@ -132,23 +132,23 @@ create table habits
 )
 ;
 
-create table patient_habits
+create table patient_habit
 (
   id bigint not null
     constraint patienthabits_pkey
     primary key,
   patient_id bigint not null
     constraint patienthabits_patients_id_fk
-    references patients,
+    references patient,
   habit_id bigint not null
     constraint patienthabits_habits_id_fk
-    references habits,
+    references habit,
   created timestamp not null,
   changed timestamp not null
 )
 ;
 
-create table emergencycontacts
+create table emergencycontact
 (
   id bigint not null
     constraint emergency_contacts_pkey
@@ -158,23 +158,23 @@ create table emergencycontacts
   phonenumber varchar(20) not null,
   patient_id bigint not null
     constraint emergency_contacts_patients_id_fk
-    references patients,
+    references patient,
   created timestamp not null,
   changed timestamp not null
 )
 ;
 
-create table patient_drugs
+create table patient_drug
 (
   id bigint not null
     constraint patient_drugs_pkey
     primary key,
   patient_id bigint not null
     constraint patient_drugs_patients_id_fk
-    references patients,
+    references patient,
   drug_id bigint not null
     constraint patient_drugs_drugs_id_fk
-    references drugs,
+    references drug,
   created timestamp not null,
   changed timestamp not null
 )
