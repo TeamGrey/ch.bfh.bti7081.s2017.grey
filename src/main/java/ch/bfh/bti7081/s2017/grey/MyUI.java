@@ -4,15 +4,10 @@ import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -34,6 +29,7 @@ public class MyUI extends UI {
 		new Navigator(this, this);
 		
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
+		getNavigator().addView(AppointmentView.NAME, AppointmentView.class);
 		getNavigator().setErrorView(LoginScreen.class);
 		
 		router("");
@@ -42,7 +38,7 @@ public class MyUI extends UI {
 	private void router(String route){
 		Notification.show(route);
 		if(getSession().getAttribute("user") != null){
-
+			getNavigator().navigateTo(AppointmentView.NAME);
 		}else{
 			getNavigator().navigateTo(LoginScreen.NAME);
 		}
