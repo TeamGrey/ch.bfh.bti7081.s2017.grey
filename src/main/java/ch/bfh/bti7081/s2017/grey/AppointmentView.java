@@ -22,6 +22,8 @@ public class AppointmentView extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        final Button editButton = new Button();
+        editButton.setCaption("Bearbeiten");
         final HorizontalLayout doublelayout = new HorizontalLayout();
         final VerticalLayout layout = new VerticalLayout();
         final VerticalLayout rightLayout = new VerticalLayout();
@@ -34,6 +36,9 @@ public class AppointmentView extends UI {
         final Button button = new Button();
         final Label label = new Label();
         button.setCaption("Termin hinzufügen");
+        endDate.setEnabled(false);
+        startDate.setEnabled(false);
+
         button.addClickListener(e->{
         Appointment thisappointment = new Appointment(startDate.getValue(),endDate.getValue());
             label.setCaption("Neuer Termin hinzugefügt am " +thisappointment.getStartTime()+" bis "+thisappointment.getEndTime());
