@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
