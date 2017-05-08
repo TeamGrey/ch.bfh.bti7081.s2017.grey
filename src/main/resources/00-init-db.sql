@@ -21,6 +21,9 @@ create table staff
 )
 ;
 
+comment on column staff.pwhash is 'sha256 hash'
+;
+
 create table drugs
 (
   id bigint not null
@@ -50,7 +53,16 @@ create table appointments
 )
 ;
 
-create table drugtasks
+comment on column appointments.date is 'planned date and time for appointment'
+;
+
+comment on column appointments.finished is 'when appointment was finished'
+;
+
+comment on column appointments.delay is 'delay in minutes'
+;
+
+create table drug_tasks
 (
   id bigint not null
     constraint appointment_drug_pkey
@@ -59,8 +71,12 @@ create table drugtasks
   drug_id bigint not null
     constraint appointment_drug_drugs_id_fk
     references drugs,
-  amount integer not null
+  amount integer not null,
+  amount_units varchar(20)
 )
+;
+
+comment on column drug_tasks.amount_units is 'pieces, mg, ml etc'
 ;
 
 create table roles
@@ -86,7 +102,7 @@ create table tasks
 )
 ;
 
-alter table drugtasks
+alter table drug_tasks
   add constraint drugtasks_tasks_id_fk
 foreign key (task_id) references tasks
 ;
@@ -100,7 +116,7 @@ create table habits
 )
 ;
 
-create table patienthabits
+create table patient_habits
 (
   id bigint not null
     constraint patienthabits_pkey
@@ -114,7 +130,7 @@ create table patienthabits
 )
 ;
 
-create table emergency_contacts
+create table emergencycontacts
 (
   id bigint not null
     constraint emergency_contacts_pkey
