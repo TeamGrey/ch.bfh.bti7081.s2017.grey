@@ -134,3 +134,6 @@ tags
 
 # Maven
 target/
+
+#JPA config file
+/src/main/resources/META-INF/persistence.xml
