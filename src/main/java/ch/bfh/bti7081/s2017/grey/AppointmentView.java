@@ -1,14 +1,10 @@
 package ch.bfh.bti7081.s2017.grey;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.event.dd.acceptcriteria.Not;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import com.vaadin.ui.Notification;
-import javax.servlet.annotation.WebServlet;
-import java.time.format.DateTimeFormatter;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -18,13 +14,15 @@ import java.time.format.DateTimeFormatter;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
-public class AppointmentView extends UI {
+public class AppointmentView  extends HorizontalLayout implements View{
 
-    @Override
-    protected void init(VaadinRequest vaadinRequest) {
+	private static final long serialVersionUID = 1L;
+	public static final String NAME = "AppointmentView";
+
+	public AppointmentView(){
+    	
         final Button editButton = new Button();
         editButton.setCaption("Bearbeiten");
-        final HorizontalLayout doublelayout = new HorizontalLayout();
         final VerticalLayout layout = new VerticalLayout();
         final VerticalLayout rightLayout = new VerticalLayout();
         final DateField startDate = new DateField();
@@ -49,13 +47,14 @@ public class AppointmentView extends UI {
         });
         startDate.setCaption("Startdatum");
         layout.addComponents(endDate,startDate,terminBeschrieb,button);
-        doublelayout.addComponents(layout,rightLayout);
-        setContent(doublelayout);
+        this.addComponents(layout,rightLayout);
+        
     }
 
-    @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = AppointmentView.class, productionMode = false)
-    public static class MyUIServlet extends VaadinServlet {
-    }
+	@Override
+	public void enter(ViewChangeEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
