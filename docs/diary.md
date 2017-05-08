@@ -39,3 +39,8 @@
 
 ## 28.04.2017
 - Team worked on Task 9 for CS1
+
+## 03.05.2017
+- Start of implementation of Project
+- Creating Scrum Excel
+- Start using GitFlow for parallel development

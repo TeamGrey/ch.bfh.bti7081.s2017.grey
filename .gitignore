@@ -134,3 +134,5 @@ tags
 
 # Maven
 target/
+*.classpath
+*.project
