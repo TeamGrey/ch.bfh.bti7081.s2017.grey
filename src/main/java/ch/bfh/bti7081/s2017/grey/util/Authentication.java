@@ -1,9 +1,12 @@
 package ch.bfh.bti7081.s2017.grey.util;
 
+import ch.bfh.bti7081.s2017.grey.database.dao.StaffDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 
 /**
- * Created by jo-ra on 05.05.2017.
+ * Service for User authentication
+ *
+ * @author Joel
  */
 public class Authentication {
 
@@ -16,7 +19,7 @@ public class Authentication {
      * @return {Boolean}
      */
     public static Boolean authenticate(String login, String password) {
-        Staff staff = StaffDao.getStaffByUsername(login);
+        Staff staff = (new StaffDao()).getStaffByLogin(login);
         return  (staff.getPwhash().equals(Authentication.createHash(password)));
     }
 
