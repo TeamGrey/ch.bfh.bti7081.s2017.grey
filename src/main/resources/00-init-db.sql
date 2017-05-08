@@ -4,7 +4,9 @@ create table patients
     constraint patients_pkey
     primary key,
   firstname varchar(50) not null,
-  lastname varchar(50) not null
+  lastname varchar(50) not null,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -17,7 +19,9 @@ create table staff
   lastname varchar(50) not null,
   pwhash varchar(64) not null,
   login varchar(20) not null,
-  role_id bigint not null
+  role_id bigint not null,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -29,7 +33,9 @@ create table drugs
   id bigint not null
     constraint drugs_pkey
     primary key,
-  name varchar(50) not null
+  name varchar(50) not null,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -49,7 +55,9 @@ create table appointments
     references patients,
   finished timestamp,
   protocol varchar(1000),
-  delay integer
+  delay integer,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -72,7 +80,9 @@ create table drug_tasks
     constraint appointment_drug_drugs_id_fk
     references drugs,
   amount integer not null,
-  amount_units varchar(20)
+  amount_units varchar(20),
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -84,7 +94,9 @@ create table roles
   id bigint not null
     constraint roles_pkey
     primary key,
-  name varchar(50) not null
+  name varchar(50) not null,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -98,7 +110,9 @@ create table tasks
   id bigint not null
     constraint tasks_id_pk
     primary key,
-  name varchar(100) not null
+  name varchar(100) not null,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -112,7 +126,9 @@ create table habits
   id bigint not null
     constraint habits_id_pk
     primary key,
-  name varchar(200) not null
+  name varchar(200) not null,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -126,7 +142,9 @@ create table patient_habits
     references patients,
   habit_id bigint not null
     constraint patienthabits_habits_id_fk
-    references habits
+    references habits,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -140,7 +158,9 @@ create table emergencycontacts
   phonenumber varchar(20) not null,
   patient_id bigint not null
     constraint emergency_contacts_patients_id_fk
-    references patients
+    references patients,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
@@ -154,7 +174,9 @@ create table patient_drugs
     references patients,
   drug_id bigint not null
     constraint patient_drugs_drugs_id_fk
-    references drugs
+    references drugs,
+  created timestamp not null,
+  changed timestamp not null
 )
 ;
 
