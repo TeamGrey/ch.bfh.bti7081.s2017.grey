@@ -25,6 +25,7 @@ public class Authentication {
 
 
     public static String createHash(String plain)  {
-        return String.valueOf(plain.hashCode());
+        return plain; // FIXME create hash
+        //return String.valueOf(plain.hashCode());
     }
 }
