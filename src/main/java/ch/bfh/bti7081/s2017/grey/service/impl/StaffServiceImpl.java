@@ -1,9 +1,9 @@
-package ch.bfh.bti7081.s2017.grey.database.service.impl;
+package ch.bfh.bti7081.s2017.grey.service.impl;
 
 import ch.bfh.bti7081.s2017.grey.database.dao.StaffDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
-import ch.bfh.bti7081.s2017.grey.database.service.StaffService;
+import ch.bfh.bti7081.s2017.grey.service.StaffService;
 
 /**
  * @Author Quentin.

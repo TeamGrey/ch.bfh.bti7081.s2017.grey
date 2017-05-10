@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey.database.service;
+package ch.bfh.bti7081.s2017.grey.service;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
