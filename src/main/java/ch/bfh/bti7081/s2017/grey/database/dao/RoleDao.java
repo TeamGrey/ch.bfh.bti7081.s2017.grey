@@ -18,6 +18,8 @@ public class RoleDao {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CRM" );
         EntityManager entitymanager = emfactory.createEntityManager();
         Role role = entitymanager.find( Role.class, id );
+        entitymanager.close();
+        emfactory.close();
         return role;
     }
 
