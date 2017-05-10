@@ -40,5 +40,6 @@ public class RoleDao {
 
         entitymanager.close();
         emfactory.close();
+
     }
 }

@@ -20,7 +20,7 @@ import java.time.Instant;
  */
 public class StaffDao {
 
-    public static Staff getStaffByLogin(String login) {
+    public Staff getStaffByLogin(String login) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
         EntityManager entityManager = emfactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -37,7 +37,7 @@ public class StaffDao {
         return result;
     }
 
-    public static void createStaff(String firstname, String lastname, String login, String pwhash, Role role) {
+    public void createStaff(String firstname, String lastname, String login, String pwhash, Role role) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
 
         EntityManager entitymanager = emfactory.createEntityManager();
