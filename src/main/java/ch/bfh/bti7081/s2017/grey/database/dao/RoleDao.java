@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * Data access object for {@link Role} Entity
@@ -21,16 +22,18 @@ public class RoleDao {
     }
 
 
-    public static void createRole(String name, Timestamp created, Timestamp changed) {
+    public static void createRole(String name) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
 
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
 
+        Instant instant = Instant.now();
+
         Role role = new Role();
         role.setName(name);
-        role.setCreated(created);
-        role.setChanged(changed);
+        role.setCreated(new Timestamp(instant.toEpochMilli()));
+        role.setChanged(new Timestamp(instant.toEpochMilli()));
 
         entitymanager.persist(role);
         entitymanager.getTransaction().commit();

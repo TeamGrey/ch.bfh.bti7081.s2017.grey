@@ -17,8 +17,7 @@ public class StaffDaoTest {
     public void testCreateStaff() {
         Instant instant = Instant.now();
         Role role = RoleDao.getRoleById(1);
-        StaffDao.createStaff("TestF", "TestL", "test", "password",
-                new Timestamp(instant.toEpochMilli()), new Timestamp(instant.toEpochMilli()), role);
+        StaffDao.createStaff("TestF", "TestL", "test", "password", role);
 
         assertNotNull(StaffDao.getStaffByLogin("test"));
     }

@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * Data access object for {@link Staff} Entity
@@ -36,19 +37,21 @@ public class StaffDao {
         return result;
     }
 
-    public static void createStaff(String firstname, String lastname, String login, String pwhash, Timestamp changed, Timestamp created, Role role) {
+    public static void createStaff(String firstname, String lastname, String login, String pwhash, Role role) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
 
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
+
+        Instant instant = Instant.now();
 
         Staff staff = new Staff();
         staff.setFirstname(firstname);
         staff.setLastname(lastname);
         staff.setLogin(login);
         staff.setPwhash(pwhash);
-        staff.setChanged(changed);
-        staff.setCreated(created);
+        staff.setChanged(new Timestamp(instant.toEpochMilli()));
+        staff.setCreated(new Timestamp(instant.toEpochMilli()));
         staff.setRoles(role);
 
         entitymanager.persist(staff);
