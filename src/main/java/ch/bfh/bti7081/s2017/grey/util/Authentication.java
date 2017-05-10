@@ -3,7 +3,6 @@ package ch.bfh.bti7081.s2017.grey.util;
 import ch.bfh.bti7081.s2017.grey.database.dao.StaffDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 
-
 /**
  * Service for User authentication
  *

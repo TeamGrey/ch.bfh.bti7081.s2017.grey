@@ -1,6 +1,9 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 /**
@@ -8,21 +11,14 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table
-public class Staff {
+public class Patient {
     @Id
     @GeneratedValue
     private int id;
     private String firstname;
     private String lastname;
-    private String pwhash;
-    private String login;
-    @ManyToOne
-    private Role role;
     private Timestamp created;
     private Timestamp changed;
-
-    public Staff() {
-    }
 
     public int getId() {
         return id;
@@ -48,30 +44,6 @@ public class Staff {
         this.lastname = lastname;
     }
 
-    public String getPwhash() {
-        return pwhash;
-    }
-
-    public void setPwhash(String pwhash) {
-        this.pwhash = pwhash;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public Role getRoles() {
-        return role;
-    }
-
-    public void setRoles(Role role) {
-        this.role = role;
-    }
-
     public Timestamp getCreated() {
         return created;
     }
@@ -84,7 +56,7 @@ public class Staff {
         return changed;
     }
 
-    public void setChanged(Timestamp changed) {
-        this.changed = changed;
+    public void setChanged(Timestamp chnaged) {
+        this.changed = chnaged;
     }
 }
