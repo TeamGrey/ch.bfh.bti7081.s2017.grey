@@ -45,7 +45,7 @@ public class PatientDao {
         return result;
     }
 
-    public void createStaff(String firstname, String lastname) {
+    public void createPatient(String firstname, String lastname) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
 
         EntityManager entitymanager = emfactory.createEntityManager();
