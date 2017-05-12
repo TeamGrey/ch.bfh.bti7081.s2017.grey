@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
@@ -13,7 +11,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickListener;
 
-public class Design extends VerticalLayout implements View {
+public class Design extends VerticalLayout {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Design";
 	private CustomLayout mainlayout = new CustomLayout("mainlayout");
@@ -26,7 +24,7 @@ public class Design extends VerticalLayout implements View {
 		mainlayout.setSizeFull();
 		lHeader.setSizeFull();
 		lFooter.setSizeFull();
-		
+
 		logout.addClickListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -38,7 +36,7 @@ public class Design extends VerticalLayout implements View {
 			}
 		});
 	}
-	
+
 	public Design insertContent(Component content){
 		HorizontalLayout header = new HorizontalLayout();
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
@@ -47,19 +45,12 @@ public class Design extends VerticalLayout implements View {
 		else{
 			header.addComponents(lHeader, l2Header);
 		}
-		
-		
+
 		mainlayout.addComponent(header, "top");
 		mainlayout.addComponent(content, "center");
 		mainlayout.addComponent(lFooter, "bottom");
-		
+
 		this.addComponent(mainlayout);
 		return this;
 	}
-	
-	@Override
-	public void enter(ViewChangeEvent event) {
-		
-	}
-
 }

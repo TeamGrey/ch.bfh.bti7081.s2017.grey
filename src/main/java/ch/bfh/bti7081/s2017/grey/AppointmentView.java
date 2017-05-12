@@ -21,46 +21,45 @@ public class AppointmentView extends HorizontalLayout implements View{
 	public static final String NAME = "AppointmentView";
 
 	public AppointmentView(){
-        final Button editButton = new Button();
-        editButton.setCaption("Bearbeiten");
-        final VerticalLayout layout = new VerticalLayout();
-        final VerticalLayout rightLayout = new VerticalLayout();
-        final DateField startDate = new DateField();
-        startDate.setCaption("Termin Beginn");
-        final DateField endDate = new DateField();
-        endDate.setCaption("Termin Ende");
-        final TextField terminBeschrieb = new TextField();
-        terminBeschrieb.setCaption("Termin Bezeichnung");
-        final Button button = new Button();
-        final Label label = new Label();
-        button.setCaption("Termin hinzufügen");
-        //endDate.setEnabled(false);
-        //startDate.setEnabled(false);
+		final Button editButton = new Button();
+		editButton.setCaption("Bearbeiten");
+		final VerticalLayout layout = new VerticalLayout();
+		final VerticalLayout rightLayout = new VerticalLayout();
+		final DateField startDate = new DateField();
+		startDate.setCaption("Termin Beginn");
+		final DateField endDate = new DateField();
+		endDate.setCaption("Termin Ende");
+		final TextField terminBeschrieb = new TextField();
+		terminBeschrieb.setCaption("Termin Bezeichnung");
+		final Button button = new Button();
+		final Label label = new Label();
+		button.setCaption("Termin hinzufügen");
+		//endDate.setEnabled(false);
+		//startDate.setEnabled(false);
 
-        Calendar cal = new Calendar("My Calendar");
-        cal.setWidth("600px");
-        cal.setHeight("300px");
+		Calendar cal = new Calendar("My Calendar");
+		cal.setWidth("600px");
+		cal.setHeight("300px");
 
-        button.addClickListener(e->{
-        Appointment thisappointment = new Appointment(startDate.getValue(),endDate.getValue());
-            label.setCaption("Neuer Termin hinzugefügt am " +thisappointment.getStartTime()+" bis "+thisappointment.getEndTime());
-            rightLayout.addComponent(label);
-        });
-        startDate.addFocusListener(e->{
-            this.setEnabled(true);
-        });
-        startDate.setCaption("Startdatum");
-        layout.addComponents(endDate,startDate,terminBeschrieb,button, cal);
-        this.addComponents(layout,rightLayout);
-        Design test = new Design();
-		addComponent(test.insertContent(layout));
-                
-    }
+		button.addClickListener(e->{
+			Appointment thisappointment = new Appointment(startDate.getValue(),endDate.getValue());
+			label.setCaption("Neuer Termin hinzugefügt am " +thisappointment.getStartTime()+" bis "+thisappointment.getEndTime());
+			rightLayout.addComponent(label);
+		});
+		startDate.addFocusListener(e->{
+			this.setEnabled(true);
+		});
+		startDate.setCaption("Startdatum");
+		layout.addComponents(endDate,startDate,terminBeschrieb,button, cal);
+		this.addComponents(layout,rightLayout);
+		Design design = new Design();
+		addComponent(design.insertContent(layout));
+
+	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
-		
+		Appointment.loggedIn();		
 	}
 }
 
