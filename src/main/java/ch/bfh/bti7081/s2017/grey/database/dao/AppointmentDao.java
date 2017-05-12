@@ -1,12 +1,11 @@
 package ch.bfh.bti7081.s2017.grey.database.dao;
 
+import ch.bfh.bti7081.s2017.grey.database.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -24,9 +23,7 @@ import java.util.List;
 public class AppointmentDao {
 
     public List<Appointment> findAppointmentsForStaffAndDay(Staff staff, LocalDate date) {
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
-        EntityManager entityManager = emfactory.createEntityManager();
-        entityManager.getTransaction().begin();
+        EntityManager entityManager = EntityManagerSingleton.getInstance();
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Appointment> criteriaQuery = criteriaBuilder.createQuery(Appointment.class);
@@ -40,15 +37,12 @@ public class AppointmentDao {
 
         TypedQuery<Appointment> query = entityManager.createQuery(criteriaQuery);
         List<Appointment> appointments =  query.getResultList();
-        entityManager.close();
-        emfactory.close();
         return appointments;
     }
 
     public void createAppointment(LocalDateTime date, String title, String description, Staff staff, Patient patient) {
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
 
-        EntityManager entitymanager = emfactory.createEntityManager();
+        EntityManager entitymanager = EntityManagerSingleton.getInstance();
         entitymanager.getTransaction().begin();
 
         Instant instant = Instant.now();
@@ -63,20 +57,14 @@ public class AppointmentDao {
 
         entitymanager.persist(appointment);
         entitymanager.getTransaction().commit();
-
-        entitymanager.close();
-        emfactory.close();
     }
 
     public void removeAppointment(int id) {
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
-        EntityManager entitymanager = emfactory.createEntityManager();
+        EntityManager entitymanager = EntityManagerSingleton.getInstance();
         entitymanager.getTransaction().begin();
 
         Appointment appointment = entitymanager.find(Appointment.class, id);
         entitymanager.remove(appointment);
         entitymanager.getTransaction().commit();
-        entitymanager.close();
-        emfactory.close();
     }
 }
