@@ -60,4 +60,17 @@ public class StaffDao {
         entitymanager.close();
         emfactory.close();
     }
+
+    public void removeStaff(int id) {
+
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
+        EntityManager entitymanager = emfactory.createEntityManager( );
+        entitymanager.getTransaction( ).begin( );
+
+        Staff staff = entitymanager.find( Staff.class, id );
+        entitymanager.remove(staff);
+        entitymanager.getTransaction( ).commit( );
+        entitymanager.close( );
+        emfactory.close( );
+    }
 }
