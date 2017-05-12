@@ -32,7 +32,8 @@ public class Design extends VerticalLayout {
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
 				VaadinSession.getCurrent().close();	
 				Notification.show("Logging out...", Notification.Type.WARNING_MESSAGE);
-				Page.getCurrent().setUriFragment("");
+				Page.getCurrent().setUriFragment("!"+LoginScreen.NAME);
+				Page.getCurrent().reload();
 			}
 		});
 	}
