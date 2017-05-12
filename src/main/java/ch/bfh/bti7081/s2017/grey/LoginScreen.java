@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
@@ -44,6 +45,8 @@ public class LoginScreen extends HorizontalLayout implements View {
 					
 			
 		});
+		send.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+
 		content.addComponent(send);
 		
 		Design test = new Design();
