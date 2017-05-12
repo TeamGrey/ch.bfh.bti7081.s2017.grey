@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey.database;
+package ch.bfh.bti7081.s2017.grey.database.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
