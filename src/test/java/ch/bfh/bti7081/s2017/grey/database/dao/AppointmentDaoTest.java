@@ -21,15 +21,19 @@ public class AppointmentDaoTest {
         StaffDao staffDao = new StaffDao();
         PatientDao patientDao = new PatientDao();
 
+        // given
         LocalDateTime date = LocalDateTime.now();
         Staff staff = staffDao.getStaffByLogin("vonaj2");
         Patient patient = patientDao.getPatientByName("Test", "Test");
 
+        // when
         appointmentDao.createAppointment(date, "appointment", "test for dao", staff, patient);
 
+        // then
         List<Appointment> appointments = appointmentDao.findAppointmentsForStaffAndDay(staff, date.toLocalDate());
         assertNotNull(appointments.get(0));
 
+        // clean up
         for (Appointment appointment : appointments) {
             appointmentDao.removeAppointment(appointment.getId());
         }

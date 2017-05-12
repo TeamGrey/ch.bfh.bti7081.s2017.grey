@@ -1,7 +1,9 @@
 package ch.bfh.bti7081.s2017.grey.util;
 
 /**
- * Created by jo-ra on 05.05.2017.
+ * Providing interface for authentication
+ *
+ * @author Joel
  */
 public interface Authenticatable {
 
