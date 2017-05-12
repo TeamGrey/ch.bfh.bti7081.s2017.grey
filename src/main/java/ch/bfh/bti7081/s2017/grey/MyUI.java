@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.grey;
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
@@ -18,6 +19,7 @@ import com.vaadin.ui.UI;
  */
 @SuppressWarnings("serial")
 @Theme("mytheme")
+@Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
 public class MyUI extends UI {
 
 	@WebServlet(value = "/*", asyncSupported = true)
