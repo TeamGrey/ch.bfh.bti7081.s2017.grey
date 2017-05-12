@@ -15,7 +15,7 @@ public class PatientServiceImpl implements PatientService {
         patientDao = new PatientDao();
     }
     @Override
-    public Patient getPatientById(int id) {
+    public Patient getPatientById(long id) {
         return patientDao.getPatientById(id);
     }
 

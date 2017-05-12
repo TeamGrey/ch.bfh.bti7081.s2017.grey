@@ -61,7 +61,7 @@ public class StaffDao {
         emfactory.close();
     }
 
-    public void removeStaff(int id) {
+    public void removeStaff(long id) {
 
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CRM" );
         EntityManager entitymanager = emfactory.createEntityManager( );

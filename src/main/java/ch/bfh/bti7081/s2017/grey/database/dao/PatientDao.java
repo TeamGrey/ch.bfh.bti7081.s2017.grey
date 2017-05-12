@@ -18,7 +18,7 @@ import java.time.Instant;
  */
 public class PatientDao {
 
-    public Patient getPatientById(int id) {
+    public Patient getPatientById(long id) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CRM" );
         EntityManager entitymanager = emfactory.createEntityManager();
         Patient patient = entitymanager.find( Patient.class, id );

@@ -68,7 +68,7 @@ public class AppointmentDao {
         emfactory.close();
     }
 
-    public void removeAppointment(int id) {
+    public void removeAppointment(long id) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();

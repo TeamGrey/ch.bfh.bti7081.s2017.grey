@@ -14,7 +14,7 @@ import java.time.Instant;
  * @Author Quentin
  */
 public class RoleDao {
-    public static Role getRoleById(int id) {
+    public static Role getRoleById(long id) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CRM" );
         EntityManager entitymanager = emfactory.createEntityManager();
         Role role = entitymanager.find( Role.class, id );
