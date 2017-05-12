@@ -24,13 +24,13 @@
                       value="org.postgresql.Driver" />
 
             <property name="javax.persistence.jdbc.url"
-                      value="db-url" />
+                      value="jdbc:postgresql://DBHOSTNAME:5432/mhcpms?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory" />
 
             <property name="javax.persistence.jdbc.user"
-                      value="user" />
+                      value="USER" />
 
             <property name="javax.persistence.jdbc.password"
-                      value="password" />
+                      value="PASSWORD" />
 
             <property name="hibernate.show_sql"
                       value="true" />
