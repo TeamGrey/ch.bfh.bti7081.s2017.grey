@@ -5,6 +5,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.*;
+import com.vaadin.v7.ui.Calendar;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -20,7 +21,6 @@ public class AppointmentView  extends HorizontalLayout implements View{
 	public static final String NAME = "AppointmentView";
 
 	public AppointmentView(){
-    	
         final Button editButton = new Button();
         editButton.setCaption("Bearbeiten");
         final VerticalLayout layout = new VerticalLayout();
@@ -34,8 +34,12 @@ public class AppointmentView  extends HorizontalLayout implements View{
         final Button button = new Button();
         final Label label = new Label();
         button.setCaption("Termin hinzufügen");
-        endDate.setEnabled(false);
-        startDate.setEnabled(false);
+        //endDate.setEnabled(false);
+        //startDate.setEnabled(false);
+
+        Calendar cal = new Calendar("My Calendar");
+        cal.setWidth("600px");
+        cal.setHeight("300px");
 
         button.addClickListener(e->{
         Appointment thisappointment = new Appointment(startDate.getValue(),endDate.getValue());
@@ -46,7 +50,7 @@ public class AppointmentView  extends HorizontalLayout implements View{
             this.setEnabled(true);
         });
         startDate.setCaption("Startdatum");
-        layout.addComponents(endDate,startDate,terminBeschrieb,button);
+        layout.addComponents(endDate,startDate,terminBeschrieb,button, cal);
         this.addComponents(layout,rightLayout);
         
     }
