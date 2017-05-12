@@ -1,17 +1,12 @@
 package ch.bfh.bti7081.s2017.grey.util;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.StaffDao;
-import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
-
 /**
- * Service for User authentication
- *
- * @author Joel
+ * Created by jo-ra on 05.05.2017.
  */
 public class Authentication {
 
     /**
-     * Authenticate user by login and password
+     * Authenticate user by username and password
      * compare with database
      *
      * @param login user reference
