@@ -5,9 +5,10 @@ import javax.servlet.annotation.WebServlet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Notification;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 /**
@@ -29,21 +30,25 @@ public class MyUI extends UI {
 	@Override
 	protected void init(VaadinRequest request) {
 		new Navigator(this, this);
-		
+
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentView.NAME, AppointmentView.class);
 		getNavigator().setErrorView(LoginScreen.class);
-		
-		router("");
+
+		router();
 	}
-	
-	private void router(String route){
-		Notification.show(route);
-		if(getSession().getAttribute("user") != null){
+
+	private void router(){
+		if(VaadinSession.getCurrent().getAttribute("user") != null){
 			getNavigator().navigateTo(AppointmentView.NAME);
 		}else{
 			getNavigator().navigateTo(LoginScreen.NAME);
 		}
 	}
-
+	
+	public static void loggedIn(){
+		if(VaadinSession.getCurrent().getAttribute("user") == null){
+			Page.getCurrent().setUriFragment("!"+LoginScreen.NAME);
+		}
+	}
 }
