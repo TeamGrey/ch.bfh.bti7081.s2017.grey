@@ -141,3 +141,6 @@ target/
 # Eclipse
 *.classpath
 *.project
+
+# Ignore generated file
+/src/main/webapp/VAADIN/themes/mytheme/styles.css
