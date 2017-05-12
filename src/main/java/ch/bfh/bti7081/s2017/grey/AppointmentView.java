@@ -15,7 +15,7 @@ import com.vaadin.v7.ui.Calendar;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
-public class AppointmentView  extends HorizontalLayout implements View{
+public class AppointmentView extends HorizontalLayout implements View{
 
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "AppointmentView";
@@ -52,7 +52,9 @@ public class AppointmentView  extends HorizontalLayout implements View{
         startDate.setCaption("Startdatum");
         layout.addComponents(endDate,startDate,terminBeschrieb,button, cal);
         this.addComponents(layout,rightLayout);
-        
+        Design test = new Design();
+		addComponent(test.insertContent(layout));
+                
     }
 
 	@Override

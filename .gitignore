@@ -134,5 +134,13 @@ tags
 
 # Maven
 target/
+
+#JPA config file
+/src/main/resources/META-INF/persistence.xml
+
+# Eclipse
 *.classpath
 *.project
+
+# Ignore generated file
+/src/main/webapp/VAADIN/themes/mytheme/styles.css
