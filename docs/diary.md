@@ -44,3 +44,15 @@
 - Start of implementation of Project
 - Creating Scrum Excel
 - Start using GitFlow for parallel development
+
+## 05.05.2017
+- Team worked on Sprint 1
+
+## 08.05.2017
+- Team worked on Sprint 1
+
+## 10.05.2017
+- Team worked on Sprint 1
+
+## 12.05.2017
+- Team finished Sprint 1
