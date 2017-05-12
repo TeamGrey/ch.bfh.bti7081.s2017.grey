@@ -1,5 +1,8 @@
 package ch.bfh.bti7081.s2017.grey.util;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
+
 /**
  * Created by jo-ra on 05.05.2017.
  */
@@ -14,7 +17,7 @@ public class Authentication {
      * @return {Boolean}
      */
     public static Boolean authenticate(String login, String password) {
-        Staff staff = StaffDao.getStaffByLogin(login);
+        Staff staff = (new StaffServiceImpl()).findStaffByLogin(login);
         return authenticate(staff, password);
     }
 
