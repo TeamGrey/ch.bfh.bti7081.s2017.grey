@@ -67,4 +67,16 @@ public class AppointmentDao {
         entitymanager.close();
         emfactory.close();
     }
+
+    public void removeAppointment(int id) {
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CRM");
+        EntityManager entitymanager = emfactory.createEntityManager();
+        entitymanager.getTransaction().begin();
+
+        Appointment appointment = entitymanager.find(Appointment.class, id);
+        entitymanager.remove(appointment);
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
+    }
 }

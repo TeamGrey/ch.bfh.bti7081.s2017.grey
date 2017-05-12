@@ -21,7 +21,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void createStaff(String firstname, String lastname) {
-        patientDao.createStaff(firstname, lastname);
+        patientDao.createPatient(firstname, lastname);
     }
 
     @Override
