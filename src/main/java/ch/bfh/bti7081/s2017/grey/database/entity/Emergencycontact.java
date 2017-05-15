@@ -2,25 +2,23 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @Author Quentin
  */
 @Entity
 @Table
-public class Patient {
+public class Emergencycontact {
     @Id
     @GeneratedValue
     private long id;
     private String firstname;
     private String lastname;
+    private String phonenumber;
+    @ManyToOne
+    private Patient patient;
     private Timestamp created;
     private Timestamp changed;
-    @ManyToMany(targetEntity = Drug.class)
-    List<Drug> drugs;
-    @ManyToMany(targetEntity = Habit.class)
-    List<Habit> habits;
 
     public long getId() {
         return id;
@@ -46,6 +44,22 @@ public class Patient {
         this.lastname = lastname;
     }
 
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     public Timestamp getCreated() {
         return created;
     }
@@ -58,23 +72,7 @@ public class Patient {
         return changed;
     }
 
-    public void setChanged(Timestamp chnaged) {
-        this.changed = chnaged;
-    }
-
-    public List<Drug> getDrugs() {
-        return drugs;
-    }
-
-    public void setDrugs(List<Drug> drugs) {
-        this.drugs = drugs;
-    }
-
-    public List<Habit> getHabits() {
-        return habits;
-    }
-
-    public void setHabits(List<Habit> habits) {
-        this.habits = habits;
+    public void setChanged(Timestamp changed) {
+        this.changed = changed;
     }
 }
