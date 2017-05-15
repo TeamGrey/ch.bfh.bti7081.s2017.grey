@@ -12,7 +12,7 @@ import java.time.Instant;
  * @Author Quentin
  */
 public class RoleDao {
-    public static Role getRoleById(int id) {
+    public static Role getRoleById(long id) {
         EntityManager entitymanager = EntityManagerSingleton.getInstance();
         Role role = entitymanager.find( Role.class, id );
         return role;

@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class Staff {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String firstname;
     private String lastname;
     private String pwhash;
@@ -24,11 +24,11 @@ public class Staff {
     public Staff() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -59,7 +59,7 @@ public class AppointmentDao {
         entitymanager.getTransaction().commit();
     }
 
-    public void removeAppointment(int id) {
+    public void removeAppointment(long id) {
         EntityManager entitymanager = EntityManagerSingleton.getInstance();
         entitymanager.getTransaction().begin();
 

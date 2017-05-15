@@ -14,17 +14,17 @@ import java.sql.Timestamp;
 public class Patient {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String firstname;
     private String lastname;
     private Timestamp created;
     private Timestamp changed;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

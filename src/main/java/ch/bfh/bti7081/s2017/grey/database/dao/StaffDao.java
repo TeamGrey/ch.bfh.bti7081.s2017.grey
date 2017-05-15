@@ -52,7 +52,7 @@ public class StaffDao {
 
     }
 
-    public void removeStaff(int id) {
+    public void removeStaff(long id) {
         EntityManager entitymanager = EntityManagerSingleton.getInstance();
         entitymanager.getTransaction( ).begin( );
 

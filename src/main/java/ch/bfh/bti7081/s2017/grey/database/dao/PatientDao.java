@@ -16,7 +16,7 @@ import java.time.Instant;
  */
 public class PatientDao {
 
-    public Patient getPatientById(int id) {
+    public Patient getPatientById(long id) {
         EntityManager entitymanager = EntityManagerSingleton.getInstance();
         Patient patient = entitymanager.find( Patient.class, id );
         return patient;
