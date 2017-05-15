@@ -14,18 +14,18 @@ import java.sql.Timestamp;
 public class Role {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String name;
     private Timestamp created;
     private Timestamp changed;
 
     public Role() {}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
