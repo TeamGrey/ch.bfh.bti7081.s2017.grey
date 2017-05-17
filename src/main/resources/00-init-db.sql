@@ -61,7 +61,7 @@ create table appointment
   delay integer,
   created timestamp not null,
   changed timestamp not null,
-  status_id bigint
+  status_id integer
 )
 ;
 
@@ -182,23 +182,5 @@ create table patient_drug
   created timestamp not null,
   changed timestamp not null
 )
-;
-
-create table appointmentstatus
-(
-  id bigint not null
-    constraint appointmentstatus_pkey
-    primary key,
-  name varchar(20) not null
-)
-;
-
-create unique index appointmentstatus_name_uindex
-  on appointmentstatus (name)
-;
-
-alter table appointment
-  add constraint appointment_appointmentstatus_id_fk
-foreign key (status_id) references appointmentstatus
 ;
 
