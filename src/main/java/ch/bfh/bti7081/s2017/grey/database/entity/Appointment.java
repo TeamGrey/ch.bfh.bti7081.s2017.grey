@@ -119,6 +119,24 @@ public class Appointment {
     }
 
     public void setStatus(AppointmentStatus status) {
-        this.status = status;
+        if (status != null && status != this.status) {
+            this.status = status;
+        }
+    }
+
+    public void create() {
+        setStatus(status.create(this));
+    }
+
+    public void delay() {
+        setStatus(status.delay(this));
+    }
+
+    public void cancel() {
+        setStatus(status.cancel(this));
+    }
+
+    public void finish() {
+        setStatus(status.finish(this));
     }
 }
