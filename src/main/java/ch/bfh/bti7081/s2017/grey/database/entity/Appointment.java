@@ -24,6 +24,8 @@ public class Appointment {
     private int delay;
     private Timestamp created;
     private Timestamp changed;
+    @ManyToOne
+    private AppointmentStatus status;
 
     public long getId() {
         return id;
@@ -111,5 +113,13 @@ public class Appointment {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public AppointmentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AppointmentStatus status) {
+        this.status = status;
     }
 }

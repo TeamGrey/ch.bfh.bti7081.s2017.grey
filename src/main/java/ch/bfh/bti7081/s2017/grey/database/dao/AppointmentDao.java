@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.AppointmentStatus;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
@@ -54,6 +55,10 @@ public class AppointmentDao {
         appointment.setPatient(patient);
         appointment.setCreated(new Timestamp(instant.toEpochMilli()));
         appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+
+        AppointmentStatusDao statusDao = new AppointmentStatusDao();
+        AppointmentStatus status = statusDao.getAppointmentStatusByName("created");
+        appointment.setStatus(status);
 
         entitymanager.persist(appointment);
         entitymanager.getTransaction().commit();
