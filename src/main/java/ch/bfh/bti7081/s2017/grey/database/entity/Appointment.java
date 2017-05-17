@@ -24,8 +24,7 @@ public class Appointment {
     private int delay;
     private Timestamp created;
     private Timestamp changed;
-    @ManyToOne
-    private AppointmentStatus status;
+    private AppointmentStatus status = AppointmentStatus.CREATED;
 
     public long getId() {
         return id;
