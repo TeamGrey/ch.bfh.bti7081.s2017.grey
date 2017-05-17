@@ -56,10 +56,6 @@ public class AppointmentDao {
         appointment.setCreated(new Timestamp(instant.toEpochMilli()));
         appointment.setChanged(new Timestamp(instant.toEpochMilli()));
 
-        AppointmentStatusDao statusDao = new AppointmentStatusDao();
-        AppointmentStatus status = statusDao.getAppointmentStatusByName("created");
-        appointment.setStatus(status);
-
         entitymanager.persist(appointment);
         entitymanager.getTransaction().commit();
     }
