@@ -34,7 +34,7 @@ public class MyUI extends UI {
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, AppointmentViewImpl.class);
 		getNavigator().setErrorView(LoginScreen.class);
-
+		getNavigator().addView(PatientViewImpl.NAME, PatientViewImpl.class);
 		router();
 	}
 
