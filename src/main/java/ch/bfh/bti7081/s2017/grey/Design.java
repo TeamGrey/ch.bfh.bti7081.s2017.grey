@@ -19,8 +19,8 @@ public class Design extends VerticalLayout {
 	private Component l2Header = new Label("Header2");
 	private Component lFooter = new Label("Footer");
 	private Button logout = new Button("Logout");
-	private Button patientTabs = new Button("PatientTabs");//Temporärer Zugang
-	private Button appointmentView = new Button("AppointmentView");//Temporärer Zugang
+	private Button patientTabs = new Button("PatientTabs");// TODO Temporärer Zugang
+	private Button appointmentView = new Button("AppointmentView");// TODO Temporärer Zugang
 
 	public Design(){
 		mainlayout.setSizeFull();
