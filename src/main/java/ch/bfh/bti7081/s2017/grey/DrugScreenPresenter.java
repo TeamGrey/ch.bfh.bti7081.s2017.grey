@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.VerticalLayout;
@@ -22,7 +23,9 @@ public class DrugScreenPresenter extends VerticalLayout implements View {
 
         // TODO get drug list from DB
         for (int i = 0; i < 4; i++) {
-            drugs.addDrug("Drug Nr:" + i);
+            Drug drug = new Drug();
+            drug.setName("Drug Nr:" + i);
+            drugs.addDrug(drug);
         }
 
         addComponent(design);
