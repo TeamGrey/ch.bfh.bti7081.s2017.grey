@@ -44,7 +44,7 @@ public class Design extends VerticalLayout {
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				Page.getCurrent().setUriFragment("!"+PatientTabs.NAME);
+				Page.getCurrent().setUriFragment("!"+PatientTabsPresenter.NAME);
 			}
 		});
 		
