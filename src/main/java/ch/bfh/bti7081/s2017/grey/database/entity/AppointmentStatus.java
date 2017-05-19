@@ -5,7 +5,6 @@ import ch.bfh.bti7081.s2017.grey.service.impl.CanceledAso;
 import ch.bfh.bti7081.s2017.grey.service.impl.CreatedAso;
 import ch.bfh.bti7081.s2017.grey.service.impl.DelayedAso;
 import ch.bfh.bti7081.s2017.grey.service.impl.FinishedAso;
-import ch.bfh.bti7081.s2017.grey.util.UnsupportedStatusTransitionException;
 
 /**
  * Created by gabor on 17/05/17.
@@ -23,50 +22,23 @@ public enum  AppointmentStatus implements AppointmentStatusOperations{
     }
 
     @Override
-    public AppointmentStatus create(Appointment appointment) {
-        AppointmentStatus status = appointment.getStatus();
-        try {
-            status = operations.create(appointment);
-        }
-        catch (UnsupportedStatusTransitionException e) {
-            e.printStackTrace();
-        }
-        return status;
+    public AppointmentStatus create(Appointment appointment) throws IllegalStateException{
+        return operations.create(appointment);
     }
 
     @Override
-    public AppointmentStatus delay(Appointment appointment) {
-        AppointmentStatus status = appointment.getStatus();
-        try {
-            status = operations.delay(appointment);
-        }
-        catch (UnsupportedStatusTransitionException e) {
-            e.printStackTrace();
-        }
-        return status;
+    public AppointmentStatus delay(Appointment appointment) throws IllegalStateException {
+           return operations.delay(appointment);
     }
 
     @Override
-    public AppointmentStatus cancel(Appointment appointment) {
-        AppointmentStatus status = appointment.getStatus();
-        try {
-            status = operations.cancel(appointment);
-        }
-        catch (UnsupportedStatusTransitionException e) {
-            e.printStackTrace();
-        }
-        return status;
+    public AppointmentStatus cancel(Appointment appointment) throws IllegalStateException{
+        return operations.cancel(appointment);
     }
 
     @Override
-    public AppointmentStatus finish(Appointment appointment) {
-        AppointmentStatus status = appointment.getStatus();
-        try {
-            status = operations.finish(appointment);
-        }
-        catch (UnsupportedStatusTransitionException e) {
-            e.printStackTrace();
-        }
-        return status;
+    public AppointmentStatus finish(Appointment appointment) throws IllegalStateException {
+        return operations.finish(appointment);
+
     }
 }
