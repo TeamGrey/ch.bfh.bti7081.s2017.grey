@@ -11,7 +11,6 @@ import ch.bfh.bti7081.s2017.grey.util.UnsupportedStatusTransitionException;
 public class CreatedAso implements AppointmentStatusOperations{
     @Override
     public AppointmentStatus create(Appointment appointment) throws UnsupportedStatusTransitionException {
-        // TODO return exception because you can't create a created appointment
         throw new UnsupportedStatusTransitionException("create", appointment.getStatus());
     }
 
