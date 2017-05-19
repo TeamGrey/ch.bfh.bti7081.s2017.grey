@@ -39,7 +39,6 @@ public PatientViewImpl(){
         listener.editClick();
         editButton.setVisible(!editButton.isVisible());
         saveButton.setVisible(!saveButton.isVisible());
-        this.
         }
     });
     this.addComponents(firstname,lastname,created,changed,editButton,saveButton);
