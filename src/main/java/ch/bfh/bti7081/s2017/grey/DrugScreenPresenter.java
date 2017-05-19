@@ -4,6 +4,9 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * @author Joel
+ */
 public class DrugScreenPresenter extends VerticalLayout implements View {
     private static final long serialVersionUID = 1L;
     public static final String NAME = "DrugScreen";

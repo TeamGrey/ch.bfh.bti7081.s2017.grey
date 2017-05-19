@@ -3,6 +3,9 @@ package ch.bfh.bti7081.s2017.grey;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * @author Joel
+ */
 public class DrugView extends VerticalLayout {
 	private Label name = null;
 

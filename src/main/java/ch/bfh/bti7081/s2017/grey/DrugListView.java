@@ -5,6 +5,9 @@ import com.vaadin.ui.VerticalLayout;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author Joel
+ */
 public class DrugListView extends VerticalLayout {
     private List<DrugView> drugs;
 
