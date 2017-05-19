@@ -12,7 +12,7 @@ public class LoginScreenPresenter {
 		if(Authentication.authenticate(username, password)){
 			Notification.show("Logging in...", Notification.Type.WARNING_MESSAGE);
 			VaadinSession.getCurrent().setAttribute("user", username);
-			Page.getCurrent().setUriFragment("!"+AppointmentView.NAME);
+			Page.getCurrent().setUriFragment("!"+ AppointmentViewImpl.NAME);
 		}
 		else{
 			Notification.show("Invalid credentials", Notification.Type.ERROR_MESSAGE);
@@ -21,7 +21,7 @@ public class LoginScreenPresenter {
 
 	public static void loggedIn() {
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			Page.getCurrent().setUriFragment("!"+AppointmentView.NAME);
+			Page.getCurrent().setUriFragment("!"+ AppointmentViewImpl.NAME);
 		}
 	}
 }
