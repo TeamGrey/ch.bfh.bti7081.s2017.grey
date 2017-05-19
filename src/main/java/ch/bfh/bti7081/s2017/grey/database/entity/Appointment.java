@@ -24,7 +24,7 @@ public class Appointment {
     private int delay;
     private Timestamp created;
     private Timestamp changed;
-    private AppointmentStatus status = AppointmentStatus.CREATED;
+    private AppointmentStatus status = AppointmentStatus.NONE;
 
     public long getId() {
         return id;
@@ -124,9 +124,7 @@ public class Appointment {
         }
     }
 
-    public void create() {
-        setStatus(status.create(this));
-    }
+    public void create() { setStatus(status.create(this)); }
 
     public void delay() {
         setStatus(status.delay(this));

@@ -1,15 +1,12 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import ch.bfh.bti7081.s2017.grey.service.AppointmentStatusOperations;
-import ch.bfh.bti7081.s2017.grey.service.impl.CanceledAso;
-import ch.bfh.bti7081.s2017.grey.service.impl.CreatedAso;
-import ch.bfh.bti7081.s2017.grey.service.impl.DelayedAso;
-import ch.bfh.bti7081.s2017.grey.service.impl.FinishedAso;
+import ch.bfh.bti7081.s2017.grey.state.*;
 
 /**
  * Created by gabor on 17/05/17.
  */
 public enum  AppointmentStatus implements AppointmentStatusOperations{
+    NONE(new NoneAso()),
     CREATED(new CreatedAso()),
     DELAYED(new DelayedAso()),
     CANCELED(new CanceledAso()),

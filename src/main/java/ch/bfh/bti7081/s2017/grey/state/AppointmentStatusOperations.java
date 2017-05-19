@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey.service;
+package ch.bfh.bti7081.s2017.grey.state;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.AppointmentStatus;

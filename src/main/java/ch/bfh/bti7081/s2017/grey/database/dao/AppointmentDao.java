@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2017.grey.database.dao;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.AppointmentStatus;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
@@ -55,9 +54,52 @@ public class AppointmentDao {
         appointment.setPatient(patient);
         appointment.setCreated(new Timestamp(instant.toEpochMilli()));
         appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.create();
 
         entitymanager.persist(appointment);
         entitymanager.getTransaction().commit();
+    }
+
+    public void delayAppointment(long id, Timestamp newDate) {
+        EntityManager entityManager = EntityManagerSingleton.getInstance();
+        entityManager.getTransaction().begin();
+
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setDate(newDate);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.delay();
+
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
+    }
+
+    public void cancelAppointment(long id) {
+        EntityManager entityManager = EntityManagerSingleton.getInstance();
+        entityManager.getTransaction().begin();
+
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.cancel();
+
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
+    }
+
+    public void finishAppointment(long id, Timestamp finished, int delay) {
+        EntityManager entityManager = EntityManagerSingleton.getInstance();
+        entityManager.getTransaction().begin();
+
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.setFinished(finished);
+        appointment.setDelay(delay);
+        appointment.finish();
+
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
     }
 
     public void removeAppointment(long id) {
