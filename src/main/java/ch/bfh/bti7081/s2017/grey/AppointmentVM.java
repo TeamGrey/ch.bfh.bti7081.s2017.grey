@@ -4,10 +4,10 @@ import java.time.LocalDate;
 /**
  * Created by hannes on 07.05.17.
  */
-public class Appointment {
+public class AppointmentVM {
 	private LocalDate startTime;
 	private LocalDate endTime;
-	public Appointment(LocalDate startTime ,LocalDate endTime ){
+	public AppointmentVM(LocalDate startTime , LocalDate endTime ){
 		this.startTime =startTime;
 		this.endTime=endTime;
 
