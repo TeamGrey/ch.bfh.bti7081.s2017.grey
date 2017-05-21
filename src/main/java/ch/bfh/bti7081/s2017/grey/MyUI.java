@@ -33,6 +33,8 @@ public class MyUI extends UI {
 
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, AppointmentViewImpl.class);
+		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
+		getNavigator().addView(DrugScreenPresenter.NAME, DrugScreenPresenter.class);
 		getNavigator().setErrorView(LoginScreen.class);
 
 		router();
@@ -40,7 +42,7 @@ public class MyUI extends UI {
 
 	private void router(){
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			getNavigator().navigateTo(AppointmentViewImpl.NAME);
+			getNavigator().navigateTo(PatientTabsPresenter.NAME);
 		}else{
 			getNavigator().navigateTo(LoginScreen.NAME);
 		}
