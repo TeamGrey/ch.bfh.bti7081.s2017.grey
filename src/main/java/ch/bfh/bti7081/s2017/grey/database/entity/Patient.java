@@ -8,7 +8,6 @@ import java.util.List;
  * @Author Quentin
  */
 @Entity
-@Table
 public class Patient {
     @Id
     @GeneratedValue
@@ -17,8 +16,8 @@ public class Patient {
     private String lastname;
     private Timestamp created;
     private Timestamp changed;
-    @ManyToMany(targetEntity = Drug.class)
-    List<Drug> drugs;
+    @OneToMany(mappedBy = "patient")
+    private List<PatientDrugAssociation> drugs;
     @ManyToMany(targetEntity = Habit.class)
     List<Habit> habits;
 
@@ -62,11 +61,11 @@ public class Patient {
         this.changed = chnaged;
     }
 
-    public List<Drug> getDrugs() {
+    public List<PatientDrugAssociation> getDrugs() {
         return drugs;
     }
 
-    public void setDrugs(List<Drug> drugs) {
+    public void setDrugs(List<PatientDrugAssociation> drugs) {
         this.drugs = drugs;
     }
 

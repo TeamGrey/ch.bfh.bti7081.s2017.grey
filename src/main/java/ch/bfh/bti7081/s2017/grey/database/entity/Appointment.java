@@ -7,7 +7,6 @@ import java.sql.Timestamp;
  * @Author Quentin
  */
 @Entity
-@Table
 public class Appointment {
     @Id
     @GeneratedValue

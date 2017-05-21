@@ -2,9 +2,7 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.swing.table.TableStringConverter;
+import javax.persistence.OneToMany;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -12,15 +10,16 @@ import java.util.List;
  * @Author Quentin
  */
 @Entity
-@Table
 public class Drug {
     @Id
     long id;
     private String name;
     private Timestamp created;
     private Timestamp changed;
-    @ManyToMany(targetEntity = Patient.class)
-    private List<Patient> patients;
+    @OneToMany(mappedBy = "drug")
+    private List<PatientDrugAssociation> patients;
+    @OneToMany(mappedBy = "drug")
+    private List<DrugTaskAssociation> tasks;
 
     public long getId() {
         return id;
@@ -54,11 +53,19 @@ public class Drug {
         this.changed = changed;
     }
 
-    public List<Patient> getPatients() {
+    public List<PatientDrugAssociation> getPatients() {
         return patients;
     }
 
-    public void setPatients(List<Patient> patients) {
+    public void setPatients(List<PatientDrugAssociation> patients) {
         this.patients = patients;
+    }
+
+    public List<DrugTaskAssociation> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<DrugTaskAssociation> tasks) {
+        this.tasks = tasks;
     }
 }

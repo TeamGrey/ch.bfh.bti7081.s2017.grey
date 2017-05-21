@@ -8,7 +8,6 @@ import java.util.List;
  * @Author Quentin
  */
 @Entity
-@Table
 public class Habit {
     @Id
     @GeneratedValue
