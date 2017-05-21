@@ -25,6 +25,20 @@ public class Appointment {
     private Timestamp created;
     private Timestamp changed;
 
+    public Appointment() {
+        this.id = -1;
+        this.date = new Timestamp(System.currentTimeMillis());
+        this.title = "";
+        this.description = "";
+        this.staff = null;
+        this.patient = null;
+        this.finished = new Timestamp(System.currentTimeMillis());
+        this.protocol = "";
+        this.delay = 0;
+        this.created = new Timestamp(System.currentTimeMillis());
+        this.changed = new Timestamp(System.currentTimeMillis());
+    }
+
     public long getId() {
         return id;
     }

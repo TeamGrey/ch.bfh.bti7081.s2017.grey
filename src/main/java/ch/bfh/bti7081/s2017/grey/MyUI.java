@@ -23,6 +23,8 @@ import com.vaadin.ui.UI;
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
 public class MyUI extends UI {
 
+	private AppointmentPresenter appointmentPresenter;
+
 	@WebServlet(value = "/*", asyncSupported = true)
 	public static class Servlet extends VaadinServlet {
 	}
@@ -31,8 +33,12 @@ public class MyUI extends UI {
 	protected void init(VaadinRequest request) {
 		new Navigator(this, this);
 
+		AppointmentViewImpl appointmentView = new AppointmentViewImpl();
+		AppointmentModel appointmentModel = new AppointmentModel();
+		appointmentPresenter = new AppointmentPresenter(appointmentView, appointmentModel);
+
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
-		getNavigator().addView(AppointmentViewImpl.NAME, AppointmentViewImpl.class);
+		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
 		getNavigator().addView(DrugScreenPresenter.NAME, DrugScreenPresenter.class);
 		getNavigator().setErrorView(LoginScreen.class);
@@ -43,7 +49,7 @@ public class MyUI extends UI {
 	private void router(){
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
 			getNavigator().navigateTo(PatientTabsPresenter.NAME);
-		}else{
+		} else {
 			getNavigator().navigateTo(LoginScreen.NAME);
 		}
 	}

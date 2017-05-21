@@ -1,25 +1,35 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
+import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
+
+import java.time.LocalDate;
 
 /**
  * Created by Nic on 15.05.17.
  */
 public class AppointmentPresenter implements AppointmentView.AppontmentViewListener{
-    AppointmentModel appointmentModel;
-    AppointmentView appointmentView;
+    private AppointmentModel appointmentModel;
+    private AppointmentView appointmentView;
 
     public AppointmentPresenter(AppointmentView appointmentView, AppointmentModel appointmentModel) {
         this.appointmentModel = appointmentModel;
         this.appointmentView = appointmentView;
 
         this.appointmentView.addListener(this);
-        this.appointmentModel.setView(this.appointmentView);
+        this.appointmentView.setPatients(this.appointmentModel.getPatients());
+        this.appointmentView.setAppointment(this.appointmentModel.getAppointment());
+    }
+
+    public void setUser(String username) {
+        this.appointmentModel.setUser(username);
+        this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
     @Override
     public void saveClick() {
-
+        System.out.println(this.appointmentModel.getAppointment().getDescription());
     }
 
     @Override

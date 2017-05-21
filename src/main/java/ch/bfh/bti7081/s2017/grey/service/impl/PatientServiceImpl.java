@@ -4,6 +4,8 @@ import ch.bfh.bti7081.s2017.grey.database.dao.PatientDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 
+import java.util.List;
+
 /**
  * @Author Quentin
  */
@@ -27,5 +29,10 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public Patient getPatientByName(String firstName, String lastName) {
         return patientDao.getPatientByName(firstName, lastName);
+    }
+
+    @Override
+    public List<Patient> getAllPatients() {
+        return patientDao.getPatients();
     }
 }

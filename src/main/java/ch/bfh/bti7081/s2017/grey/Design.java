@@ -53,7 +53,7 @@ public class Design extends VerticalLayout {
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				Page.getCurrent().setUriFragment("!"+AppointmentView.NAME);
+				Page.getCurrent().setUriFragment("!"+AppointmentViewImpl.NAME);
 			}
 		});
 	}

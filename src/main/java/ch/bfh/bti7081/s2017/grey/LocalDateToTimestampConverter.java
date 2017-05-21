@@ -11,7 +11,7 @@ import java.util.Locale;
 /**
  * Created by Nic on 21.05.17.
  */
-public class TimestampToLocalDateConverter implements com.vaadin.data.Converter<LocalDate, Timestamp> {
+public class LocalDateToTimestampConverter implements com.vaadin.data.Converter<LocalDate, Timestamp> {
 
     @Override
     public Result<Timestamp> convertToModel(LocalDate localDate, ValueContext valueContext) {
