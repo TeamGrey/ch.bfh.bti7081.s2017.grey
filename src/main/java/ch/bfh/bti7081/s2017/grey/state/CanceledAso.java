@@ -14,7 +14,7 @@ public class CanceledAso implements AppointmentStatusOperations {
 
     @Override
     public AppointmentStatus delay(Appointment appointment) {
-        return AppointmentStatus.DELAYED;
+        throw new IllegalStateException("Cant use operation delay with status " + appointment.getStatus().toString());
     }
 
     @Override
