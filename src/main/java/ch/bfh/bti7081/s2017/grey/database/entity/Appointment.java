@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @Author Quentin
@@ -13,6 +14,7 @@ public class Appointment {
     @GeneratedValue
     private long id;
     private Timestamp date;
+    private Timestamp endDate;
     private String title;
     private String description;
     @ManyToOne
@@ -38,8 +40,14 @@ public class Appointment {
         return date;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setDate(LocalDateTime date) {
+        this.date = Timestamp.valueOf(date);
+    }
+
+    public Timestamp getEndDate() { return endDate;}
+
+    public void setEndDate(LocalDateTime end) {
+        this.endDate = Timestamp.valueOf(end);
     }
 
     public String getDescription() {

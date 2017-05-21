@@ -40,14 +40,15 @@ public class AppointmentDao {
         return appointments;
     }
 
-    public void createAppointment(LocalDateTime date, String title, String description, Staff staff, Patient patient) {
+    public void createAppointment(LocalDateTime date, LocalDateTime end, String title, String description, Staff staff, Patient patient) {
 
         EntityManager entitymanager = EntityManagerSingleton.getInstance();
         entitymanager.getTransaction().begin();
 
         Instant instant = Instant.now();
         Appointment appointment = new Appointment();
-        appointment.setDate(Timestamp.valueOf(date));
+        appointment.setDate(date);
+        appointment.setEndDate(end);
         appointment.setTitle(title);
         appointment.setDescription(description);
         appointment.setStaff(staff);
@@ -60,13 +61,14 @@ public class AppointmentDao {
         entitymanager.getTransaction().commit();
     }
 
-    public void delayAppointment(long id, Timestamp newDate) {
+    public void delayAppointment(long id, LocalDateTime newDate, LocalDateTime newEnd) {
         EntityManager entityManager = EntityManagerSingleton.getInstance();
         entityManager.getTransaction().begin();
 
         Instant instant = Instant.now();
         Appointment appointment = entityManager.find(Appointment.class, id);
         appointment.setDate(newDate);
+        appointment.setEndDate(newEnd);
         appointment.setChanged(new Timestamp(instant.toEpochMilli()));
         appointment.delay();
 
@@ -87,14 +89,14 @@ public class AppointmentDao {
         entityManager.getTransaction().commit();
     }
 
-    public void finishAppointment(long id, Timestamp finished, int delay) {
+    public void finishAppointment(long id, LocalDateTime finished, int delay) {
         EntityManager entityManager = EntityManagerSingleton.getInstance();
         entityManager.getTransaction().begin();
 
         Instant instant = Instant.now();
         Appointment appointment = entityManager.find(Appointment.class, id);
         appointment.setChanged(new Timestamp(instant.toEpochMilli()));
-        appointment.setFinished(finished);
+        appointment.setFinished(Timestamp.valueOf(finished));
         appointment.setDelay(delay);
         appointment.finish();
 

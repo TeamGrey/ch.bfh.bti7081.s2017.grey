@@ -27,7 +27,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date) {
-        appointmentDao.createAppointment(date, title, description, staff, patient);
+    public void createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end) {
+        appointmentDao.createAppointment(date, end, title, description, staff, patient);
     }
 }
