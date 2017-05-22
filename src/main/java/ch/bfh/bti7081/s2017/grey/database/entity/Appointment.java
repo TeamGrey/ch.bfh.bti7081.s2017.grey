@@ -24,6 +24,7 @@ public class Appointment {
     private int delay;
     private Timestamp created;
     private Timestamp changed;
+    private AppointmentStatus status = AppointmentStatus.NONE;
 
     public Appointment() {
         this.id = -1;
@@ -125,5 +126,29 @@ public class Appointment {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public AppointmentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AppointmentStatus status) {
+        if (status != null && status != this.status) {
+            this.status = status;
+        }
+    }
+
+    public void create() { setStatus(status.create(this)); }
+
+    public void delay() {
+        setStatus(status.delay(this));
+    }
+
+    public void cancel() {
+        setStatus(status.cancel(this));
+    }
+
+    public void finish() {
+        setStatus(status.finish(this));
     }
 }

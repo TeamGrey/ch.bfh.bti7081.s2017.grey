@@ -1,10 +1,16 @@
 package ch.bfh.bti7081.s2017.grey.database.dao;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.database.entity.AppointmentStatus;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,10 +20,12 @@ import static org.junit.Assert.*;
  * @Author Quentin
  */
 public class AppointmentDaoTest {
+    private AppointmentDao appointmentDao;
+    private Appointment appointment;
 
-    @Test
-    public void testCreateAppointment() {
-        AppointmentDao appointmentDao = new AppointmentDao();
+    @Before
+    public void setup() {
+        appointmentDao = new AppointmentDao();
         StaffDao staffDao = new StaffDao();
         PatientDao patientDao = new PatientDao();
 
@@ -31,13 +39,44 @@ public class AppointmentDaoTest {
 
         // then
         List<Appointment> appointments = appointmentDao.findAppointmentsForStaffAndDay(staff, date.toLocalDate());
-        assertNotNull(appointments.get(0));
-
-        // clean up
-        for (Appointment appointment : appointments) {
-            appointmentDao.removeAppointment(appointment.getId());
-        }
-
+        appointment = appointments.get(0);
     }
 
+    @After
+    public void cleanUp() {
+        appointmentDao.removeAppointment(appointment.getId());
+    }
+
+    @Test
+    public void testCreateAppointment() {
+        assertNotNull(appointment);
+        assertEquals(AppointmentStatus.CREATED, appointment.getStatus());
+    }
+
+    @Test
+    public void testDelayAppointment() {
+        Timestamp date = new Timestamp(Instant.now().toEpochMilli());
+        appointmentDao.delayAppointment(appointment.getId(), date);
+
+        assertEquals(AppointmentStatus.DELAYED, appointment.getStatus());
+        assertEquals(date, appointment.getDate());
+    }
+
+    @Test
+    public void testCancelAppointment() {
+        appointmentDao.cancelAppointment(appointment.getId());
+
+        assertEquals(AppointmentStatus.CANCELED, appointment.getStatus());
+    }
+
+    @Test
+    public void testFinishAppointment() {
+        Timestamp finished = new Timestamp(Instant.now().toEpochMilli());
+        int delay = 30;
+        appointmentDao.finishAppointment(appointment.getId(), finished, delay);
+
+        assertEquals(AppointmentStatus.FINISHED, appointment.getStatus());
+        assertEquals(finished, appointment.getFinished());
+        assertEquals(delay, appointment.getDelay());
+    }
 }
