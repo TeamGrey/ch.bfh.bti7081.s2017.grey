@@ -7,21 +7,17 @@ import java.sql.Timestamp;
  * @Author Quentin
  */
 @Entity
-public class Staff {
+public class Emergencycontact {
     @Id
     @GeneratedValue
     private long id;
     private String firstname;
     private String lastname;
-    private String pwhash;
-    private String login;
+    private String phonenumber;
     @ManyToOne
-    private Role role;
+    private Patient patient;
     private Timestamp created;
     private Timestamp changed;
-
-    public Staff() {
-    }
 
     public long getId() {
         return id;
@@ -47,28 +43,20 @@ public class Staff {
         this.lastname = lastname;
     }
 
-    public String getPwhash() {
-        return pwhash;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPwhash(String pwhash) {
-        this.pwhash = pwhash;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
-    public String getLogin() {
-        return login;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public Role getRoles() {
-        return role;
-    }
-
-    public void setRoles(Role role) {
-        this.role = role;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public Timestamp getCreated() {
