@@ -1,11 +1,26 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
+import ch.bfh.bti7081.s2017.grey.service.StaffService;
+import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinSession;
+import com.vaadin.shared.ui.datefield.DateTimeResolution;
 import com.vaadin.ui.*;
 import com.vaadin.v7.ui.Calendar;
+import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
+import com.vaadin.v7.ui.components.calendar.event.CalendarEvent;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -22,44 +37,68 @@ public class AppointmentView extends HorizontalLayout implements View{
 
 	public AppointmentView(){
 		final Button editButton = new Button();
-		editButton.setCaption("Bearbeiten");
-		final VerticalLayout layout = new VerticalLayout();
-		final VerticalLayout rightLayout = new VerticalLayout();
-		final DateField startDate = new DateField();
-		startDate.setCaption("Termin Beginn");
-		final DateField endDate = new DateField();
-		endDate.setCaption("Termin Ende");
-		final TextField terminBeschrieb = new TextField();
-		terminBeschrieb.setCaption("Termin Bezeichnung");
-		final Button button = new Button();
-		final Label label = new Label();
-		button.setCaption("Termin hinzufügen");
-		//endDate.setEnabled(false);
-		//startDate.setEnabled(false);
+        final Button addButton = new Button();
+        final DateTimeField startDate = new DateTimeField();
+        final DateTimeField endDate = new DateTimeField();
+        final TextArea description = new TextArea();
+        final TextField title = new TextField();
+        final Label label = new Label();
+        final VerticalLayout layout = new VerticalLayout();
+        final VerticalLayout rightLayout = new VerticalLayout();
 
-		Calendar cal = new Calendar("My Calendar");
-		cal.setWidth("600px");
-		cal.setHeight("300px");
+        editButton.setCaption("Bearbeiten");
+        addButton.setCaption("Termin hinzufügen");
+        startDate.setCaption("Beginn");
+        endDate.setCaption("Ende");
+        description.setCaption("Beschreibung");
+        title.setCaption("Titel");
 
-		button.addClickListener(e->{
-			Appointment thisappointment = new Appointment(startDate.getValue(),endDate.getValue());
-			label.setCaption("Neuer Termin hinzugefügt am " +thisappointment.getStartTime()+" bis "+thisappointment.getEndTime());
+        startDate.setResolution(DateTimeResolution.MINUTE);
+        endDate.setResolution(DateTimeResolution.MINUTE);
+
+        AppointmentService appointmentService = new AppointmentServiceImpl();
+        StaffService staffService = new StaffServiceImpl();
+        Staff currentUser = staffService.findStaffByLogin(VaadinSession.getCurrent().getAttribute("user").toString());
+        List<Appointment> appointments = appointmentService.findAppointmentsByStaffAndDate(currentUser, LocalDate.now());
+
+        Calendar cal = new Calendar("My Calendar");
+        cal.setWidth("600px");
+        cal.setHeight("300px");
+        cal.setStartDate(Date.from(Instant.now()));
+        cal.setEndDate(Date.from(Instant.now()));
+
+        for (Appointment app: appointments) {
+            cal.addEvent(new BasicEvent(app.getTitle(),
+                    app.getDescription(),
+                    app.getDate(),
+                    app.getEndDate()
+            ));
+        }
+
+		addButton.addClickListener(e->{
+
+            appointmentService.createAppointmentDummyPatient(currentUser,
+                    description.getValue(),
+                    title.getValue(),
+                    startDate.getValue(),
+                    endDate.getValue());
+
+			label.setCaption("Neuer Termin hinzugefügt am " + startDate.getValue() +" bis "+ endDate.getValue());
 			rightLayout.addComponent(label);
 		});
 		startDate.addFocusListener(e->{
 			this.setEnabled(true);
 		});
-		startDate.setCaption("Startdatum");
-		layout.addComponents(endDate,startDate,terminBeschrieb,button, cal);
+
+		layout.addComponents(cal, title, startDate, endDate,description,addButton);
 		this.addComponents(layout,rightLayout);
 		Design design = new Design();
 		addComponent(design.insertContent(layout));
-
 	}
 
 	@Override
-	public void enter(ViewChangeEvent event) {
-		Appointment.loggedIn();		
-	}
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+	    AppointmentVM.loggedIn();
+    }
 }
 

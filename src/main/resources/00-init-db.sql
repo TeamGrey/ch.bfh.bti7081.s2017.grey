@@ -52,16 +52,21 @@ create table appointment
   description varchar(1000) not null,
   staff_id bigint not null
     constraint appointments_staff_id_fk
+    references staff
+    constraint fkl8st4gxrhtqhwcr6e5eb32ft5
     references staff,
   patient_id bigint not null
     constraint appointments_patients_id_fk
+    references patient
+    constraint fkfhg8dxc8emt4u70sonm2xqxnr
     references patient,
   finished timestamp,
   protocol varchar(1000),
   delay integer,
   created timestamp not null,
   changed timestamp not null,
-  status_id integer
+  status integer,
+  enddate timestamp not null
 )
 ;
 
@@ -102,6 +107,11 @@ create table role
   created timestamp not null,
   changed timestamp not null
 )
+;
+
+alter table staff
+  add constraint fkc270scukp9o70yt499swxjqah
+foreign key (role_id) references role
 ;
 
 alter table staff
