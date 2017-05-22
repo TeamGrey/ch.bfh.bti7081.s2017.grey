@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  * @version 21.05.2017
  */
 @Entity
-@Table("drug_task")
+@Table(name = "drug_task")
 @IdClass(DrugTaskAssociationId.class)
 public class DrugTaskAssociation {
     @Id

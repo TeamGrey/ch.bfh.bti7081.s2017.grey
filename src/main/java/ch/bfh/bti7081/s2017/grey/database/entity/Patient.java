@@ -18,8 +18,8 @@ public class Patient {
     private Timestamp changed;
     @OneToMany(mappedBy = "patient")
     private List<PatientDrugAssociation> drugs;
-    @ManyToMany(targetEntity = Habit.class)
-    List<Habit> habits;
+    @OneToMany(mappedBy = "patient")
+    List<PatientHabitAssociation> habits;
 
     public long getId() {
         return id;
@@ -69,11 +69,11 @@ public class Patient {
         this.drugs = drugs;
     }
 
-    public List<Habit> getHabits() {
+    public List<PatientHabitAssociation> getHabits() {
         return habits;
     }
 
-    public void setHabits(List<Habit> habits) {
+    public void setHabits(List<PatientHabitAssociation> habits) {
         this.habits = habits;
     }
 }
