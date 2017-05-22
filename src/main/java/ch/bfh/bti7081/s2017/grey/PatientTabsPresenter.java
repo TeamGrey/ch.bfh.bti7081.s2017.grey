@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -18,10 +19,17 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		Label clientTempLabel = new Label("Personeninformationen sind hier", ContentMode.HTML);
 		VerticalLayout client = new VerticalLayout(clientTempLabel);
 		patientTab.addTab(client, "Client");
-		
-		Label drugsTempLabel = new Label("Inhalt für alle Drogen ;-)", ContentMode.HTML);
-		VerticalLayout drugs = new VerticalLayout(drugsTempLabel);
+
+
+		DrugListView drugs = new DrugListView();
+		// TODO get drug list from DB
+		for (int i = 0; i < 4; i++) {
+			Drug drug = new Drug();
+			drug.setName("Drug Nr:" + i);
+			drugs.addDrug(drug);
+		}
 		patientTab.addTab(drugs, "Drugs");
+
 		
 		Label toDoTempLabel = new Label("Hier werden die ToDos hinkommen", ContentMode.HTML);
 		VerticalLayout toDo = new VerticalLayout(toDoTempLabel);
