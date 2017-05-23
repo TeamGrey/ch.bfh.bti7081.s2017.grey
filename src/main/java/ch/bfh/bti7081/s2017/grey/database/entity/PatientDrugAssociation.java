@@ -12,16 +12,18 @@ import java.sql.Timestamp;
 @IdClass(PatientDrugAssociationId.class)
 public class PatientDrugAssociation {
     @Id
+    @Column(name = "patient_id")
     private long patientId;
     @Id
+    @Column(name = "drug_id")
     private long drugId;
     private Timestamp created;
     private Timestamp changed;
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "patient_id", referencedColumnName = "id")
+    @JoinColumn(name = "patient_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Patient patient;
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "drug_id", referencedColumnName = "id")
+    @JoinColumn(name = "drug_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Drug drug;
 
     public long getPatientId() {

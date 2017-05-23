@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +18,9 @@ public class Patient {
     private Timestamp created;
     private Timestamp changed;
     @OneToMany(mappedBy = "patient")
-    private List<PatientDrugAssociation> drugs;
+    private List<PatientDrugAssociation> drugs = new ArrayList<>();
     @OneToMany(mappedBy = "patient")
-    List<PatientHabitAssociation> habits;
+    List<PatientHabitAssociation> habits = new ArrayList<>();
 
     public long getId() {
         return id;

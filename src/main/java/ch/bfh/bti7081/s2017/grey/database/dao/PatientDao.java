@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.database.dao;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
+import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 
@@ -10,6 +12,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @Author Quentin
@@ -50,5 +53,22 @@ public class PatientDao {
 
         entitymanager.persist(patient);
         entitymanager.getTransaction().commit();
+    }
+
+    public void addDrugToPatient(Patient patient, List<Drug> drugs){
+        EntityManager em = EntityManagerSingleton.getInstance();
+        em.getTransaction().begin();
+        Instant instant = Instant.now();
+        for (Drug drug : drugs) {
+            PatientDrugAssociation drugAssociation = new PatientDrugAssociation();
+            drugAssociation.setPatientId(patient.getId());
+            drugAssociation.setDrugId(drug.getId());
+            drugAssociation.setPatient(patient);
+            drugAssociation.setDrug(drug);
+            drugAssociation.setChanged(new Timestamp(instant.toEpochMilli()));
+            drugAssociation.setCreated(new Timestamp(instant.toEpochMilli()));
+            em.persist(drugAssociation);
+        }
+        em.getTransaction().commit();
     }
 }
