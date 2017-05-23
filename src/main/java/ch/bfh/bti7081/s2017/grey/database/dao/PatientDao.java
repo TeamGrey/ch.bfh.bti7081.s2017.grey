@@ -58,16 +58,18 @@ public class PatientDao {
     public void addDrugToPatient(Patient patient, List<Drug> drugs){
         EntityManager em = EntityManagerSingleton.getInstance();
         em.getTransaction().begin();
-        Instant instant = Instant.now();
         for (Drug drug : drugs) {
-            PatientDrugAssociation drugAssociation = new PatientDrugAssociation();
-            drugAssociation.setPatientId(patient.getId());
-            drugAssociation.setDrugId(drug.getId());
-            drugAssociation.setPatient(patient);
-            drugAssociation.setDrug(drug);
-            drugAssociation.setChanged(new Timestamp(instant.toEpochMilli()));
-            drugAssociation.setCreated(new Timestamp(instant.toEpochMilli()));
-            em.persist(drugAssociation);
+            PatientDrugAssociation association = new PatientDrugAssociation();
+            association.setPatient(patient);
+            association.setDrug(drug);
+            association.setPatientId(patient.getId());
+            association.setDrugId(drug.getId());
+            Instant instant = Instant.now();
+            association.setCreated(new Timestamp(instant.toEpochMilli()));
+            association.setChanged(new Timestamp(instant.toEpochMilli()));
+            em.persist(association);
+            patient.getDrugs().add(association);
+            drug.getPatients().add(association);
         }
         em.getTransaction().commit();
     }

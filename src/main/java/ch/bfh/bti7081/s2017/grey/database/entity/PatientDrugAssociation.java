@@ -12,6 +12,9 @@ import java.sql.Timestamp;
 @IdClass(PatientDrugAssociationId.class)
 public class PatientDrugAssociation {
     @Id
+    @GeneratedValue
+    private long id;
+    @Id
     @Column(name = "patient_id")
     private long patientId;
     @Id
@@ -72,5 +75,13 @@ public class PatientDrugAssociation {
 
     public void setDrug(Drug drug) {
         this.drug = drug;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
