@@ -23,4 +23,20 @@ public class PatientHabitAssociationId implements Serializable {
         }
         return false;
     }
+
+    public long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(long patientId) {
+        this.patientId = patientId;
+    }
+
+    public long getHabitId() {
+        return habitId;
+    }
+
+    public void setHabitId(long habitId) {
+        this.habitId = habitId;
+    }
 }

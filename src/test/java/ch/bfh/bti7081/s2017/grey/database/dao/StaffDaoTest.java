@@ -13,9 +13,11 @@ public class StaffDaoTest {
 
     @Test
     public void testCreateStaff() {
+        RoleDao roleDao = new RoleDao();
+
         // given
         StaffDao staffDao = new StaffDao();
-        Role role = RoleDao.getRoleById(1);
+        Role role = roleDao.getRoleById(1);
 
         // when
         staffDao.createStaff("TestF", "TestL", "test", "password", role);
