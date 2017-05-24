@@ -12,6 +12,9 @@ import java.sql.Timestamp;
 @IdClass(DrugTaskAssociationId.class)
 public class DrugTaskAssociation {
     @Id
+    @GeneratedValue
+    private long id;
+    @Id
     @Column(name = "drug_id")
     private long drugId;
     @Id
@@ -31,6 +34,14 @@ public class DrugTaskAssociation {
     @ManyToOne
     @JoinColumn(name = "task_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Task task;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getDrugId() {
         return drugId;

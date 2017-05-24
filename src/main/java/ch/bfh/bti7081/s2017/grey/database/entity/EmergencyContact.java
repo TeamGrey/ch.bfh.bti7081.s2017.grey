@@ -7,7 +7,8 @@ import java.sql.Timestamp;
  * @Author Quentin
  */
 @Entity
-public class Emergencycontact {
+@Table(name = "emergencycontact")
+public class EmergencyContact {
     @Id
     @GeneratedValue
     private long id;
