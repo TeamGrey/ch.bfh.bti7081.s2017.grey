@@ -23,7 +23,7 @@ public class PatientDaoTest {
         Drug drug = drugDao.getDrugById(0);
         drugs.add(drug);
         Patient patient = patientDao.getPatientByName("Test", "Test");
-        patientDao.addDrugToPatient(patient, drugs);
+        patientDao.addDrugsToPatient(patient, drugs);
         patient = patientDao.getPatientByName("Test", "Test");
     }
 }
