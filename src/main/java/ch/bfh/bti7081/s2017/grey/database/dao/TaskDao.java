@@ -59,5 +59,26 @@ public class TaskDao {
         }
         entityManager.getTransaction().commit();
     }
+    
+//    public void getTasksByAppointment(Appointment appointment){
+//    	// SELECT t.* FROM tasks AS t
+//    	// INNER JOIN appointment_task at ON at.task_id = t.id
+//    	// INNER JOIN appointment a ON at.appointment_id = a.id
+//    	// WHERE a.id = XY
+//    }
+//    public void setDuration(Task task, int amount){
+//    	task.setDuration(amount);
+//    }
+//    public void addToDuration(Task task, int amount){
+//    	int newAmount = task.getDuration() + amount;
+//    	task.setDuration(newAmount);
+//    }
+//    public void removeFromDuration(Task task, int amount){
+//    	int newAmount = task.getDuration() - amount;
+//    	task.setDuration(newAmount);
+//    }
+//    public void setActiveStatus(Task task, boolean status){
+//    	task.setFinished(status);
+//    }
 
 }

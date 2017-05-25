@@ -32,5 +32,30 @@ public class TaskServiceImpl implements TaskService {
     public void addDrugsToTask(Task task, List<Drug> drugs, int amount, String units) {
         taskDao.addDrugsToTask(task, drugs, amount, units);
     }
+    
+//    @Override
+//    public void getTasksByAppointment(Appointment appointment){
+//    	taskDao.getTasksByAppointment(appointment);
+//    }
+//    
+//    @Override
+//    public void setDuration(Task task, int amount){
+//    	taskDao.setDuration(task, amount);
+//    }
+//    
+//    @Override
+//    public void addToDuration(Task task, int amount){
+//    	taskDao.addToDuration task, amount);
+//    }
+//    
+//    @Override
+//    public void removeFromDuration(Task task, int amount){
+//    	taskDao.removeFromDuration(task, amount);
+//    }
+//    
+//    @Override
+//    public void setActiveStatus(Task task, boolean status){
+//    	taskDao.setActiveStatus(task, status);
+//    }
 
 }

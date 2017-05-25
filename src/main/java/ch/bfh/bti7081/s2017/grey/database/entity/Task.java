@@ -20,6 +20,8 @@ public class Task {
     private Timestamp changed;
     @OneToMany(mappedBy = "task")
     private List<DrugTaskAssociation> drugs;
+    //private boolean finished;
+    //private int duration;
 
     public long getId() {
         return id;
@@ -60,4 +62,22 @@ public class Task {
     public void setDrugs(List<DrugTaskAssociation> drugs) {
         this.drugs = drugs;
     }
+    
+//    public int getDuration() {
+//        return duration;
+//    }
+//
+//    public void setDiration(int amount) {
+//        this.duration = amount;
+//    }
+//    
+//    public boolean getFinished() {
+//        return finished;
+//    }
+//
+//    public void setFinished(boolean finished) {
+//        this.finished = finished;
+//    }
+    
+    
 }
