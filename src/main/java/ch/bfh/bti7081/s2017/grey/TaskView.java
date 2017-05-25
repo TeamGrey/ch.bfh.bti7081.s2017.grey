@@ -3,6 +3,9 @@ package ch.bfh.bti7081.s2017.grey;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.ui.CheckBox;
+import com.vaadin.ui.CustomLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
@@ -11,21 +14,31 @@ import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
 /**
  * @author Joel
  */
-public class TaskView extends VerticalLayout {
+public class TaskView extends HorizontalLayout {
 	private static final long serialVersionUID = 1L;
-	private Label name = null;
+	private CustomLayout tasklayout = new CustomLayout("tasklayout");
+	private Label taskDesc = null;
 	private DrugListView drugss = null;
+	private CheckBox checkbox = null;
+	private TaskViewTime time = null;
 
 	public TaskView(){
 		super();
-		name = new Label("Task Name");
-		addComponent(name);
+		checkbox = new CheckBox("", false);
+		tasklayout.addComponent(checkbox, "task-left");
+		taskDesc = new Label("Task Name");
+		tasklayout.addComponent(taskDesc, "task-center-desc");
 		drugss = new DrugListView();
-		addComponent(drugss);
+		tasklayout.addComponent(drugss, "task-center-drugs");
+		time = new TaskViewTime();
+		tasklayout.addComponent(time, "task-right");
+		tasklayout.setSizeFull();
+		addComponent(tasklayout);
+		setSizeFull();
 	}
 
 	public void setName(String labelName) {
-		name.setValue(labelName);
+		taskDesc.setValue(labelName);
 	}
 	
 	public void tempDrugs(){

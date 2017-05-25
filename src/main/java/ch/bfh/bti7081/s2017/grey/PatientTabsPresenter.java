@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Sizeable;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -16,6 +17,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private PatientTabs patientTab = new PatientTabs();
 	
 	public PatientTabsPresenter(){
+		patientTab.setSizeFull();
 		
 		Label clientTempLabel = new Label("Personeninformationen sind hier", ContentMode.HTML);
 		VerticalLayout client = new VerticalLayout(clientTempLabel);
@@ -27,13 +29,15 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		
 		
 		TaskListView toDo = new TaskListView();
+		toDo.setSizeFull();
 		for (int i = 0; i < 5; i++) {
             Task task = new Task();
             task.setName("Task Nr: " + i);
             toDo.addTask(task);            
         }
+		toDo.addNewTaskButton();
 		patientTab.addTab(toDo, "ToDo");
-		
+				
 		Design design = new Design();
 		addComponent(design.insertContent(patientTab));
 	}
