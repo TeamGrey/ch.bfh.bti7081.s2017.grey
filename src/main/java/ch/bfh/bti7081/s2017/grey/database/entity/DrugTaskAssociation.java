@@ -1,12 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -18,8 +12,13 @@ import java.sql.Timestamp;
 @IdClass(DrugTaskAssociationId.class)
 public class DrugTaskAssociation {
     @Id
+    @GeneratedValue
+    private long id;
+    @Id
+    @Column(name = "drug_id")
     private long drugId;
     @Id
+    @Column(name = "task_id")
     private long taskId;
     @Column(name = "amount")
     private int amount;
@@ -30,11 +29,19 @@ public class DrugTaskAssociation {
     @Column(name = "changed")
     private Timestamp changed;
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "drug_id", referencedColumnName = "id")
+    @JoinColumn(name = "drug_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Drug drug;
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "task_id", referencedColumnName = "id")
+    @JoinColumn(name = "task_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Task task;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getDrugId() {
         return drugId;

@@ -12,20 +12,32 @@ import java.sql.Timestamp;
 @IdClass(PatientHabitAssociationId.class)
 public class PatientHabitAssociation {
     @Id
+    @GeneratedValue
+    private long id;
+    @Id
+    @Column(name = "patient_id")
     private long patientId;
     @Id
+    @Column(name = "habit_id")
     private long habitId;
     @Column(name = "created")
     private Timestamp created;
     @Column(name = "changed")
     private Timestamp changed;
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "patient_id", referencedColumnName = "id")
+    @JoinColumn(name = "patient_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Patient patient;
     @ManyToOne
-    @PrimaryKeyJoinColumn(name = "habit_id", referencedColumnName = "id")
+    @JoinColumn(name = "habit_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Habit habit;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     public long getPatientId() {
         return patientId;
     }
@@ -65,6 +77,8 @@ public class PatientHabitAssociation {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+
 
     public Habit getHabit() {
         return habit;

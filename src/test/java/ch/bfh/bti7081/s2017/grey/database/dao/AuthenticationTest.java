@@ -14,9 +14,10 @@ public class AuthenticationTest {
 
     @Test
     public void testAuthentication() {
+        RoleDao roleDao = new RoleDao();
         // prepare
         StaffDao staffDao = new StaffDao();
-        Role role = RoleDao.getRoleById(1);
+        Role role = roleDao.getRoleById(1);
         staffDao.createStaff("TestF", "TestL", "test", "password", role);
         Staff staff = staffDao.getStaffByLogin("test");
 

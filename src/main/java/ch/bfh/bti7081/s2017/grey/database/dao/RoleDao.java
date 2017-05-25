@@ -12,16 +12,21 @@ import java.time.Instant;
  * @Author Quentin
  */
 public class RoleDao {
-    public static Role getRoleById(long id) {
-        EntityManager entitymanager = EntityManagerSingleton.getInstance();
-        Role role = entitymanager.find( Role.class, id );
+
+    private EntityManager entityManager;
+
+    public RoleDao () {
+        entityManager = EntityManagerSingleton.getInstance();
+    }
+
+    public  Role getRoleById(long id) {
+        Role role = entityManager.find( Role.class, id );
         return role;
     }
 
 
-    public static void createRole(String name) {
-        EntityManager entitymanager = EntityManagerSingleton.getInstance();
-        entitymanager.getTransaction().begin();
+    public void createRole(String name) {
+        entityManager.getTransaction().begin();
 
         Instant instant = Instant.now();
 
@@ -30,7 +35,7 @@ public class RoleDao {
         role.setCreated(new Timestamp(instant.toEpochMilli()));
         role.setChanged(new Timestamp(instant.toEpochMilli()));
 
-        entitymanager.persist(role);
-        entitymanager.getTransaction().commit();
+        entityManager.persist(role);
+        entityManager.getTransaction().commit();
     }
 }

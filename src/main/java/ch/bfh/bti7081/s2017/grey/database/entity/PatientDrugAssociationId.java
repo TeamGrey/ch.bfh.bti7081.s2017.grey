@@ -21,4 +21,20 @@ public class PatientDrugAssociationId implements Serializable {
         }
         return false;
     }
+
+    public long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(long patientId) {
+        this.patientId = patientId;
+    }
+
+    public long getDrugId() {
+        return drugId;
+    }
+
+    public void setDrugId(long drugId) {
+        this.drugId = drugId;
+    }
 }

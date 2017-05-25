@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +18,9 @@ public class Drug {
     private Timestamp created;
     private Timestamp changed;
     @OneToMany(mappedBy = "drug")
-    private List<PatientDrugAssociation> patients;
+    private List<PatientDrugAssociation> patients = new ArrayList<>();
     @OneToMany(mappedBy = "drug")
-    private List<DrugTaskAssociation> tasks;
+    private List<DrugTaskAssociation> tasks = new ArrayList<>();
 
     public long getId() {
         return id;
