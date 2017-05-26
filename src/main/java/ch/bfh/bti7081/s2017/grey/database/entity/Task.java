@@ -1,9 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,6 +17,8 @@ public class Task {
     private Timestamp changed;
     @OneToMany(mappedBy = "task")
     private List<DrugTaskAssociation> drugs;
+    @ManyToOne
+    private Appointment appointment;
 
     public long getId() {
         return id;
@@ -59,5 +58,13 @@ public class Task {
 
     public void setDrugs(List<DrugTaskAssociation> drugs) {
         this.drugs = drugs;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
 }
