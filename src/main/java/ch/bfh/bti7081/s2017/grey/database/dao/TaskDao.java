@@ -7,6 +7,10 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
@@ -24,6 +28,17 @@ public class TaskDao {
 
     public Task findTaskById(long id) {
         return entityManager.find(Task.class, id);
+    }
+
+    public List<Task> getAllTasks() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Task> criteriaQuery = criteriaBuilder.createQuery(Task.class);
+        Root<Task> task = criteriaQuery.from(Task.class);
+        criteriaQuery.select(task);
+
+        TypedQuery<Task> query = entityManager.createQuery(criteriaQuery);
+        List<Task> tasks = query.getResultList();
+        return tasks;
     }
 
     public void createTask(String name, Appointment appointment) {
@@ -62,25 +77,38 @@ public class TaskDao {
         entityManager.getTransaction().commit();
     }
     
-//    public void getTasksByAppointment(Appointment appointment){
-//    	// SELECT t.* FROM tasks AS t
-//    	// INNER JOIN appointment_task at ON at.task_id = t.id
-//    	// INNER JOIN appointment a ON at.appointment_id = a.id
-//    	// WHERE a.id = XY
-//    }
-//    public void setDuration(Task task, int amount){
-//    	task.setDuration(amount);
-//    }
-//    public void addToDuration(Task task, int amount){
-//    	int newAmount = task.getDuration() + amount;
-//    	task.setDuration(newAmount);
-//    }
-//    public void removeFromDuration(Task task, int amount){
-//    	int newAmount = task.getDuration() - amount;
-//    	task.setDuration(newAmount);
-//    }
-//    public void setActiveStatus(Task task, boolean status){
-//    	task.setFinished(status);
-//    }
+    public List<Task> getTasksByAppointment(Appointment appointment){
+        entityManager.getTransaction().begin();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Task> criteriaQuery = criteriaBuilder.createQuery(Task.class);
+        Root<Task> task = criteriaQuery.from(Task.class);
+        criteriaQuery.select(task).where(criteriaBuilder.equal(task.get("appointment"), appointment));
 
+        TypedQuery<Task> query = entityManager.createQuery(criteriaQuery);
+        List<Task> tasks = query.getResultList();
+        return tasks;
+    }
+    public void setDuration(Task task, int amount){
+        entityManager.getTransaction().begin();
+        Instant instant = Instant.now();
+        Timestamp timestamp = new Timestamp(instant.toEpochMilli());
+
+    	task.setDuration(amount);
+    	task.setChanged(timestamp);
+
+    	entityManager.persist(task);
+    	entityManager.getTransaction().commit();
+    }
+
+    public void toggleActiveStatus(Task task){
+        entityManager.getTransaction().begin();
+        Instant instant = Instant.now();
+        Timestamp timestamp = new Timestamp(instant.toEpochMilli());
+
+        task.toggleFinished();
+        task.setChanged(timestamp);
+
+        entityManager.persist(task);
+        entityManager.getTransaction().commit();
+    }
 }

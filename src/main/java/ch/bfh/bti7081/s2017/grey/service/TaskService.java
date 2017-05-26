@@ -11,14 +11,12 @@ import java.util.List;
  */
 public interface TaskService {
     Task findTaskById(long id);
-
+    List<Task> getAllTasks();
     void createTask(String name, Appointment appointment);
-
     void addDrugsToTask(Task task, List<Drug> drugs, int amount, String units);
-    
-//    void getTasksByAppointment(Appointment appointment);
-//    void setDuration(Task task, int amount);
-//    void addToDuration(Task task, int amount);
-//    void removeFromDuration(Task task, int amount);
-//    void setActiveStatus(Task task, boolean status);
+    List<Task> getTasksByAppointment(Appointment appointment);
+    void setDuration(Task task, int amount);
+    void addToDuration(Task task, int amount);
+    void removeFromDuration(Task task, int amount);
+    void toggleActiveStatus(Task task);
 }
