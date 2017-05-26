@@ -3,21 +3,23 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @Author Quentin
  */
 @Entity
-public class Role {
+public class Task {
     @Id
     @GeneratedValue
     private long id;
     private String name;
     private Timestamp created;
     private Timestamp changed;
-
-    public Role() {}
+    @OneToMany(mappedBy = "task")
+    private List<DrugTaskAssociation> drugs;
 
     public long getId() {
         return id;
@@ -49,5 +51,13 @@ public class Role {
 
     public void setChanged(Timestamp changed) {
         this.changed = changed;
+    }
+
+    public List<DrugTaskAssociation> getDrugs() {
+        return drugs;
+    }
+
+    public void setDrugs(List<DrugTaskAssociation> drugs) {
+        this.drugs = drugs;
     }
 }

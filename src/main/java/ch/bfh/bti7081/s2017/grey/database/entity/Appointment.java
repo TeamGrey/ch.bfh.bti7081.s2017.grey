@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
  * @Author Quentin
  */
 @Entity
-@Table
 public class Appointment {
     @Id
     @GeneratedValue

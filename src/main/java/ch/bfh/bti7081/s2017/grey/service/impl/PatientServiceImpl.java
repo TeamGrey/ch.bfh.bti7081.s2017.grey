@@ -1,8 +1,11 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
 import ch.bfh.bti7081.s2017.grey.database.dao.PatientDao;
+import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
+
+import java.util.List;
 
 /**
  * @Author Quentin
@@ -20,7 +23,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void createStaff(String firstname, String lastname) {
+    public void createPatient(String firstname, String lastname) {
         patientDao.createPatient(firstname, lastname);
     }
 
