@@ -126,7 +126,12 @@ create table task
     primary key,
   name varchar(100) not null,
   created timestamp not null,
-  changed timestamp not null
+  changed timestamp not null,
+	appointment_id bigint not null
+		constraint tasks_appointment_id_fk
+			references appointment,
+	finished boolean not null,
+	duration integer
 )
 ;
 
