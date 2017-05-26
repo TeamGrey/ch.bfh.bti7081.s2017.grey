@@ -19,6 +19,8 @@ public class Task {
     private List<DrugTaskAssociation> drugs;
     @ManyToOne
     private Appointment appointment;
+    private boolean finished = false;
+    private int duration;
 
     public long getId() {
         return id;
@@ -66,5 +68,21 @@ public class Task {
 
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void finish() {
+        finished = true;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
