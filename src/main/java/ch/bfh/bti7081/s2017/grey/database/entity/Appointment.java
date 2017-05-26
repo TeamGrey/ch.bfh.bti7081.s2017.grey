@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @Author Quentin
@@ -26,6 +27,8 @@ public class Appointment {
     private Timestamp created;
     private Timestamp changed;
     private AppointmentStatus status = AppointmentStatus.NONE;
+    @OneToMany(mappedBy = "appointment")
+    private List<Task> tasks;
 
     public long getId() {
         return id;
@@ -129,6 +132,14 @@ public class Appointment {
         if (status != null && status != this.status) {
             this.status = status;
         }
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void create() { setStatus(status.create(this)); }
