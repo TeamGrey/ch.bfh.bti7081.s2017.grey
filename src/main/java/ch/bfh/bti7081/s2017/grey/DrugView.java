@@ -11,11 +11,11 @@ public class DrugView extends VerticalLayout {
 
 	public DrugView(){
 		super();
-		name = new Label("Drug Name");
+		name = new Label("Name: ---");
 		addComponent(name);
 	}
 
 	public void setName(String labelName) {
-		name.setValue(labelName);
+		name.setValue("Name: "+labelName);
 	}
 }

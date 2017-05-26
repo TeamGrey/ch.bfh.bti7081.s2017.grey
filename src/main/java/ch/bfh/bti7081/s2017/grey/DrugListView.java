@@ -21,7 +21,7 @@ public class DrugListView extends VerticalLayout {
 
     public DrugView addDrug(Drug drug) {
         DrugView drugView = new DrugView();
-        drug.setName(drug.getName());
+        drugView.setName(drug.getName());
         drugViews.add(drugView);
         drugs.add(drug);
         addComponent(drugView);

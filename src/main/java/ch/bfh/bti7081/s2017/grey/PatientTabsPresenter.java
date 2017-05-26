@@ -1,6 +1,9 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
+import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
+import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
+import ch.bfh.bti7081.s2017.grey.service.PatientService;
+import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -15,6 +18,9 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private PatientTabs patientTab = new PatientTabs();
 	
 	public PatientTabsPresenter(){
+		PatientService patientService = new PatientServiceImpl();
+		// TODO fetch patient dynamicly
+		Patient patient = patientService.getPatientById(4);
 		
 		Label clientTempLabel = new Label("Personeninformationen sind hier", ContentMode.HTML);
 		VerticalLayout client = new VerticalLayout(clientTempLabel);
@@ -22,11 +28,8 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 
 
 		DrugListView drugs = new DrugListView();
-		// TODO get drug list from DB
-		for (int i = 0; i < 4; i++) {
-			Drug drug = new Drug();
-			drug.setName("Drug Nr:" + i);
-			drugs.addDrug(drug);
+		for (PatientDrugAssociation patientDrugAssociation: patient.getDrugs()) {
+			drugs.addDrug(patientDrugAssociation.getDrug());
 		}
 		patientTab.addTab(drugs, "Drugs");
 
