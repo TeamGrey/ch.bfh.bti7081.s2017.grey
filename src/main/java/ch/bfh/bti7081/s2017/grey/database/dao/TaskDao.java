@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
@@ -25,13 +26,14 @@ public class TaskDao {
         return entityManager.find(Task.class, id);
     }
 
-    public void createTask(String name) {
+    public void createTask(String name, Appointment appointment) {
         entityManager.getTransaction().begin();
         Instant instant = Instant.now();
         Timestamp timestamp = new Timestamp(instant.toEpochMilli());
 
         Task task = new Task();
         task.setName(name);
+        task.setAppointment(appointment);
         task.setCreated(timestamp);
         task.setChanged(timestamp);
 

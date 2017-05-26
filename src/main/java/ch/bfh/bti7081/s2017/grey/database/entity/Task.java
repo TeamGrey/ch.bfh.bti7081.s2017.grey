@@ -1,9 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,8 +17,10 @@ public class Task {
     private Timestamp changed;
     @OneToMany(mappedBy = "task")
     private List<DrugTaskAssociation> drugs;
-    //private boolean finished;
-    //private int duration;
+    @ManyToOne
+    private Appointment appointment;
+    private boolean finished = false;
+    private int duration;
 
     public long getId() {
         return id;
@@ -62,22 +61,28 @@ public class Task {
     public void setDrugs(List<DrugTaskAssociation> drugs) {
         this.drugs = drugs;
     }
-    
-//    public int getDuration() {
-//        return duration;
-//    }
-//
-//    public void setDiration(int amount) {
-//        this.duration = amount;
-//    }
-//    
-//    public boolean getFinished() {
-//        return finished;
-//    }
-//
-//    public void setFinished(boolean finished) {
-//        this.finished = finished;
-//    }
-    
-    
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void finish() {
+        finished = true;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 }
