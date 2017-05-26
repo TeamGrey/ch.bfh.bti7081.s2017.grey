@@ -48,7 +48,6 @@ public class MyUI extends UI {
 
 	private void router(){
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			appointmentPresenter.setUser(VaadinSession.getCurrent().getAttribute("user").toString());
 			getNavigator().navigateTo(PatientTabsPresenter.NAME);
 		} else {
 			getNavigator().navigateTo(LoginScreen.NAME);

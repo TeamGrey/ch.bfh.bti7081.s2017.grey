@@ -8,14 +8,15 @@ import com.vaadin.data.Binder;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.Calendar;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents;
 import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -33,38 +34,50 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	private List<AppontmentViewListener> listeners = new ArrayList<AppontmentViewListener>();
 
 	private Binder<Appointment> binder = new Binder<>(Appointment.class);
-	private BeanItemContainer<BasicEvent> container;
+	private BeanItemContainer<AppointmentEvent> container;
 
 	private Button editButton = new Button();
 	private Button addButton = new Button();
-	@PropertyId("date")
+
+	private Button monthView = new Button();
+	private Button weekView = new Button();
+	private Button dayView = new Button();
+
 	private DateTimeField startDate = new DateTimeField();
-	@PropertyId("finished")
 	private DateTimeField endDate = new DateTimeField();
-	@PropertyId("description")
+	private TextField terminTitel = new TextField();
 	private TextField terminBeschrieb = new TextField();
-	@PropertyId("patient")
 	private ComboBox<Patient> patients = new ComboBox<>("Patients");
-	private Label label = new Label();
+
 	private Calendar cal = new Calendar("My Calendar");
+
 	private VerticalLayout layout = new VerticalLayout();
 	private VerticalLayout rightLayout = new VerticalLayout();
+	private HorizontalLayout calendarView = new HorizontalLayout();
 
 
 	public AppointmentViewImpl() {
 		binder.forField(startDate).bind(Appointment::getDate, Appointment::setDate);
 		binder.forField(endDate).bind(Appointment::getEndDate, Appointment::setEndDate);
+		binder.forField(terminTitel).bind(Appointment::getTitle, Appointment::setTitle);
 		binder.forField(terminBeschrieb).bind(Appointment::getDescription, Appointment::setDescription);
 		binder.forField(patients).bind(Appointment::getPatient, Appointment::setPatient);
 
+		addButton.setCaption("Termin hinzufügen");
 		editButton.setCaption("Bearbeiten");
+
+		monthView.setCaption("Monat");
+		weekView.setCaption("Woche");
+		dayView.setCaption("Tag");
+
 		startDate.setCaption("Termin Beginn");
 		endDate.setCaption("Termin Ende");
 		terminBeschrieb.setCaption("Termin Bezeichnung");
-		addButton.setCaption("Termin hinzufügen");
 
 		cal.setWidth("600px");
 		cal.setHeight("300px");
+		cal.setLocale(Locale.GERMANY);
+		cal.setWeeklyCaptionFormat("dd.MM.yyyy");
 
 		patients.setItemCaptionGenerator(Patient::getFirstname);
 
@@ -73,11 +86,41 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 				listener.saveClick();
 			}
 		});
+
+		monthView.addClickListener(e -> {
+			for(AppontmentViewListener listener : listeners) {
+				listener.monthViewSelect();
+			}
+		});
+		weekView.addClickListener(e -> {
+			for(AppontmentViewListener listener : listeners) {
+				listener.weekViewSelect();
+			}
+		});
+		dayView.addClickListener(e -> {
+			for(AppontmentViewListener listener : listeners) {
+				listener.dayViewSelect();
+			}
+		});
+
 		startDate.addFocusListener(e->{
 			this.setEnabled(true);
 		});
-		startDate.setCaption("Startdatum");
-		layout.addComponents(endDate,startDate,terminBeschrieb, patients, addButton, cal);
+
+		cal.setHandler(new CalendarComponentEvents.EventClickHandler() {
+			@Override
+			public void eventClick(CalendarComponentEvents.EventClick eventClick) {
+				AppointmentEvent event = (AppointmentEvent)eventClick.getCalendarEvent();
+				Appointment appointment = event.getAppointment();
+
+				for(AppontmentViewListener listener : listeners) {
+					listener.appointmentSelect(appointment);
+				}
+			}
+		});
+
+		calendarView.addComponents(monthView, weekView, dayView);
+		layout.addComponents(startDate, endDate,terminBeschrieb, patients, addButton, calendarView, cal);
 		this.addComponents(layout,rightLayout);
 		Design design = new Design();
 		addComponent(design.insertContent(layout));
@@ -100,9 +143,9 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 	@Override
 	public void setAppointmentList(List<Appointment> appointmentList) {
-		container = new BeanItemContainer<BasicEvent>(BasicEvent.class);
+		container = new BeanItemContainer<AppointmentEvent>(AppointmentEvent.class);
 		for(Appointment appointment : appointmentList) {
-			container.addBean(new BasicEvent(appointment.getTitle(), appointment.getDescription(), Timestamp.valueOf(appointment.getDate()), Timestamp.valueOf(appointment.getEndDate())));
+			container.addBean(new AppointmentEvent(appointment, Timestamp.valueOf(appointment.getDate()), Timestamp.valueOf(appointment.getEndDate()), appointment.getTitle(), appointment.getDescription()));
 		}
 		container.sort(new Object[]{"date"}, new boolean[]{true});
 
@@ -111,8 +154,20 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	}
 
 	@Override
-	public void enter(ViewChangeEvent viewChangeEvent) {
+	public void setStartDate(Date startDate) {
+		cal.setStartDate(startDate);
+	}
 
+	@Override
+	public void setEndDate(Date endDate) {
+		cal.setEndDate(endDate);
+	}
+
+	@Override
+	public void enter(ViewChangeEvent viewChangeEvent) {
+		for(AppontmentViewListener listener : listeners) {
+			listener.viewEntered(VaadinSession.getCurrent().getAttribute("user").toString());
+		}
 	}
 }
 
