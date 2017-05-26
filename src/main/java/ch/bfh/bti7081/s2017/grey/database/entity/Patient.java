@@ -1,16 +1,18 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
+
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author Quentin
  */
 @Entity
-@Table
 public class Patient {
     @Id
     @GeneratedValue
@@ -19,6 +21,10 @@ public class Patient {
     private String lastname;
     private Timestamp created;
     private Timestamp changed;
+    @OneToMany(mappedBy = "patient")
+    private List<PatientDrugAssociation> drugs = new ArrayList<>();
+    @OneToMany(mappedBy = "patient")
+    private List<PatientHabitAssociation> habits = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -58,5 +64,21 @@ public class Patient {
 
     public void setChanged(Timestamp chnaged) {
         this.changed = chnaged;
+    }
+
+    public List<PatientDrugAssociation> getDrugs() {
+        return drugs;
+    }
+
+    public void setDrugs(List<PatientDrugAssociation> drugs) {
+        this.drugs = drugs;
+    }
+
+    public List<PatientHabitAssociation> getHabits() {
+        return habits;
+    }
+
+    public void setHabits(List<PatientHabitAssociation> habits) {
+        this.habits = habits;
     }
 }

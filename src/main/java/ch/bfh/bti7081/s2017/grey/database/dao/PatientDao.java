@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.database.entity.*;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 
@@ -20,9 +20,14 @@ import java.util.List;
  */
 public class PatientDao {
 
+    EntityManager entityManager;
+
+    public PatientDao() {
+        entityManager = EntityManagerSingleton.getInstance();
+    }
+
     public Patient getPatientById(long id) {
-        EntityManager entitymanager = EntityManagerSingleton.getInstance();
-        Patient patient = entitymanager.find( Patient.class, id );
+        Patient patient = entityManager.find( Patient.class, id );
         return patient;
     }
 
@@ -39,8 +44,6 @@ public class PatientDao {
     }
 
     public Patient getPatientByName(String firstName, String lastName) {
-        EntityManager entityManager = EntityManagerSingleton.getInstance();
-
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Patient> criteriaQuery = criteriaBuilder.createQuery(Patient.class);
         Root<Patient> patient = criteriaQuery.from(Patient.class);
@@ -53,8 +56,7 @@ public class PatientDao {
     }
 
     public void createPatient(String firstname, String lastname) {
-        EntityManager entitymanager = EntityManagerSingleton.getInstance();
-        entitymanager.getTransaction().begin();
+        entityManager.getTransaction().begin();
 
         Instant instant = Instant.now();
 
@@ -64,7 +66,43 @@ public class PatientDao {
         patient.setChanged(new Timestamp(instant.toEpochMilli()));
         patient.setCreated(new Timestamp(instant.toEpochMilli()));
 
-        entitymanager.persist(patient);
-        entitymanager.getTransaction().commit();
+        entityManager.persist(patient);
+        entityManager.getTransaction().commit();
+    }
+
+    public void addDrugsToPatient(Patient patient, List<Drug> drugs){
+        entityManager.getTransaction().begin();
+        for (Drug drug : drugs) {
+            PatientDrugAssociation association = new PatientDrugAssociation();
+            association.setPatient(patient);
+            association.setDrug(drug);
+            association.setPatientId(patient.getId());
+            association.setDrugId(drug.getId());
+            Instant instant = Instant.now();
+            association.setCreated(new Timestamp(instant.toEpochMilli()));
+            association.setChanged(new Timestamp(instant.toEpochMilli()));
+            entityManager.persist(association);
+            patient.getDrugs().add(association);
+            drug.getPatients().add(association);
+        }
+        entityManager.getTransaction().commit();
+    }
+
+    public void addHabitsToPatient(Patient patient, List<Habit> habits) {
+        entityManager.getTransaction().begin();
+        for (Habit habit : habits) {
+            PatientHabitAssociation association = new PatientHabitAssociation();
+            association.setPatient(patient);
+            association.setHabit(habit);
+            association.setPatientId(patient.getId());
+            association.setHabitId(habit.getId());
+            Instant instant = Instant.now();
+            association.setCreated(new Timestamp(instant.toEpochMilli()));
+            association.setChanged(new Timestamp(instant.toEpochMilli()));
+            entityManager.persist(association);
+            patient.getHabits().add(association);
+            habit.getPatients().add(association);
+        }
+        entityManager.getTransaction().commit();
     }
 }

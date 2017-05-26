@@ -1,25 +1,26 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @Author Joel
+ * @Author Quentin
  */
 @Entity
-@Table
 public class Drug {
     @Id
-    @GeneratedValue
-    private long id;
+    long id;
     private String name;
     private Timestamp created;
     private Timestamp changed;
-
-    public Drug() {}
+    @OneToMany(mappedBy = "drug")
+    private List<PatientDrugAssociation> patients = new ArrayList<>();
+    @OneToMany(mappedBy = "drug")
+    private List<DrugTaskAssociation> tasks = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -51,5 +52,21 @@ public class Drug {
 
     public void setChanged(Timestamp changed) {
         this.changed = changed;
+    }
+
+    public List<PatientDrugAssociation> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<PatientDrugAssociation> patients) {
+        this.patients = patients;
+    }
+
+    public List<DrugTaskAssociation> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<DrugTaskAssociation> tasks) {
+        this.tasks = tasks;
     }
 }

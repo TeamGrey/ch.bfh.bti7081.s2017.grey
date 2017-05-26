@@ -18,6 +18,13 @@
         <class>ch.bfh.bti7081.s2017.grey.database.entity.Role</class>
         <class>ch.bfh.bti7081.s2017.grey.database.entity.Patient</class>
         <class>ch.bfh.bti7081.s2017.grey.database.entity.Appointment</class>
+        <class>ch.bfh.bti7081.s2017.grey.database.entity.Drug</class>
+        <class>ch.bfh.bti7081.s2017.grey.database.entity.Habit</class>
+        <class>ch.bfh.bti7081.s2017.grey.database.entity.Task</class>
+        <class>ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation</class>
+        <class>ch.bfh.bti7081.s2017.grey.database.entity.EmergencyContact</class>
+        <class>ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation</class>
+        <class>ch.bfh.bti7081.s2017.grey.database.entity.PatientHabitAssociation</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver"

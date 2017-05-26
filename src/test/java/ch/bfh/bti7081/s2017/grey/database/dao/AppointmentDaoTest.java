@@ -61,8 +61,8 @@ public class AppointmentDaoTest {
         appointmentDao.delayAppointment(appointment.getId(), date, end);
 
         assertEquals(AppointmentStatus.DELAYED, appointment.getStatus());
-        assertEquals(date, appointment.getDate());
-        assertEquals(end, appointment.getEndDate());
+        assertEquals(date, appointment.getDate().toLocalDateTime());
+        assertEquals(end, appointment.getEndDate().toLocalDateTime());
     }
 
     @Test
