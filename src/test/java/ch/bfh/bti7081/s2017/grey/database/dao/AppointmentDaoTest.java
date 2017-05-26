@@ -31,11 +31,12 @@ public class AppointmentDaoTest {
 
         // given
         LocalDateTime date = LocalDateTime.now();
+        LocalDateTime end = date.plusHours(1);
         Staff staff = staffDao.getStaffByLogin("vonaj2");
         Patient patient = patientDao.getPatientByName("Test", "Test");
 
         // when
-        appointmentDao.createAppointment(date, "appointment", "test for dao", staff, patient);
+        appointmentDao.createAppointment(date, end, "appointment", "test for dao", staff, patient);
 
         // then
         List<Appointment> appointments = appointmentDao.findAppointmentsForStaffAndDay(staff, date.toLocalDate());
@@ -55,11 +56,13 @@ public class AppointmentDaoTest {
 
     @Test
     public void testDelayAppointment() {
-        Timestamp date = new Timestamp(Instant.now().toEpochMilli());
-        appointmentDao.delayAppointment(appointment.getId(), date);
+        LocalDateTime date = LocalDateTime.now();
+        LocalDateTime end = date.plusHours(1);
+        appointmentDao.delayAppointment(appointment.getId(), date, end);
 
         assertEquals(AppointmentStatus.DELAYED, appointment.getStatus());
         assertEquals(date, appointment.getDate());
+        assertEquals(end, appointment.getEndDate());
     }
 
     @Test
@@ -71,12 +74,12 @@ public class AppointmentDaoTest {
 
     @Test
     public void testFinishAppointment() {
-        Timestamp finished = new Timestamp(Instant.now().toEpochMilli());
+        LocalDateTime finished = LocalDateTime.now();
         int delay = 30;
         appointmentDao.finishAppointment(appointment.getId(), finished, delay);
 
         assertEquals(AppointmentStatus.FINISHED, appointment.getStatus());
-        assertEquals(finished, appointment.getFinished());
+        assertEquals(finished, appointment.getFinished().toLocalDateTime());
         assertEquals(delay, appointment.getDelay());
     }
 }

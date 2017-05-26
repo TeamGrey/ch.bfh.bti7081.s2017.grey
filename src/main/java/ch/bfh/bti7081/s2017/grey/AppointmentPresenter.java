@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.grey;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
 import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
+import com.vaadin.server.VaadinSession;
 
 import java.time.LocalDate;
 
@@ -29,7 +30,7 @@ public class AppointmentPresenter implements AppointmentView.AppontmentViewListe
 
     @Override
     public void saveClick() {
-        System.out.println(this.appointmentModel.getAppointment().getDescription());
+        this.appointmentModel.saveAppointment();
     }
 
     @Override

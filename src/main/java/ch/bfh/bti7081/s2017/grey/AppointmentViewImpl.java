@@ -13,6 +13,7 @@ import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.Calendar;
 import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  * This UI is the application entry point. A UI may either represent a browser window
  * (or tab) or some part of a html page where a Vaadin application is embedded.
  * <p>
- * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be
+ * The UI is initialized using . This method is intended to be
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
@@ -37,9 +38,9 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	private Button editButton = new Button();
 	private Button addButton = new Button();
 	@PropertyId("date")
-	private DateField startDate = new DateField();
+	private DateTimeField startDate = new DateTimeField();
 	@PropertyId("finished")
-	private DateField endDate = new DateField();
+	private DateTimeField endDate = new DateTimeField();
 	@PropertyId("description")
 	private TextField terminBeschrieb = new TextField();
 	@PropertyId("patient")
@@ -51,8 +52,8 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 
 	public AppointmentViewImpl() {
-		binder.forField(startDate).withConverter(new LocalDateToTimestampConverter()).bind(Appointment::getDate, Appointment::setDate);
-		binder.forField(endDate).withConverter(new LocalDateToTimestampConverter()).bind(Appointment::getFinished, Appointment::setFinished);
+		binder.forField(startDate).bind(Appointment::getDate, Appointment::setDate);
+		binder.forField(endDate).bind(Appointment::getEndDate, Appointment::setEndDate);
 		binder.forField(terminBeschrieb).bind(Appointment::getDescription, Appointment::setDescription);
 		binder.forField(patients).bind(Appointment::getPatient, Appointment::setPatient);
 
@@ -101,7 +102,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	public void setAppointmentList(List<Appointment> appointmentList) {
 		container = new BeanItemContainer<BasicEvent>(BasicEvent.class);
 		for(Appointment appointment : appointmentList) {
-			container.addBean(new BasicEvent("Event", appointment.getDescription(), appointment.getDate(), appointment.getFinished()));
+			container.addBean(new BasicEvent(appointment.getTitle(), appointment.getDescription(), Timestamp.valueOf(appointment.getDate()), Timestamp.valueOf(appointment.getEndDate())));
 		}
 		container.sort(new Object[]{"date"}, new boolean[]{true});
 

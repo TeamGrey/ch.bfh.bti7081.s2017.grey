@@ -36,6 +36,10 @@ public class AppointmentModel {
         return appointment;
     }
 
+    public void saveAppointment() {
+        this.appointmentService.createAppointment(this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
+    }
+
     public void setUser(String username) {
         this.staff = staffService.findStaffByLogin(username);
         this.appointment.setStaff(this.staff);
