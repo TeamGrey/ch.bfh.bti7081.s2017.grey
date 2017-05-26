@@ -78,7 +78,6 @@ public class TaskDao {
     }
     
     public List<Task> getTasksByAppointment(Appointment appointment){
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Task> criteriaQuery = criteriaBuilder.createQuery(Task.class);
         Root<Task> task = criteriaQuery.from(Task.class);
