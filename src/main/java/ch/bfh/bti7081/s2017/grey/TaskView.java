@@ -12,7 +12,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
 
 /**
- * @author Joel
+ * @author Ken
  */
 public class TaskView extends HorizontalLayout {
 	private static final long serialVersionUID = 1L;

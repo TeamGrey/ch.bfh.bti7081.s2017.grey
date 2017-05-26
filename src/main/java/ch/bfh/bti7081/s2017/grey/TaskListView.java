@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Joel
+ * @author Ken
  */
 public class TaskListView extends VerticalLayout {
 	private static final long serialVersionUID = 1L;
