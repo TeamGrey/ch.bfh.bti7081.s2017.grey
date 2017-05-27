@@ -10,7 +10,8 @@ import java.util.List;
  * @author Joel
  */
 public class DrugListView extends VerticalLayout {
-    private List<DrugView> drugViews;
+	private static final long serialVersionUID = 1L;
+	private List<DrugView> drugViews;
     private List<Drug> drugs;
 
     public DrugListView() {

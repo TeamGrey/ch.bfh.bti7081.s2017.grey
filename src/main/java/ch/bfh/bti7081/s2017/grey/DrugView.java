@@ -7,6 +7,7 @@ import com.vaadin.ui.VerticalLayout;
  * @author Joel
  */
 public class DrugView extends VerticalLayout {
+	private static final long serialVersionUID = 1L;
 	private Label name = null;
 
 	public DrugView(){

@@ -11,7 +11,7 @@ public class PatientTabs extends HorizontalLayout {
 	public PatientTabs(){
 		content.addStyleName("centered-tabs");
 		content.addStyleName("equal-width-tabs");
-		content.setResponsive(true);
+		content.setSizeFull();
 		addComponent(content);
 	}
 	
