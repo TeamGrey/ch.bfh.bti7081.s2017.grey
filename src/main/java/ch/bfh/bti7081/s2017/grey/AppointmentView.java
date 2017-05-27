@@ -11,19 +11,25 @@ import java.util.List;
  */
 public interface AppointmentView {
     interface AppontmentViewListener {
+        void newClick();
         void saveClick();
         void editClick();
+
+        void appointmentMove(Date start);
+        void appointmentReisize(Date start, Date end);
 
         void monthViewSelect();
         void weekViewSelect();
         void dayViewSelect();
+        void dateSelect(Date date);
+        void dateRangeSelect(Date start, Date end);
         void appointmentSelect(Appointment appointment);
 
         void viewEntered(String username);
     }
     public void addListener(AppontmentViewListener listener);
     public void setPatients(List<Patient> patients);
-    public void setAppointment(Appointment appointment);
+    public void setAppointment(Appointment appointment, boolean isEditMode);
     public void setAppointmentList(List<Appointment> appointmentList);
     public void setStartDate(Date startDate);
     public void setEndDate(Date endDate);

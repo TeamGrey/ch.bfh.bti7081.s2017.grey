@@ -74,6 +74,21 @@ public class AppointmentDao {
         entityManager.getTransaction().commit();
     }
 
+    public void editAppointment(long id, LocalDateTime date, LocalDateTime end, String title, String description, Staff staff, Patient patient) {
+        entityManager.getTransaction().begin();
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setDate(date);
+        appointment.setEndDate(end);
+        appointment.setTitle(title);
+        appointment.setDescription(description);
+        appointment.setStaff(staff);
+        appointment.setPatient(patient);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
+    }
+
     public void delayAppointment(long id, LocalDateTime newDate, LocalDateTime newEnd) {
         entityManager.getTransaction().begin();
         Instant instant = Instant.now();
