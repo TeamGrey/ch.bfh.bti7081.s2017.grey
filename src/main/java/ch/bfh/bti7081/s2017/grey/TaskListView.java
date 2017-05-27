@@ -27,13 +27,7 @@ public class TaskListView extends VerticalLayout {
         TaskView taskView = new TaskView();
         taskView.setSizeFull();
         taskView.setName(task.getName());
-        if(task.getName().equals("Task Nr: 2")){
-        	
-        }
-        else{
-        	taskView.tempDrugs();
-        }
-        
+        taskView.setDrugs(task.getDrugs());
         taskViews.add(taskView);
         tasks.add(task);
         addComponent(taskView);
