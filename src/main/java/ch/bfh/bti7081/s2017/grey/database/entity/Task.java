@@ -20,7 +20,7 @@ public class Task {
     @ManyToOne
     private Appointment appointment;
     private boolean finished = false;
-    private int duration;
+    private int duration = 5;
 
     public long getId() {
         return id;

@@ -37,11 +37,10 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		}
 		patientTab.addTab(drugs, "Drugs");
 
-		
-
-		TaskListView toDo = new TaskListView();
 		// TODO load selected appointment
 		Appointment appointment = EntityManagerSingleton.getInstance().find(Appointment.class, (long) 1);
+		
+		TaskListView toDo = new TaskListView(appointment);
 		toDo.setSizeFull();
 		for (Task task: appointment.getTasks()) {
             toDo.addTask(task);
