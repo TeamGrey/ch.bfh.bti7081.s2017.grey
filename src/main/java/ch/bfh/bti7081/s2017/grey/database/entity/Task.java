@@ -74,8 +74,8 @@ public class Task {
         return finished;
     }
 
-    public void toggleFinished() {
-        finished = !finished;
+    public void toggleFinished(Boolean status) {
+        finished = status;
     }
 
     public int getDuration() {

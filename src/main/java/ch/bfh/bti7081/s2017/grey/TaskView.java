@@ -7,6 +7,8 @@ import com.vaadin.ui.CustomLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
+import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.util.TaskEditor;
 
 /**
  * @author Ken
@@ -17,18 +19,21 @@ public class TaskView extends HorizontalLayout {
 	private Label taskDesc = null;
 	private DrugListView drugs = null;
 	private CheckBox checkbox = null;
-	private TaskViewTime time = null;
+	private TaskViewTime timeView = null;
+	private Task task = null;
 
-	public TaskView(){
+	public TaskView(Task task){
 		super();
+		this.task = task;
 		checkbox = new CheckBox("", false);
+		checkbox.addValueChangeListener(event -> toggleStatus());
 		tasklayout.addComponent(checkbox, "task-left");
 		taskDesc = new Label("Task Name");
 		tasklayout.addComponent(taskDesc, "task-center-desc");
 		drugs = new DrugListView();
 		tasklayout.addComponent(drugs, "task-center-drugs");
-		time = new TaskViewTime();
-		tasklayout.addComponent(time, "task-right");
+		timeView = new TaskViewTime(this.task);
+		tasklayout.addComponent(timeView, "task-right");
 		tasklayout.setSizeFull();
 		addComponent(tasklayout);
 		setSizeFull();
@@ -42,5 +47,17 @@ public class TaskView extends HorizontalLayout {
     	for (DrugTaskAssociation object: drugList) {
     		drugs.addDrug(object.getDrug());
     	}
+	}
+	
+	public void setEstimate(int time){
+		timeView.setEstimate(time);
+	}
+	
+	public void setFinished(boolean status){
+		checkbox.setValue(status);
+	}
+	
+	private void toggleStatus(){
+		TaskEditor.toggleStatus(task, checkbox.getValue());
 	}
 }

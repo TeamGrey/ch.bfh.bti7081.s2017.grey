@@ -62,7 +62,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void toggleActiveStatus(Task task) {
-        taskDao.toggleActiveStatus(task);
+    public void toggleActiveStatus(Task task, Boolean status) {
+        taskDao.toggleActiveStatus(task, status);
     }
 }

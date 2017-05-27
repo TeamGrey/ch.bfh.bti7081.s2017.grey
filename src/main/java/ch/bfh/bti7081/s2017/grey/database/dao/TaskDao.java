@@ -99,12 +99,12 @@ public class TaskDao {
     	entityManager.getTransaction().commit();
     }
 
-    public void toggleActiveStatus(Task task){
+    public void toggleActiveStatus(Task task, Boolean status){
         entityManager.getTransaction().begin();
         Instant instant = Instant.now();
         Timestamp timestamp = new Timestamp(instant.toEpochMilli());
 
-        task.toggleFinished();
+        task.toggleFinished(status);
         task.setChanged(timestamp);
 
         entityManager.persist(task);
