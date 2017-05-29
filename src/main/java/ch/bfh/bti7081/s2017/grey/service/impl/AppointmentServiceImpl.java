@@ -88,4 +88,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     public void deleteAppointment(Appointment appointment) {
         dao.delete(appointment.getId());
     }
+
+    @Override
+    public void editAppointment(Appointment appointment) {
+        Instant instant = Instant.now();
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        dao.update(appointment);
+    }
 }
