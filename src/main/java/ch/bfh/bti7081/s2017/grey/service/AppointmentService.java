@@ -18,4 +18,5 @@ public interface AppointmentService {
 
     void createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
     void createAppointmentDummyPatient(Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
+    void editAppointment(long id, Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
 }

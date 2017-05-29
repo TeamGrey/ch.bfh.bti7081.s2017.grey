@@ -26,6 +26,7 @@ public class AppointmentModel {
     private Appointment appointment = new Appointment();
     private Staff staff;
     private Date start;
+
     private Date end;
 
     public void setAppointment(Appointment appointment) {
@@ -41,6 +42,35 @@ public class AppointmentModel {
         this.appointmentService.createAppointment(this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
     }
 
+    public void editAppointment() {
+        if(this.appointment.getId() != -1) {
+            this.appointmentService.editAppointment(this.appointment.getId(), this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
+        }
+    }
+
+    public void moveApppointment(Date start) {
+        long timeDifference = Date.from(appointment.getEndDate().atZone(ZoneId.systemDefault()).toInstant()).getTime() - Date.from(appointment.getDate().atZone(ZoneId.systemDefault()).toInstant()).getTime();
+        int seconds = (int)(timeDifference / 1000);
+
+        appointment.setDate(start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
+        calendar.setTime(Date.from(appointment.getDate().atZone(ZoneId.systemDefault()).toInstant()));
+        calendar.add(Calendar.SECOND, seconds);
+        Date end = calendar.getTime();
+        appointment.setEndDate(end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        this.editAppointment();
+    }
+
+    public void resizeAppointment(Date start, Date end) {
+        this.appointment.setDate(start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        this.appointment.setEndDate(end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        this.editAppointment();
+    }
+
+    public boolean isEditMode() {
+        return this.appointment.getId() != -1;
+    }
+
     public void setUser(String username) {
         this.staff = staffService.findStaffByLogin(username);
         this.appointment.setStaff(this.staff);
@@ -52,6 +82,22 @@ public class AppointmentModel {
 
     public List<Appointment> getAppointmentList() {
         return this.appointmentService.findAppointmentsByStaffAndDateRange(this.staff, this.start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), this.end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+    }
+
+    public Date getStart() {
+        return this.start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return this.end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
     public void setMonthRange() {
@@ -70,12 +116,13 @@ public class AppointmentModel {
     public void setWeekRange() {
         Calendar start = getCalendarForNow();
         start.set(Calendar.DAY_OF_WEEK,
-                start.getActualMinimum(Calendar.DAY_OF_WEEK));
+                start.getFirstDayOfWeek());
+        Date s = start.getTime();
         setTimeToBeginningOfDay(start);
         this.start = start.getTime();
         Calendar end = getCalendarForNow();
         end.set(Calendar.DAY_OF_WEEK,
-                end.getActualMaximum(Calendar.DAY_OF_WEEK));
+                1);
         setTimeToEndofDay(end);
         this.end = end.getTime();
     }
@@ -89,16 +136,19 @@ public class AppointmentModel {
         this.end = end.getTime();
     }
 
-    public Date getStart() {
-        return this.start;
-    }
-
-    public Date getEnd() {
-        return this.end;
+    public void setDate(Date date) {
+        Calendar start = Calendar.getInstance(Locale.GERMANY);
+        start.setTime(date);
+        setTimeToBeginningOfDay(start);
+        this.start = start.getTime();
+        Calendar end = Calendar.getInstance(Locale.GERMANY);
+        end.setTime(date);
+        setTimeToEndofDay(end);
+        this.end = end.getTime();
     }
 
     private static Calendar getCalendarForNow() {
-        Calendar calendar = GregorianCalendar.getInstance();
+        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         calendar.setTime(new Date());
         return calendar;
     }
