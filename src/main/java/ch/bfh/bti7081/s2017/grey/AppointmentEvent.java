@@ -13,6 +13,7 @@ public class AppointmentEvent implements CalendarEvent {
     private Date start;
     private Date end;
     private String caption;
+
     private String description;
     private String styleName;
     private boolean allDay;
@@ -57,5 +58,33 @@ public class AppointmentEvent implements CalendarEvent {
     @Override
     public boolean isAllDay() {
         return allDay;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStyleName(String styleName) {
+        this.styleName = styleName;
+    }
+
+    public void setAllDay(boolean allDay) {
+        this.allDay = allDay;
     }
 }

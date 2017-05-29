@@ -43,4 +43,9 @@ public class AppointmentServiceImpl implements AppointmentService {
         Patient patient = patientService.getPatientByName("Test", "Test");
         createAppointment(patient, staff, description, title, date, end);
     }
+
+    @Override
+    public void editAppointment(long id, Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end) {
+        appointmentDao.editAppointment(id, date, end, title, description, staff, patient);
+    }
 }
