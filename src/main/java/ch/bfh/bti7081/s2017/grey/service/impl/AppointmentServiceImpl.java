@@ -18,7 +18,6 @@ import java.util.List;
  * @Author Quentin
  */
 public class AppointmentServiceImpl implements AppointmentService {
-
     private AppointmentDao dao;
 
     public AppointmentServiceImpl(){
@@ -85,7 +84,8 @@ public class AppointmentServiceImpl implements AppointmentService {
         createAppointment(patient, staff, description, title, date, end);
     }
 
-    public Appointment getAppointment(Appointment appointment) {
-        return dao.find(appointment.getId());
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        dao.delete(appointment.getId());
     }
 }
