@@ -20,4 +20,5 @@ public interface AppointmentService {
     public void finishAppointment(Appointment appointment, LocalDateTime finished, int delay);
     public void createAppointmentDummyPatient(Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
     public void deleteAppointment(Appointment appointment);
+    public void editAppointment(Appointment appointment);
 }
