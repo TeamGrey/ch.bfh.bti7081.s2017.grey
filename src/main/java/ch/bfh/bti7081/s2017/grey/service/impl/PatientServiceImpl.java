@@ -1,10 +1,14 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
 import ch.bfh.bti7081.s2017.grey.database.dao.PatientDao;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.PatientDaoImpl;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
+import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -12,24 +16,43 @@ import java.util.List;
  */
 public class PatientServiceImpl implements PatientService {
 
-    private PatientDao patientDao;
+    private PatientDao dao;
 
     public PatientServiceImpl() {
-        patientDao = new PatientDao();
+        dao = new PatientDaoImpl();
     }
+
     @Override
     public Patient getPatientById(long id) {
-        return patientDao.getPatientById(id);
+        return dao.find(id);
     }
 
     @Override
     public void createPatient(String firstname, String lastname) {
-        patientDao.createPatient(firstname, lastname);
+        Instant instant = Instant.now();
+
+        Patient patient = new Patient();
+        patient.setFirstname(firstname);
+        patient.setLastname(lastname);
+        patient.setCreated(new Timestamp(instant.toEpochMilli()));
+        patient.setChanged(new Timestamp(instant.toEpochMilli()));
+
+        dao.create(patient);
     }
 
     @Override
     public Patient getPatientByName(String firstName, String lastName) {
-        return patientDao.getPatientByName(firstName, lastName);
+        return dao.getPatientByName(firstName, lastName);
+    }
+
+    @Override
+    public void addDrugsToPatient(Patient patient, List<Drug> drugs) {
+        dao.addDrugsToPatient(patient, drugs);
+    }
+
+    @Override
+    public void addHabitsToPatient(Patient patient, List<Habit> habits) {
+        dao.addHabitsToPatient(patient, habits);
     }
 
     @Override

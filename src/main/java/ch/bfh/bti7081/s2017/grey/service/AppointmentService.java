@@ -16,7 +16,10 @@ public interface AppointmentService {
     List<Appointment> findAppointmentsByStaffAndDate(Staff staff, LocalDate date);
     List<Appointment> findAppointmentsByStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end);
 
-    void createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
+    Appointment createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
+    Appointment delayAppointment(Appointment appointment, LocalDateTime newDate, LocalDateTime newEnd);
+    void cancelAppointment(Appointment appointment);
+    void finishAppointment(Appointment appointment, LocalDateTime finished, int delay);
     void createAppointmentDummyPatient(Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
     void editAppointment(long id, Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
 }
