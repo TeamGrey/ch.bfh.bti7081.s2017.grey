@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
@@ -40,8 +41,10 @@ public class MyUI extends UI {
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
-		getNavigator().addView(DrugScreenPresenter.NAME, DrugScreenPresenter.class);
 		getNavigator().setErrorView(LoginScreen.class);
+
+		// Initialize EntityManager, do warm up
+		EntityManagerSingleton.getInstance();
 
 		router();
 	}
