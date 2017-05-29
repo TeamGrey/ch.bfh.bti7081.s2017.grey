@@ -15,6 +15,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,6 +38,18 @@ public class AppointmentDao {
         LocalDateTime endOfDay = startOfDay.with(LocalTime.MAX);
         Timestamp end = Timestamp.valueOf(endOfDay);
         criteriaQuery.select(appointment).where(criteriaBuilder.between(appointment.get("date"), start, end),
+                criteriaBuilder.equal(appointment.get("staff"), staff));
+
+        TypedQuery<Appointment> query = entityManager.createQuery(criteriaQuery);
+        List<Appointment> appointments =  query.getResultList();
+        return appointments;
+    }
+
+    public List<Appointment> findAppointmentsForStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Appointment> criteriaQuery = criteriaBuilder.createQuery(Appointment.class);
+        Root<Appointment> appointment = criteriaQuery.from(Appointment.class);
+        criteriaQuery.select(appointment).where(criteriaBuilder.between(appointment.get("date"), Timestamp.valueOf(start), Timestamp.valueOf(end)),
                 criteriaBuilder.equal(appointment.get("staff"), staff));
 
         TypedQuery<Appointment> query = entityManager.createQuery(criteriaQuery);

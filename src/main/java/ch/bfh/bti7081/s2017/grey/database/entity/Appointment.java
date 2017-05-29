@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,6 +12,7 @@ import java.util.List;
  * @Author Quentin
  */
 @Entity
+@Table
 public class Appointment {
     @Id
     @GeneratedValue
@@ -32,6 +34,21 @@ public class Appointment {
     @OneToMany(mappedBy = "appointment")
     private List<Task> tasks;
 
+    public Appointment() {
+        this.id = -1;
+        this.date = new Timestamp(System.currentTimeMillis());
+        this.endDate = new Timestamp(System.currentTimeMillis());
+        this.title = "";
+        this.description = "";
+        this.staff = null;
+        this.patient = null;
+        this.finished = new Timestamp(System.currentTimeMillis());
+        this.protocol = "";
+        this.delay = 0;
+        this.created = new Timestamp(System.currentTimeMillis());
+        this.changed = new Timestamp(System.currentTimeMillis());
+    }
+
     public long getId() {
         return id;
     }
@@ -40,15 +57,15 @@ public class Appointment {
         this.id = id;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public LocalDateTime getDate() {
+        return date.toLocalDateTime();
     }
 
     public void setDate(LocalDateTime date) {
         this.date = Timestamp.valueOf(date);
     }
 
-    public Timestamp getEndDate() { return endDate;}
+    public LocalDateTime getEndDate() { return endDate.toLocalDateTime();}
 
     public void setEndDate(LocalDateTime end) {
         this.endDate = Timestamp.valueOf(end);
