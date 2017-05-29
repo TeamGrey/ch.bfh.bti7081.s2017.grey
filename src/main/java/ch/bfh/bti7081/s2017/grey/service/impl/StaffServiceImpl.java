@@ -26,7 +26,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public void createStaff(String firstname, String lastname, String login, String pwhash, Role role) {
+    public Staff createStaff(String firstname, String lastname, String login, String pwhash, Role role) {
         Instant instant = Instant.now();
         Timestamp timestamp = new Timestamp(instant.toEpochMilli());
 
@@ -39,6 +39,11 @@ public class StaffServiceImpl implements StaffService {
         staff.setChanged(timestamp);
         staff.setCreated(timestamp);
 
-        dao.create(staff);
+        return dao.create(staff);
+    }
+
+    @Override
+    public void deleteStaff(Staff staff) {
+        dao.delete(staff.getId());
     }
 }
