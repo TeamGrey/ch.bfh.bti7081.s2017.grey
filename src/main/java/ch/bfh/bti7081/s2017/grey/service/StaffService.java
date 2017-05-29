@@ -8,7 +8,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
  */
 public interface StaffService {
 
-    Staff findStaffByLogin(String login);
-
-    void createStaff(String firstname, String lastname, String login, String pwhash, Role role);
+    public Staff findStaffByLogin(String login);
+    public Staff createStaff(String firstname, String lastname, String login, String pwhash, Role role);
+    public void deleteStaff(Staff staff);
 }
