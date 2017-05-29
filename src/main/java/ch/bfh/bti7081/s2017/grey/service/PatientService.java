@@ -15,4 +15,5 @@ public interface PatientService {
     public Patient getPatientByName(String firstName, String lastName);
     public void addDrugsToPatient(Patient patient, List<Drug> drugs);
     public void addHabitsToPatient(Patient patient, List<Habit> habits);
+    public List<Patient> getAllPatients();
 }

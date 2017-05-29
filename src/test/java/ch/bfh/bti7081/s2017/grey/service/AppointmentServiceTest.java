@@ -53,8 +53,8 @@ public class AppointmentServiceTest {
         appointmentService.delayAppointment(appointment, date, end);
 
         assertEquals(AppointmentStatus.DELAYED, appointment.getStatus());
-        assertEquals(date, appointment.getDate().toLocalDateTime());
-        assertEquals(end, appointment.getEndDate().toLocalDateTime());
+        assertEquals(date, appointment.getDate());
+        assertEquals(end, appointment.getEndDate());
     }
 
     @Test

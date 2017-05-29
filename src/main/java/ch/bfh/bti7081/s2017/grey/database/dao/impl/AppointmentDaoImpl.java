@@ -34,4 +34,17 @@ public class AppointmentDaoImpl extends GenericDaoImpl<Appointment> implements A
         List<Appointment> appointments =  query.getResultList();
         return appointments;
     }
+
+    @Override
+    public List<Appointment> findAppointmentsForStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Appointment> criteriaQuery = criteriaBuilder.createQuery(Appointment.class);
+        Root<Appointment> appointment = criteriaQuery.from(Appointment.class);
+        criteriaQuery.select(appointment).where(criteriaBuilder.between(appointment.get("date"), Timestamp.valueOf(start), Timestamp.valueOf(end)),
+                criteriaBuilder.equal(appointment.get("staff"), staff));
+
+        TypedQuery<Appointment> query = em.createQuery(criteriaQuery);
+        List<Appointment> appointments =  query.getResultList();
+        return appointments;
+    }
 }

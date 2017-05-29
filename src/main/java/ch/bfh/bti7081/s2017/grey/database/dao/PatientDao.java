@@ -3,7 +3,6 @@ package ch.bfh.bti7081.s2017.grey.database.dao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
-
 import java.util.List;
 
 /**

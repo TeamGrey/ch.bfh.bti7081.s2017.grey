@@ -54,4 +54,9 @@ public class PatientServiceImpl implements PatientService {
     public void addHabitsToPatient(Patient patient, List<Habit> habits) {
         dao.addHabitsToPatient(patient, habits);
     }
+
+    @Override
+    public List<Patient> getAllPatients() {
+        return dao.findAll();
+    }
 }

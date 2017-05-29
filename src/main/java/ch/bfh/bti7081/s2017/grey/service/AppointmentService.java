@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface AppointmentService {
     public List<Appointment> findAppointmentsByStaffAndDate(Staff staff, LocalDate date);
+    public List<Appointment> findAppointmentsByStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end);
     public Appointment createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
     public Appointment delayAppointment(Appointment appointment, LocalDateTime newDate, LocalDateTime newEnd);
     public void cancelAppointment(Appointment appointment);
