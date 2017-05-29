@@ -14,4 +14,5 @@ public interface PatientService {
     void createPatient(String firstname, String lastname);
 
     Patient getPatientByName(String firstName, String lastName);
+    List<Patient> getAllPatients();
 }
