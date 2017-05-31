@@ -5,6 +5,9 @@ import ch.bfh.bti7081.s2017.grey.service.StaffService;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
 
 import javax.persistence.NoResultException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 /**
  * This Util provides handy functions for the authentication
@@ -46,18 +49,27 @@ public class Authentication {
      * @return {Boolean}
      */
     public static Boolean authenticate(Staff user, String password){
-        return (user.getPwhash().equals(Authentication.createHashFromString(password)));
+        return (user.getPwhash().equals(Authentication.generateHash(user, password)));
     }
 
 
     /**
      * Hashing function used for hashing user passwords
      *
-     * @param plain plaintext string to be hashed
+     * @param password plaintext string to be hashed
      * @return hashed string
      */
-    public static String createHashFromString(String plain)  {
-        return plain; // FIXME create hash
-        //return String.valueOf(plain.hashCode());
+    public static String generateHash(Staff staff, String password)  {
+        final String salt = staff.getFirstname() + staff.getLastname() + staff.getLogin();
+
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            final String passwordAndSalt = password + salt;
+            return Base64.getEncoder().encodeToString(digest.digest(passwordAndSalt.getBytes()));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 }

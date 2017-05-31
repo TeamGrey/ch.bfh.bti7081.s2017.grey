@@ -6,6 +6,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

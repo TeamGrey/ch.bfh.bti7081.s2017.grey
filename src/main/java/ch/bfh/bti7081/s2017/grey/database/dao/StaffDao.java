@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.grey.database.dao;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import ch.bfh.bti7081.s2017.grey.util.Authentication;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -42,7 +43,7 @@ public class StaffDao {
         staff.setFirstname(firstname);
         staff.setLastname(lastname);
         staff.setLogin(login);
-        staff.setPwhash(pwhash);
+        staff.setPwhash(Authentication.generateHash(staff, pwhash));
         staff.setChanged(new Timestamp(instant.toEpochMilli()));
         staff.setCreated(new Timestamp(instant.toEpochMilli()));
         staff.setRoles(role);

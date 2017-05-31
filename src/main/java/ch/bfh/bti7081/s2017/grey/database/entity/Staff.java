@@ -1,7 +1,12 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.Timestamp;
+import java.util.Base64;
+import java.util.Random;
 
 /**
  * @Author Quentin
