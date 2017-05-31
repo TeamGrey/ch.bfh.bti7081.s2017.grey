@@ -20,7 +20,7 @@ public class Task {
     @ManyToOne
     private Appointment appointment;
     private boolean finished = false;
-    private int duration;
+    private int duration = 5;
 
     public long getId() {
         return id;
@@ -74,8 +74,8 @@ public class Task {
         return finished;
     }
 
-    public void toggleFinished() {
-        finished = !finished;
+    public void toggleFinished(Boolean status) {
+        finished = status;
     }
 
     public int getDuration() {

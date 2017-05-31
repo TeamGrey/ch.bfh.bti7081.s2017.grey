@@ -18,5 +18,5 @@ public interface TaskService {
     void setDuration(Task task, int amount);
     void addToDuration(Task task, int amount);
     void removeFromDuration(Task task, int amount);
-    void toggleActiveStatus(Task task);
+    void toggleActiveStatus(Task task, Boolean status);
 }
