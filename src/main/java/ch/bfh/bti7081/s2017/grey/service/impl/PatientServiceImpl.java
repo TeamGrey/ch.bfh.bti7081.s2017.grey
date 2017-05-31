@@ -56,6 +56,6 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<Patient> getAllPatients() {
-        return patientDao.getPatients();
+        return dao.findAll();
     }
 }
