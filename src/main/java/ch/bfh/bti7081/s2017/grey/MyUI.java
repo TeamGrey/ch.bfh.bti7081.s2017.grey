@@ -24,8 +24,6 @@ import com.vaadin.ui.UI;
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
 public class MyUI extends UI {
 
-	private AppointmentPresenter appointmentPresenter;
-
 	@WebServlet(value = "/*", asyncSupported = true)
 	public static class Servlet extends VaadinServlet {
 	}
@@ -36,7 +34,7 @@ public class MyUI extends UI {
 
 		AppointmentViewImpl appointmentView = new AppointmentViewImpl();
 		AppointmentModel appointmentModel = new AppointmentModel();
-		appointmentPresenter = new AppointmentPresenter(appointmentView, appointmentModel);
+		new AppointmentPresenter(appointmentView, appointmentModel);
 
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);

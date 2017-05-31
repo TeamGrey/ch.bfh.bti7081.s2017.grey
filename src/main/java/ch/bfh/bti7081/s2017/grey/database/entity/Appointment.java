@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * @Author Quentin
@@ -28,20 +31,21 @@ public class Appointment {
     private Timestamp created;
     private Timestamp changed;
     private AppointmentStatus status = AppointmentStatus.NONE;
+    @OneToMany(mappedBy = "appointment")
+    private List<Task> tasks;
 
     public Appointment() {
-        this.id = -1;
-        this.date = new Timestamp(System.currentTimeMillis());
-        this.endDate = new Timestamp(System.currentTimeMillis());
-        this.title = "";
-        this.description = "";
-        this.staff = null;
-        this.patient = null;
-        this.finished = new Timestamp(System.currentTimeMillis());
-        this.protocol = "";
-        this.delay = 0;
-        this.created = new Timestamp(System.currentTimeMillis());
-        this.changed = new Timestamp(System.currentTimeMillis());
+    }
+
+    public Appointment(Timestamp date, Timestamp endDate, String title, String description, Staff staff, Patient patient, Timestamp created, Timestamp changed) {
+        this.date = date;
+        this.endDate = endDate;
+        this.title = title;
+        this.description = description;
+        this.staff = staff;
+        this.patient = patient;
+        this.created = created;
+        this.changed = changed;
     }
 
     public long getId() {

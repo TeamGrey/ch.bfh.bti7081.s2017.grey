@@ -1,18 +1,18 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Sizeable;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-
-import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 
 public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private static final long serialVersionUID = 1L;
@@ -37,14 +37,13 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		}
 		patientTab.addTab(drugs, "Drugs");
 
+		// TODO load selected appointment
+		Appointment appointment = EntityManagerSingleton.getInstance().find(Appointment.class, (long) 1);
 		
-		
-		TaskListView toDo = new TaskListView();
+		TaskListView toDo = new TaskListView(appointment);
 		toDo.setSizeFull();
-		for (int i = 0; i < 5; i++) {
-            Task task = new Task();
-            task.setName("Task Nr: " + i);
-            toDo.addTask(task);            
+		for (Task task: appointment.getTasks()) {
+            toDo.addTask(task);
         }
 		toDo.addNewTaskButton();
 		patientTab.addTab(toDo, "ToDo");

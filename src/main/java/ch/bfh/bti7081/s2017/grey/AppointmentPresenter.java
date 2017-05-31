@@ -20,6 +20,8 @@ public class AppointmentPresenter implements AppointmentView.AppontmentViewListe
         this.appointmentModel = appointmentModel;
         this.appointmentView = appointmentView;
 
+        this.appointmentModel.setNewAppointment();
+
         this.appointmentView.addListener(this);
         this.appointmentView.setPatients(this.appointmentModel.getPatients());
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
@@ -27,7 +29,7 @@ public class AppointmentPresenter implements AppointmentView.AppontmentViewListe
 
     @Override
     public void newClick() {
-        this.appointmentModel.setAppointment(new Appointment());
+        this.appointmentModel.setNewAppointment();
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
     }
 

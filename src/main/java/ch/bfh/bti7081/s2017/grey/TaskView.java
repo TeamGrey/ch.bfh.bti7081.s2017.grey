@@ -1,15 +1,14 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.CustomLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
-import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
+import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.util.TaskEditor;
 
 /**
  * @author Ken
@@ -18,20 +17,23 @@ public class TaskView extends HorizontalLayout {
 	private static final long serialVersionUID = 1L;
 	private CustomLayout tasklayout = new CustomLayout("tasklayout");
 	private Label taskDesc = null;
-	private DrugListView drugss = null;
+	private DrugListView drugs = null;
 	private CheckBox checkbox = null;
-	private TaskViewTime time = null;
+	private TaskViewTime timeView = null;
+	private Task task = null;
 
-	public TaskView(){
+	public TaskView(Task task){
 		super();
+		this.task = task;
 		checkbox = new CheckBox("", false);
+		checkbox.addValueChangeListener(event -> toggleStatus());
 		tasklayout.addComponent(checkbox, "task-left");
 		taskDesc = new Label("Task Name");
 		tasklayout.addComponent(taskDesc, "task-center-desc");
-		drugss = new DrugListView();
-		tasklayout.addComponent(drugss, "task-center-drugs");
-		time = new TaskViewTime();
-		tasklayout.addComponent(time, "task-right");
+		drugs = new DrugListView();
+		tasklayout.addComponent(drugs, "task-center-drugs");
+		timeView = new TaskViewTime(this.task);
+		tasklayout.addComponent(timeView, "task-right");
 		tasklayout.setSizeFull();
 		addComponent(tasklayout);
 		setSizeFull();
@@ -41,21 +43,21 @@ public class TaskView extends HorizontalLayout {
 		taskDesc.setValue(labelName);
 	}
 	
-	public void tempDrugs(){
-		List<DrugTaskAssociation> drugList = new ArrayList<DrugTaskAssociation>();
-		DrugTaskAssociation testDrug = new DrugTaskAssociation();
-		Drug drug = new Drug();
-        drug.setName("TempDrug");
-    	testDrug.setDrug(drug);
-    	drugList.add(testDrug);
-    	DrugTaskAssociation testDrug2 = new DrugTaskAssociation();
-    	Drug drug2 = new Drug();
-        drug2.setName("TempDrug2");
-    	testDrug2.setDrug(drug2);
-    	drugList.add(testDrug2);
-    	
+	public void setDrugs(List<DrugTaskAssociation> drugList){
     	for (DrugTaskAssociation object: drugList) {
-    		drugss.addDrug(object.getDrug());
+    		drugs.addDrug(object.getDrug());
     	}
+	}
+	
+	public void setEstimate(int time){
+		timeView.setEstimate(time);
+	}
+	
+	public void setFinished(boolean status){
+		checkbox.setValue(status);
+	}
+	
+	private void toggleStatus(){
+		TaskEditor.toggleStatus(task, checkbox.getValue());
 	}
 }
