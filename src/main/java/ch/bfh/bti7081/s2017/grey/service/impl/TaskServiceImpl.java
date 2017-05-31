@@ -79,13 +79,21 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void toggleActiveStatus(Task task) {
-        Instant instant = Instant.now();
+    public void toggleActiveStatus(Task task, Boolean status) {
+    	Instant instant = Instant.now();
         Timestamp timestamp = new Timestamp(instant.toEpochMilli());
 
-        task.toggleFinished();
-        task.setChanged(timestamp);
+        task.toggleFinished(status);
+        task.setChanged(timestamp);    	
+    	dao.update(task);
 
-        dao.update(task);
+//    public void toggleActiveStatus(Task task) {
+//        Instant instant = Instant.now();
+//        Timestamp timestamp = new Timestamp(instant.toEpochMilli());
+//
+//        task.toggleFinished();
+//        task.setChanged(timestamp);
+//
+//        dao.update(task);
     }
 }
