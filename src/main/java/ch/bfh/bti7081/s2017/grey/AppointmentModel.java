@@ -11,6 +11,7 @@ import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
 import com.vaadin.data.Binder;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -23,7 +24,7 @@ public class AppointmentModel {
     private PatientService patientService = new PatientServiceImpl();
     private StaffService staffService = new StaffServiceImpl();
 
-    private Appointment appointment = new Appointment();
+    private Appointment appointment;
     private Staff staff;
     private Date start;
 
@@ -32,6 +33,11 @@ public class AppointmentModel {
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
         this.appointment.setStaff(this.staff);
+    }
+
+    public void setNewAppointment() {
+        Appointment appointment = new Appointment(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "", "", null, null, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
+        this.setAppointment(appointment);
     }
 
     public Appointment getAppointment() {

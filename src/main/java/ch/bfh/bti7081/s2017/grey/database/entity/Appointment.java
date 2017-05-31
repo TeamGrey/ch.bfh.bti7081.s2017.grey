@@ -27,22 +27,22 @@ public class Appointment {
     private int delay;
     private Timestamp created;
     private Timestamp changed;
-    private AppointmentStatus status = AppointmentStatus.NONE;
 
     public Appointment() {
-        this.id = -1;
-        this.date = new Timestamp(System.currentTimeMillis());
-        this.endDate = new Timestamp(System.currentTimeMillis());
-        this.title = "";
-        this.description = "";
-        this.staff = null;
-        this.patient = null;
-        this.finished = new Timestamp(System.currentTimeMillis());
-        this.protocol = "";
-        this.delay = 0;
-        this.created = new Timestamp(System.currentTimeMillis());
-        this.changed = new Timestamp(System.currentTimeMillis());
     }
+
+    public Appointment(Timestamp date, Timestamp endDate, String title, String description, Staff staff, Patient patient, Timestamp created, Timestamp changed) {
+        this.date = date;
+        this.endDate = endDate;
+        this.title = title;
+        this.description = description;
+        this.staff = staff;
+        this.patient = patient;
+        this.created = created;
+        this.changed = changed;
+    }
+
+    private AppointmentStatus status = AppointmentStatus.NONE;
 
     public long getId() {
         return id;
