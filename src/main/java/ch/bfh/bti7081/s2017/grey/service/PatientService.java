@@ -10,9 +10,10 @@ import java.util.List;
  * @Author Quentin
  */
 public interface PatientService {
-    public Patient getPatientById(long id);
-    public void createPatient(String firstname, String lastname);
-    public Patient getPatientByName(String firstName, String lastName);
-    public void addDrugsToPatient(Patient patient, List<Drug> drugs);
-    public void addHabitsToPatient(Patient patient, List<Habit> habits);
+    Patient getPatientById(long id);
+    void createPatient(String firstname, String lastname);
+    Patient getPatientByName(String firstName, String lastName);
+    void addDrugsToPatient(Patient patient, List<Drug> drugs);
+    void addHabitsToPatient(Patient patient, List<Habit> habits);
+    List<Patient> getAllPatients();
 }

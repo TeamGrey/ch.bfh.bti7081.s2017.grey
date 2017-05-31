@@ -10,8 +10,6 @@ import java.util.List;
  */
 public interface EmergencyContactService {
     EmergencyContact getEmergencyContactById(long id);
-
     void createEmerencyContact(String firstName, String lastName, String phoneNumber, Patient patient);
-
     List<EmergencyContact> findEmergencyContactForPatient(Patient patient);
 }

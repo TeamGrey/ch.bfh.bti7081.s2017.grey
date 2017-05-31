@@ -7,6 +7,5 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
  */
 public interface HabitService {
     Habit findHabitById(long id);
-
     void createHabit(String name);
 }
