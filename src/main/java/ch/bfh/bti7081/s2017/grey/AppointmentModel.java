@@ -50,7 +50,7 @@ public class AppointmentModel {
 
     public void editAppointment() {
         if(this.appointment.getId() != -1) {
-            this.appointmentService.editAppointment(this.appointment.getId(), this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
+            this.appointmentService.editAppointment(appointment);
         }
     }
 
