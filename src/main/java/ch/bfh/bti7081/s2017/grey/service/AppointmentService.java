@@ -12,11 +12,13 @@ import java.util.List;
  * @Author Quentin
  */
 public interface AppointmentService {
-
-    List<Appointment> findAppointmentsByStaffAndDate(Staff staff, LocalDate date);
-    List<Appointment> findAppointmentsByStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end);
-
-    void createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
-    void createAppointmentDummyPatient(Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
-    void editAppointment(long id, Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
+    public List<Appointment> findAppointmentsByStaffAndDate(Staff staff, LocalDate date);
+    public List<Appointment> findAppointmentsByStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end);
+    public Appointment createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
+    public Appointment delayAppointment(Appointment appointment, LocalDateTime newDate, LocalDateTime newEnd);
+    public void cancelAppointment(Appointment appointment);
+    public void finishAppointment(Appointment appointment, LocalDateTime finished, int delay);
+    public void createAppointmentDummyPatient(Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
+    public void deleteAppointment(Appointment appointment);
+    public void editAppointment(Appointment appointment);
 }

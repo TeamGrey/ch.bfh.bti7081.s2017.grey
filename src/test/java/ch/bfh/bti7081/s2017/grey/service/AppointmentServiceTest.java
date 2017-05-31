@@ -1,51 +1,43 @@
-package ch.bfh.bti7081.s2017.grey.database.dao;
+package ch.bfh.bti7081.s2017.grey.service;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.AppointmentStatus;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 /**
- * @Author Quentin
+ * Created by gabor on 29/05/17.
  */
-public class AppointmentDaoTest {
-    private AppointmentDao appointmentDao;
+public class AppointmentServiceTest {
+    private AppointmentService appointmentService;
     private Appointment appointment;
 
     @Before
     public void setup() {
-        appointmentDao = new AppointmentDao();
-        StaffDao staffDao = new StaffDao();
-        PatientDao patientDao = new PatientDao();
+        appointmentService = new AppointmentServiceImpl();
+        StaffService staffService = new StaffServiceImpl();
+        PatientService patientService = new PatientServiceImpl();
 
-        // given
         LocalDateTime date = LocalDateTime.now();
         LocalDateTime end = date.plusHours(1);
-        Staff staff = staffDao.getStaffByLogin("vonaj2");
-        Patient patient = patientDao.getPatientByName("Test", "Test");
+        Staff staff = staffService.findStaffByLogin("vonaj2");
+        Patient patient = patientService.getPatientByName("Test", "Test");
 
-        // when
-        appointmentDao.createAppointment(date, end, "appointment", "test for dao", staff, patient);
-
-        // then
-        List<Appointment> appointments = appointmentDao.findAppointmentsForStaffAndDay(staff, date.toLocalDate());
-        appointment = appointments.get(0);
+        appointment = appointmentService.createAppointment(patient, staff, "test", "title", date, end);
     }
 
     @After
     public void cleanUp() {
-        appointmentDao.removeAppointment(appointment.getId());
+        appointmentService.deleteAppointment(appointment);
     }
 
     @Test
@@ -58,7 +50,7 @@ public class AppointmentDaoTest {
     public void testDelayAppointment() {
         LocalDateTime date = LocalDateTime.now();
         LocalDateTime end = date.plusHours(1);
-        appointmentDao.delayAppointment(appointment.getId(), date, end);
+        appointmentService.delayAppointment(appointment, date, end);
 
         assertEquals(AppointmentStatus.DELAYED, appointment.getStatus());
         assertEquals(date, appointment.getDate());
@@ -67,7 +59,7 @@ public class AppointmentDaoTest {
 
     @Test
     public void testCancelAppointment() {
-        appointmentDao.cancelAppointment(appointment.getId());
+        appointmentService.cancelAppointment(appointment);
 
         assertEquals(AppointmentStatus.CANCELED, appointment.getStatus());
     }
@@ -76,7 +68,7 @@ public class AppointmentDaoTest {
     public void testFinishAppointment() {
         LocalDateTime finished = LocalDateTime.now();
         int delay = 30;
-        appointmentDao.finishAppointment(appointment.getId(), finished, delay);
+        appointmentService.finishAppointment(appointment, finished, delay);
 
         assertEquals(AppointmentStatus.FINISHED, appointment.getStatus());
         assertEquals(finished, appointment.getFinished().toLocalDateTime());
