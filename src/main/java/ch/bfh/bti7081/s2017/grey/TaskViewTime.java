@@ -1,33 +1,63 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
-import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
-import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
+import com.vaadin.ui.Notification;
+
+import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.util.TaskEditor;
 
 /**
  * @author Ken
  */
 public class TaskViewTime extends HorizontalLayout {
 	private static final long serialVersionUID = 1L;
+	private int estimateTime = 0;
 	private Label estimate = null;
 	private Button addTime = null;
 	private Button removeTime = null;
+	private Task task = null;
 
 
-	public TaskViewTime(){
+	public TaskViewTime(Task task){
 		super();
+		this.task = task;
+		estimateTime = 20;
 		estimate = new Label("20 min");
 		addComponent(estimate);
 		addTime = new Button("+ 5 min");
 		addComponent(addTime);
 		removeTime = new Button("- 5 min");
 		addComponent(removeTime);
+		
+		addTime.addClickListener(event -> addToEstimate(5));
+		removeTime.addClickListener(event -> removeFromEstimate(5));
+	}
+	
+	public void setEstimate(int time){
+		estimateTime = time;
+		setNewDuration();
+	}
+	
+	public void addToEstimate(int time){
+		estimateTime += time;
+		setNewDuration();
+	}
+	
+	public void removeFromEstimate(int time){
+		estimateTime -= time;
+		if(estimateTime < 5){
+			Notification.show("Mindestens 5 min pro To-Do", Notification.Type.WARNING_MESSAGE);
+			estimateTime += time;
+		}
+		else{
+			setNewDuration();
+		}
+	}
+	
+	private void setNewDuration(){
+		TaskEditor.setDuration(task, estimateTime);
+		estimate.setValue(estimateTime + " min");
 	}
 }

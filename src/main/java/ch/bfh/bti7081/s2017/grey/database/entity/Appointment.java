@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * @Author Quentin
@@ -28,6 +31,8 @@ public class Appointment {
     private Timestamp created;
     private Timestamp changed;
     private AppointmentStatus status = AppointmentStatus.NONE;
+    @OneToMany(mappedBy = "appointment")
+    private List<Task> tasks;
 
     public Appointment() {
         this.id = -1;
@@ -146,6 +151,20 @@ public class Appointment {
         if (status != null && status != this.status) {
             this.status = status;
         }
+    }
+
+    public List<Task> getTasks() {
+    	Collections.sort(tasks, new Comparator<Task>() {
+
+            public int compare(Task o1, Task o2) {
+                return o1.getId()<o2.getId()?-1:1;
+            }
+        });
+    	return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void create() { setStatus(status.create(this)); }
