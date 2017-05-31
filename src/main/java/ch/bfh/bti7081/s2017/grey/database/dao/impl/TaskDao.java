@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.TaskDao;
+import ch.bfh.bti7081.s2017.grey.database.dao.GenericDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
@@ -17,8 +17,8 @@ import java.util.List;
 /**
  * Created by gabor on 29/05/17.
  */
-public class TaskDaoImpl extends GenericDaoImpl<Task> implements TaskDao {
-    @Override
+public class TaskDao extends GenericDaoImpl<Task> implements GenericDao<Task> {
+
     public List<Task> getTasksByAppointment(Appointment appointment) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Task> criteriaQuery = criteriaBuilder.createQuery(Task.class);
@@ -29,7 +29,6 @@ public class TaskDaoImpl extends GenericDaoImpl<Task> implements TaskDao {
         return query.getResultList();
     }
 
-    @Override
     public void addDrugsToTask(Task task, List<Drug> drugs, int amount, String units) {
         em.getTransaction().begin();
         Instant instant = Instant.now();

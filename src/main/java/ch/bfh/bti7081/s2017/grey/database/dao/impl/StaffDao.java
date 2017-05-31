@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.StaffDao;
+import ch.bfh.bti7081.s2017.grey.database.dao.GenericDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 
@@ -13,8 +13,8 @@ import javax.persistence.criteria.Root;
 /**
  * Created by gabor on 29/05/17.
  */
-public class StaffDaoImpl extends GenericDaoImpl<Staff> implements StaffDao {
-    @Override
+public class StaffDao extends GenericDaoImpl<Staff> implements GenericDao<Staff> {
+
     public Staff getStaffByLogin(String login) {
         EntityManager entityManager = EntityManagerSingleton.getInstance();
 

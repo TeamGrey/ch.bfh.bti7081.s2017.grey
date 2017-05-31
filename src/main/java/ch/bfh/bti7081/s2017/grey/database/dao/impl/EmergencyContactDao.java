@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.EmergencyContactDao;
+import ch.bfh.bti7081.s2017.grey.database.dao.GenericDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.EmergencyContact;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by gabor on 29/05/17.
  */
-public class EmergencyContactDaoImpl extends GenericDaoImpl<EmergencyContact> implements EmergencyContactDao {
+public class EmergencyContactDao extends GenericDaoImpl<EmergencyContact> implements GenericDao<EmergencyContact> {
     public List<EmergencyContact> findEmergencyContactForPatient(Patient patient) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<EmergencyContact> criteriaQuery = criteriaBuilder.createQuery(EmergencyContact.class);

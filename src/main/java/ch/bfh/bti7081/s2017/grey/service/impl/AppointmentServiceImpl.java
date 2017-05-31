@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.AppointmentDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.AppointmentDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.AppointmentDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
@@ -21,7 +20,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     private AppointmentDao dao;
 
     public AppointmentServiceImpl(){
-        dao = new AppointmentDaoImpl();
+        dao = new AppointmentDao();
     }
 
     @Override

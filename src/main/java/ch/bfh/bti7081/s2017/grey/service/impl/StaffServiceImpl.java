@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.StaffDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.StaffDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.StaffDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import ch.bfh.bti7081.s2017.grey.service.StaffService;
@@ -17,7 +16,7 @@ public class StaffServiceImpl implements StaffService {
     StaffDao dao;
 
     public StaffServiceImpl() {
-        dao = new StaffDaoImpl();
+        dao = new StaffDao();
     }
 
     @Override

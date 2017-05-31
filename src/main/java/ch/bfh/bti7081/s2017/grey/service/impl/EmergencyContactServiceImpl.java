@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.EmergencyContactDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.EmergencyContactDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.EmergencyContactDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.EmergencyContact;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.service.EmergencyContactService;
@@ -18,7 +17,7 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
     private EmergencyContactDao dao;
 
     public EmergencyContactServiceImpl() {
-        dao = new EmergencyContactDaoImpl();
+        dao = new EmergencyContactDao();
     }
 
     @Override

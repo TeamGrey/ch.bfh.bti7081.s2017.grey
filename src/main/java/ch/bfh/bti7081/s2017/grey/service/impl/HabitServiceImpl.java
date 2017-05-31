@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.HabitDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.HabitDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.HabitDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
 import ch.bfh.bti7081.s2017.grey.service.HabitService;
 
@@ -16,7 +15,7 @@ public class HabitServiceImpl implements HabitService{
     private HabitDao dao;
 
     public HabitServiceImpl() {
-        dao = new HabitDaoImpl();
+        dao = new HabitDao();
     }
 
     @Override

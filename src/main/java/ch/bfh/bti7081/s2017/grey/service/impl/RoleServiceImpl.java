@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.RoleDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.RoleDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.RoleDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.service.RoleService;
 
@@ -16,7 +15,7 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao dao;
 
     public RoleServiceImpl() {
-        dao = new RoleDaoImpl();
+        dao = new RoleDao();
     }
 
     @Override
