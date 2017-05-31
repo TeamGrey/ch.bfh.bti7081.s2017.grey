@@ -19,6 +19,8 @@ public class Design extends VerticalLayout {
 	private Component l2Header = new Label("Header2");
 	private Component lFooter = new Label("Footer");
 	private Button logout = new Button("Logout");
+	private Button patientTabs = new Button("PatientTabs");// TODO Temporärer Zugang
+	private Button appointmentView = new Button("AppointmentView");// TODO Temporärer Zugang
 
 	public Design(){
 		mainlayout.setSizeFull();
@@ -36,16 +38,37 @@ public class Design extends VerticalLayout {
 				Page.getCurrent().reload();
 			}
 		});
+		
+		patientTabs.addClickListener(new ClickListener() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+				Page.getCurrent().setUriFragment("!"+PatientTabsPresenter.NAME);
+			}
+		});
+		
+		appointmentView.addClickListener(new ClickListener() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+				Page.getCurrent().setUriFragment("!"+AppointmentViewImpl.NAME);
+			}
+		});
 	}
 
 	public Design insertContent(Component content){
 		HorizontalLayout header = new HorizontalLayout();
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			header.addComponents(lHeader, l2Header, logout);
+			header.addComponents(lHeader, l2Header, logout, patientTabs, appointmentView);
 		}
 		else{
 			header.addComponents(lHeader, l2Header);
 		}
+		
+		header.setSizeFull();
+		content.setSizeFull();
 
 		mainlayout.addComponent(header, "top");
 		mainlayout.addComponent(content, "center");

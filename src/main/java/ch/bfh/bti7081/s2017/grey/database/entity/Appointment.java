@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @Author Quentin
@@ -13,6 +15,7 @@ public class Appointment {
     @GeneratedValue
     private long id;
     private Timestamp date;
+    private Timestamp endDate;
     private String title;
     private String description;
     @ManyToOne
@@ -24,6 +27,22 @@ public class Appointment {
     private int delay;
     private Timestamp created;
     private Timestamp changed;
+    private AppointmentStatus status = AppointmentStatus.NONE;
+
+    public Appointment() {
+        this.id = -1;
+        this.date = new Timestamp(System.currentTimeMillis());
+        this.endDate = new Timestamp(System.currentTimeMillis());
+        this.title = "";
+        this.description = "";
+        this.staff = null;
+        this.patient = null;
+        this.finished = new Timestamp(System.currentTimeMillis());
+        this.protocol = "";
+        this.delay = 0;
+        this.created = new Timestamp(System.currentTimeMillis());
+        this.changed = new Timestamp(System.currentTimeMillis());
+    }
 
     public long getId() {
         return id;
@@ -33,12 +52,18 @@ public class Appointment {
         this.id = id;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public LocalDateTime getDate() {
+        return date.toLocalDateTime();
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setDate(LocalDateTime date) {
+        this.date = Timestamp.valueOf(date);
+    }
+
+    public LocalDateTime getEndDate() { return endDate.toLocalDateTime();}
+
+    public void setEndDate(LocalDateTime end) {
+        this.endDate = Timestamp.valueOf(end);
     }
 
     public String getDescription() {
@@ -111,5 +136,29 @@ public class Appointment {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public AppointmentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AppointmentStatus status) {
+        if (status != null && status != this.status) {
+            this.status = status;
+        }
+    }
+
+    public void create() { setStatus(status.create(this)); }
+
+    public void delay() {
+        setStatus(status.delay(this));
+    }
+
+    public void cancel() {
+        setStatus(status.cancel(this));
+    }
+
+    public void finish() {
+        setStatus(status.finish(this));
     }
 }

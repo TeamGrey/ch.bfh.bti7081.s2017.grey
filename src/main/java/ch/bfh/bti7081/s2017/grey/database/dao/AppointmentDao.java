@@ -15,6 +15,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,9 +23,13 @@ import java.util.List;
  */
 public class AppointmentDao {
 
-    public List<Appointment> findAppointmentsForStaffAndDay(Staff staff, LocalDate date) {
-        EntityManager entityManager = EntityManagerSingleton.getInstance();
+    private EntityManager entityManager;
 
+    public AppointmentDao() {
+        entityManager = EntityManagerSingleton.getInstance();
+    }
+
+    public List<Appointment> findAppointmentsForStaffAndDay(Staff staff, LocalDate date) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Appointment> criteriaQuery = criteriaBuilder.createQuery(Appointment.class);
         Root<Appointment> appointment = criteriaQuery.from(Appointment.class);
@@ -40,31 +45,88 @@ public class AppointmentDao {
         return appointments;
     }
 
-    public void createAppointment(LocalDateTime date, String title, String description, Staff staff, Patient patient) {
+    public List<Appointment> findAppointmentsForStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Appointment> criteriaQuery = criteriaBuilder.createQuery(Appointment.class);
+        Root<Appointment> appointment = criteriaQuery.from(Appointment.class);
+        criteriaQuery.select(appointment).where(criteriaBuilder.between(appointment.get("date"), Timestamp.valueOf(start), Timestamp.valueOf(end)),
+                criteriaBuilder.equal(appointment.get("staff"), staff));
 
-        EntityManager entitymanager = EntityManagerSingleton.getInstance();
-        entitymanager.getTransaction().begin();
+        TypedQuery<Appointment> query = entityManager.createQuery(criteriaQuery);
+        List<Appointment> appointments =  query.getResultList();
+        return appointments;
+    }
 
+    public void createAppointment(LocalDateTime date, LocalDateTime end, String title, String description, Staff staff, Patient patient) {
+        entityManager.getTransaction().begin();
         Instant instant = Instant.now();
         Appointment appointment = new Appointment();
-        appointment.setDate(Timestamp.valueOf(date));
+        appointment.setDate(date);
+        appointment.setEndDate(end);
         appointment.setTitle(title);
         appointment.setDescription(description);
         appointment.setStaff(staff);
         appointment.setPatient(patient);
         appointment.setCreated(new Timestamp(instant.toEpochMilli()));
         appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.create();
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
+    }
 
-        entitymanager.persist(appointment);
-        entitymanager.getTransaction().commit();
+    public void editAppointment(long id, LocalDateTime date, LocalDateTime end, String title, String description, Staff staff, Patient patient) {
+        entityManager.getTransaction().begin();
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setDate(date);
+        appointment.setEndDate(end);
+        appointment.setTitle(title);
+        appointment.setDescription(description);
+        appointment.setStaff(staff);
+        appointment.setPatient(patient);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
+    }
+
+    public void delayAppointment(long id, LocalDateTime newDate, LocalDateTime newEnd) {
+        entityManager.getTransaction().begin();
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setDate(newDate);
+        appointment.setEndDate(newEnd);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.delay();
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
+    }
+
+    public void cancelAppointment(long id) {
+        entityManager.getTransaction().begin();
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.cancel();
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
+    }
+
+    public void finishAppointment(long id, LocalDateTime finished, int delay) {
+        entityManager.getTransaction().begin();
+        Instant instant = Instant.now();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        appointment.setChanged(new Timestamp(instant.toEpochMilli()));
+        appointment.setFinished(Timestamp.valueOf(finished));
+        appointment.setDelay(delay);
+        appointment.finish();
+        entityManager.persist(appointment);
+        entityManager.getTransaction().commit();
     }
 
     public void removeAppointment(long id) {
-        EntityManager entitymanager = EntityManagerSingleton.getInstance();
-        entitymanager.getTransaction().begin();
-
-        Appointment appointment = entitymanager.find(Appointment.class, id);
-        entitymanager.remove(appointment);
-        entitymanager.getTransaction().commit();
+        entityManager.getTransaction().begin();
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        entityManager.remove(appointment);
+        entityManager.getTransaction().commit();
     }
 }

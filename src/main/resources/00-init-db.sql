@@ -11,6 +11,8 @@ CREATE TABLE appointment
   delay INTEGER,
   created TIMESTAMP NOT NULL,
   changed TIMESTAMP NOT NULL,
+  status INTEGER,
+  enddate TIMESTAMP NOT NULL,
   CONSTRAINT appointments_staff_id_fk FOREIGN KEY (staff_id) REFERENCES staff (id),
   CONSTRAINT fkl8st4gxrhtqhwcr6e5eb32ft5 FOREIGN KEY (staff_id) REFERENCES staff (id),
   CONSTRAINT appointments_patients_id_fk FOREIGN KEY (patient_id) REFERENCES patient (id),
@@ -67,6 +69,28 @@ CREATE TABLE patient
 );
 CREATE TABLE patient_drug
 (
+<<<<<<< HEAD
+  id bigint not null
+    constraint tasks_id_pk
+    primary key,
+  name varchar(100) not null,
+  created timestamp not null,
+  changed timestamp not null,
+	appointment_id bigint not null
+		constraint tasks_appointment_id_fk
+			references appointment,
+	finished boolean not null,
+	duration integer
+)
+;
+
+alter table drug_task
+  add constraint drugtasks_tasks_id_fk
+foreign key (task_id) references task
+;
+
+create table habit
+=======
   id BIGINT PRIMARY KEY NOT NULL,
   patient_id BIGINT NOT NULL,
   drug_id BIGINT NOT NULL,
@@ -76,6 +100,7 @@ CREATE TABLE patient_drug
   CONSTRAINT patient_drugs_drugs_id_fk FOREIGN KEY (drug_id) REFERENCES drug (id)
 );
 CREATE TABLE patient_habit
+>>>>>>> feature/task-appointment
 (
   id BIGINT PRIMARY KEY NOT NULL,
   patient_id BIGINT NOT NULL,
@@ -109,7 +134,11 @@ COMMENT ON COLUMN staff.pwhash IS 'sha256 hash';
 CREATE TABLE task
 (
   id BIGINT PRIMARY KEY NOT NULL,
-  name VARCHAR(100) NOT NULL,
+  name VARCHAR(50) NOT NULL,
   created TIMESTAMP NOT NULL,
-  changed TIMESTAMP NOT NULL
+  changed TIMESTAMP NOT NULL,
+  appointment_id BIGINT NOT NULL,
+  finished BOOLEAN NOT NULL,
+  duration INTEGER,
+  CONSTRAINT tasks_appointment_id_fk FOREIGN KEY (appointment_id) REFERENCES appointment (id)
 );

@@ -31,6 +31,7 @@
 		top: 0;
 		border-bottom: 1px solid #444;
 		text-align: center;
+		z-index: 500;
 	}
 	
 	footer {
@@ -65,5 +66,36 @@
 	    width: 100%;
 	    margin-left: -50%;
 	    position: absolute;
+	}
+	
+	#task-new {
+		margin-top: 10px;
+	    width:100%;
+	    text-align:center;
+	    min-width: 500px;
+	    overflow:hidden;
+	}
+	
+	#task-left {
+	    float:left;
+	    min-width:50px;
+	    overflow:hidden;
+	}
+	
+	#task-center {
+	    display: inline-block;
+	    margin:0 auto;
+	    min-width:100px;
+	    overflow:hidden;
+	}
+	
+	#task-right {
+	    float:right;
+	    min-width:100px;
+	    overflow:hidden;
+	}
+	
+	.newTaskButton{
+		margin-bottom: 50px;
 	}
 }
