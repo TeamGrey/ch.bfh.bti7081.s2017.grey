@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.DrugDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.DrugDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.DrugDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.service.DrugService;
 
@@ -15,7 +14,7 @@ public class DrugServiceImpl implements DrugService {
     private DrugDao dao;
 
     public DrugServiceImpl() {
-        dao = new DrugDaoImpl();
+        dao = new DrugDao();
     }
 
     @Override

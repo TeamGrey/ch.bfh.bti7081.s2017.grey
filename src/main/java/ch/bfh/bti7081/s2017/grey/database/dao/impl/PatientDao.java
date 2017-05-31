@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.PatientDao;
+import ch.bfh.bti7081.s2017.grey.database.dao.GenericDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.*;
 
 import javax.persistence.TypedQuery;
@@ -14,9 +14,8 @@ import java.util.List;
 /**
  * Created by gabor on 29/05/17.
  */
-public class PatientDaoImpl extends GenericDaoImpl<Patient> implements PatientDao {
+public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Patient> {
 
-    @Override
     public Patient getPatientByName(String firstName, String lastName) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Patient> criteriaQuery = criteriaBuilder.createQuery(Patient.class);
@@ -29,7 +28,6 @@ public class PatientDaoImpl extends GenericDaoImpl<Patient> implements PatientDa
         return result;
     }
 
-    @Override
     public void addDrugsToPatient(Patient patient, List<Drug> drugs) {
         em.getTransaction().begin();
         for (Drug drug : drugs) {
@@ -48,7 +46,6 @@ public class PatientDaoImpl extends GenericDaoImpl<Patient> implements PatientDa
         em.getTransaction().commit();
     }
 
-    @Override
     public void addHabitsToPatient(Patient patient, List<Habit> habits) {
         em.getTransaction().begin();
         for (Habit habit : habits) {

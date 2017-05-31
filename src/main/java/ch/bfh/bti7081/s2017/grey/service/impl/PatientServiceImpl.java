@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.PatientDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.PatientDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.PatientDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
@@ -19,7 +18,7 @@ public class PatientServiceImpl implements PatientService {
     private PatientDao dao;
 
     public PatientServiceImpl() {
-        dao = new PatientDaoImpl();
+        dao = new PatientDao();
     }
 
     @Override

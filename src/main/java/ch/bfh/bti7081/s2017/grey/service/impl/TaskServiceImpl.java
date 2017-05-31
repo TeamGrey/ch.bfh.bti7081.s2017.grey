@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.service.impl;
 
-import ch.bfh.bti7081.s2017.grey.database.dao.TaskDao;
-import ch.bfh.bti7081.s2017.grey.database.dao.impl.TaskDaoImpl;
+import ch.bfh.bti7081.s2017.grey.database.dao.impl.TaskDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
@@ -19,7 +18,7 @@ public class TaskServiceImpl implements TaskService {
     private TaskDao dao;
 
     public TaskServiceImpl () {
-        dao = new TaskDaoImpl();
+        dao = new TaskDao();
     }
 
     @Override
