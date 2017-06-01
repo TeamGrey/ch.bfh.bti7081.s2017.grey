@@ -165,4 +165,18 @@ public class Appointment {
     public void finish() {
         setStatus(status.finish(this));
     }
+
+    public List<Task> getTasks() {
+        Collections.sort(tasks, new Comparator<Task>() {
+
+            public int compare(Task o1, Task o2) {
+                return o1.getId()<o2.getId()?-1:1;
+            }
+        });
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 }
