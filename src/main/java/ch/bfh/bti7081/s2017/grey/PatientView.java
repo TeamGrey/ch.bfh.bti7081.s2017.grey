@@ -9,6 +9,9 @@ public interface PatientView {
 
         void saveClick();
 
+        void cancelClick();
+
+        void viewEntered(String user);
     }
 
     public void addListener(PatientViewListener listener);

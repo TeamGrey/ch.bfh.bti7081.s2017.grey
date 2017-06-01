@@ -20,4 +20,13 @@ public class PatientPresenter implements PatientView.PatientViewListener {
     public void saveClick() {
 
     }
+
+    public void cancelClick() {
+
+    }
+
+    @Override
+    public void viewEntered(String user) {
+
+    }
 }
