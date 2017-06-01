@@ -3,6 +3,8 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -163,7 +165,18 @@ public class Appointment {
         setStatus(status.finish(this));
     }
 
-    public Task[] getTask() {
-    return null;
+
+    public List<Task> getTasks() {
+        Collections.sort(tasks, new Comparator<Task>() {
+
+            public int compare(Task o1, Task o2) {
+                return o1.getId()<o2.getId()?-1:1;
+            }
+        });
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
