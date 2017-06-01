@@ -2,10 +2,7 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -164,5 +161,9 @@ public class Appointment {
 
     public void finish() {
         setStatus(status.finish(this));
+    }
+
+    public Task[] getTask() {
+    return null;
     }
 }

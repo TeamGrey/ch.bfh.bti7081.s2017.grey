@@ -42,7 +42,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		
 		TaskListView toDo = new TaskListView(appointment);
 		toDo.setSizeFull();
-		for (Task task: appointment.getTasks()) {
+		for (Task task: appointment.getTask()) {
             toDo.addTask(task);
         }
 		toDo.addNewTaskButton();

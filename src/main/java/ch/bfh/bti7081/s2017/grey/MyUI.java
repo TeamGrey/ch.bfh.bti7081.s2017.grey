@@ -35,10 +35,13 @@ public class MyUI extends UI {
 		AppointmentViewImpl appointmentView = new AppointmentViewImpl();
 		AppointmentModel appointmentModel = new AppointmentModel();
 		new AppointmentPresenter(appointmentView, appointmentModel);
-
+		PatientModel patientModel = new PatientModel();
+		PatientViewImpl patientView = new PatientViewImpl();
+		new PatientPresenter(patientView, patientModel);
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
+		getNavigator().addView(PatientViewImpl.NAME, patientView);
 		getNavigator().setErrorView(LoginScreen.class);
 
 		router();

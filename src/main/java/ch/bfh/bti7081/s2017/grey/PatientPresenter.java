@@ -10,7 +10,6 @@ public class PatientPresenter implements PatientView.PatientViewListener {
         this.patientModel=patientModel;
         this.patientView=patientView;
         this.patientView.addListener(this);
-        this.patientModel.setView(this.patientView);
     }
 
     @Override

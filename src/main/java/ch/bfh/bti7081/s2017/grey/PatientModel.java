@@ -17,5 +17,11 @@ public class PatientModel {
    public void addPatient(Patient newpatient) {
       patientService.createPatient(newpatient.getFirstname(), newpatient.getLastname());
    }
-
+  public Patient getPatient(){
+  return patient;
+  }
+  public void editPatient(Patient changedpatient, int patientId){
+      this.patient = patient;
+      patientService.updatePatient(patient);
+  }
 }

@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
+import com.vaadin.data.Binder;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
@@ -16,14 +18,18 @@ import java.util.List;
  */
 public class PatientViewImpl extends VerticalLayout implements PatientView, View{
     public static final String NAME = "PatientViewImpl";
+    private List <PatientViewListener> listeners = new ArrayList<PatientViewListener>();
+    private Binder <Patient> binder = new Binder<>(Patient.class);
     private TextField firstname = new TextField();
 private TextField lastname = new TextField();
 private TextField created = new TextField();
 private TextField changed = new TextField();
 public Button editButton = new Button();
 public Button saveButton = new Button();
-    private List<PatientView.PatientViewListener> listeners = new ArrayList<PatientViewListener>();
 public PatientViewImpl(){
+    binder.forField(firstname).bind(Patient::getFirstname,Patient::setFirstname);
+    binder.forField(lastname).bind(Patient::getLastname,Patient::setLastname);
+
     firstname.setCaption("Vorname");
     lastname.setCaption("Nachname");
     created.setEnabled(false);
