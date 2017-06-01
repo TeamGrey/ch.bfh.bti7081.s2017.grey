@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 
@@ -14,6 +15,9 @@ public class PatientPresenter implements PatientView.PatientViewListener {
         this.patientModel=patientModel;
         this.patientView=patientView;
         this.patientView.addListener(this);
+         Patient randpat = patientService.getPatientById(4);
+    patientModel.setPatient(randpat);
+    System.out.println(randpat.getFirstname());
 
      }
 
@@ -32,6 +36,6 @@ public class PatientPresenter implements PatientView.PatientViewListener {
 
     @Override
     public void viewEntered(String user) {
-    patientModel.setPatient(patientService.getPatientById(1));
+
     }
 }

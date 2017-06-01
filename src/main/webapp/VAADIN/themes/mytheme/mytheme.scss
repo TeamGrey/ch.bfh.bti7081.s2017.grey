@@ -1,4 +1,6 @@
 //Global Variables before import!!
+
+
 	.mytheme.v-app, .mytheme .v-app-loading {
 		background: #00bfff !important;
 	}
@@ -78,6 +80,22 @@
 		border-top-left-radius: 15px;
 		border-top-right-radius: 15px;
 	}
+	.v-app-loading::before{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	z-index: 30000;
+	width: 128px;
+	height: 128px;
+		left: 50%;
+		margin-left: -64px;
+	background: transparent url(img/loading.gif);
+	margin-right: 0px;
+	margin-top: 0px;
+		padding: 0;
+		border-radius:100px;
+}
+
 .v-button.v-widget:hover{
 	margin-top: -5px;
 	height: 42px;
