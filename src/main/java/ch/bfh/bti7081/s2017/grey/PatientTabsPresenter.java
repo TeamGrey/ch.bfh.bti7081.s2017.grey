@@ -55,5 +55,6 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 		MyUI.loggedIn();
+
 	}
 }
