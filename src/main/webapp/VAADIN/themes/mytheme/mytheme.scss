@@ -17,9 +17,18 @@
 .mytheme .v-margin-bottom {
 	padding-bottom: 0px !important;
 }
-#gwt-uid-7{
-height: 40px !important;
+
+#loginlogo{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#headerlogo{
+	height: 40px;
 	margin-top: -35px;
+}
+.v-widget{
+	vertical-align: middle;
 }
 
 @import "../valo/valo.scss";
@@ -69,13 +78,17 @@ height: 40px !important;
 		border-top-left-radius: 15px;
 		border-top-right-radius: 15px;
 	}
-	
+.v-button.v-widget:hover{
+	margin-top: -5px;
+	height: 42px;
+}
 	#middlebox{
 		background: white;
 		border-radius: 15px;
 		padding: 20px;
 		margin-left: 20%;
 		margin-right: 20%;
+		text-align: center;
 	}
 	
 	main {

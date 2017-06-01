@@ -19,6 +19,7 @@ public class Design extends VerticalLayout {
 	ThemeResource resource = new ThemeResource("img/logo.png");
 	Image image = new Image("",resource);
 	public Design(){
+	    image.setId("headerlogo");
 		mainlayout.setSizeFull();
 		lFooter.setSizeFull();
 

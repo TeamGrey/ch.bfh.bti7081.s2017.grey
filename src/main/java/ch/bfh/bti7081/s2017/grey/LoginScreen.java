@@ -13,7 +13,10 @@ public class LoginScreen extends HorizontalLayout implements View {
 	public static final String NAME = "LoginScreen";
 	ThemeResource logo = new ThemeResource("img/logo.png");
     Image loginLogo = new Image("",logo);
+
+
 	public LoginScreen(){
+		loginLogo.setId("loginlogo");
 		FormLayout content = new FormLayout();
 		content.addComponent(loginLogo);
 		TextField username = new TextField("Username");
