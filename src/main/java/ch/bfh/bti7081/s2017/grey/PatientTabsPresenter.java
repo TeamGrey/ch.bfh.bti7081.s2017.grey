@@ -29,7 +29,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		
 		Label clientTempLabel = new Label("Personeninformationen sind hier", ContentMode.HTML);
 		VerticalLayout client = new VerticalLayout(clientTempLabel);
-		patientTab.addTab(client, "");
+		patientTab.addTab(client, "Patient");
 
 		DrugListView drugs = new DrugListView();
 		for (PatientDrugAssociation patientDrugAssociation: patient.getDrugs()) {
