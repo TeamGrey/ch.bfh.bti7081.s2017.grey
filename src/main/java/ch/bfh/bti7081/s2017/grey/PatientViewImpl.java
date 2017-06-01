@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2017.grey;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
+import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
@@ -82,10 +83,16 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         listeners.add(listener);
     }
 
+
+    public void setPatient(Patient patient){
+        this.binder.setBean(patient);
+    }
+
     @Override
     public void enter(ViewChangeEvent viewChangeEvent) {
         for (PatientView.PatientViewListener listener : listeners) {
             listener.viewEntered(VaadinSession.getCurrent().getAttribute("user").toString());
+
         }
     }
 }

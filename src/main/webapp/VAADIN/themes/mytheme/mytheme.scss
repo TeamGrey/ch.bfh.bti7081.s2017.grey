@@ -1,5 +1,7 @@
 //Global Variables before import!!
-
+	.mytheme.v-app, .mytheme .v-app-loading {
+		background: #00bfff !important;
+	}
 .mytheme .v-margin-left {
 	padding-left: 0px !important;
 }
@@ -9,11 +11,15 @@
 }
 
 .mytheme .v-margin-top {
-	padding-top: 0px !important;
+	padding-top: 40px !important;
 }
 
 .mytheme .v-margin-bottom {
 	padding-bottom: 0px !important;
+}
+#gwt-uid-7{
+height: 40px !important;
+	margin-top: -35px;
 }
 
 @import "../valo/valo.scss";
@@ -23,19 +29,20 @@
 	//Insert your own theme rules here
 	
 	header {
-		background: #bbb;
 		width: 100%;
 		min-height: 50px;
 		position: fixed;
 		left: 0;
 		top: 0;
-		border-bottom: 1px solid #444;
+		border-bottom: 1px solid white;
 		text-align: center;
 		z-index: 500;
+		background: white; /* Old browsers */
+
+
 	}
 	
 	footer {
-		background: #bbb;
 		width: 100%;
 		min-height: 50px;
 		position: fixed;
@@ -43,10 +50,35 @@
 		bottom: 0;
 		border-top: 1px solid #444;
 		text-align: center;
+		background: white;
+		color: black;
+		font-weight: 800;
+
+	}
+
+	#nav-bar .v-button{
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4df5b+0,b4df5b+100;Green+Semi+Flat */
+		background: #d2ff52; /* Old browsers */
+		background: -moz-linear-gradient(top,  #d2ff52 0%, #a1fc23 5%, #91e842 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  #d2ff52 0%,#a1fc23 5%,#91e842 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  #d2ff52 0%,#a1fc23 5%,#91e842 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 ); /* IE6-9 */
+
+		box-shadow: none;
+		border: 0px;
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
+	}
+	
+	#middlebox{
+		background: white;
+		border-radius: 15px;
+		padding: 20px;
+		margin-left: 20%;
+		margin-right: 20%;
 	}
 	
 	main {
-		background-color: #fff;
 		width: 100%;
 		margin:0 auto;
 		padding: 50px 0px 50px 0px;
@@ -98,4 +130,5 @@
 	.newTaskButton{
 		margin-bottom: 50px;
 	}
+
 }

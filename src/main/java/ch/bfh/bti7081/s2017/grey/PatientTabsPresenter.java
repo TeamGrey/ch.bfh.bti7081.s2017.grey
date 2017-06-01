@@ -7,6 +7,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -28,8 +29,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		
 		Label clientTempLabel = new Label("Personeninformationen sind hier", ContentMode.HTML);
 		VerticalLayout client = new VerticalLayout(clientTempLabel);
-		patientTab.addTab(client, "Client");
-
+		patientTab.addTab(client, "");
 
 		DrugListView drugs = new DrugListView();
 		for (PatientDrugAssociation patientDrugAssociation: patient.getDrugs()) {
