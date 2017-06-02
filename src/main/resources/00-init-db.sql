@@ -99,12 +99,12 @@ CREATE TABLE staff
   id        BIGINT PRIMARY KEY NOT NULL,
   firstname VARCHAR(50)        NOT NULL,
   lastname  VARCHAR(50)        NOT NULL,
-  pwhash    VARCHAR(64)        NOT NULL,
+  pwhash    VARCHAR            NOT NULL,
   login     VARCHAR(20)        NOT NULL,
   role_id   BIGINT             NOT NULL,
   created   TIMESTAMP          NOT NULL,
   changed   TIMESTAMP          NOT NULL,
-  salt      VARCHAR(32),
+  salt      VARCHAR,
   CONSTRAINT fkc270scukp9o70yt499swxjqah FOREIGN KEY (role_id) REFERENCES role (id),
   CONSTRAINT staff_roles_id_fk FOREIGN KEY (role_id) REFERENCES role (id)
 );
