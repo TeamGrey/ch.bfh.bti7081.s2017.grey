@@ -20,6 +20,7 @@ public class Staff {
     private String lastname;
     private String pwhash;
     private String login;
+    private String salt;
     @ManyToOne
     private Role role;
     private Timestamp created;
@@ -90,5 +91,13 @@ public class Staff {
 
     public void setChanged(Timestamp changed) {
         this.changed = changed;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

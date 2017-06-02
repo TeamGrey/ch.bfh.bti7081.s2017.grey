@@ -25,7 +25,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff createStaff(String firstname, String lastname, String login, String pwhash, Role role) {
+    public Staff createStaff(String firstname, String lastname, String login, String password, Role role) {
         Instant instant = Instant.now();
         Timestamp timestamp = new Timestamp(instant.toEpochMilli());
 
@@ -33,7 +33,9 @@ public class StaffServiceImpl implements StaffService {
         staff.setFirstname(firstname);
         staff.setLastname(lastname);
         staff.setLogin(login);
-        staff.setPwhash(pwhash);
+        String salt = Authentication.generateSalt();
+        staff.setPwhash(Authentication.generateHash(password, salt));
+        staff.setSalt(salt);g
         staff.setRoles(role);
         staff.setChanged(timestamp);
         staff.setCreated(timestamp);
