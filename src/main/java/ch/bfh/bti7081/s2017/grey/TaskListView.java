@@ -35,7 +35,6 @@ public class TaskListView extends VerticalLayout {
         TaskView taskView = new TaskView(task);
         taskView.setSizeFull();
         taskView.setName(task.getName());
-        taskView.setDrugs(task.getDrugs());
         taskView.setEstimate(task.getDuration());
         taskView.setFinished(task.isFinished());
         taskViews.add(taskView);

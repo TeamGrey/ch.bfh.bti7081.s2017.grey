@@ -17,6 +17,7 @@ public class TaskViewTime extends HorizontalLayout {
 	private Label estimate = null;
 	private Button addTime = null;
 	private Button removeTime = null;
+	private Button removeAppointment = null;
 	private Task task = null;
 
 
@@ -24,15 +25,18 @@ public class TaskViewTime extends HorizontalLayout {
 		super();
 		this.task = task;
 		estimateTime = 20;
-		estimate = new Label("20 min");
+		estimate = new Label("5 min");
 		addComponent(estimate);
 		addTime = new Button("+ 5 min");
 		addComponent(addTime);
 		removeTime = new Button("- 5 min");
 		addComponent(removeTime);
+		removeAppointment = new Button("x");
+		addComponent(removeAppointment);
 		
 		addTime.addClickListener(event -> addToEstimate(5));
 		removeTime.addClickListener(event -> removeFromEstimate(5));
+		removeAppointment.addClickListener(event -> removeFromEstimate(5));
 	}
 	
 	public void setEstimate(int time){
