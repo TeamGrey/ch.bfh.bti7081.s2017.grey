@@ -4,6 +4,7 @@ import ch.bfh.bti7081.s2017.grey.database.dao.impl.StaffDao;
 import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import ch.bfh.bti7081.s2017.grey.service.StaffService;
+import ch.bfh.bti7081.s2017.grey.util.Authentication;
 
 import java.sql.Timestamp;
 import java.time.Instant;
