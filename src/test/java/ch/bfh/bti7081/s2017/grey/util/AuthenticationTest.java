@@ -44,6 +44,8 @@ public class AuthenticationTest {
         staffService.deleteStaff(staff);
     }
 
+    @Ignore
+    @Test
     public void generateHashandSalts() {
         List<Staff> allStaff = staffService.getAllStaff();
         for (Staff staff : allStaff) {
