@@ -24,6 +24,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public List<Appointment> findAppointmentsByStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end) {
+        return dao.findAppointmentsForStaffAndDateRange(staff, start, end);
+    }
+
+    @Override
     public List<Appointment> findAppointmentsByStaffAndDate(Staff staff, LocalDate date) {
         return dao.findAppointmentsForStaffAndDay(staff, date);
     }
