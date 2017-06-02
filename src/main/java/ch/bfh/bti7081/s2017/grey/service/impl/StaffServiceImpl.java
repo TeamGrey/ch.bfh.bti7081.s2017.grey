@@ -8,6 +8,7 @@ import ch.bfh.bti7081.s2017.grey.util.Authentication;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @Author Quentin.
@@ -47,5 +48,17 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public void deleteStaff(Staff staff) {
         dao.delete(staff.getId());
+    }
+
+    @Override
+    public List<Staff> getAllStaff() {
+        return dao.findAll();
+    }
+
+    @Override
+    public void saveAllStaff(List<Staff> allStaff) {
+        for (Staff staff : allStaff) {
+            dao.update(staff);
+        }
     }
 }
