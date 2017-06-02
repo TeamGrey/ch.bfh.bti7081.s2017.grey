@@ -8,7 +8,10 @@ import ch.bfh.bti7081.s2017.grey.service.impl.RoleServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -39,5 +42,18 @@ public class AuthenticationTest {
     @After
     public void cleanUp() {
         staffService.deleteStaff(staff);
+    }
+
+    @Ignore
+    @Test
+    public void generateHashandSalts() {
+        List<Staff> allStaff = staffService.getAllStaff();
+        for (Staff staff : allStaff) {
+            String salt = Authentication.generateSalt();
+            String hash = Authentication.generateHash("asdf", salt);
+            staff.setPwhash(hash);
+            staff.setSalt(salt);
+        }
+        staffService.saveAllStaff(allStaff);
     }
 }

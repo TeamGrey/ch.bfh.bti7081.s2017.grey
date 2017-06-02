@@ -1,7 +1,12 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.Timestamp;
+import java.util.Base64;
+import java.util.Random;
 
 /**
  * @Author Quentin
@@ -15,6 +20,7 @@ public class Staff {
     private String lastname;
     private String pwhash;
     private String login;
+    private String salt;
     @ManyToOne
     private Role role;
     private Timestamp created;
@@ -85,5 +91,13 @@ public class Staff {
 
     public void setChanged(Timestamp changed) {
         this.changed = changed;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

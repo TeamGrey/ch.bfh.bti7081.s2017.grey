@@ -5,6 +5,11 @@ import ch.bfh.bti7081.s2017.grey.service.StaffService;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
 
 import javax.persistence.NoResultException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Random;
 
 /**
  * This Util provides handy functions for the authentication
@@ -46,18 +51,31 @@ public class Authentication {
      * @return {Boolean}
      */
     public static Boolean authenticate(Staff user, String password){
-        return (user.getPwhash().equals(Authentication.createHashFromString(password)));
+        return (user.getPwhash().equals(Authentication.generateHash(password, user.getSalt())));
     }
 
 
     /**
      * Hashing function used for hashing user passwords
      *
-     * @param plain plaintext string to be hashed
+     * @param password plaintext string to be hashed
      * @return hashed string
      */
-    public static String createHashFromString(String plain)  {
-        return plain; // FIXME create hash
-        //return String.valueOf(plain.hashCode());
+    public static String generateHash(String password, String salt)  {
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            final String passwordAndSalt = password + salt;
+            return Base64.getEncoder().encodeToString(digest.digest(passwordAndSalt.getBytes()));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String generateSalt() {
+        final Random r = new SecureRandom();
+        final byte[] saltBytes = new byte[32];
+        r.nextBytes(saltBytes);
+        return Base64.getEncoder().encodeToString(saltBytes);
     }
 }
