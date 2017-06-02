@@ -3,19 +3,22 @@ package ch.bfh.bti7081.s2017.grey;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
+import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.TextField;
 
 public class LoginScreen extends HorizontalLayout implements View {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "LoginScreen";
+	ThemeResource logo = new ThemeResource("img/logo.png");
+    Image loginLogo = new Image("",logo);
+
 
 	public LoginScreen(){
+		loginLogo.setId("loginlogo");
 		FormLayout content = new FormLayout();
+		content.addComponent(loginLogo);
 		TextField username = new TextField("Username");
 		content.addComponent(username);
 		PasswordField password = new PasswordField("Password");

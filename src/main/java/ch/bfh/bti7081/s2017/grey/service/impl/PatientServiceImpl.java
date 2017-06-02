@@ -37,6 +37,11 @@ public class PatientServiceImpl implements PatientService {
         patient.setChanged(new Timestamp(instant.toEpochMilli()));
 
         dao.create(patient);
+
+
+    }
+    public void updatePatient(Patient patient){
+        dao.update(patient);
     }
 
     @Override
@@ -58,4 +63,6 @@ public class PatientServiceImpl implements PatientService {
     public List<Patient> getAllPatients() {
         return dao.findAll();
     }
+
 }
+

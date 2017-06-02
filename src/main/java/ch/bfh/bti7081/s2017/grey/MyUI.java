@@ -36,13 +36,15 @@ public class MyUI extends UI {
 		AppointmentModel appointmentModel = new AppointmentModel();
 		new AppointmentPresenter(appointmentView, appointmentModel);
 
+		PatientViewImpl patientView = new PatientViewImpl();
+		PatientModel patientModel = new PatientModel();
+		new PatientPresenter(patientView, patientModel);
+
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
+		getNavigator().addView(PatientViewImpl.NAME, patientView);
 		getNavigator().setErrorView(LoginScreen.class);
-
-		// Initialize EntityManager, do warm up
-		EntityManagerSingleton.getInstance();
 
 		router();
 	}

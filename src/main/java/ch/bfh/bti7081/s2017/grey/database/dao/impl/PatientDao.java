@@ -28,6 +28,7 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
         return result;
     }
 
+
     public void addDrugsToPatient(Patient patient, List<Drug> drugs) {
         em.getTransaction().begin();
         for (Drug drug : drugs) {
