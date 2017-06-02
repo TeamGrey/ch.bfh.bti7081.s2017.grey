@@ -50,7 +50,7 @@ public class AuthenticationTest {
         List<Staff> allStaff = staffService.getAllStaff();
         for (Staff staff : allStaff) {
             String salt = Authentication.generateSalt();
-            String hash = Authentication.generateHash(staff.getPwhash(), salt);
+            String hash = Authentication.generateHash("asdf", salt);
             staff.setPwhash(hash);
             staff.setSalt(salt);
         }
