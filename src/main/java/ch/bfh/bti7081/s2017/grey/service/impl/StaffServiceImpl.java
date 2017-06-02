@@ -37,7 +37,7 @@ public class StaffServiceImpl implements StaffService {
         staff.setLogin(login);
         String salt = Authentication.generateSalt();
         staff.setPwhash(Authentication.generateHash(password, salt));
-        staff.setSalt(salt);g
+        staff.setSalt(salt);
         staff.setRoles(role);
         staff.setChanged(timestamp);
         staff.setCreated(timestamp);
