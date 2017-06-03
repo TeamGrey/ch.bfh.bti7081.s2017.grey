@@ -69,7 +69,7 @@ public class TaskListView extends VerticalLayout {
     }
     
     private void saveNewTask(String taskName, Window window){
-    	//TaskEditor.createTask(taskName, appointment);
+    	TaskEditor.createTask(taskName, appointment);
     	window.close();
     }
 }

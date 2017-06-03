@@ -14,6 +14,7 @@ import java.util.List;
 public interface AppointmentService {
     List<Appointment> findAppointmentsByStaffAndDate(Staff staff, LocalDate date);
     List<Appointment> findAppointmentsByStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end);
+    Appointment getAppointmentById(long id);
     Appointment createAppointment(Patient patient, Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
     Appointment delayAppointment(Appointment appointment, LocalDateTime newDate, LocalDateTime newEnd);
     void cancelAppointment(Appointment appointment);
