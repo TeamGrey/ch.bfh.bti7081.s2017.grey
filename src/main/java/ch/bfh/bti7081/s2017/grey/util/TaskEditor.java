@@ -14,13 +14,16 @@ import javax.persistence.NoResultException;
  */
 public class TaskEditor {
     private static TaskService taskService = null;
-
-    public static Boolean setDuration(Task task, int duration) {
-        if (taskService == null)
-        {
+    
+    private static void singleton(){
+    	if (taskService == null){
             // kind of singleton pattern for taskService
         	taskService = new TaskServiceImpl();
         }
+    }
+
+    public static Boolean setDuration(Task task, int duration) {
+        singleton();
         try {
             taskService.setDuration(task, duration);
         } catch (NoResultException ex){
@@ -30,11 +33,7 @@ public class TaskEditor {
     }
     
     public static Boolean toggleStatus(Task task, Boolean status) {
-        if (taskService == null)
-        {
-            // kind of singleton pattern for taskService
-        	taskService = new TaskServiceImpl();
-        }
+    	singleton();
         try {
             taskService.toggleActiveStatus(task, status);
         } catch (NoResultException ex){
@@ -44,11 +43,7 @@ public class TaskEditor {
     }
     
     public static Boolean createTask(String name, Appointment appointment) {
-        if (taskService == null)
-        {
-            // kind of singleton pattern for taskService
-        	taskService = new TaskServiceImpl();
-        }
+    	singleton();
         try {
             taskService.createTask(name, appointment);
         } catch (NoResultException ex){
@@ -56,4 +51,15 @@ public class TaskEditor {
         }
 		return true;
     }
+
+	public static Boolean removeTask(Task task) {
+		singleton();
+		try {
+            taskService.removeTask(task);
+        } catch (NoResultException ex){
+            return false;
+        }
+		return true;
+		
+	}
 }

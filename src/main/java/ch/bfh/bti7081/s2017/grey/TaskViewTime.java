@@ -36,7 +36,7 @@ public class TaskViewTime extends HorizontalLayout {
 		
 		addTime.addClickListener(event -> addToEstimate(5));
 		removeTime.addClickListener(event -> removeFromEstimate(5));
-		removeAppointment.addClickListener(event -> removeFromEstimate(5));
+		removeAppointment.addClickListener(event -> removeTask());
 	}
 	
 	public void setEstimate(int time){
@@ -63,5 +63,9 @@ public class TaskViewTime extends HorizontalLayout {
 	private void setNewDuration(){
 		TaskEditor.setDuration(task, estimateTime);
 		estimate.setValue(estimateTime + " min");
+	}
+	
+	private void removeTask(){
+		TaskEditor.removeTask(task);
 	}
 }
