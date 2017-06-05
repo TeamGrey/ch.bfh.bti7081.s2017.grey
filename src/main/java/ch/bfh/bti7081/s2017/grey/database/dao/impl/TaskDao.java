@@ -23,7 +23,7 @@ public class TaskDao extends GenericDaoImpl<Task> implements GenericDao<Task> {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Task> criteriaQuery = criteriaBuilder.createQuery(Task.class);
         Root<Task> task = criteriaQuery.from(Task.class);
-        criteriaQuery.select(task).where(criteriaBuilder.equal(task.get("appointment"), appointment));
+        criteriaQuery.select(task).where(criteriaBuilder.equal(task.get("appointment"), appointment)).orderBy(criteriaBuilder.asc(task.get("id")));
 
         TypedQuery<Task> query = em.createQuery(criteriaQuery);
         return query.getResultList();

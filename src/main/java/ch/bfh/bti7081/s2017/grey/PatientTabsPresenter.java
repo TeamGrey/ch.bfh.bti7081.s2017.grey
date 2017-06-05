@@ -5,12 +5,20 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
+import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
+import ch.bfh.bti7081.s2017.grey.service.TaskService;
+import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
+
+import java.util.List;
+
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
@@ -18,8 +26,9 @@ import com.vaadin.ui.VerticalLayout;
 public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "PatientTabs";
+	private static TaskListView toDo;
 	
-	private PatientTabs patientTab = new PatientTabs();
+	private static PatientTabs patientTab = new PatientTabs();
 	
 	public PatientTabsPresenter(){
 		PatientService patientService = new PatientServiceImpl();
@@ -37,15 +46,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		}
 		patientTab.addTab(drugs, "Drugs");
 
-		// TODO load selected appointment
-		Appointment appointment = EntityManagerSingleton.getInstance().find(Appointment.class, (long) 1);
-		
-		TaskListView toDo = new TaskListView(appointment);
-		toDo.setSizeFull();
-		for (Task task: appointment.getTasks()) {
-            toDo.addTask(task);
-        }
-		toDo.addNewTaskButton();
+		toDo = todoTab();
 		patientTab.addTab(toDo, "ToDo");
 				
 		Design design = new Design();
@@ -56,5 +57,28 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	public void enter(ViewChangeEvent event) {
 		MyUI.loggedIn();
 
+	}
+	
+	private static TaskListView todoTab(){
+		AppointmentService appointmentservice = new AppointmentServiceImpl();
+		// TODO load selected appointment
+		Appointment appointment = appointmentservice.getAppointmentById(1);
+		TaskListView toDo = new TaskListView(appointment);
+		toDo.setSizeFull();
+		
+		TaskService taskservice = new TaskServiceImpl();
+		List<Task> tasks = taskservice.getTasksByAppointment(appointment);
+		for (Task task: tasks){
+			toDo.addTask(task);
+		}
+
+		toDo.addNewTaskButton();
+		return toDo;
+	}
+	
+	public static void updateTodoTab(){
+		TaskListView newTodo = todoTab();
+		patientTab.replaceTab(toDo, newTodo);
+		toDo = newTodo;
 	}
 }

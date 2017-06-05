@@ -18,4 +18,8 @@ public class PatientTabs extends HorizontalLayout {
 	public void addTab(Component view, String tabName){
 		content.addTab(view, tabName);
 	}
+	
+	public void replaceTab(Component oldComponent, Component newComponent){
+		content.replaceComponent(oldComponent, newComponent);
+	}
 }
