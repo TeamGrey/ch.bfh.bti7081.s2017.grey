@@ -67,5 +67,6 @@ public class TaskViewTime extends HorizontalLayout {
 	
 	private void removeTask(){
 		TaskEditor.removeTask(task);
+		PatientTabsPresenter.updateTodoTab();
 	}
 }
