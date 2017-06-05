@@ -20,7 +20,6 @@ public class TaskViewTime extends HorizontalLayout {
 	private Button removeAppointment = null;
 	private Task task = null;
 
-
 	public TaskViewTime(Task task){
 		super();
 		this.task = task;
