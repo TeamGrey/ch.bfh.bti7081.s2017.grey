@@ -37,7 +37,7 @@ public class FinishAppointmentPresenter implements FinishAppointmentView.FinishA
 
     @Override
     public void finishClick() {
-
+        finishAppointmentModel.finish();
     }
 
     private void updateDelay(int delay) {
