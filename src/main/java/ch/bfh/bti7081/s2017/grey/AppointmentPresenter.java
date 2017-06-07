@@ -36,11 +36,14 @@ public class AppointmentPresenter implements AppointmentView.AppontmentViewListe
     @Override
     public void saveClick() {
         this.appointmentModel.saveAppointment();
+        this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
     @Override
-    public void editClick() {
-        this.appointmentModel.editAppointment();
+    public void deleteClick() {
+        this.appointmentModel.deleteAppointment();
+        this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
+        this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
     @Override

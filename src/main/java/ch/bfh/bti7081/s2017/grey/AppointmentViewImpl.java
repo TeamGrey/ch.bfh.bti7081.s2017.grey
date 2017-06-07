@@ -14,7 +14,6 @@ import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents;
 import com.vaadin.v7.ui.components.calendar.handler.*;
 
 import java.sql.Timestamp;
-import java.time.ZoneId;
 import java.util.*;
 
 /**
@@ -24,6 +23,7 @@ import java.util.*;
  * The UI is initialized using . This method is intended to be
  * overridden to add component to the user interface and initialize non-component functionality.
  */
+@SuppressWarnings("ALL")
 @Theme("mytheme")
 public class AppointmentViewImpl extends HorizontalLayout implements AppointmentView, View{
 
@@ -37,7 +37,8 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 	private Button newButton = new Button();
 	private Button editButton = new Button();
-	private Button addButton = new Button();
+	private Button deleteButton = new Button();
+	private Button okButton = new Button();
 
 	private Button monthView = new Button();
 	private Button weekView = new Button();
@@ -51,8 +52,9 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 	private Calendar cal = new Calendar("Termine");
 
+	private Window appointmentWindow = new Window("Termin");
+	private FormLayout appointmentLayout = new FormLayout();
 	private VerticalLayout layout = new VerticalLayout();
-	private VerticalLayout rightLayout = new VerticalLayout();
 	private HorizontalLayout buttonLayout = new HorizontalLayout();
 	private HorizontalLayout calendarLayout = new HorizontalLayout();
 
@@ -65,8 +67,9 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		binder.forField(patients).bind(Appointment::getPatient, Appointment::setPatient);
 
 		newButton.setCaption("Neuer Termin");
-		addButton.setCaption("Termin hinzufügen");
 		editButton.setCaption("Termin bearbeiten");
+		deleteButton.setCaption("Termin löschen");
+		okButton.setCaption("OK");
 		editButton.setEnabled(false);
 
 		monthView.setCaption("Monat");
@@ -86,20 +89,28 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 		patients.setItemCaptionGenerator(Patient::getFirstname);
 
+		appointmentWindow.setWidth("500px");
+		appointmentWindow.setModal(true);
+
 		newButton.addClickListener(e -> {
             for(AppontmentViewListener listener : listeners) {
                 listener.newClick();
             }
+			UI.getCurrent().addWindow(appointmentWindow);
         });
-		addButton.addClickListener(e -> {
+		editButton.addClickListener(e -> {
+			UI.getCurrent().addWindow(appointmentWindow);
+		});
+		deleteButton.addClickListener(e -> {
+			for(AppontmentViewListener listener : listeners) {
+				listener.deleteClick();
+			}
+		});
+		okButton.addClickListener(e -> {
 			for(AppontmentViewListener listener : listeners) {
 				listener.saveClick();
 			}
-		});
-		editButton.addClickListener(e -> {
-			for(AppontmentViewListener listener : listeners) {
-				listener.editClick();
-			}
+			appointmentWindow.close();
 		});
 
 		monthView.addClickListener(e -> {
@@ -179,10 +190,12 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
             }
         });
 
-		buttonLayout.addComponents(newButton, addButton, editButton);
+		buttonLayout.addComponents(newButton, editButton, deleteButton);
 		calendarLayout.addComponents(monthView, weekView, dayView);
-		layout.addComponents(startDate, endDate, terminTitel, terminBeschrieb, patients, buttonLayout, calendarLayout, cal);
-		this.addComponents(layout,rightLayout);
+		appointmentLayout.addComponents(startDate, endDate, terminTitel, terminBeschrieb, patients, okButton);
+		layout.addComponents(buttonLayout, calendarLayout, cal);
+		appointmentWindow.setContent(appointmentLayout);
+		this.addComponents(layout);
 		Design design = new Design();
 		addComponent(design.insertContent(layout));
 	}
@@ -200,14 +213,8 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	@Override
 	public void setAppointment(Appointment appointment, boolean isEditMode) {
 		binder.setBean(appointment);
-
-        if(isEditMode) {
-            this.addButton.setEnabled(false);
-            this.editButton.setEnabled(true);
-        } else {
-            this.addButton.setEnabled(true);
-            this.editButton.setEnabled(false);
-        }
+		this.editButton.setEnabled(isEditMode);
+		this.deleteButton.setEnabled(isEditMode);
 	}
 
 	@Override
@@ -216,10 +223,11 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		for(Appointment appointment : appointmentList) {
 			container.addBean(new AppointmentEvent(appointment, Timestamp.valueOf(appointment.getDate()), Timestamp.valueOf(appointment.getEndDate()), appointment.getTitle(), appointment.getDescription()));
 		}
-		container.sort(new Object[]{"date"}, new boolean[]{true});
+		container.sort(new Object[]{"start"}, new boolean[]{true});
 
 		cal.setContainerDataSource(container, "caption",
 				"description", "start", "end", "styleName");
+		cal.markAsDirty();
 	}
 
     @Override
