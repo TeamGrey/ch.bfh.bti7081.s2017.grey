@@ -8,17 +8,21 @@ import ch.bfh.bti7081.s2017.grey.service.TaskService;
 import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
 
 public class TodoModel {
-	//Entspricht dem TaskEditor
-	private static TaskService taskService = null;
+	private TaskService taskService = null;
+	private Task task;
     
-    private static void singleton(){
+    private void singleton(){
     	if (taskService == null){
             // kind of singleton pattern for taskService
         	taskService = new TaskServiceImpl();
         }
     }
+    
+    public void setTask(Task task){
+    	this.task = task;
+    }
 
-    public static Boolean setDuration(Task task, int duration) {
+    public Boolean setDuration(int duration) {
         singleton();
         try {
             taskService.setDuration(task, duration);
@@ -28,7 +32,7 @@ public class TodoModel {
         return true;
     }
     
-    public static Boolean toggleStatus(Task task, Boolean status) {
+    public Boolean toggleStatus(Boolean status) {
     	singleton();
         try {
             taskService.toggleActiveStatus(task, status);
@@ -38,7 +42,7 @@ public class TodoModel {
         return true;
     }
     
-    public static Boolean createTask(String name, Appointment appointment) {
+    public Boolean createTask(String name, Appointment appointment) {
     	singleton();
         try {
             taskService.createTask(name, appointment);
@@ -48,7 +52,7 @@ public class TodoModel {
 		return true;
     }
 
-	public static Boolean removeTask(Task task) {
+	public Boolean removeTask() {
 		singleton();
 		try {
             taskService.removeTask(task);
@@ -57,6 +61,10 @@ public class TodoModel {
         }
 		return true;
 		
+	}
+
+	public int getTime() {
+		return task.getDuration();
 	}
 
 }

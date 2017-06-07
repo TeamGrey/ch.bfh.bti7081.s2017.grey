@@ -5,42 +5,29 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 import ch.bfh.bti7081.s2017.grey.util.TaskEditor;
 
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * @author Ken
  */
 public class TaskListView extends VerticalLayout {
 	private static final long serialVersionUID = 1L;
-	private List<TaskView> taskViews;
-    private static List<Task> tasks;
     private Button newTask = null;
     private Appointment appointment = null;
 
     public TaskListView(Appointment appointment) {
         super();
-        taskViews = new LinkedList<TaskView>();
-        tasks = new LinkedList<Task>();
         this.appointment = appointment;
     }
 
-    public TaskView addTask(Task task) {
-        TaskView taskView = new TaskView(task);
-        taskView.setSizeFull();
-        taskView.setName(task.getName());
-        taskView.setEstimate(task.getDuration());
-        taskView.setFinished(task.isFinished());
-        taskViews.add(taskView);
-        tasks.add(task);
-        addComponent(taskView);
-        return taskView;
+    public void addTask(Task task) {
+        TodoPresenter taskView = new TodoPresenter(task);
+        addComponent((Component) taskView.getView());
     }
     
     public void addNewTaskButton(){
