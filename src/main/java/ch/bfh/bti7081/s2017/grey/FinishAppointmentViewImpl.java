@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 import com.vaadin.data.Binder;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
 
     private List<FinishAppointmentViewListener> listeners = new ArrayList<FinishAppointmentViewListener>();
     private Binder<Appointment> binder = new Binder<>(Appointment.class);
+    private List<Binder<Task>> taskBinders = new ArrayList<Binder<Task>>();
 
     private Button addDelay = new Button();
     private Button subtractDelay = new Button();
@@ -33,9 +35,9 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
     private Label openTasks = new Label("Offene Tasks");
 
     private HorizontalLayout delayLayout = new HorizontalLayout();
-    private List<HorizontalLayout> tasksLayout = new ArrayList<HorizontalLayout>();
 
     public FinishAppointmentViewImpl() {
+        binder.forField(protocol).bind(Appointment::getProtocol, Appointment::setProtocol);
         addDelay.setCaption("+ 5 Min");
         subtractDelay.setCaption("- 5 Min");
         finish.setCaption("Zusammenfassung");
@@ -60,7 +62,7 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
         addComponent(summary);
         delayLayout.addComponents(delay, delayAmount, addDelay, subtractDelay);
         addComponent(delayLayout);
-
+        addComponent(openTasks);
     }
 
     @Override
@@ -71,20 +73,31 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
     @Override
     public void setAppointment(Appointment appointment) {
         binder.setBean(appointment);
-    }
-
-    @Override
-    public void setTasks(List<Task> tasks) {
-
-    }
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-
+        for (Task task : appointment.getTasks()) {
+            Binder<Task> taskBinder = new Binder<>(Task.class);
+            taskBinder.setBean(task);
+            HorizontalLayout taskLayout = new HorizontalLayout();
+            Label description = new Label(task.getName());
+            CheckBox finished = new CheckBox();
+            taskBinder.forField(finished).bind(Task::isFinished, Task::toggleFinished);
+            taskBinders.add(taskBinder);
+            taskLayout.addComponents(description, finished);
+            addComponent(taskLayout);
+        }
+        addComponent(protocol);
+        addComponent(finish);
     }
 
     @Override
     public void setDelay(int delayMinutes) {
         delayAmount.setValue(delayMinutes + " Min");
+    }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        for (FinishAppointmentViewListener listener : listeners) {
+            // change later to dynamic
+            listener.viewEntered(1);
+        }
     }
 }

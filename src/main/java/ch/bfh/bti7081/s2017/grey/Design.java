@@ -16,6 +16,7 @@ public class Design extends VerticalLayout {
 	private Button logout = new Button("Logout");
 	private Button patientTabs = new Button("PatientTabs");// TODO Temporärer Zugang
 	private Button appointmentView = new Button("AppointmentView");// TODO Temporärer Zugang
+	private Button finishAppointmentView = new Button("FinishAppointmentView");// TODO Temporärer Zugang
 	ThemeResource resource = new ThemeResource("img/logo.png");
 	Image image = new Image("",resource);
 	public Design(){
@@ -52,12 +53,21 @@ public class Design extends VerticalLayout {
 				Page.getCurrent().setUriFragment("!"+AppointmentViewImpl.NAME);
 			}
 		});
+
+		finishAppointmentView.addClickListener(new ClickListener() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void buttonClick(Button.ClickEvent event) {
+				Page.getCurrent().setUriFragment("!"+FinishAppointmentViewImpl.NAME);
+			}
+		});
 	}
 
 	public Design insertContent(Component content){
 		HorizontalLayout header = new HorizontalLayout();
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			header.addComponents( image, logout, patientTabs, appointmentView);
+			header.addComponents( image, logout, patientTabs, appointmentView, finishAppointmentView);
 		}
 		else{
 		}

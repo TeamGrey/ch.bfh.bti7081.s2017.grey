@@ -14,14 +14,14 @@ public class FinishAppointmentPresenter implements FinishAppointmentView.FinishA
         this.finishAppointmentView = finishAppointmentView;
 
         this.finishAppointmentView.addListener(this);
-        this.finishAppointmentView.setAppointment(finishAppointmentModel.getAppointment());
+        this.finishAppointmentView.setAppointment(finishAppointmentModel.getAppointment(1));
     }
 
     @Override
     public void addDelayClick(int time) {
         int delayMinutes = finishAppointmentModel.getDelay();
         delayMinutes += time;
-        updateDelay(time);
+        updateDelay(delayMinutes);
     }
 
     @Override
@@ -43,5 +43,10 @@ public class FinishAppointmentPresenter implements FinishAppointmentView.FinishA
     private void updateDelay(int delay) {
         finishAppointmentModel.setDelay(delay);
         finishAppointmentView.setDelay(delay);
+    }
+
+    @Override
+    public void viewEntered(long AppointmentId) {
+        finishAppointmentView.setAppointment(finishAppointmentModel.getAppointment(AppointmentId));
     }
 }
