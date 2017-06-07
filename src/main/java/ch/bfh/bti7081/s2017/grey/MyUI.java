@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
@@ -22,8 +23,7 @@ import com.vaadin.ui.UI;
 @SuppressWarnings("serial")
 @Theme("mytheme")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
-public class MyUI extends UI {
-
+public class MyUI extends UI implements AppointmentPresenter.AppointmentPresenterListener  {
 	@WebServlet(value = "/*", asyncSupported = true)
 	public static class Servlet extends VaadinServlet {
 	}
@@ -34,7 +34,7 @@ public class MyUI extends UI {
 
 		AppointmentViewImpl appointmentView = new AppointmentViewImpl();
 		AppointmentModel appointmentModel = new AppointmentModel();
-		new AppointmentPresenter(appointmentView, appointmentModel);
+		new AppointmentPresenter(appointmentView, appointmentModel).addListener(this);
 
 		PatientViewImpl patientView = new PatientViewImpl();
 		PatientModel patientModel = new PatientModel();
@@ -49,9 +49,14 @@ public class MyUI extends UI {
 		router();
 	}
 
+	@Override
+	public void appointmentSelected(Appointment appointment) {
+		getNavigator().navigateTo(PatientTabsPresenter.NAME);
+	}
+
 	private void router(){
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			getNavigator().navigateTo(PatientTabsPresenter.NAME);
+			getNavigator().navigateTo(AppointmentViewImpl.NAME);
 		} else {
 			getNavigator().navigateTo(LoginScreen.NAME);
 		}

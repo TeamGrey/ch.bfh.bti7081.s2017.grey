@@ -10,10 +10,11 @@ import java.util.List;
  * Created by Nic on 15.05.17.
  */
 public interface AppointmentView {
-    interface AppontmentViewListener {
+    interface AppointmentViewListener {
+        void startClick();
         void newClick();
         void saveClick();
-        void editClick();
+        void deleteClick();
 
         void appointmentMove(Date start);
         void appointmentReisize(Date start, Date end);
@@ -27,10 +28,10 @@ public interface AppointmentView {
 
         void viewEntered(String username);
     }
-    public void addListener(AppontmentViewListener listener);
-    public void setPatients(List<Patient> patients);
-    public void setAppointment(Appointment appointment, boolean isEditMode);
-    public void setAppointmentList(List<Appointment> appointmentList);
-    public void setStartDate(Date startDate);
-    public void setEndDate(Date endDate);
+    void addListener(AppointmentViewListener listener);
+    void setPatients(List<Patient> patients);
+    void setAppointment(Appointment appointment, boolean isEditMode);
+    void setAppointmentList(List<Appointment> appointmentList);
+    void setStartDate(Date startDate);
+    void setEndDate(Date endDate);
 }

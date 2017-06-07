@@ -45,12 +45,10 @@ public class AppointmentModel {
     }
 
     public void saveAppointment() {
-        this.appointmentService.createAppointment(this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
-    }
-
-    public void editAppointment() {
-        if(this.appointment.getId() != -1) {
+        if(this.isEditMode()) {
             this.appointmentService.editAppointment(appointment);
+        } else {
+            this.appointmentService.createAppointment(this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
         }
     }
 
@@ -64,17 +62,22 @@ public class AppointmentModel {
         calendar.add(Calendar.SECOND, seconds);
         Date end = calendar.getTime();
         appointment.setEndDate(end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        this.editAppointment();
+        this.saveAppointment();
     }
 
     public void resizeAppointment(Date start, Date end) {
         this.appointment.setDate(start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
         this.appointment.setEndDate(end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-        this.editAppointment();
+        this.saveAppointment();
+    }
+
+    public void deleteAppointment() {
+        this.appointmentService.deleteAppointment(this.appointment);
+        this.setNewAppointment();
     }
 
     public boolean isEditMode() {
-        return this.appointment.getId() != -1;
+        return this.appointment.getId() != 0;
     }
 
     public void setUser(String username) {
