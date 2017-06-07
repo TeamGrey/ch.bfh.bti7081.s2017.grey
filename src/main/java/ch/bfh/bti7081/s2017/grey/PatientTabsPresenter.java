@@ -26,7 +26,7 @@ import com.vaadin.ui.VerticalLayout;
 public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "PatientTabs";
-	private static TaskListView toDo;
+	private static TodoListView toDo;
 	
 	private static PatientTabs patientTab = new PatientTabs();
 	
@@ -47,7 +47,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		patientTab.addTab(drugs, "Drugs");
 
 		toDo = todoTab();
-		patientTab.addTab(toDo, "ToDo");
+		patientTab.addTab((Component)toDo, "ToDo");
 				
 		Design design = new Design();
 		addComponent(design.insertContent(patientTab));
@@ -59,26 +59,25 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 
 	}
 	
-	private static TaskListView todoTab(){
+	private static TodoListView todoTab(){
 		AppointmentService appointmentservice = new AppointmentServiceImpl();
 		// TODO load selected appointment
 		Appointment appointment = appointmentservice.getAppointmentById(1);
-		TaskListView toDo = new TaskListView(appointment);
-		toDo.setSizeFull();
+		TodoListPresenter toDo = new TodoListPresenter(appointment);
 		
 		TaskService taskservice = new TaskServiceImpl();
 		List<Task> tasks = taskservice.getTasksByAppointment(appointment);
 		for (Task task: tasks){
-			toDo.addTask(task);
+			toDo.getView().addTask(task);
 		}
 
-		toDo.addNewTaskButton();
-		return toDo;
+		toDo.getView().addNewTaskButton();
+		return toDo.getView();
 	}
 	
 	public static void updateTodoTab(){
-		TaskListView newTodo = todoTab();
-		patientTab.replaceTab(toDo, newTodo);
+		TodoListView newTodo = todoTab();
+		patientTab.replaceTab((Component)toDo, (Component)newTodo);
 		toDo = newTodo;
 	}
 }
