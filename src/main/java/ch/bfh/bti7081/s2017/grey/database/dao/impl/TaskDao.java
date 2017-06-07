@@ -29,24 +29,22 @@ public class TaskDao extends GenericDaoImpl<Task> implements GenericDao<Task> {
         return query.getResultList();
     }
 
-    public void addDrugsToTask(Task task, List<Drug> drugs, int amount, String units) {
+    public void addDrugToTask(Task task, Drug drug, int amount, String units) {
         em.getTransaction().begin();
         Instant instant = Instant.now();
         Timestamp timestamp = new Timestamp(instant.toEpochMilli());
-        for (Drug drug : drugs) {
-            DrugTaskAssociation association = new DrugTaskAssociation();
-            association.setTask(task);
-            association.setDrug(drug);
-            association.setTaskId(task.getId());
-            association.setDrugId(drug.getId());
-            association.setAmount(amount);
-            association.setAmountUnits(units);
-            association.setCreated(timestamp);
-            association.setChanged(timestamp);
-            em.persist(association);
-            task.getDrugs().add(association);
-            drug.getTasks().add(association);
-        }
+        DrugTaskAssociation association = new DrugTaskAssociation();
+        association.setTask(task);
+        association.setDrug(drug);
+        association.setTaskId(task.getId());
+        association.setDrugId(drug.getId());
+        association.setAmount(amount);
+        association.setAmountUnits(units);
+        association.setCreated(timestamp);
+        association.setChanged(timestamp);
+        em.persist(association);
+        task.getDrugs().add(association);
+        drug.getTasks().add(association);
         em.getTransaction().commit();
     }
 }

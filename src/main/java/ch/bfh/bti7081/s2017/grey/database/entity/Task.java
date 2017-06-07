@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey.database.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,10 @@ public class Task {
     private Appointment appointment;
     private boolean finished = false;
     private int duration = 5;
+
+    public Task() {
+        drugs = new ArrayList<>();
+    }
 
     public long getId() {
         return id;
@@ -72,6 +77,10 @@ public class Task {
 
     public boolean isFinished() {
         return finished;
+    }
+
+    public void setFinished(Boolean status) {
+        finished = status;
     }
 
     public void toggleFinished(Boolean status) {
