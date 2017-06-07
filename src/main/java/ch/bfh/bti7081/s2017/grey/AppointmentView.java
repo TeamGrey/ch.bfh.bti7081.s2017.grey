@@ -10,7 +10,8 @@ import java.util.List;
  * Created by Nic on 15.05.17.
  */
 public interface AppointmentView {
-    interface AppontmentViewListener {
+    interface AppointmentViewListener {
+        void startClick();
         void newClick();
         void saveClick();
         void deleteClick();
@@ -27,7 +28,7 @@ public interface AppointmentView {
 
         void viewEntered(String username);
     }
-    void addListener(AppontmentViewListener listener);
+    void addListener(AppointmentViewListener listener);
     void setPatients(List<Patient> patients);
     void setAppointment(Appointment appointment, boolean isEditMode);
     void setAppointmentList(List<Appointment> appointmentList);

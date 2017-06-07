@@ -23,18 +23,19 @@ import java.util.*;
  * The UI is initialized using . This method is intended to be
  * overridden to add component to the user interface and initialize non-component functionality.
  */
-@SuppressWarnings("ALL")
+@SuppressWarnings("deprecation")
 @Theme("mytheme")
 public class AppointmentViewImpl extends HorizontalLayout implements AppointmentView, View{
 
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "AppointmentViewImpl";
 
-	private List<AppontmentViewListener> listeners = new ArrayList<AppontmentViewListener>();
+	private List<AppointmentViewListener> listeners = new ArrayList<AppointmentViewListener>();
 
 	private Binder<Appointment> binder = new Binder<>(Appointment.class);
 	private BeanItemContainer<AppointmentEvent> container;
 
+	private Button startButton = new Button();
 	private Button newButton = new Button();
 	private Button editButton = new Button();
 	private Button deleteButton = new Button();
@@ -66,6 +67,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		binder.forField(terminBeschrieb).bind(Appointment::getDescription, Appointment::setDescription);
 		binder.forField(patients).bind(Appointment::getPatient, Appointment::setPatient);
 
+		startButton.setCaption("Termin starten");
 		newButton.setCaption("Neuer Termin");
 		editButton.setCaption("Termin bearbeiten");
 		deleteButton.setCaption("Termin löschen");
@@ -92,8 +94,13 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		appointmentWindow.setWidth("500px");
 		appointmentWindow.setModal(true);
 
+		startButton.addClickListener(e -> {
+			for(AppointmentViewListener listener : listeners) {
+				listener.startClick();
+			}
+		});
 		newButton.addClickListener(e -> {
-            for(AppontmentViewListener listener : listeners) {
+            for(AppointmentViewListener listener : listeners) {
                 listener.newClick();
             }
 			UI.getCurrent().addWindow(appointmentWindow);
@@ -102,29 +109,29 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 			UI.getCurrent().addWindow(appointmentWindow);
 		});
 		deleteButton.addClickListener(e -> {
-			for(AppontmentViewListener listener : listeners) {
+			for(AppointmentViewListener listener : listeners) {
 				listener.deleteClick();
 			}
 		});
 		okButton.addClickListener(e -> {
-			for(AppontmentViewListener listener : listeners) {
+			for(AppointmentViewListener listener : listeners) {
 				listener.saveClick();
 			}
 			appointmentWindow.close();
 		});
 
 		monthView.addClickListener(e -> {
-			for(AppontmentViewListener listener : listeners) {
+			for(AppointmentViewListener listener : listeners) {
 				listener.monthViewSelect();
 			}
 		});
 		weekView.addClickListener(e -> {
-			for(AppontmentViewListener listener : listeners) {
+			for(AppointmentViewListener listener : listeners) {
 				listener.weekViewSelect();
 			}
 		});
 		dayView.addClickListener(e -> {
-			for(AppontmentViewListener listener : listeners) {
+			for(AppointmentViewListener listener : listeners) {
 				listener.dayViewSelect();
 			}
 		});
@@ -136,14 +143,14 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		cal.setHandler((CalendarComponentEvents.EventClickHandler) eventClick -> {
             AppointmentEvent event = (AppointmentEvent)eventClick.getCalendarEvent();
 
-            for(AppontmentViewListener listener : listeners) {
+            for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
             }
         });
 		cal.setHandler((CalendarComponentEvents.EventResizeHandler) eventResize -> {
             AppointmentEvent event = (AppointmentEvent)eventResize.getCalendarEvent();
 
-            for(AppontmentViewListener listener : listeners) {
+            for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
                 listener.appointmentReisize(eventResize.getNewStart(), eventResize.getNewEnd());
             }
@@ -151,7 +158,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		cal.setHandler((CalendarComponentEvents.EventMoveHandler) eventMove -> {
             AppointmentEvent event = (AppointmentEvent)eventMove.getCalendarEvent();
 
-            for(AppontmentViewListener listener : listeners) {
+            for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
                 listener.appointmentMove(eventMove.getNewStart());
             }
@@ -159,7 +166,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		cal.setHandler(new BasicWeekClickHandler() {
             protected void setDates(CalendarComponentEvents.WeekClick event,
                                     Date start, Date end) {
-                for(AppontmentViewListener listener : listeners) {
+                for(AppointmentViewListener listener : listeners) {
                     listener.dateRangeSelect(start, end);
                 }
 			}
@@ -168,7 +175,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 			public void dateClick(CalendarComponentEvents.DateClickEvent dateClickEvent) {
 				Date date = dateClickEvent.getDate();
 
-				for(AppontmentViewListener listener : listeners) {
+				for(AppointmentViewListener listener : listeners) {
 					listener.dateSelect(date);
 				}
 			}
@@ -176,7 +183,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		cal.setHandler(new BasicBackwardHandler() {
             protected void setDates(CalendarComponentEvents.BackwardEvent event,
                                     Date start, Date end) {
-                for (AppontmentViewListener listener : listeners) {
+                for (AppointmentViewListener listener : listeners) {
                     listener.dateRangeSelect(start, end);
                 }
             }
@@ -184,13 +191,13 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
         cal.setHandler(new BasicForwardHandler() {
             protected void setDates(CalendarComponentEvents.ForwardEvent event,
                                     Date start, Date end) {
-                for(AppontmentViewListener listener : listeners) {
+                for(AppointmentViewListener listener : listeners) {
                     listener.dateRangeSelect(start, end);
                 }
             }
         });
 
-		buttonLayout.addComponents(newButton, editButton, deleteButton);
+		buttonLayout.addComponents(startButton, newButton, editButton, deleteButton);
 		calendarLayout.addComponents(monthView, weekView, dayView);
 		appointmentLayout.addComponents(startDate, endDate, terminTitel, terminBeschrieb, patients, okButton);
 		layout.addComponents(buttonLayout, calendarLayout, cal);
@@ -201,7 +208,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	}
 
 	@Override
-	public void addListener(AppontmentViewListener listener) {
+	public void addListener(AppointmentViewListener listener) {
 		listeners.add(listener);
 	}
 
@@ -213,6 +220,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	@Override
 	public void setAppointment(Appointment appointment, boolean isEditMode) {
 		binder.setBean(appointment);
+		this.startButton.setEnabled(isEditMode);
 		this.editButton.setEnabled(isEditMode);
 		this.deleteButton.setEnabled(isEditMode);
 	}
@@ -242,7 +250,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 	@Override
 	public void enter(ViewChangeEvent viewChangeEvent) {
-		for(AppontmentViewListener listener : listeners) {
+		for(AppointmentViewListener listener : listeners) {
 			listener.viewEntered(VaadinSession.getCurrent().getAttribute("user").toString());
 		}
 	}
