@@ -1,14 +1,11 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import java.util.List;
-
+import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.util.TaskEditor;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.CustomLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
-import ch.bfh.bti7081.s2017.grey.database.entity.Task;
-import ch.bfh.bti7081.s2017.grey.util.TaskEditor;
 
 /**
  * @author Ken

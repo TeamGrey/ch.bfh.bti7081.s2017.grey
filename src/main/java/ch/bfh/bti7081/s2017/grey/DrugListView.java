@@ -1,31 +1,16 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
-import com.vaadin.ui.VerticalLayout;
-
-import java.util.LinkedList;
-import java.util.List;
+import com.vaadin.ui.Component;
 
 /**
  * @author Joel
+ *
+ * View for a list of Drug Tasks
  */
-public class DrugListView extends VerticalLayout {
-	private static final long serialVersionUID = 1L;
-	private List<DrugView> drugViews;
-    private List<Drug> drugs;
+public interface DrugListView extends Component {
+    void addDrug(DrugItemView drugItemView);
 
-    public DrugListView() {
-        super();
-        drugViews = new LinkedList<DrugView>();
-        drugs = new LinkedList<Drug>();
-    }
+    void removeDrug(DrugItemView drugItemView);
 
-    public DrugView addDrug(Drug drug) {
-        DrugView drugView = new DrugView();
-        drugView.setName(drug.getName());
-        drugViews.add(drugView);
-        drugs.add(drug);
-        addComponent(drugView);
-        return drugView;
-    }
+    void clear();
 }
