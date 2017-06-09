@@ -70,8 +70,8 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         VerticalLayout layout = new VerticalLayout();
         layout.addComponents(firstname, lastname, created, changed, editButton, saveButton, cancelButton);
         this.addComponent(layout);
-        Design design = new Design();
-        addComponent(design.insertContent(layout));
+       //Design design = new Design();
+       // addComponent(design.insertContent(layout));
     }
 
     @Override
