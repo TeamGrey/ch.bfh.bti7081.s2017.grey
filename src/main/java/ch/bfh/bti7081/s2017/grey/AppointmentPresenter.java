@@ -1,18 +1,23 @@
 package ch.bfh.bti7081.s2017.grey;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
-import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
-import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
-import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
-import com.vaadin.server.VaadinSession;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Nic on 15.05.17.
  */
-public class AppointmentPresenter implements AppointmentView.AppontmentViewListener{
+public class AppointmentPresenter implements AppointmentView.AppointmentViewListener {
+    public interface AppointmentPresenterListener {
+        void appointmentSelected(Appointment appointment);
+    }
+    private List<AppointmentPresenterListener> listeners = new ArrayList<>();
+    public void addListener(AppointmentPresenterListener listener) {
+        listeners.add(listener);
+    }
+
     private AppointmentModel appointmentModel;
     private AppointmentView appointmentView;
 
@@ -28,6 +33,15 @@ public class AppointmentPresenter implements AppointmentView.AppontmentViewListe
     }
 
     @Override
+    public void startClick() {
+        if(this.appointmentModel.isEditMode()) {
+            for (AppointmentPresenterListener listener: listeners) {
+                listener.appointmentSelected(this.appointmentModel.getAppointment());
+            }
+        }
+    }
+
+    @Override
     public void newClick() {
         this.appointmentModel.setNewAppointment();
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
@@ -36,11 +50,14 @@ public class AppointmentPresenter implements AppointmentView.AppontmentViewListe
     @Override
     public void saveClick() {
         this.appointmentModel.saveAppointment();
+        this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
     @Override
-    public void editClick() {
-        this.appointmentModel.editAppointment();
+    public void deleteClick() {
+        this.appointmentModel.deleteAppointment();
+        this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
+        this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
     @Override

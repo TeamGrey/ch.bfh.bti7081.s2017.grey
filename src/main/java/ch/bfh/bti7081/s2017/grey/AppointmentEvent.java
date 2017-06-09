@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  * Created by Nic on 26.05.17.
  */
+@SuppressWarnings("deprecation")
 public class AppointmentEvent implements CalendarEvent {
     private Appointment appointment;
     private Date start;
