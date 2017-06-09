@@ -1,8 +1,9 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.view;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2017.grey.presenter.TodoPresenter;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
@@ -11,7 +12,6 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 
 /**

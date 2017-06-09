@@ -1,16 +1,12 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.view;
 
+import ch.bfh.bti7081.s2017.grey.Design;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
-import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinSession;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
 
 import java.util.ArrayList;
 import java.util.List;

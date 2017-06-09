@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.view;
 
 import java.util.ArrayList;
 import java.util.List;

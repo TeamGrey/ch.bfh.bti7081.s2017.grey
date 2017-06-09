@@ -1,21 +1,19 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.presenter;
 
+import ch.bfh.bti7081.s2017.grey.*;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
-import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
-import ch.bfh.bti7081.s2017.grey.service.PatientService;
+import ch.bfh.bti7081.s2017.grey.model.PatientModel;
 import ch.bfh.bti7081.s2017.grey.service.TaskService;
-import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
-import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
+import ch.bfh.bti7081.s2017.grey.view.PatientTabs;
+import ch.bfh.bti7081.s2017.grey.view.PatientViewImpl;
+import ch.bfh.bti7081.s2017.grey.view.TodoListView;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
 
 import java.util.List;
 

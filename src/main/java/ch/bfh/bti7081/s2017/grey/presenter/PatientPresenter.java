@@ -1,7 +1,9 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.presenter;
 
+import ch.bfh.bti7081.s2017.grey.view.PatientView;
+import ch.bfh.bti7081.s2017.grey.view.PatientViewImpl;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
-import ch.bfh.bti7081.s2017.grey.service.PatientService;
+import ch.bfh.bti7081.s2017.grey.model.PatientModel;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 
 /**

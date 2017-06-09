@@ -1,10 +1,13 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.presenter;
 
+import ch.bfh.bti7081.s2017.grey.view.TodoView;
+import ch.bfh.bti7081.s2017.grey.view.TodoViewImpl;
+import ch.bfh.bti7081.s2017.grey.model.TodoModel;
 import com.vaadin.ui.Notification;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 
-public class TodoPresenter implements TodoView.TodoViewListener{
+public class TodoPresenter implements TodoView.TodoViewListener {
     private TodoModel todoModel;
     private TodoView todoView;
 

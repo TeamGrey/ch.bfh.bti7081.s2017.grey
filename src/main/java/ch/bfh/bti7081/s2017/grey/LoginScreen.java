@@ -1,9 +1,9 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.presenter.LoginScreenPresenter;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickListener;
