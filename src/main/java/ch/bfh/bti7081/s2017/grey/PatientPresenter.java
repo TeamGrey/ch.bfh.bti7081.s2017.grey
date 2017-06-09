@@ -15,8 +15,7 @@ public class PatientPresenter implements PatientView.PatientViewListener {
         this.patientModel=patientModel;
         this.patientView=patientView;
         this.patientView.addListener(this);
-
-     }
+    }
 
     @Override
     public void editClick() {
@@ -32,16 +31,11 @@ public class PatientPresenter implements PatientView.PatientViewListener {
     }
 
     @Override
-    public void viewEntered(String user) {
-    Patient randpat = patientService.getPatientById(4);
-        System.out.println(randpat.getFirstname());
-        this.patientModel.setPatient(randpat);
-        this.patientView.setPatient(randpat);
-
-    }
-
-    @Override
     public void setPatient(Patient patient) {
 
+    }
+    
+    public PatientView getView(){
+    	return patientView;
     }
 }

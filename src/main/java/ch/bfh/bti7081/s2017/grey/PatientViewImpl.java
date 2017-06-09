@@ -88,11 +88,8 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         this.binder.setBean(patient);
     }
 
-    @Override
-    public void enter(ViewChangeEvent viewChangeEvent) {
-        for (PatientView.PatientViewListener listener : listeners) {
-            listener.viewEntered(VaadinSession.getCurrent().getAttribute("user").toString());
-
-        }
-    }
+	@Override
+	public void enter(ViewChangeEvent event) {
+		
+	}
 }

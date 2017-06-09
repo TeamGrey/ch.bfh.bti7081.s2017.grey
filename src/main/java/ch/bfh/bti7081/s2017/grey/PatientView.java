@@ -15,8 +15,6 @@ public interface PatientView {
 
         void cancelClick();
 
-        void viewEntered(String user);
-
         void setPatient(Patient patient);
     }
 

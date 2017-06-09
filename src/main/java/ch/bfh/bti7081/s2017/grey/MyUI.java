@@ -36,14 +36,9 @@ public class MyUI extends UI implements AppointmentPresenter.AppointmentPresente
 		AppointmentModel appointmentModel = new AppointmentModel();
 		new AppointmentPresenter(appointmentView, appointmentModel).addListener(this);
 
-		PatientViewImpl patientView = new PatientViewImpl();
-		PatientModel patientModel = new PatientModel();
-		new PatientPresenter(patientView, patientModel);
-
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
-		getNavigator().addView(PatientViewImpl.NAME, patientView);
 		getNavigator().setErrorView(LoginScreen.class);
 
 		router();

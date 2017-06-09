@@ -12,6 +12,7 @@ import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
@@ -19,41 +20,46 @@ import com.vaadin.ui.VerticalLayout;
 import java.util.List;
 
 public class PatientTabsPresenter extends HorizontalLayout implements View {
-	public static final String NAME = "PatientTabs";
+	private static final long serialVersionUID = 1L;
+
+	public final static String NAME = "PatientTabs";
 
 	private static TodoListView toDo;
-	private static final long serialVersionUID = 1L;
+	private static Appointment appointment;
+	private static Patient patient;
 	
 	private static PatientTabs patientTab = new PatientTabs();
 	
 	public PatientTabsPresenter(){
-		PatientService patientService = new PatientServiceImpl();
-		AppointmentService appointmentService = new AppointmentServiceImpl();
-		// TODO fetch patient dynamically
-		Patient patient = patientService.getPatientById(4);
-		Appointment appointment = appointmentService.getAppointmentById(1);
-		patientTab.setSizeFull();
-
 		patientTab.clearTabs();
+		patientTab.setSizeFull();
 		
-		Label clientTempLabel = new Label("Personeninformationen sind hier", ContentMode.HTML);
-		VerticalLayout client = new VerticalLayout(clientTempLabel);
-		patientTab.addTab(client, "Patient");
+		PatientModel patientModel = new PatientModel();
+        PatientViewImpl patientView = new PatientViewImpl();
+        patientModel.setPatient(patient);
+        patientView.setPatient(patient);
+		PatientPresenter patientPresenter = new PatientPresenter(patientView, patientModel);
+		patientTab.addTab((Component) patientPresenter.getView(), "Patient");
 
 		DrugPresenter drugListView = new DrugPresenter(appointment);
 		patientTab.addTab(drugListView, "Drugs");
 
 		toDo = todoTab();
-		patientTab.addTab((Component)toDo, "ToDo");
+		patientTab.addTab((Component) toDo, "ToDo");
 				
 		Design design = new Design();
 		addComponent(design.insertContent(patientTab));
 	}
 	
+	public void setAppointment(Appointment appointment){
+		this.appointment = appointment;
+	}
+	
+	public void setPatient(Patient patient){
+		this.patient = patient;
+	}
+	
 	private static TodoListView todoTab(){
-		AppointmentService appointmentservice = new AppointmentServiceImpl();
-		// TODO load selected appointment
-		Appointment appointment = appointmentservice.getAppointmentById(1);
 		TodoListPresenter toDo = new TodoListPresenter(appointment);
 
 		TaskService taskservice = new TaskServiceImpl();
