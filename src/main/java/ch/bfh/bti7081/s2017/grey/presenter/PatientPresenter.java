@@ -1,7 +1,9 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.presenter;
 
+import ch.bfh.bti7081.s2017.grey.view.PatientView;
+import ch.bfh.bti7081.s2017.grey.view.PatientViewImpl;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
-import ch.bfh.bti7081.s2017.grey.service.PatientService;
+import ch.bfh.bti7081.s2017.grey.model.PatientModel;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 
 /**
@@ -15,8 +17,7 @@ public class PatientPresenter implements PatientView.PatientViewListener {
         this.patientModel=patientModel;
         this.patientView=patientView;
         this.patientView.addListener(this);
-
-     }
+    }
 
     @Override
     public void editClick() {
@@ -32,16 +33,11 @@ public class PatientPresenter implements PatientView.PatientViewListener {
     }
 
     @Override
-    public void viewEntered(String user) {
-    Patient randpat = patientService.getPatientById(4);
-        System.out.println(randpat.getFirstname());
-        this.patientModel.setPatient(randpat);
-        this.patientView.setPatient(randpat);
-
-    }
-
-    @Override
     public void setPatient(Patient patient) {
 
+    }
+    
+    public PatientView getView(){
+    	return patientView;
     }
 }

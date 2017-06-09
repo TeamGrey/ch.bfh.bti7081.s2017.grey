@@ -1,5 +1,7 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.view;
 
+import ch.bfh.bti7081.s2017.grey.model.AppointmentEvent;
+import ch.bfh.bti7081.s2017.grey.Design;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import com.vaadin.annotations.Theme;

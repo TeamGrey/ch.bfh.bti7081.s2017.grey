@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.view;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.listener.CloseListener;
@@ -23,7 +23,7 @@ public class DrugTaskFormViewImpl implements DrugTaskFormView {
     private Button createTask;
     private List<CloseListener> closeListenerList;
 
-    DrugTaskFormViewImpl() {
+    public DrugTaskFormViewImpl() {
         closeListenerList = new LinkedList<>();
 
         window = new Window("Neuer Task");

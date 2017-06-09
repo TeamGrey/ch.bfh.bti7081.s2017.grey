@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.view;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 
@@ -14,8 +14,6 @@ public interface PatientView {
         void saveClick();
 
         void cancelClick();
-
-        void viewEntered(String user);
 
         void setPatient(Patient patient);
     }

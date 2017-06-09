@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.grey;
 
+import ch.bfh.bti7081.s2017.grey.presenter.PatientTabsPresenter;
+import ch.bfh.bti7081.s2017.grey.view.AppointmentViewImpl;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Page;
 import com.vaadin.server.ThemeResource;
@@ -41,7 +43,7 @@ public class Design extends VerticalLayout {
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				Page.getCurrent().setUriFragment("!"+PatientTabsPresenter.NAME);
+				Page.getCurrent().setUriFragment("!"+ PatientTabsPresenter.NAME);
 			}
 		});
 		
@@ -50,7 +52,7 @@ public class Design extends VerticalLayout {
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				Page.getCurrent().setUriFragment("!"+AppointmentViewImpl.NAME);
+				Page.getCurrent().setUriFragment("!"+ AppointmentViewImpl.NAME);
 			}
 		});
 
