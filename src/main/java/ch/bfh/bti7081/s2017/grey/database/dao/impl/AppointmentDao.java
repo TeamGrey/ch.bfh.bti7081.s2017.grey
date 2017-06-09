@@ -20,6 +20,12 @@ import java.util.List;
  */
 public class AppointmentDao extends GenericDaoImpl<Appointment> implements GenericDao<Appointment> {
 
+    /**
+     * Find all appointments for one staff at a specific date
+     * @param staff Staff whose appointments you want
+     * @param date Date of the appointments
+     * @return List of appointments
+     */
     public List<Appointment> findAppointmentsForStaffAndDay(Staff staff, LocalDate date) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Appointment> criteriaQuery = criteriaBuilder.createQuery(Appointment.class);
@@ -36,6 +42,13 @@ public class AppointmentDao extends GenericDaoImpl<Appointment> implements Gener
         return appointments;
     }
 
+    /**
+     * Find all appointments for one staff in a date range
+     * @param staff Staff whose appointments you want
+     * @param start Start of Date range
+     * @param end End of Date range
+     * @return List of appointments
+     */
     public List<Appointment> findAppointmentsForStaffAndDateRange(Staff staff, LocalDateTime start, LocalDateTime end) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Appointment> criteriaQuery = criteriaBuilder.createQuery(Appointment.class);
