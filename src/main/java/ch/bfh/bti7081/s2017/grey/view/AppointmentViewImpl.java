@@ -28,8 +28,6 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 @Theme("mytheme")
 public class AppointmentViewImpl extends HorizontalLayout implements AppointmentView, View{
-
-	private static final long serialVersionUID = 1L;
 	public static final String NAME = "AppointmentViewImpl";
 
 	private List<AppointmentViewListener> listeners = new ArrayList<AppointmentViewListener>();
@@ -54,13 +52,13 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	private ComboBox<Patient> patients = new ComboBox<>("Patients");
 
 	private Calendar cal = new Calendar("Termine");
+	private AppointmentEvent clickedEvent = new AppointmentEvent(null, null, null, "", "");
 
 	private Window appointmentWindow = new Window("Termin");
 	private FormLayout appointmentLayout = new FormLayout();
 	private VerticalLayout layout = new VerticalLayout();
 	private HorizontalLayout buttonLayout = new HorizontalLayout();
 	private HorizontalLayout calendarLayout = new HorizontalLayout();
-
 
 	public AppointmentViewImpl() {
 		binder.forField(startDate).bind(Appointment::getDate, Appointment::setDate);
@@ -144,6 +142,11 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 		cal.setHandler((CalendarComponentEvents.EventClickHandler) eventClick -> {
             AppointmentEvent event = (AppointmentEvent)eventClick.getCalendarEvent();
+
+            clickedEvent.setStyleName("");
+            clickedEvent = event;
+            event.setStyleName("selected");
+            cal.markAsDirty();
 
             for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
