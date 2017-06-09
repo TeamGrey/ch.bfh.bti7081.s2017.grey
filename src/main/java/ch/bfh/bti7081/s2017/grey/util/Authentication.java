@@ -57,9 +57,9 @@ public class Authentication {
 
     /**
      * Hashing function used for hashing user passwords
-     *
      * @param password plaintext string to be hashed
-     * @return hashed string
+     * @param salt salt to make it more secure
+     * @return bas64 representation of the hashed password
      */
     public static String generateHash(String password, String salt)  {
         try {
@@ -72,6 +72,10 @@ public class Authentication {
         return null;
     }
 
+    /**
+     * Generates a random salt
+     * @return base64 string of the salt
+     */
     public static String generateSalt() {
         final Random r = new SecureRandom();
         final byte[] saltBytes = new byte[32];
