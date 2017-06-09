@@ -3,7 +3,10 @@ package ch.bfh.bti7081.s2017.grey;
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
-import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
+import ch.bfh.bti7081.s2017.grey.model.AppointmentModel;
+import ch.bfh.bti7081.s2017.grey.presenter.AppointmentPresenter;
+import ch.bfh.bti7081.s2017.grey.presenter.PatientTabsPresenter;
+import ch.bfh.bti7081.s2017.grey.view.AppointmentViewImpl;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
@@ -36,14 +39,9 @@ public class MyUI extends UI implements AppointmentPresenter.AppointmentPresente
 		AppointmentModel appointmentModel = new AppointmentModel();
 		new AppointmentPresenter(appointmentView, appointmentModel).addListener(this);
 
-		PatientViewImpl patientView = new PatientViewImpl();
-		PatientModel patientModel = new PatientModel();
-		new PatientPresenter(patientView, patientModel);
-
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
-		getNavigator().addView(PatientViewImpl.NAME, patientView);
 		getNavigator().setErrorView(LoginScreen.class);
 
 		router();

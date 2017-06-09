@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.presenter;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
@@ -9,6 +9,7 @@ import ch.bfh.bti7081.s2017.grey.service.DrugService;
 import ch.bfh.bti7081.s2017.grey.service.TaskService;
 import ch.bfh.bti7081.s2017.grey.service.impl.DrugServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
+import ch.bfh.bti7081.s2017.grey.view.*;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 

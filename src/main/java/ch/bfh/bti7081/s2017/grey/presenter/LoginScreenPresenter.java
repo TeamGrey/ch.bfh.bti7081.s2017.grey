@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.presenter;
 
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;

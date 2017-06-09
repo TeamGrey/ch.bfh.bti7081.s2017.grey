@@ -1,6 +1,8 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.presenter;
 
+import ch.bfh.bti7081.s2017.grey.view.AppointmentView;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.model.AppointmentModel;
 
 import java.util.ArrayList;
 import java.util.Date;
