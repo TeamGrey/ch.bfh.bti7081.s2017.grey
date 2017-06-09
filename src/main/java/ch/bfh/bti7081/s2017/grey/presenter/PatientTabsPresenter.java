@@ -44,9 +44,6 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 
 		toDo = todoTab();
 		patientTab.addTab((Component) toDo, "ToDo");
-				
-		Design design = new Design();
-		addComponent(design.insertContent(patientTab));
 	}
 	
 	public void setAppointment(Appointment appointment){
@@ -80,5 +77,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	public void enter(ViewChangeEvent event) {
 		MyUI.loggedIn();
 
+		Design design = new Design();
+		addComponent(design.insertContent(patientTab, true));
 	}
 }

@@ -205,8 +205,6 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		layout.addComponents(buttonLayout, calendarLayout, cal);
 		appointmentWindow.setContent(appointmentLayout);
 		this.addComponents(layout);
-		Design design = new Design();
-		addComponent(design.insertContent(layout));
 	}
 
 	@Override
@@ -255,5 +253,8 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		for(AppointmentViewListener listener : listeners) {
 			listener.viewEntered(VaadinSession.getCurrent().getAttribute("user").toString());
 		}
+
+		Design design = new Design();
+		this.addComponent(design.insertContent(layout, false));
 	}
 }

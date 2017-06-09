@@ -27,6 +27,9 @@ import com.vaadin.ui.UI;
 @Theme("mytheme")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
 public class MyUI extends UI implements AppointmentPresenter.AppointmentPresenterListener  {
+	private AppointmentPresenter appointmentPresenter;
+	private PatientTabsPresenter patientTabsPresenter;
+
 	@WebServlet(value = "/*", asyncSupported = true)
 	public static class Servlet extends VaadinServlet {
 	}
@@ -37,11 +40,14 @@ public class MyUI extends UI implements AppointmentPresenter.AppointmentPresente
 
 		AppointmentViewImpl appointmentView = new AppointmentViewImpl();
 		AppointmentModel appointmentModel = new AppointmentModel();
-		new AppointmentPresenter(appointmentView, appointmentModel).addListener(this);
+		appointmentPresenter = new AppointmentPresenter(appointmentView, appointmentModel);
+		appointmentPresenter.addListener(this);
+
+		patientTabsPresenter = new PatientTabsPresenter();
 
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
-		getNavigator().addView(PatientTabsPresenter.NAME, PatientTabsPresenter.class);
+		getNavigator().addView(PatientTabsPresenter.NAME, patientTabsPresenter);
 		getNavigator().setErrorView(LoginScreen.class);
 
 		router();
@@ -49,6 +55,7 @@ public class MyUI extends UI implements AppointmentPresenter.AppointmentPresente
 
 	@Override
 	public void appointmentSelected(Appointment appointment) {
+		patientTabsPresenter.setAppointment(appointment);
 		getNavigator().navigateTo(PatientTabsPresenter.NAME);
 	}
 

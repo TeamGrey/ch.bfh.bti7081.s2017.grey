@@ -1,8 +1,9 @@
 package ch.bfh.bti7081.s2017.grey;
 
-import ch.bfh.bti7081.s2017.grey.presenter.PatientTabsPresenter;
 import ch.bfh.bti7081.s2017.grey.view.AppointmentViewImpl;
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.Page;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinSession;
@@ -15,11 +16,12 @@ public class Design extends VerticalLayout {
 	public static final String NAME = "Design";
 	private CustomLayout mainlayout = new CustomLayout("mainlayout");
 	private Component lFooter = new Label(VaadinIcons.COPYRIGHT.getHtml()+" TeamGrey BFH 2017", ContentMode.HTML);
+	private HorizontalLayout header;
 	private Button logout = new Button("Logout");
-	private Button patientTabs = new Button("PatientTabs");// TODO Temporärer Zugang
-	private Button appointmentView = new Button("AppointmentView");// TODO Temporärer Zugang
+	private Button back = new Button("Back");
 	ThemeResource resource = new ThemeResource("img/logo.png");
 	Image image = new Image("",resource);
+
 	public Design(){
 	    image.setId("headerlogo");
 		mainlayout.setSizeFull();
@@ -37,16 +39,7 @@ public class Design extends VerticalLayout {
 			}
 		});
 		
-		patientTabs.addClickListener(new ClickListener() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				Page.getCurrent().setUriFragment("!"+ PatientTabsPresenter.NAME);
-			}
-		});
-		
-		appointmentView.addClickListener(new ClickListener() {
+		back.addClickListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -56,14 +49,15 @@ public class Design extends VerticalLayout {
 		});
 	}
 
-	public Design insertContent(Component content){
-		HorizontalLayout header = new HorizontalLayout();
+	public Design insertContent(Component content, boolean canGoBack){
+		header = new HorizontalLayout();
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			header.addComponents( image, logout, patientTabs, appointmentView);
+			header.addComponents(image, logout);
+			if(canGoBack) header.addComponent(back);
 		}
 		else{
+			header.addComponents(image);
 		}
-		
 		header.setSizeFull();
 		content.setSizeFull();
 

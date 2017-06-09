@@ -121,6 +121,8 @@ public class AppointmentPresenter implements AppointmentView.AppointmentViewList
     public void viewEntered(String username) {
         this.weekViewSelect();
         this.appointmentModel.setUser(username);
+        this.appointmentModel.setNewAppointment();
+        this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
         this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 }
