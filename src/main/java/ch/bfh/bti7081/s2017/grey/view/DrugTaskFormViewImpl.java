@@ -1,7 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.view;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
-import ch.bfh.bti7081.s2017.grey.listener.CloseListener;
+import ch.bfh.bti7081.s2017.grey.listener.DrugTaskFormViewListener;
 import com.vaadin.server.Sizeable;
 import com.vaadin.ui.*;
 
@@ -21,10 +21,10 @@ public class DrugTaskFormViewImpl implements DrugTaskFormView {
     private TextField amount;
     private NativeSelect<String> unit;
     private Button createTask;
-    private List<CloseListener> closeListenerList;
+    private List<DrugTaskFormViewListener> listeners;
 
     public DrugTaskFormViewImpl() {
-        closeListenerList = new LinkedList<>();
+        listeners = new LinkedList<>();
 
         window = new Window("Neuer Task");
         window.setWidth(300.0f, Sizeable.Unit.PIXELS);
@@ -58,16 +58,19 @@ public class DrugTaskFormViewImpl implements DrugTaskFormView {
             if (getAmount() <= 0) {
                 return;
             }
-
             window.close();
-            for (CloseListener listener : closeListenerList) {
-                listener.close();
-            }
+            onClose();
         });
 
         window.setContent(content);
 
         UI.getCurrent().addWindow(window);
+    }
+
+    private void onClose() {
+        for (DrugTaskFormViewListener listener : listeners) {
+            listener.onFormClosed();
+        }
     }
 
     public void setDrugList(Collection<Drug> drugs) {
@@ -89,8 +92,8 @@ public class DrugTaskFormViewImpl implements DrugTaskFormView {
     }
 
     @Override
-    public void addCloseListener(CloseListener listener) {
-        closeListenerList.add(listener);
+    public void addDrugTaskFormViewListener(DrugTaskFormViewListener listener) {
+        listeners.add(listener);
     }
 
     @Override
