@@ -27,7 +27,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void createTask(String name, Appointment appointment) {
+    public Task createTask(String name, Appointment appointment) {
         Instant instant = Instant.now();
         Timestamp timestamp = new Timestamp(instant.toEpochMilli());
 
@@ -38,11 +38,12 @@ public class TaskServiceImpl implements TaskService {
         task.setChanged(timestamp);
 
         dao.create(task);
+        return task;
     }
 
     @Override
-    public void addDrugsToTask(Task task, List<Drug> drugs, int amount, String units) {
-        dao.addDrugsToTask(task, drugs, amount, units);
+    public void addDrugToTask(Task task, Drug drug, int amount, String units) {
+        dao.addDrugToTask(task, drug, amount, units);
     }
 
     @Override
@@ -87,7 +88,17 @@ public class TaskServiceImpl implements TaskService {
         task.setChanged(timestamp);    	
     	dao.update(task);
     }
-    
+
+    @Override
+    public void setFinishedStatus(Task task, Boolean status) {
+        Instant instant = Instant.now();
+        Timestamp timestamp = new Timestamp(instant.toEpochMilli());
+
+        task.setFinished(status);
+        task.setChanged(timestamp);
+        dao.update(task);
+    }
+
     @Override
     public void removeTask(Task task) {
         dao.delete(task.getId());

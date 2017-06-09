@@ -6,6 +6,7 @@ import ch.bfh.bti7081.s2017.grey.service.DrugService;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @Author Quentin
@@ -40,6 +41,11 @@ public class DrugServiceImpl implements DrugService {
     @Override
     public Drug getDrugById(long id) {
         return dao.find(id);
+    }
+
+    @Override
+    public List<Drug> getAllDrugs() {
+        return dao.findAll();
     }
 
 }
