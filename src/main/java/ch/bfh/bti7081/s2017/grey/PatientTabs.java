@@ -22,4 +22,8 @@ public class PatientTabs extends HorizontalLayout {
 	public void replaceTab(Component oldComponent, Component newComponent){
 		content.replaceComponent(oldComponent, newComponent);
 	}
+
+	public void clearTabs() {
+		content.removeAllComponents();
+	}
 }
