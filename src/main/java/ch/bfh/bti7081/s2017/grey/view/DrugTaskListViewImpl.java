@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey.view;
 
 import ch.bfh.bti7081.s2017.grey.listener.DrugTaskListViewListener;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ public class DrugTaskListViewImpl extends VerticalLayout implements DrugTaskList
     private VerticalLayout container;
     private List<DrugTaskView> drugTaskViews;
     private Button createButton;
+    private Label noTasks;
+    private int tasks = 0;
 
     public DrugTaskListViewImpl() {
         drugTaskViews = new LinkedList<>();
@@ -23,6 +26,9 @@ public class DrugTaskListViewImpl extends VerticalLayout implements DrugTaskList
 
         container = new VerticalLayout();
         addComponent(container);
+
+        noTasks = new Label("Keine Tasks vorhanden");
+        container.addComponent(noTasks);
 
         createButton = new Button("New Task");
         addComponent(createButton);
@@ -38,16 +44,19 @@ public class DrugTaskListViewImpl extends VerticalLayout implements DrugTaskList
 
     @Override
     public void addDrugTaskListViewListener(DrugTaskListViewListener listener) {
-
         listeners.add(listener);
     }
 
     public void addDrug(DrugTaskView drugTaskView) {
+        tasks++;
+        container.removeComponent(noTasks);
         drugTaskViews.add(drugTaskView);
         container.addComponent(drugTaskView);
     }
 
     public void removeDrug(DrugTaskView drugTaskView) {
+        tasks--;
+        if (tasks <= 0) container.addComponent(noTasks);
         drugTaskViews.remove(drugTaskView);
         container.removeComponent(drugTaskView);
     }
@@ -56,5 +65,7 @@ public class DrugTaskListViewImpl extends VerticalLayout implements DrugTaskList
     public void clear() {
         drugTaskViews.clear();
         container.removeAllComponents();
+        tasks = 0;
+        container.addComponent(noTasks);
     }
 }

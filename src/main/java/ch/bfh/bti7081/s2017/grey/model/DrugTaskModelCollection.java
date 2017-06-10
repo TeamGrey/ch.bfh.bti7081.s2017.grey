@@ -4,6 +4,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.exeption.MissingAppointmentException;
 import ch.bfh.bti7081.s2017.grey.listener.ModelCollectionListener;
 import ch.bfh.bti7081.s2017.grey.service.DrugService;
 import ch.bfh.bti7081.s2017.grey.service.TaskService;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class DrugTaskModelCollection {
     private List<ModelCollectionListener> listeners;
-    private Appointment appointment;
+    private Appointment appointment = null;
     private TaskService taskService;
     private DrugService drugService;
 
@@ -41,12 +42,15 @@ public class DrugTaskModelCollection {
 
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
+        onChange();
     }
 
-    public List<DrugTaskModel> getDrugTasks() {
+    public List<DrugTaskModel> getDrugTasks() throws MissingAppointmentException {
         List<DrugTaskModel> drugTaskModels = new ArrayList<>();
 
-        List<Task> tasks = taskService.getAllTasks();
+        if (appointment == null) throw new MissingAppointmentException();
+
+        List<Task> tasks = taskService.getTasksByAppointment(appointment);
         for (Task task : tasks) {
             List<DrugTaskAssociation> drugTaskAssociations = task.getDrugs();
             for (DrugTaskAssociation drugTaskAssociation : drugTaskAssociations) {
@@ -58,7 +62,8 @@ public class DrugTaskModelCollection {
         return drugTaskModels;
     }
 
-    public DrugTaskModel addDrugTask(String description, Drug drug, int amount, String unit) {
+    public DrugTaskModel addDrugTask(String description, Drug drug, int amount, String unit) throws MissingAppointmentException {
+        if (appointment == null) throw new MissingAppointmentException();
         Task task = taskService.createTask(description, appointment);
         taskService.addDrugToTask(task, drug, amount, unit);
         onChange();

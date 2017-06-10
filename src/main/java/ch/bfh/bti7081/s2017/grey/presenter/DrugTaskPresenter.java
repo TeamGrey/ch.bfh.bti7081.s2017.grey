@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.presenter;
 
+import ch.bfh.bti7081.s2017.grey.exeption.MissingAppointmentException;
 import ch.bfh.bti7081.s2017.grey.listener.DrugTaskFormViewListener;
 import ch.bfh.bti7081.s2017.grey.listener.DrugTaskListViewListener;
 import ch.bfh.bti7081.s2017.grey.listener.DrugTaskViewListener;
@@ -7,6 +8,7 @@ import ch.bfh.bti7081.s2017.grey.listener.ModelCollectionListener;
 import ch.bfh.bti7081.s2017.grey.model.DrugTaskModel;
 import ch.bfh.bti7081.s2017.grey.model.DrugTaskModelCollection;
 import ch.bfh.bti7081.s2017.grey.view.*;
+import com.vaadin.ui.Notification;
 
 import java.util.List;
 
@@ -23,16 +25,26 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         drugTaskModelCollection.addModelCollectionListner(this);
         this.drugTaskModelCollection = drugTaskModelCollection;
         this.drugTaskListView = drugTaskListView;
-        update();
+        try {
+            update();
+        } catch (MissingAppointmentException e) {
+            e.printStackTrace();
+
+            clear();
+        }
     }
 
-    public void update() {
+    public void clear() {
         try {
             // clear list
             drugTaskListView.clear();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void update() throws MissingAppointmentException {
+        clear();
 
         // refresh list
         List<DrugTaskModel> drugTaskModels = drugTaskModelCollection.getDrugTasks();
@@ -75,11 +87,23 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
     @Override
     public void onFormClosed() {
         // TODO handle case where task is only edited
-        drugTaskModelCollection.addDrugTask(drugTaskFormView.getTaskName(), drugTaskFormView.getDrug(), drugTaskFormView.getAmount(), drugTaskFormView.getAmountUnit());
+        try {
+            drugTaskModelCollection.addDrugTask(drugTaskFormView.getTaskName(), drugTaskFormView.getDrug(), drugTaskFormView.getAmount(), drugTaskFormView.getAmountUnit());
+        } catch (MissingAppointmentException e) {
+            e.printStackTrace();
+
+            Notification.show("Error", "Missing Appointement", Notification.Type.ERROR_MESSAGE);
+        }
     }
 
     @Override
     public void onCollectionChanged() {
-        update();
+        try {
+            update();
+        } catch (MissingAppointmentException e) {
+            e.printStackTrace();
+
+            clear();
+        }
     }
 }
