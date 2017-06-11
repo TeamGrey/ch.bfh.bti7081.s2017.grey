@@ -1,7 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.view;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
-import ch.bfh.bti7081.s2017.grey.listener.CloseListener;
+import ch.bfh.bti7081.s2017.grey.listener.DrugTaskFormViewListener;
 
 import java.util.Collection;
 
@@ -16,7 +16,7 @@ public interface DrugTaskFormView {
 
     void open();
 
-    void addCloseListener(CloseListener listener);
+    void addDrugTaskFormViewListener(DrugTaskFormViewListener listener);
 
     void setDrugList(Collection<Drug> drugs);
 

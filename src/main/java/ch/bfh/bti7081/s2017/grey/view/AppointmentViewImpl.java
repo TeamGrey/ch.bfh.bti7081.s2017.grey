@@ -28,8 +28,6 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 @Theme("mytheme")
 public class AppointmentViewImpl extends HorizontalLayout implements AppointmentView, View{
-
-	private static final long serialVersionUID = 1L;
 	public static final String NAME = "AppointmentViewImpl";
 
 	private List<AppointmentViewListener> listeners = new ArrayList<AppointmentViewListener>();
@@ -54,13 +52,13 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	private ComboBox<Patient> patients = new ComboBox<>("Patients");
 
 	private Calendar cal = new Calendar("Termine");
+	private AppointmentEvent clickedEvent = new AppointmentEvent(null, null, null, "", "");
 
 	private Window appointmentWindow = new Window("Termin");
 	private FormLayout appointmentLayout = new FormLayout();
 	private VerticalLayout layout = new VerticalLayout();
 	private HorizontalLayout buttonLayout = new HorizontalLayout();
 	private HorizontalLayout calendarLayout = new HorizontalLayout();
-
 
 	public AppointmentViewImpl() {
 		binder.forField(startDate).bind(Appointment::getDate, Appointment::setDate);
@@ -145,6 +143,11 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		cal.setHandler((CalendarComponentEvents.EventClickHandler) eventClick -> {
             AppointmentEvent event = (AppointmentEvent)eventClick.getCalendarEvent();
 
+            clickedEvent.setStyleName("");
+            clickedEvent = event;
+            event.setStyleName("selected");
+            cal.markAsDirty();
+
             for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
             }
@@ -205,20 +208,31 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		layout.addComponents(buttonLayout, calendarLayout, cal);
 		appointmentWindow.setContent(appointmentLayout);
 		this.addComponents(layout);
-		Design design = new Design();
-		addComponent(design.insertContent(layout));
 	}
 
+	/**
+	 * Adds a event listener
+	 * @param listener new event listener
+	 */
 	@Override
 	public void addListener(AppointmentViewListener listener) {
 		listeners.add(listener);
 	}
 
+	/**
+	 * Sets the list of patients that is shown in the combo-box
+	 * @param patients list of patients
+	 */
 	@Override
 	public void setPatients(List<Patient> patients) {
 		this.patients.setItems(patients);
 	}
 
+	/**
+	 * Set a new appointment that is displayed in the editor window
+	 * @param appointment appointment that will be displayed
+	 * @param isEditMode true if the edit buttons are enabled
+	 */
 	@Override
 	public void setAppointment(Appointment appointment, boolean isEditMode) {
 		binder.setBean(appointment);
@@ -227,6 +241,10 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		this.deleteButton.setEnabled(isEditMode);
 	}
 
+	/**
+	 * Set the list of appointments that is displayed in the calendar
+	 * @param appointmentList list of appointments
+	 */
 	@Override
 	public void setAppointmentList(List<Appointment> appointmentList) {
 		container = new BeanItemContainer<AppointmentEvent>(AppointmentEvent.class);
@@ -250,10 +268,17 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		cal.setEndDate(endDate);
 	}
 
+	/**
+	 * Called when the view is entered. Send an event to the presenter.
+	 * @param viewChangeEvent event object
+	 */
 	@Override
 	public void enter(ViewChangeEvent viewChangeEvent) {
 		for(AppointmentViewListener listener : listeners) {
 			listener.viewEntered(VaadinSession.getCurrent().getAttribute("user").toString());
 		}
+
+		Design design = new Design();
+		this.addComponent(design.insertContent(layout, false));
 	}
 }
