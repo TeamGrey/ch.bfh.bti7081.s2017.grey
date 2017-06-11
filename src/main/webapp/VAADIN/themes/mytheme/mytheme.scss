@@ -36,7 +36,12 @@
 #content * {
 	max-width:100%;
 }
-
+#content table{
+	table-layout: fixed;
+	word-break: break-all;
+	width: 100%;
+	margin-left: -1px;
+}
 @import "../valo/valo.scss";
 
 @mixin mytheme { 

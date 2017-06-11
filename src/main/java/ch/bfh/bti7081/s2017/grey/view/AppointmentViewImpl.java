@@ -83,7 +83,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		terminTitel.setCaption("Termin Bezeichnung");
 		terminBeschrieb.setCaption("Termin Beschreibung");
 
-		cal.setWidth("100%);
+		cal.setWidth("100%");
 		cal.setHeight("600px");
 		cal.setLocale(Locale.GERMANY);
 		cal.setWeeklyCaptionFormat("dd.MM.yyyy");
