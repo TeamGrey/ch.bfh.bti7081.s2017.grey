@@ -33,6 +33,10 @@
 	vertical-align: middle;
 }
 
+#content * {
+	max-width:100%;
+}
+
 @import "../valo/valo.scss";
 
 @mixin mytheme { 

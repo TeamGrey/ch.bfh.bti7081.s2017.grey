@@ -85,7 +85,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		terminTitel.setCaption("Termin Bezeichnung");
 		terminBeschrieb.setCaption("Termin Beschreibung");
 
-		cal.setWidth("1000px");
+		cal.setWidth("100%);
 		cal.setHeight("600px");
 		cal.setLocale(Locale.GERMANY);
 		cal.setWeeklyCaptionFormat("dd.MM.yyyy");
@@ -93,7 +93,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 		patients.setItemCaptionGenerator(Patient::getFirstname);
 
-		appointmentWindow.setWidth("500px");
+	//	appointmentWindow.setWidth("500px");
 		appointmentWindow.setModal(true);
 
 		startButton.addClickListener(e -> {
