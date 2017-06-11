@@ -210,16 +210,29 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		this.addComponents(layout);
 	}
 
+	/**
+	 * Adds a event listener
+	 * @param listener new event listener
+	 */
 	@Override
 	public void addListener(AppointmentViewListener listener) {
 		listeners.add(listener);
 	}
 
+	/**
+	 * Sets the list of patients that is shown in the combo-box
+	 * @param patients list of patients
+	 */
 	@Override
 	public void setPatients(List<Patient> patients) {
 		this.patients.setItems(patients);
 	}
 
+	/**
+	 * Set a new appointment that is displayed in the editor window
+	 * @param appointment appointment that will be displayed
+	 * @param isEditMode true if the edit buttons are enabled
+	 */
 	@Override
 	public void setAppointment(Appointment appointment, boolean isEditMode) {
 		binder.setBean(appointment);
@@ -228,6 +241,10 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		this.deleteButton.setEnabled(isEditMode);
 	}
 
+	/**
+	 * Set the list of appointments that is displayed in the calendar
+	 * @param appointmentList list of appointments
+	 */
 	@Override
 	public void setAppointmentList(List<Appointment> appointmentList) {
 		container = new BeanItemContainer<AppointmentEvent>(AppointmentEvent.class);
@@ -251,6 +268,10 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		cal.setEndDate(endDate);
 	}
 
+	/**
+	 * Called when the view is entered. Send an event to the presenter.
+	 * @param viewChangeEvent event object
+	 */
 	@Override
 	public void enter(ViewChangeEvent viewChangeEvent) {
 		for(AppointmentViewListener listener : listeners) {

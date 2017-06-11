@@ -18,6 +18,7 @@ import java.util.*;
 
 /**
  * Created by Nic on 15.05.17.
+ * Model for the Appointment View
  */
 public class AppointmentModel {
     private AppointmentService appointmentService = new AppointmentServiceImpl();
@@ -30,20 +31,34 @@ public class AppointmentModel {
 
     private Date end;
 
+    /**
+     * Set which appointment is selected
+     * @param appointment selected appointment
+     */
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
         this.appointment.setStaff(this.staff);
     }
 
+    /**
+     * Set a new appointment as selected
+     */
     public void setNewAppointment() {
         Appointment appointment = new Appointment(new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()), "", "", null, null, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
         this.setAppointment(appointment);
     }
 
+    /**
+     * Get the selected appointment
+     * @return the selected appointment
+     */
     public Appointment getAppointment() {
         return appointment;
     }
 
+    /**
+     * Save the currently selected appointment
+     */
     public void saveAppointment() {
         if(this.isEditMode()) {
             this.appointmentService.editAppointment(appointment);
@@ -52,6 +67,10 @@ public class AppointmentModel {
         }
     }
 
+    /**
+     * Move the selected appointment to an other start date
+     * @param start the new start date
+     */
     public void moveApppointment(Date start) {
         long timeDifference = Date.from(appointment.getEndDate().atZone(ZoneId.systemDefault()).toInstant()).getTime() - Date.from(appointment.getDate().atZone(ZoneId.systemDefault()).toInstant()).getTime();
         int seconds = (int)(timeDifference / 1000);
@@ -65,30 +84,55 @@ public class AppointmentModel {
         this.saveAppointment();
     }
 
+    /**
+     * Resizes the selected appointment
+     * @param start the new start date
+     * @param end the new end date
+     */
     public void resizeAppointment(Date start, Date end) {
         this.appointment.setDate(start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
         this.appointment.setEndDate(end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
         this.saveAppointment();
     }
 
+    /**
+     * Deletes the selected appointment
+     */
     public void deleteAppointment() {
         this.appointmentService.deleteAppointment(this.appointment);
         this.setNewAppointment();
     }
 
+    /**
+     * Tells if the view is in edit mode.
+     * The view is considered in edit mode if the appointment is already in the database.
+     * @return true if the view is in edit mode
+     */
     public boolean isEditMode() {
         return this.appointment.getId() != 0;
     }
 
+    /**
+     * Set the user who is using the appointment view
+     * @param username the username that is used to set the user
+     */
     public void setUser(String username) {
         this.staff = staffService.findStaffByLogin(username);
         this.appointment.setStaff(this.staff);
     }
 
+    /**
+     * Get all patients
+     * @return list of all patients
+     */
     public List<Patient> getPatients() {
         return this.patientService.getAllPatients();
     }
 
+    /**
+     * Get the list of appointments that are form the currently set user and between the set time range
+     * @return the list of appointments
+     */
     public List<Appointment> getAppointmentList() {
         return this.appointmentService.findAppointmentsByStaffAndDateRange(this.staff, this.start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), this.end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
@@ -109,6 +153,9 @@ public class AppointmentModel {
         this.end = end;
     }
 
+    /**
+     * Set the date range to the current month
+     */
     public void setMonthRange() {
         Calendar start = getCalendarForNow();
         start.set(Calendar.DAY_OF_MONTH,
@@ -122,6 +169,9 @@ public class AppointmentModel {
         this.end = end.getTime();
     }
 
+    /**
+     * Set the date range to the current week
+     */
     public void setWeekRange() {
         Calendar start = getCalendarForNow();
         start.set(Calendar.DAY_OF_WEEK,
@@ -136,6 +186,9 @@ public class AppointmentModel {
         this.end = end.getTime();
     }
 
+    /**
+     * Set the date range to the current day
+     */
     public void setDayRange() {
         Calendar start = getCalendarForNow();
         setTimeToBeginningOfDay(start);
@@ -145,6 +198,10 @@ public class AppointmentModel {
         this.end = end.getTime();
     }
 
+    /**
+     * Set the date range to a specific date
+     * @param date The specific date to be set
+     */
     public void setDate(Date date) {
         Calendar start = Calendar.getInstance(Locale.GERMANY);
         start.setTime(date);
