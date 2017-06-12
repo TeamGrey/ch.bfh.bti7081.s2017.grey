@@ -23,7 +23,11 @@ import com.vaadin.ui.HorizontalLayout;
 
 import java.util.List;
 
+/**
+ * @author Ken
+ */
 public class PatientTabsPresenter extends HorizontalLayout implements View {
+	private static final long serialVersionUID = 1L;
 	public final static String NAME = "PatientTabs";
 	private TodoListView toDo;
 	private Appointment appointment;
@@ -31,6 +35,9 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private PatientTabs patientTab = new PatientTabs();
 	private DrugTaskModelCollection drugTaskModelCollection;
 	
+	/**
+	 * Create presenter with all its components
+	 */
 	public PatientTabsPresenter(){
 		patientTab.clearTabs();
 		patientTab.setSizeFull();
@@ -64,18 +71,27 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		return toDo.getView();
 	}
 	
+	/**
+	 * Update the Todo-tab
+	 */
 	public void updateTodoTab(){
 		TodoListView newTodo = todoTab();
 		patientTab.replaceTab((Component)toDo, (Component)newTodo);
 		toDo = newTodo;
 	}
 
+	/**
+	 * @param appointment Appointment to be set for all components
+	 */
 	public void setAppointment(Appointment appointment) {
 		this.appointment = appointment;
 		drugTaskModelCollection.setAppointment(appointment);
 		updateTodoTab();
 	}
 
+	/**
+	 * @param patient Patient to be set for all components
+	 */
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}

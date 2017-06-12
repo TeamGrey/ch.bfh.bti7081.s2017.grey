@@ -77,33 +77,21 @@ public class TodoViewImpl extends HorizontalLayout implements TodoView {
 		setSizeFull();
 	}
 
-	/* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.grey.view.TodoView#setName(java.lang.String)
-	 */
 	@Override
 	public void setName(String labelName) {
 		taskDesc.setValue(labelName);
 	}
 	
-	/* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.grey.view.TodoView#setStatus(boolean)
-	 */
 	@Override
 	public void setStatus(boolean status){
 		checkbox.setValue(status);
 	}
 	
-	/* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.grey.view.TodoView#setEstimate(int)
-	 */
 	@Override
 	public void setEstimate(int estimateTime){
 		estimate.setValue(estimateTime + " min");
 	}
 
-	/* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.grey.view.TodoView#addListener(ch.bfh.bti7081.s2017.grey.view.TodoView.TodoViewListener)
-	 */
 	@Override
 	public void addListener(TodoViewListener listener) {
 		listeners.add(listener);		

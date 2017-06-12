@@ -35,7 +35,7 @@ public class TodoListPresenter implements TodoListView.TodoListViewListener {
     }
 	
 	/* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.grey.view.TodoListView.TodoListViewListener#saveNewTask(java.lang.String, com.vaadin.ui.Window)
+	 * @see ch.bfh.bti7081.s2017.grey.ui.todo.TodoListView.TodoListViewListener#saveNewTask(java.lang.String, com.vaadin.ui.Window)
 	 */
 	public void saveNewTask(String taskName, Window window){
 		todoListModel.createTask(taskName);
