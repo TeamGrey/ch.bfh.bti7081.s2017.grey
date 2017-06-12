@@ -14,7 +14,11 @@ import javax.persistence.criteria.Root;
  * Created by gabor on 29/05/17.
  */
 public class StaffDao extends GenericDaoImpl<Staff> implements GenericDao<Staff> {
-
+    /**
+     * Find a staff by login name
+     * @param login Login name
+     * @return Staff
+     */
     public Staff getStaffByLogin(String login) {
         EntityManager entityManager = EntityManagerSingleton.getInstance();
 

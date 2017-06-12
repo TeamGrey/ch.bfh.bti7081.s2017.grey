@@ -14,6 +14,11 @@ import java.util.List;
  * Created by gabor on 29/05/17.
  */
 public class EmergencyContactDao extends GenericDaoImpl<EmergencyContact> implements GenericDao<EmergencyContact> {
+    /**
+     * Find all emergency contacts for one patient
+     * @param patient Patient whose emergency contacts you want
+     * @return List of emergency contacts
+     */
     public List<EmergencyContact> findEmergencyContactForPatient(Patient patient) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<EmergencyContact> criteriaQuery = criteriaBuilder.createQuery(EmergencyContact.class);
