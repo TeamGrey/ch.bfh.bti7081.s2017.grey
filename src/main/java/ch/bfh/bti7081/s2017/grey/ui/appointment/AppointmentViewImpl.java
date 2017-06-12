@@ -60,11 +60,22 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	private HorizontalLayout calendarLayout = new HorizontalLayout();
 
 	public AppointmentViewImpl() {
-		binder.forField(startDate).bind(Appointment::getDate, Appointment::setDate);
-		binder.forField(endDate).bind(Appointment::getEndDate, Appointment::setEndDate);
-		binder.forField(terminTitel).bind(Appointment::getTitle, Appointment::setTitle);
-		binder.forField(terminBeschrieb).bind(Appointment::getDescription, Appointment::setDescription);
-		binder.forField(patients).bind(Appointment::getPatient, Appointment::setPatient);
+		binder.forField(startDate)
+				.asRequired("Muss ausgefüllt werden")
+				.withValidator(date -> date.isBefore(binder.getBean().getEndDate()), "Start Datum muss vor end Datum sein.")
+				.bind(Appointment::getDate, Appointment::setDate);
+		binder.forField(endDate)
+				.asRequired("Muss ausgefüllt werden")
+				.withValidator(date -> date.isAfter(binder.getBean().getDate()), "End Datum muss nach start Datum sein.")
+				.bind(Appointment::getEndDate, Appointment::setEndDate);
+		binder.forField(terminTitel)
+				.asRequired("Muss ausgefüllt werden")
+				.bind(Appointment::getTitle, Appointment::setTitle);
+		binder.forField(terminBeschrieb)
+				.bind(Appointment::getDescription, Appointment::setDescription);
+		binder.forField(patients)
+				.asRequired("Muss ausgefüllt werden")
+				.bind(Appointment::getPatient, Appointment::setPatient);
 
 		startButton.setCaption("Termin starten");
 		newButton.setCaption("Neuer Termin");
