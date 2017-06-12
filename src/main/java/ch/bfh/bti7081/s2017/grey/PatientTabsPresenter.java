@@ -22,16 +22,19 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import javax.persistence.EntityManager;
 
 public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "PatientTabs";
 	private static TaskListView toDo;
+
+	private static EntityManager em = EntityManagerSingleton.getInstance();
 	
 	private static PatientTabs patientTab = new PatientTabs();
 	
 	public PatientTabsPresenter(){
-		PatientService patientService = new PatientServiceImpl();
+		PatientService patientService = new PatientServiceImpl(em);
 		// TODO fetch patient dynamicly
 		Patient patient = patientService.getPatientById(4);
 		patientTab.setSizeFull();
@@ -60,13 +63,13 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	}
 	
 	private static TaskListView todoTab(){
-		AppointmentService appointmentservice = new AppointmentServiceImpl();
+		AppointmentService appointmentservice = new AppointmentServiceImpl(em);
 		// TODO load selected appointment
 		Appointment appointment = appointmentservice.getAppointmentById(1);
 		TaskListView toDo = new TaskListView(appointment);
 		toDo.setSizeFull();
 		
-		TaskService taskservice = new TaskServiceImpl();
+		TaskService taskservice = new TaskServiceImpl(em);
 		List<Task> tasks = taskservice.getTasksByAppointment(appointment);
 		for (Task task: tasks){
 			toDo.addTask(task);

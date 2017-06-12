@@ -1,16 +1,19 @@
 package ch.bfh.bti7081.s2017.grey;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
+import javax.persistence.EntityManager;
 
 /**
  * Created by hannes on 5/17/17.
  */
 public class PatientPresenter implements PatientView.PatientViewListener {
-    PatientModel patientModel;
-    PatientView patientView;
-    PatientServiceImpl patientService = new PatientServiceImpl();
+    private PatientModel patientModel;
+    private PatientView patientView;
+    private EntityManager em = EntityManagerSingleton.getInstance();
+    private PatientServiceImpl patientService = new PatientServiceImpl(em);
     public PatientPresenter(PatientViewImpl patientView, PatientModel patientModel){
         this.patientModel=patientModel;
         this.patientView=patientView;

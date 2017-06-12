@@ -19,7 +19,6 @@ public interface AppointmentService {
     Appointment delayAppointment(Appointment appointment, LocalDateTime newDate, LocalDateTime newEnd);
     void cancelAppointment(Appointment appointment);
     void finishAppointment(Appointment appointment, LocalDateTime finished, int delay);
-    void createAppointmentDummyPatient(Staff staff, String description, String title, LocalDateTime date, LocalDateTime end);
     void deleteAppointment(Appointment appointment);
     void editAppointment(Appointment appointment);
 }
