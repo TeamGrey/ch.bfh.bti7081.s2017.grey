@@ -27,6 +27,11 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
         em = EntityManagerSingleton.getInstance();
     }
 
+    /**
+     * Add a entity to the database
+     * @param t entity to be added
+     * @return Entity with the id added
+     */
     @Override
     public T create(T t) {
         this.em.getTransaction().begin();
@@ -35,6 +40,10 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
         return t;
     }
 
+    /**
+     * Delete an entity from the database
+     * @param id Id of the entity to be deleted
+     */
     @Override
     public void delete(Object id) {
         this.em.getTransaction().begin();
@@ -42,11 +51,21 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
         this.em.getTransaction().commit();
     }
 
+    /**
+     * Find an entity by id
+     * @param id Id of the entity
+     * @return Entity if found
+     */
     @Override
     public T find(Object id) {
         return this.em.find(type, id);
     }
 
+    /**
+     * Update an entity in the database
+     * @param t Entity to be updated
+     * @return Updated entity
+     */
     @Override
     public T update(T t) {
         this.em.getTransaction().begin();
@@ -55,6 +74,10 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
         return t;
     }
 
+    /**
+     * Return all entities of this type from the database
+     * @return List of entities
+     */
     @Override
     public List<T> findAll() {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

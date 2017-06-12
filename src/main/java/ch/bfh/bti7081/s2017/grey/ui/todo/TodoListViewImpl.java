@@ -25,6 +25,9 @@ public class TodoListViewImpl extends VerticalLayout implements TodoListView {
 	private List<TodoListViewListener> listeners = new ArrayList<TodoListViewListener>();
 	private Button newTask = null;
 
+    /**
+     * @param patientTabsPresenter
+     */
     public TodoListViewImpl(PatientTabsPresenter patientTabsPresenter) {
         this.patientTabsPresenter = patientTabsPresenter;
     }

@@ -8,6 +8,9 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickListener;
 
+/**
+ * @author Ken
+ */
 public class LoginScreen extends HorizontalLayout implements View {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "LoginScreen";
@@ -15,6 +18,9 @@ public class LoginScreen extends HorizontalLayout implements View {
     Image loginLogo = new Image("",logo);
 
 
+	/**
+	 * Defines the login-screen with all its visible elements
+	 */
 	public LoginScreen(){
 		loginLogo.setId("loginlogo");
 		FormLayout content = new FormLayout();

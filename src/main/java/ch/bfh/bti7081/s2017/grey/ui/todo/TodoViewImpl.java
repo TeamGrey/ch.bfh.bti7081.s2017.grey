@@ -25,6 +25,9 @@ public class TodoViewImpl extends HorizontalLayout implements TodoView {
 	private Button removeTime = null;
 	private Button removeAppointment = null;
 
+	/**
+	 * Create view with all its components
+	 */
 	public TodoViewImpl(){
 		//Task left
 		checkbox = new CheckBox("", false);

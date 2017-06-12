@@ -9,10 +9,31 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Task;
  */
 public interface TodoListView{
     interface TodoListViewListener{
+    	/**
+    	 * Create a new task
+    	 * @param taskName Name of the new task
+    	 * @param window Current opened window
+    	 */
     	void saveNewTask(String taskName, Window window);
     }
-    public void addListener(TodoListViewListener listener);
+    
+    /**
+     * @param listener Listener to be added to the view
+     */
+    void addListener(TodoListViewListener listener);
+    
+    /**
+     * @param task Task to be added to the current list
+     */
     void addTask(Task task);
+    
+    /**
+     * Creation of the new task-button
+     */
     void addNewTaskButton();
+    
+    /**
+     * @param window Wondow to be closed
+     */
     void closeWindow(Window window);
 }

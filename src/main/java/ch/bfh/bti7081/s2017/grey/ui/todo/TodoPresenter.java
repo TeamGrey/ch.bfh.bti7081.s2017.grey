@@ -5,12 +5,21 @@ import com.vaadin.ui.Notification;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 
+/**
+ * @author Ken
+ */
 public class TodoPresenter implements TodoView.TodoViewListener {
 	private PatientTabsPresenter patientTabsPresenter;
     private TodoModel todoModel;
     private TodoView todoView;
 
+    /**
+     * Create presenter with all its components
+     * @param patientTabsPresenter
+     * @param task Task for this presenter
+     */
     public TodoPresenter(PatientTabsPresenter patientTabsPresenter, Task task) {
+    	//"The lazy way" -> Implementation like Drugs or Appointment should be made, but too little time...
     	this.patientTabsPresenter = patientTabsPresenter;
         todoModel = new TodoModel();
         todoModel.setTask(task);
@@ -21,6 +30,9 @@ public class TodoPresenter implements TodoView.TodoViewListener {
         todoView.setStatus(task.isFinished());
     }
 	
+    /**
+     * @return Attached view of this presenter
+     */
     public TodoView getView(){
     	return todoView;
     }
@@ -57,5 +69,4 @@ public class TodoPresenter implements TodoView.TodoViewListener {
 	public void toggleStatus(boolean status){
 		todoModel.toggleStatus(status);
 	}
-
 }

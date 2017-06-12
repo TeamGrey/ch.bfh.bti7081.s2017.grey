@@ -10,6 +10,9 @@ import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickListener;
 
+/**
+ * @author Ken
+ */
 public class Design extends VerticalLayout {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Design";
@@ -21,6 +24,9 @@ public class Design extends VerticalLayout {
 	ThemeResource resource = new ThemeResource("img/logo.png");
 	Image image = new Image("",resource);
 
+	/**
+	 * Main design of the website with all its core functions
+	 */
 	public Design(){
 	    image.setId("headerlogo");
 		mainlayout.setSizeFull();
@@ -48,6 +54,12 @@ public class Design extends VerticalLayout {
 		});
 	}
 
+	/**
+	 * 
+	 * @param content Content to insert
+	 * @param canGoBack If the back-button will be visible
+	 * @return Inserted component
+	 */
 	public Design insertContent(Component content, boolean canGoBack){
 		header = new HorizontalLayout();
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
