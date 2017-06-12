@@ -4,8 +4,10 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import javassist.expr.Cast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +29,12 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     public PatientViewImpl() {
         binder.forField(firstname).bind(Patient::getFirstname, Patient::setFirstname);
         binder.forField(lastname).bind(Patient::getLastname, Patient::setLastname);
-
+       // binder.forField(changed).bind(Patient::getChanged,Patient::setChanged);
+       // binder.forField(created).getField(Patient::getCreated,Patient::setChanged);
         firstname.setCaption("Vorname");
+        firstname.setEnabled(false);
         lastname.setCaption("Nachname");
+        lastname.setEnabled(false);
         created.setEnabled(false);
         created.setCaption("Erstellt am");
         changed.setEnabled(false);
@@ -43,6 +48,8 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
                 editButton.setVisible(!editButton.isVisible());
                 saveButton.setVisible(!saveButton.isVisible());
                 cancelButton.setVisible(!cancelButton.isVisible());
+                firstname.setEnabled(true);
+                lastname.setEnabled(true);
             }
 
         });
@@ -53,6 +60,8 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
                 editButton.setVisible(!editButton.isVisible());
                 saveButton.setVisible(!saveButton.isVisible());
                 cancelButton.setVisible(!cancelButton.isVisible());
+                firstname.setEnabled(false);
+                lastname.setEnabled(false);
             }
         });
 
@@ -62,6 +71,8 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
                 saveButton.setVisible(!saveButton.isVisible());
                 cancelButton.setVisible(!cancelButton.isVisible());
                 editButton.setVisible(!cancelButton.isVisible());
+                firstname.setEnabled(false);
+                lastname.setEnabled(false);
             }
 
         });
@@ -85,6 +96,8 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		
+	for (PatientViewListener listener : listeners){
+	    listener.viewEntered(VaadinSession.getCurrent().getAttribute("user").toString());
+    }
 	}
 }

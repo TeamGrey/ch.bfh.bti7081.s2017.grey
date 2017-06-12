@@ -16,6 +16,8 @@ public interface PatientView {
         void cancelClick();
 
         void setPatient(Patient patient);
+
+        void viewEntered(String user);
     }
 
     public void addListener(PatientViewListener listener);

@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey.ui.patient;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
+import com.vaadin.server.VaadinSession;
 
 /**
  * Created by hannes on 5/17/17.
@@ -34,7 +35,11 @@ public class PatientPresenter implements PatientView.PatientViewListener {
         this.patientModel.setPatient(patient);
         this.patientView.setPatient(this.patientModel.getPatient());
     }
-    
+
+    @Override
+    public void viewEntered(String user) {
+    }
+
     public PatientView getView(){
     	return patientView;
     }
