@@ -91,7 +91,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 		patients.setItemCaptionGenerator(Patient::getFirstname);
 
-	//	appointmentWindow.setWidth("500px");
+		appointmentWindow.setWidth("100%");
 		appointmentWindow.setModal(true);
 
 		startButton.addClickListener(e -> {
