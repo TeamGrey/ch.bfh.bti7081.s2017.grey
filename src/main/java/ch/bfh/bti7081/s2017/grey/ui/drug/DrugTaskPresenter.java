@@ -10,6 +10,9 @@ import com.vaadin.ui.Notification;
 import java.util.List;
 
 /**
+ * Presenter for Drug Task View
+ * populates view with the tasks from the collection
+ *
  * @author Joel
  */
 public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskFormViewListener, ModelCollectionListener {
@@ -17,6 +20,12 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
     private DrugTaskModelCollection drugTaskModelCollection;
     private DrugTaskFormView drugTaskFormView;
 
+    /**
+     * register self as listener to view and model
+     *
+     * @param drugTaskListView        view
+     * @param drugTaskModelCollection model
+     */
     public DrugTaskPresenter(DrugTaskListView drugTaskListView, DrugTaskModelCollection drugTaskModelCollection) {
         drugTaskListView.addDrugTaskListViewListener(this);
         drugTaskModelCollection.addModelCollectionListner(this);
@@ -25,12 +34,15 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         try {
             update();
         } catch (MissingAppointmentException e) {
+            // gracefully handle exception. log it and clear view
             e.printStackTrace();
-
             clear();
         }
     }
 
+    /**
+     * clear view as there is no Task
+     */
     public void clear() {
         try {
             // clear list
@@ -40,12 +52,19 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         }
     }
 
+
+    /**
+     * refresh list of Drug Task
+     *
+     * @throws MissingAppointmentException passing Exception from DrugTaskModelCollection
+     */
     public void update() throws MissingAppointmentException {
         clear();
 
         // refresh list
         List<DrugTaskModel> drugTaskModels = drugTaskModelCollection.getDrugTasks();
         for (DrugTaskModel model : drugTaskModels) {
+            // create view for model and add it to the list
             DrugTaskView view = new DrugTaskViewImpl();
             DrugTaskViewListener listener = new DrugTaskViewListener() {
                 @Override
@@ -74,6 +93,10 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         }
     }
 
+    /**
+     * onCreateTask event from DrugTaskViewList
+     * show DrugTaskForm and listen to its event
+     */
     @Override
     public void onCreateTask() {
         drugTaskFormView = new DrugTaskFormViewImpl();
@@ -81,6 +104,10 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         drugTaskFormView.setDrugList(drugTaskModelCollection.getDrugs());
     }
 
+    /**
+     * onFormClose event from DrugTaskView
+     * create new DrugTask from form data
+     */
     @Override
     public void onFormClosed() {
         // TODO handle case where task is only edited
@@ -93,13 +120,16 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         }
     }
 
+    /**
+     * onCollectionChanged event from DrugTaskModeCollection
+     * update view
+     */
     @Override
     public void onCollectionChanged() {
         try {
             update();
         } catch (MissingAppointmentException e) {
             e.printStackTrace();
-
             clear();
         }
     }

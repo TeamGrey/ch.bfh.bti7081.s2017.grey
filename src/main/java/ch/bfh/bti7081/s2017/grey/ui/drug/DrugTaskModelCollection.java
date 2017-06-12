@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * collection of drug Drug Tasks models
+ *
+ * handle all drug tasks related to a specific appointment
+ *
  * @author Joel
  */
 public class DrugTaskModelCollection {
