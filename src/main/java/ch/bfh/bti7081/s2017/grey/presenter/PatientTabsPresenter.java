@@ -68,6 +68,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	public void setAppointment(Appointment appointment) {
 		PatientTabsPresenter.appointment = appointment;
 		drugTaskModelCollection.setAppointment(appointment);
+		updateTodoTab();
 	}
 
 	public void setPatient(Patient patient) {
