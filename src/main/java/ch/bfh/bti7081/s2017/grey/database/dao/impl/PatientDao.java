@@ -15,7 +15,12 @@ import java.util.List;
  * Created by gabor on 29/05/17.
  */
 public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Patient> {
-
+    /**
+     * Find a patient by name
+     * @param firstName First name of patient
+     * @param lastName Last name of patient
+     * @return Patient
+     */
     public Patient getPatientByName(String firstName, String lastName) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Patient> criteriaQuery = criteriaBuilder.createQuery(Patient.class);
@@ -28,7 +33,11 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
         return result;
     }
 
-
+    /**
+     * Associate a list of drugs with a patient
+     * @param patient Patient to be edited
+     * @param drugs Drugs to be added
+     */
     public void addDrugsToPatient(Patient patient, List<Drug> drugs) {
         em.getTransaction().begin();
         for (Drug drug : drugs) {
@@ -47,6 +56,11 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
         em.getTransaction().commit();
     }
 
+    /**
+     * Associate a list of habits with a patient
+     * @param patient Patient to be edited
+     * @param habits Habits to be added
+     */
     public void addHabitsToPatient(Patient patient, List<Habit> habits) {
         em.getTransaction().begin();
         for (Habit habit : habits) {

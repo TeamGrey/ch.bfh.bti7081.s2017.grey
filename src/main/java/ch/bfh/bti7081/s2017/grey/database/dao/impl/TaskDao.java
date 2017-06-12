@@ -18,7 +18,11 @@ import java.util.List;
  * Created by gabor on 29/05/17.
  */
 public class TaskDao extends GenericDaoImpl<Task> implements GenericDao<Task> {
-
+    /**
+     * Find all tasks for a specific appointment
+     * @param appointment Appointment whose tasks you want
+     * @return List of tasks
+     */
     public List<Task> getTasksByAppointment(Appointment appointment) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Task> criteriaQuery = criteriaBuilder.createQuery(Task.class);
@@ -29,6 +33,13 @@ public class TaskDao extends GenericDaoImpl<Task> implements GenericDao<Task> {
         return query.getResultList();
     }
 
+    /**
+     * Associate a drug with a task
+     * @param task Task to be edited
+     * @param drug Drug to be added
+     * @param amount Amount of the drug
+     * @param units Unit of the amount
+     */
     public void addDrugToTask(Task task, Drug drug, int amount, String units) {
         em.getTransaction().begin();
         Instant instant = Instant.now();
