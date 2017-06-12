@@ -23,15 +23,18 @@ public class TodoListViewImpl extends VerticalLayout implements TodoListView {
 	private List<TodoListViewListener> listeners = new ArrayList<TodoListViewListener>();
 	private Button newTask = null;
 
-    public TodoListViewImpl() {
-    }
-
+    /* (non-Javadoc)
+     * @see ch.bfh.bti7081.s2017.grey.view.TodoListView#addTask(ch.bfh.bti7081.s2017.grey.database.entity.Task)
+     */
     @Override
     public void addTask(Task task) {
         TodoPresenter taskView = new TodoPresenter(task);
         addComponent((Component) taskView.getView());
     }
     
+    /* (non-Javadoc)
+     * @see ch.bfh.bti7081.s2017.grey.view.TodoListView#addNewTaskButton()
+     */
     @Override
     public void addNewTaskButton(){
     	newTask = new Button("Neuer Task");
@@ -61,11 +64,17 @@ public class TodoListViewImpl extends VerticalLayout implements TodoListView {
         UI.getCurrent().addWindow(window);
     }
 
+	/* (non-Javadoc)
+	 * @see ch.bfh.bti7081.s2017.grey.view.TodoListView#addListener(ch.bfh.bti7081.s2017.grey.view.TodoListView.TodoListViewListener)
+	 */
 	@Override
 	public void addListener(TodoListViewListener listener) {
 		listeners.add(listener);
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.bfh.bti7081.s2017.grey.view.TodoListView#closeWindow(com.vaadin.ui.Window)
+	 */
 	@Override
 	public void closeWindow(Window window) {
 		window.close();
