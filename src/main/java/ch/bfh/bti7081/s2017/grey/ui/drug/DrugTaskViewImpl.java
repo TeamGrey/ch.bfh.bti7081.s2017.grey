@@ -15,9 +15,10 @@ import java.util.List;
  */
 public class DrugTaskViewImpl extends CustomLayout implements DrugTaskView {
     private List<DrugTaskViewListener> listeners;
-    private Label name = null;
-    private Label amount = null;
-    private Label unit = null;
+    private Label description;
+    private String name;
+    private Integer amount;
+    private String unit;
     private Button removeBtn = null;
     private CheckBox finishedCheck = null;
 
@@ -27,12 +28,8 @@ public class DrugTaskViewImpl extends CustomLayout implements DrugTaskView {
 
         finishedCheck = new CheckBox();
         addComponent(finishedCheck, "drug-checkbox");
-        name = new Label();
-        addComponent(name, "drug-name");
-        amount = new Label();
-        addComponent(amount, "drug-amount");
-        unit = new Label();
-        addComponent(unit, "drug-unit");
+        description = new Label();
+        addComponent(description, "drug-description");
         removeBtn = new Button("X");
         addComponent(removeBtn, "drug-remove");
 
@@ -56,6 +53,10 @@ public class DrugTaskViewImpl extends CustomLayout implements DrugTaskView {
         }
     }
 
+    private void setDescription() {
+        description.setValue(name + " " + amount + " " + unit);
+    }
+
     @Override
     public void setFinished(boolean finished) {
         finishedCheck.setValue(finished);
@@ -63,12 +64,14 @@ public class DrugTaskViewImpl extends CustomLayout implements DrugTaskView {
 
     @Override
     public void setName(String name) {
-        this.name.setValue(name);
+        this.name = name;
+        this.setDescription();
     }
 
     @Override
     public void setAmount(Integer amount) {
-        this.amount.setValue(amount.toString());
+        this.amount = amount;
+        this.setDescription();
     }
 
     @Override
@@ -78,6 +81,7 @@ public class DrugTaskViewImpl extends CustomLayout implements DrugTaskView {
 
     @Override
     public void setUnit(String unit) {
-        this.unit.setValue(unit);
+        this.unit = unit;
+        this.setDescription();
     }
 }

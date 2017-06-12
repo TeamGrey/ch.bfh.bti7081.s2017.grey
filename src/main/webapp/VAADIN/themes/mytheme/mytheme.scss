@@ -162,4 +162,31 @@
 		margin-bottom: 50px;
 	}
 
+	.drug-item {
+		margin-top: 10px;
+		width: 100%;
+		text-align: center;
+		min-width: 500px;
+		overflow: hidden;
+	}
+
+	.drug-left {
+		float: left;
+		min-width: 50px;
+		overflow: hidden;
+	}
+
+	.drug-center {
+		display: inline-block;
+		margin: 0 auto;
+		min-width: 100px;
+		overflow: hidden;
+	}
+
+	.drug-right {
+		float: right;
+		min-width: 100px;
+		overflow: hidden;
+	}
+
 }
