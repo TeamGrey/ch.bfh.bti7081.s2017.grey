@@ -7,6 +7,10 @@ import ch.bfh.bti7081.s2017.grey.service.TaskService;
 import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
 
 /**
+ * Provide Model for a single Drug Task
+ *
+ * a Drug Task consists of an task and it's related drug
+ *
  * @author Joel
  */
 public class DrugTaskModel {

@@ -4,9 +4,7 @@ import ch.bfh.bti7081.s2017.grey.listener.DrugTaskViewListener;
 import com.vaadin.ui.Component;
 
 /**
- * @author Joel
- *         <p>
- *         View for a single Drug Task
+ * View for a single Drug Task
  */
 public interface DrugTaskView extends Component {
     void setFinished(boolean finished);
