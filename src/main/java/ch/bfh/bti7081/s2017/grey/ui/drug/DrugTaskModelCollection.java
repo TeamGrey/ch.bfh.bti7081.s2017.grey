@@ -48,7 +48,9 @@ public class DrugTaskModelCollection {
     public List<DrugTaskModel> getDrugTasks() throws MissingAppointmentException {
         List<DrugTaskModel> drugTaskModels = new ArrayList<>();
 
-        if (appointment == null) throw new MissingAppointmentException();
+        if (appointment == null) {
+            return drugTaskModels;
+        }
 
         List<Task> tasks = taskService.getTasksByAppointment(appointment);
         for (Task task : tasks) {
