@@ -19,6 +19,9 @@
 .mytheme .v-margin-bottom {
 	padding-bottom: 0px !important;
 }
+.v-grid-tablewrapper{
+	max-width: unset !important;
+}
 
 #loginlogo{
 	width: 100%;
@@ -34,7 +37,6 @@
 }
 
 #content * {
-	max-width:100%;
 }
 #content table{
 	table-layout: fixed;
