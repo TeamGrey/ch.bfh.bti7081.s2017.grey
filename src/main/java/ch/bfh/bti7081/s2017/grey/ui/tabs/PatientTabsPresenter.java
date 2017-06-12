@@ -30,6 +30,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private Patient patient;
 	private PatientTabs patientTab = new PatientTabs();
 	private DrugTaskModelCollection drugTaskModelCollection;
+	private PatientPresenter patientPresenter;
 	
 	public PatientTabsPresenter(){
 		patientTab.clearTabs();
@@ -37,9 +38,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		
 		PatientModel patientModel = new PatientModel();
         PatientViewImpl patientView = new PatientViewImpl();
-        patientModel.setPatient(patient);
-        patientView.setPatient(patient);
-		PatientPresenter patientPresenter = new PatientPresenter(patientView, patientModel);
+		patientPresenter = new PatientPresenter(patientView, patientModel);
 		patientTab.addTab((Component) patientPresenter.getView(), "Patient");
 
 		drugTaskModelCollection = new DrugTaskModelCollection(appointment);
@@ -73,6 +72,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	public void setAppointment(Appointment appointment) {
 		this.appointment = appointment;
 		drugTaskModelCollection.setAppointment(appointment);
+		patientPresenter.setPatient(appointment.getPatient());
 		updateTodoTab();
 	}
 

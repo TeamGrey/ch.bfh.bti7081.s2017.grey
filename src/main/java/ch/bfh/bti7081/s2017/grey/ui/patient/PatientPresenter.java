@@ -31,7 +31,8 @@ public class PatientPresenter implements PatientView.PatientViewListener {
 
     @Override
     public void setPatient(Patient patient) {
-
+        this.patientModel.setPatient(patient);
+        this.patientView.setPatient(this.patientModel.getPatient());
     }
     
     public PatientView getView(){
