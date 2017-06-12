@@ -19,11 +19,10 @@ import java.util.List;
 
 public class PatientTabsPresenter extends HorizontalLayout implements View {
 	public final static String NAME = "PatientTabs";
-	private static final long serialVersionUID = 1L;
-	private static TodoListView toDo;
-	private static Appointment appointment;
-	private static Patient patient;
-	private static PatientTabs patientTab = new PatientTabs();
+	private TodoListView toDo;
+	private Appointment appointment;
+	private Patient patient;
+	private PatientTabs patientTab = new PatientTabs();
 	private DrugTaskModelCollection drugTaskModelCollection;
 	
 	public PatientTabsPresenter(){
@@ -46,8 +45,8 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		patientTab.addTab((Component) toDo, "ToDo");
 	}
 	
-	private static TodoListView todoTab(){
-		TodoListPresenter toDo = new TodoListPresenter(appointment);
+	private TodoListView todoTab(){
+		TodoListPresenter toDo = new TodoListPresenter(this, appointment);
 
 		TaskService taskservice = new TaskServiceImpl();
 		List<Task> tasks = taskservice.getTasksByAppointment(appointment);
@@ -59,20 +58,20 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		return toDo.getView();
 	}
 	
-	public static void updateTodoTab(){
+	public void updateTodoTab(){
 		TodoListView newTodo = todoTab();
 		patientTab.replaceTab((Component)toDo, (Component)newTodo);
 		toDo = newTodo;
 	}
 
 	public void setAppointment(Appointment appointment) {
-		PatientTabsPresenter.appointment = appointment;
+		this.appointment = appointment;
 		drugTaskModelCollection.setAppointment(appointment);
 		updateTodoTab();
 	}
 
 	public void setPatient(Patient patient) {
-		PatientTabsPresenter.patient = patient;
+		this.patient = patient;
 	}
 
 	@Override

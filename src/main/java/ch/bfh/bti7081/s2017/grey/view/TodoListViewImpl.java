@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.grey.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2017.grey.presenter.PatientTabsPresenter;
 import ch.bfh.bti7081.s2017.grey.presenter.TodoPresenter;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
@@ -19,16 +20,19 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Task;
  */
 public class TodoListViewImpl extends VerticalLayout implements TodoListView {
 	private static final long serialVersionUID = 1L;
-	
+
+	private PatientTabsPresenter patientTabsPresenter;
+
 	private List<TodoListViewListener> listeners = new ArrayList<TodoListViewListener>();
 	private Button newTask = null;
 
-    public TodoListViewImpl() {
+    public TodoListViewImpl(PatientTabsPresenter patientTabsPresenter) {
+        this.patientTabsPresenter = patientTabsPresenter;
     }
 
     @Override
     public void addTask(Task task) {
-        TodoPresenter taskView = new TodoPresenter(task);
+        TodoPresenter taskView = new TodoPresenter(patientTabsPresenter, task);
         addComponent((Component) taskView.getView());
     }
     

@@ -8,12 +8,14 @@ import com.vaadin.ui.Window;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 
 public class TodoListPresenter implements TodoListView.TodoListViewListener {
+	private PatientTabsPresenter patientTabsPresenter;
     private TodoListModel todoListModel;
     private TodoListView todoListView;
 	
-	public TodoListPresenter(Appointment appointment){
+	public TodoListPresenter(PatientTabsPresenter patientTabsPresenter, Appointment appointment){
+		this.patientTabsPresenter = patientTabsPresenter;
 		todoListModel = new TodoListModel(appointment);
-        todoListView = new TodoListViewImpl();
+        todoListView = new TodoListViewImpl(patientTabsPresenter);
         todoListView.addListener(this);
 	}
 	
@@ -24,7 +26,7 @@ public class TodoListPresenter implements TodoListView.TodoListViewListener {
 	public void saveNewTask(String taskName, Window window){
 		todoListModel.createTask(taskName);
     	todoListView.closeWindow(window);
-    	PatientTabsPresenter.updateTodoTab();
+    	patientTabsPresenter.updateTodoTab();
     }
 
 }

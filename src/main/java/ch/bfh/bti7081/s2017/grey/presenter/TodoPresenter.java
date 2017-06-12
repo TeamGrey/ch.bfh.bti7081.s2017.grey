@@ -8,10 +8,12 @@ import com.vaadin.ui.Notification;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 
 public class TodoPresenter implements TodoView.TodoViewListener {
+	private PatientTabsPresenter patientTabsPresenter;
     private TodoModel todoModel;
     private TodoView todoView;
 
-    public TodoPresenter(Task task) {
+    public TodoPresenter(PatientTabsPresenter patientTabsPresenter, Task task) {
+    	this.patientTabsPresenter = patientTabsPresenter;
         todoModel = new TodoModel();
         todoModel.setTask(task);
         todoView = new TodoViewImpl();
@@ -28,7 +30,7 @@ public class TodoPresenter implements TodoView.TodoViewListener {
     @Override
 	public void removeTask(){
 		todoModel.removeTask();
-		PatientTabsPresenter.updateTodoTab();
+		patientTabsPresenter.updateTodoTab();
 	}
 	
 	@Override
