@@ -1,41 +1,42 @@
 package ch.bfh.bti7081.s2017.grey.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import ch.bfh.bti7081.s2017.grey.database.entity.Role;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import ch.bfh.bti7081.s2017.grey.database.util.JPAHibernateTest;
 import ch.bfh.bti7081.s2017.grey.service.impl.RoleServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
+import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by gabor on 29/05/17.
  */
-public class StaffServiceTest {
-    private StaffService staffService;
-    private Staff staff;
+public class StaffServiceTest extends JPAHibernateTest{
 
-    @Before
-    public void setup() {
-        staffService = new StaffServiceImpl();
-        RoleService roleService = new RoleServiceImpl();
+  private StaffService staffService;
+  private RoleService roleService;
+  private Staff staff;
 
-        Role role = roleService.findRoleById(1);
+  @Before
+  public void setup() {
+    staffService = new StaffServiceImpl(em);
+    roleService = new RoleServiceImpl(em);
 
-        staff = staffService.createStaff("TestF", "TestL", "test", "password", role);
-    }
+    Role role = roleService.findRoleById(1);
 
-    @After
-    public void cleanUp() {
-        staffService.deleteStaff(staff);
-    }
+    staff = staffService.createStaff("TestF", "TestL", "test", "password", role);
+  }
 
-    @Test
-    public void testCreateStaff() {
-        assertNotNull(staff);
-        Staff teststaff = staffService.findStaffByLogin("test");
-        assertEquals(staff, teststaff);
-    }
+  @Test
+  public void testCreateStaff() {
+    assertNotNull(staff);
+    Staff teststaff = staffService.findStaffByLogin("test");
+    assertEquals(staff, teststaff);
+  }
+
 }

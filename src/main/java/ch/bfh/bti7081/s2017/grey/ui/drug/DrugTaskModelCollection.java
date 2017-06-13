@@ -4,6 +4,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.exeption.MissingAppointmentException;
 import ch.bfh.bti7081.s2017.grey.listener.ModelCollectionListener;
 import ch.bfh.bti7081.s2017.grey.service.DrugService;
@@ -13,6 +14,7 @@ import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  * collection of drug Drug Tasks models
@@ -26,12 +28,13 @@ public class DrugTaskModelCollection {
     private Appointment appointment = null;
     private TaskService taskService;
     private DrugService drugService;
+    private EntityManager em = EntityManagerSingleton.getInstance();
 
     public DrugTaskModelCollection(Appointment appointment) {
         listeners = new ArrayList<>();
         this.appointment = appointment;
-        taskService = new TaskServiceImpl();
-        drugService = new DrugServiceImpl();
+        taskService = new TaskServiceImpl(em);
+        drugService = new DrugServiceImpl(em);
     }
 
     public void addModelCollectionListner(ModelCollectionListener listener) {

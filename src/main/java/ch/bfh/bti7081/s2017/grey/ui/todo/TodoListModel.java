@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.ui.todo;
 
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import javax.persistence.NoResultException;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
@@ -24,7 +25,7 @@ public class TodoListModel {
     private void singleton(){
     	if (taskService == null){
             // kind of singleton pattern for taskService
-        	taskService = new TaskServiceImpl();
+        	taskService = new TaskServiceImpl(EntityManagerSingleton.getInstance());
         }
     }
 
