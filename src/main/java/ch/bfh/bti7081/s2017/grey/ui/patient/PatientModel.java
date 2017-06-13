@@ -1,7 +1,9 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.EmergencyContact;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
+import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
 import ch.bfh.bti7081.s2017.grey.service.impl.EmergencyContactServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 
@@ -16,6 +18,7 @@ public class PatientModel {
    PatientServiceImpl patientService = new PatientServiceImpl();
    Patient patient = new Patient();
    List emContact = new ArrayList <>();
+   List drugList = new ArrayList<>();
 
    public void setPatient(Patient newpatient) {
       this.patient = newpatient;
@@ -31,6 +34,15 @@ public class PatientModel {
       this.patient = patient;
       patientService.updatePatient(patient);
   }
+
+  public List<Drug> getDrugList(){
+      return this.drugList;
+  }
+
+  public void setDrugList(List <PatientDrugAssociation> drugList){
+      this.drugList=drugList;
+  }
+
   public List<EmergencyContact> getEmContact(){
       return this.emContact;
   }
