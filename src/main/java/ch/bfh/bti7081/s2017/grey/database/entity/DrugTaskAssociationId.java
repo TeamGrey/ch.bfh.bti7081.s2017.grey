@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @version 21.05.2017
  */
 public class DrugTaskAssociationId implements Serializable {
+    private long id;
     private long drugId;
     private long taskId;
 

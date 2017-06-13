@@ -23,6 +23,12 @@ public class TaskDao extends GenericDaoImpl<Task> implements GenericDao<Task> {
     super(em);
   }
 
+  /**
+   * Find all tasks for a specific appointment
+   *
+   * @param appointment Appointment whose tasks you want
+   * @return List of tasks
+   */
   public List<Task> getTasksByAppointment(Appointment appointment) {
     CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
     CriteriaQuery<Task> criteriaQuery = criteriaBuilder.createQuery(Task.class);
@@ -34,24 +40,30 @@ public class TaskDao extends GenericDaoImpl<Task> implements GenericDao<Task> {
     return query.getResultList();
   }
 
-  public void addDrugsToTask(Task task, List<Drug> drugs, int amount, String units) {
+  /**
+   * Associate a drug with a task
+   *
+   * @param task Task to be edited
+   * @param drug Drug to be added
+   * @param amount Amount of the drug
+   * @param units Unit of the amount
+   */
+  public void addDrugToTask(Task task, Drug drug, int amount, String units) {
     em.getTransaction().begin();
     Instant instant = Instant.now();
     Timestamp timestamp = new Timestamp(instant.toEpochMilli());
-    for (Drug drug : drugs) {
-      DrugTaskAssociation association = new DrugTaskAssociation();
-      association.setTask(task);
-      association.setDrug(drug);
-      association.setTaskId(task.getId());
-      association.setDrugId(drug.getId());
-      association.setAmount(amount);
-      association.setAmountUnits(units);
-      association.setCreated(timestamp);
-      association.setChanged(timestamp);
-      em.persist(association);
-      task.getDrugs().add(association);
-      drug.getTasks().add(association);
-    }
+    DrugTaskAssociation association = new DrugTaskAssociation();
+    association.setTask(task);
+    association.setDrug(drug);
+    association.setTaskId(task.getId());
+    association.setDrugId(drug.getId());
+    association.setAmount(amount);
+    association.setAmountUnits(units);
+    association.setCreated(timestamp);
+    association.setChanged(timestamp);
+    em.persist(association);
+    task.getDrugs().add(association);
+    drug.getTasks().add(association);
     em.getTransaction().commit();
   }
 }

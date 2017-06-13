@@ -18,11 +18,22 @@ public class HabitServiceImpl implements HabitService {
     dao = new HabitDao(em);
   }
 
+  /**
+   * Finds a habit by it's id
+   *
+   * @param id Id of the habit
+   * @return Habit if found
+   */
   @Override
   public Habit findHabitById(long id) {
     return dao.find(id);
   }
 
+  /**
+   * Creates a new habit
+   *
+   * @param name Name of the habit
+   */
   @Override
   public void createHabit(String name) {
     Instant instant = Instant.now();

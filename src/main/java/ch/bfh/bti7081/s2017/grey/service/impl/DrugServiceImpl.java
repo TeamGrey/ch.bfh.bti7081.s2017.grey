@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.service.DrugService;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -18,6 +19,11 @@ public class DrugServiceImpl implements DrugService {
     dao = new DrugDao(em);
   }
 
+  /**
+   * Creates a new drug
+   *
+   * @param name Name of the drug
+   */
   @Override
   public void createDrug(String name) {
     Instant instant = Instant.now();
@@ -29,6 +35,12 @@ public class DrugServiceImpl implements DrugService {
     dao.create(drug);
   }
 
+  /**
+   * Changes the drug name
+   *
+   * @param drug Drug to be added
+   * @param newName New name of the drug
+   */
   @Override
   public void updateDrugName(Drug drug, String newName) {
     drug.setName(newName);
@@ -38,9 +50,24 @@ public class DrugServiceImpl implements DrugService {
     dao.update(drug);
   }
 
+  /**
+   * Finds a drug by it's id
+   *
+   * @param id Id of the drug
+   * @return Drug if found
+   */
   @Override
   public Drug getDrugById(long id) {
     return dao.find(id);
   }
 
+  /**
+   * Returns all drugs
+   *
+   * @return List of drugs
+   */
+  @Override
+  public List<Drug> getAllDrugs() {
+    return dao.findAll();
+  }
 }

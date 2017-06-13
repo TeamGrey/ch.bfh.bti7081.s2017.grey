@@ -20,6 +20,12 @@ public class EmergencyContactDao extends GenericDaoImpl<EmergencyContact> implem
     super(em);
   }
 
+  /**
+   * Find all emergency contacts for one patient
+   *
+   * @param patient Patient whose emergency contacts you want
+   * @return List of emergency contacts
+   */
   public List<EmergencyContact> findEmergencyContactForPatient(Patient patient) {
     CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
     CriteriaQuery<EmergencyContact> criteriaQuery = criteriaBuilder
