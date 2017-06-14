@@ -93,7 +93,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		terminTitel.setCaption("Termin Bezeichnung");
 		terminBeschrieb.setCaption("Termin Beschreibung");
 
-		cal.setWidth("1000px");
+		cal.setWidth("100%");
 		cal.setHeight("600px");
 		cal.setLocale(Locale.GERMANY);
 		cal.setWeeklyCaptionFormat("dd.MM.yyyy");
@@ -101,7 +101,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 		patients.setItemCaptionGenerator(Patient::getFirstname);
 
-		appointmentWindow.setWidth("500px");
+		appointmentWindow.setWidth("100%");
 		appointmentWindow.setModal(true);
 
 		startButton.addClickListener(e -> {
@@ -213,9 +213,12 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
         });
 
 		buttonLayout.addComponents(startButton, newButton, editButton, deleteButton);
+		buttonLayout.setId("av-buttonlayout");
 		calendarLayout.addComponents(monthView, weekView, dayView);
+		calendarLayout.setId("av-calendar-layout");
 		appointmentLayout.addComponents(startDate, endDate, terminTitel, terminBeschrieb, patients, okButton);
 		layout.addComponents(buttonLayout, calendarLayout, cal);
+		appointmentLayout.setId("av-appointmentlayout");
 		appointmentWindow.setContent(appointmentLayout);
 		this.addComponents(layout);
 	}
@@ -289,6 +292,6 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		}
 
 		Design design = new Design();
-		this.addComponent(design.insertContent(layout, false));
+		this.addComponent(design.insertContent(layout, false, false));
 	}
 }

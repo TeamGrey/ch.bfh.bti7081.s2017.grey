@@ -19,6 +19,9 @@
 .mytheme .v-margin-bottom {
 	padding-bottom: 0px !important;
 }
+.v-grid-tablewrapper{
+	max-width: unset !important;
+}
 
 #loginlogo{
 	width: 100%;
@@ -33,6 +36,34 @@
 	vertical-align: middle;
 }
 
+#content * {
+}
+#content table{
+	table-layout: fixed;
+	word-break: break-all;
+	width: 100%;
+	margin-left: -1px;
+}
+
+#profilbild{
+	width:250px;
+	height:250px;
+}
+
+#profilelayout{
+	padding: 5px;
+}
+.v-window{
+	padding: 20px !important;
+	margin-left: -40% !important;
+	left: 50% !important;
+	width: 80% !important;
+}
+
+
+#footer{
+	z-index: 0t;
+}
 @import "../valo/valo.scss";
 
 @mixin mytheme { 
@@ -52,6 +83,12 @@
 
 
 	}
+
+	#logincontent *{
+		max-width:100%;
+		table-layout: fixed;
+		word-break: break-all;
+}
 	
 	footer {
 		width: 100%;
