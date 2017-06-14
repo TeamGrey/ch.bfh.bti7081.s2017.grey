@@ -1,9 +1,11 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.*;
+import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import ch.bfh.bti7081.s2017.grey.service.impl.DrugServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.EmergencyContactServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.HabitServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
@@ -31,6 +33,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private TextField changed = new TextField();
     private TextField emcFirstname = new TextField();
     private TextField emcLastname = new TextField();
+    private PatientService patientService = new PatientServiceImpl();
     private TextField emcPhone = new TextField();
     private FormLayout patientinfo = new FormLayout();
     private FormLayout emcinfo = new FormLayout();
@@ -40,9 +43,12 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private Label emLabel = new Label();
     private DrugServiceImpl drugService = new DrugServiceImpl();
     private Button emSaveButton;
+
+    private List<Drug> drugSetlist = new ArrayList<>();
     private Grid <EmergencyContact> grid = new Grid<>();
     private Grid <Drug> drugGrid = new Grid<>();
     private Grid <Habit> habitGrid = new Grid<>();
+    private Grid <Drug> drugSelector = new Grid<>();
     final GridLayout profileLayout = new GridLayout(5,5);
     private Window emergencyContactWindow = new Window("Notfallkontakt");
     private Window drugWindow = new Window("Medikation");
@@ -69,6 +75,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         grid.addColumn(EmergencyContact::getFirstname).setCaption("Vorname");
         grid.addColumn(EmergencyContact::getLastname).setCaption("Nachname");
         grid.addColumn(EmergencyContact::getPhonenumber).setCaption("Telefonnummer");
+
         drugGrid.addColumn(Drug::getName).setCaption("Bezeichnung");
         grid.setWidth("100%");
         habitGrid.addColumn(Habit::getName).setCaption("Gewohnheiten");
@@ -172,10 +179,18 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         });
 
         addDrugButton.addClickListener((Button.ClickEvent e)->{
-            drugInfo.addComponents(drugName,addNewDrugButton);
+            drugSelector.setItems(drugService.getAllDrugs());
+            drugSelector.addColumn(Drug::getName).setCaption("Medikament");
+            drugSelector.setSelectionMode(Grid.SelectionMode.MULTI);
+
+            drugInfo.addComponents(drugSelector,addNewDrugButton);
            drugWindow.setContent(drugInfo);
            UI.getCurrent().addWindow(drugWindow);
         });
+
+        drugSelector.addSelectionListener(e->{
+            patientService.addDrugsToPatient(binder.getBean(), (List<Drug>) e.getAllSelectedItems());
+            });
         emcAddButton.addClickListener((Button.ClickEvent e)->{
             emergencyContactService.createEmergencyContact(this.emcFirstname.getValue(),this.emcLastname.getValue(),this.emcPhone.getValue(),binder.getBean());
             UI.getCurrent().removeWindow(emergencyContactWindow);
