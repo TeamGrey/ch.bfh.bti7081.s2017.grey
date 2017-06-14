@@ -24,6 +24,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private Binder<Patient> binder = new Binder<>(Patient.class);
     private Binder<EmergencyContact> emBinder = new Binder<>(EmergencyContact.class);
     private List <Habit> habitArray = new ArrayList();
+    private List <Drug> drugArray = new ArrayList<>();
     private TextField firstname = new TextField();
     private TextField lastname = new TextField();
     private TextField created = new TextField();
@@ -37,6 +38,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private FormLayout patientFormControls = new FormLayout();
     private EmergencyContactServiceImpl emergencyContactService = new EmergencyContactServiceImpl();
     private Label emLabel = new Label();
+    private DrugServiceImpl drugService = new DrugServiceImpl();
     private Button emSaveButton;
     private Grid <EmergencyContact> grid = new Grid<>();
     private Grid <Drug> drugGrid = new Grid<>();
@@ -166,8 +168,6 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         });
 
         addNewDrugButton.addClickListener((Button.ClickEvent e)->{
-            DrugServiceImpl drugService = new DrugServiceImpl();
-            drugService.createDrug(drugName.getValue());
 
         });
 
@@ -219,6 +219,12 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     @Override
     public void setDrugList(List<PatientDrugAssociation> drugList) {
         //this.drugGrid.setItems(drugList);
+        for(PatientDrugAssociation element : drugList){
+            drugArray.add(drugService.getDrugById(element.getId()));
+
+        }
+        this.drugGrid.setItems(drugArray);
+        System.out.println(habitArray);
     }
 
     @Override

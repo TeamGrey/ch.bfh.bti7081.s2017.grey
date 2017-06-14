@@ -213,9 +213,12 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
         });
 
 		buttonLayout.addComponents(startButton, newButton, editButton, deleteButton);
+		buttonLayout.setId("av-buttonlayout");
 		calendarLayout.addComponents(monthView, weekView, dayView);
+		calendarLayout.setId("av-calendar-layout");
 		appointmentLayout.addComponents(startDate, endDate, terminTitel, terminBeschrieb, patients, okButton);
 		layout.addComponents(buttonLayout, calendarLayout, cal);
+		appointmentLayout.setId("av-appointmentlayout");
 		appointmentWindow.setContent(appointmentLayout);
 		this.addComponents(layout);
 	}

@@ -29,7 +29,7 @@ public class LoginScreen extends HorizontalLayout implements View {
 		content.addComponent(username);
 		PasswordField password = new PasswordField("Password");
 		content.addComponent(password);
-
+		content.setId("logincontent");
 		Button send = new Button("Enter");
 		send.addClickListener(new ClickListener() {
 			private static final long serialVersionUID = 1L;

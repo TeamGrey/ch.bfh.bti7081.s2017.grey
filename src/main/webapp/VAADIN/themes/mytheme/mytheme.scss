@@ -44,9 +44,6 @@
 	width: 100%;
 	margin-left: -1px;
 }
-.v-calendar-day-times-Hsized, .v-calendar-day-times-Hsized .v-datecellslot, .v-calendar-day-times-Hsized .v-datecellslot-even{
-	width: auto;
-}
 
 #profilbild{
 	width:250px;
@@ -63,18 +60,10 @@
 	width: 80% !important;
 }
 
-.v-calendar-day-times-today{
-	width: 100% !important;
-}
-.v-calendar-week-numbers{
-	display: none;
-}
 
-.v-calendar-week-wrapper > table *{
-	table-layout: unset !important;
-	word-break: unset !important;
+#footer{
+	z-index: 0t;
 }
-
 @import "../valo/valo.scss";
 
 @mixin mytheme { 
@@ -94,6 +83,12 @@
 
 
 	}
+
+	#logincontent *{
+		max-width:100%;
+		table-layout: fixed;
+		word-break: break-all;
+}
 	
 	footer {
 		width: 100%;
