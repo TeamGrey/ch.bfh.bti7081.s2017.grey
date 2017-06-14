@@ -35,10 +35,9 @@ public class AuthenticationTest extends JPAHibernateTest {
 
   @Test
   public void testAuthentication() {
-    assertFalse(Authentication.authenticate("test", "wrong password"));
-    assertFalse(Authentication.authenticate("wrong username", "password"));
     Staff staff = staffService.findStaffByLogin("test");
     assertTrue(Authentication.authenticate(staff, "password"));
+    assertFalse(Authentication.authenticate(staff, "wrong pass"));
   }
 
 }

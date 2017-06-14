@@ -35,8 +35,8 @@ public class StaffServiceTest extends JPAHibernateTest{
   @Test
   public void testCreateStaff() {
     assertNotNull(staff);
-    Staff teststaff = staffService.findStaffByLogin("test");
-    assertEquals(staff, teststaff);
+    Staff testStaff = staffService.findStaffByLogin("test");
+    assertEquals(staff, testStaff);
   }
 
 }
