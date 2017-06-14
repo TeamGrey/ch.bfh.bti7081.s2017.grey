@@ -19,11 +19,7 @@ public class DrugServiceImpl implements DrugService {
     dao = new DrugDao(em);
   }
 
-  /**
-   * Creates a new drug
-   *
-   * @param name Name of the drug
-   */
+  /** @see DrugService#createDrug(String) */
   @Override
   public void createDrug(String name) {
     Instant instant = Instant.now();
@@ -35,12 +31,7 @@ public class DrugServiceImpl implements DrugService {
     dao.create(drug);
   }
 
-  /**
-   * Changes the drug name
-   *
-   * @param drug Drug to be added
-   * @param newName New name of the drug
-   */
+  /** @see DrugService#updateDrugName(Drug, String) */
   @Override
   public void updateDrugName(Drug drug, String newName) {
     drug.setName(newName);
@@ -50,22 +41,13 @@ public class DrugServiceImpl implements DrugService {
     dao.update(drug);
   }
 
-  /**
-   * Finds a drug by it's id
-   *
-   * @param id Id of the drug
-   * @return Drug if found
-   */
+  /** @see DrugService#getDrugById(long) */
   @Override
   public Drug getDrugById(long id) {
     return dao.find(id);
   }
 
-  /**
-   * Returns all drugs
-   *
-   * @return List of drugs
-   */
+  /** @see DrugService#getAllDrugs() */
   @Override
   public List<Drug> getAllDrugs() {
     return dao.findAll();

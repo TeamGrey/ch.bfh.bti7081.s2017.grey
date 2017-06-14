@@ -18,22 +18,13 @@ public class RoleServiceImpl implements RoleService {
     dao = new RoleDao(em);
   }
 
-  /**
-   * Finds a role by it's id
-   *
-   * @param id Id of the role
-   * @return Role if found
-   */
+  /** @see RoleService#findRoleById(long) */
   @Override
   public Role findRoleById(long id) {
     return dao.find(id);
   }
 
-  /**
-   * Creates a new role
-   *
-   * @param name Name of the role
-   */
+  /** @see RoleService#createRole(String) */
   @Override
   public void createRole(String name) {
     Instant instant = Instant.now();
