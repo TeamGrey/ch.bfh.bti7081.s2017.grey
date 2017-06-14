@@ -48,7 +48,6 @@ public class MyUI extends UI implements AppointmentPresenter.AppointmentPresente
 
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
-		getNavigator().addView(FinishAppointmentViewImpl.NAME, finishAppointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, patientTabsPresenter);
 		getNavigator().setErrorView(LoginScreen.class);
 

@@ -1,6 +1,7 @@
-package ch.bfh.bti7081.s2017.grey;
+package ch.bfh.bti7081.s2017.grey.ui.appointment;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
 import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
 
@@ -8,7 +9,8 @@ import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
  * Created by gabor on 07/06/17.
  */
 public class FinishAppointmentModel {
-    private AppointmentService appointmentService = new AppointmentServiceImpl();
+    private AppointmentService appointmentService = new AppointmentServiceImpl(
+            EntityManagerSingleton.getInstance());
 
     private Appointment appointment;
     private int delay;
