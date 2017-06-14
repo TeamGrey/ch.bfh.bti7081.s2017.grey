@@ -10,7 +10,6 @@ import ch.bfh.bti7081.s2017.grey.service.StaffService;
 import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
-import javafx.scene.Parent;
 
 import java.sql.Timestamp;
 import java.time.ZoneId;

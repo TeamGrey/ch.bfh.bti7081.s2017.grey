@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.ui;
 
 import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentViewImpl;
+import ch.bfh.bti7081.s2017.grey.ui.appointment.FinishAppointmentViewImpl;
 import ch.bfh.bti7081.s2017.grey.ui.login.LoginScreen;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Page;
@@ -21,6 +22,7 @@ public class Design extends VerticalLayout {
 	private HorizontalLayout header;
 	private Button logout = new Button("Logout");
 	private Button back = new Button("Back");
+	private Button finish = new Button("Finish");
 	ThemeResource resource = new ThemeResource("img/logo.png");
 	Image image = new Image("",resource);
 
@@ -52,6 +54,13 @@ public class Design extends VerticalLayout {
 				Page.getCurrent().setUriFragment("!"+ AppointmentViewImpl.NAME);
 			}
 		});
+
+		finish.addClickListener(new ClickListener() {
+			@Override
+			public void buttonClick(Button.ClickEvent clickEvent) {
+				Page.getCurrent().setUriFragment("!"+ FinishAppointmentViewImpl.NAME);
+			}
+		});
 	}
 
 	/**
@@ -60,11 +69,12 @@ public class Design extends VerticalLayout {
 	 * @param canGoBack If the back-button will be visible
 	 * @return Inserted component
 	 */
-	public Design insertContent(Component content, boolean canGoBack){
+	public Design insertContent(Component content, boolean canGoBack, boolean canFinish){
 		header = new HorizontalLayout();
 		if(VaadinSession.getCurrent().getAttribute("user") != null){
 			header.addComponents(image, logout);
 			if(canGoBack) header.addComponent(back);
+			if(canFinish) header.addComponent(finish);
 		}
 		else{
 			header.addComponents(image);

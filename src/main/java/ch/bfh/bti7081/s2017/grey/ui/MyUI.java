@@ -3,10 +3,8 @@ package ch.bfh.bti7081.s2017.grey.ui;
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
-import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentModel;
-import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentPresenter;
+import ch.bfh.bti7081.s2017.grey.ui.appointment.*;
 import ch.bfh.bti7081.s2017.grey.ui.tabs.PatientTabsPresenter;
-import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentViewImpl;
 import ch.bfh.bti7081.s2017.grey.ui.login.LoginScreen;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
@@ -30,6 +28,7 @@ import com.vaadin.ui.UI;
 public class MyUI extends UI implements AppointmentPresenter.AppointmentPresenterListener  {
 	private AppointmentPresenter appointmentPresenter;
 	private PatientTabsPresenter patientTabsPresenter;
+	private FinishAppointmentModel finishAppointmentModel;
 
 	@WebServlet(value = "/*", asyncSupported = true)
 	public static class Servlet extends VaadinServlet {
@@ -44,11 +43,16 @@ public class MyUI extends UI implements AppointmentPresenter.AppointmentPresente
 		appointmentPresenter = new AppointmentPresenter(appointmentView, appointmentModel);
 		appointmentPresenter.addListener(this);
 
+		finishAppointmentModel = new FinishAppointmentModel();
+		FinishAppointmentViewImpl finishAppointmentView = new FinishAppointmentViewImpl();
+		FinishAppointmentPresenter finishAppointmentPresenter = new FinishAppointmentPresenter(finishAppointmentModel, finishAppointmentView);
+
 		patientTabsPresenter = new PatientTabsPresenter();
 
 		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
 		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
 		getNavigator().addView(PatientTabsPresenter.NAME, patientTabsPresenter);
+		getNavigator().addView(FinishAppointmentViewImpl.NAME, finishAppointmentView);
 		getNavigator().setErrorView(LoginScreen.class);
 
 		router();
@@ -57,6 +61,7 @@ public class MyUI extends UI implements AppointmentPresenter.AppointmentPresente
 	@Override
 	public void appointmentSelected(Appointment appointment) {
 		patientTabsPresenter.setAppointment(appointment);
+		finishAppointmentModel.setAppointment(appointment);
 		getNavigator().navigateTo(PatientTabsPresenter.NAME);
 	}
 

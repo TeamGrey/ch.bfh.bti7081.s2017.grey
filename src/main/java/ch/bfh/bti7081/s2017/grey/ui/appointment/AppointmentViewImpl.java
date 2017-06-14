@@ -292,6 +292,6 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		}
 
 		Design design = new Design();
-		this.addComponent(design.insertContent(layout, false));
+		this.addComponent(design.insertContent(layout, false, false));
 	}
 }

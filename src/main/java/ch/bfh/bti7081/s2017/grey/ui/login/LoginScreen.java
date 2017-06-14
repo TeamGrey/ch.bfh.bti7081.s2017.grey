@@ -44,7 +44,7 @@ public class LoginScreen extends HorizontalLayout implements View {
 		content.addComponent(send);
 
 		Design design = new Design();
-		addComponent(design.insertContent(content, false));
+		addComponent(design.insertContent(content, false, false));
 	}
 
 	@Override
