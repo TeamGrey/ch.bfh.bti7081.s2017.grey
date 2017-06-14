@@ -28,18 +28,18 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
 
     private TextArea protocol = new TextArea();
 
-    private Label summary = new Label("Abschliessen");
+    private Label summary = new Label("Zusammenfassung");
     private Label delay = new Label("Verspätung");
     private Label delayAmount = new Label("0 Min");
-    private Label openTasks = new Label("Offene Tasks");
+    private Label openTasks = new Label("Tasks");
 
+    private VerticalLayout layout = new VerticalLayout();
     private HorizontalLayout delayLayout = new HorizontalLayout();
 
     public FinishAppointmentViewImpl() {
-        binder.forField(protocol).bind(Appointment::getProtocol, Appointment::setProtocol);
         addDelay.setCaption("+ 5 Min");
         subtractDelay.setCaption("- 5 Min");
-        finish.setCaption("Zusammenfassung");
+        finish.setCaption("Abschliessen");
 
         protocol.setCaption("Protokoll");
 

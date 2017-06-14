@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.ui.appointment;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import com.vaadin.ui.Notification;
 
 /**
@@ -14,7 +15,6 @@ public class FinishAppointmentPresenter implements FinishAppointmentView.FinishA
         this.finishAppointmentView = finishAppointmentView;
 
         this.finishAppointmentView.addListener(this);
-        this.finishAppointmentView.setAppointment(finishAppointmentModel.getAppointment(1));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class FinishAppointmentPresenter implements FinishAppointmentView.FinishA
     }
 
     @Override
-    public void viewEntered(long AppointmentId) {
-        finishAppointmentView.setAppointment(finishAppointmentModel.getAppointment(AppointmentId));
+    public void viewEntered() {
+        finishAppointmentView.setAppointment(finishAppointmentModel.getAppointment());
     }
 }

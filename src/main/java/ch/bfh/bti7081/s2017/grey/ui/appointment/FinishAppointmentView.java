@@ -12,7 +12,7 @@ public interface FinishAppointmentView {
         void subtractDelayClick(int time);
         void finishClick();
 
-        void viewEntered(long AppointmentId);
+        void viewEntered();
     }
     void addListener(FinishAppointmentViewListener listener);
     void setAppointment(Appointment appointment);

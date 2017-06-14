@@ -25,8 +25,8 @@ public class FinishAppointmentModel {
         appointmentService.editAppointment(appointment);
     }
 
-    public Appointment getAppointment(long id) {
-        return appointmentService.getAppointmentById(id );
+    public Appointment getAppointment() {
+        return this.appointment;
     }
 
     public void setAppointment(Appointment appointment) {
