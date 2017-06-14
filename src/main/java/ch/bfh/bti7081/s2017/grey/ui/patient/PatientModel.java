@@ -27,7 +27,7 @@ public class PatientModel {
   }
 
   public void editPatient(Patient changedpatient, int patientId) {
-    this.patient = patient;
+    this.patient = changedpatient;
     patientService.updatePatient(patient);
   }
 }
