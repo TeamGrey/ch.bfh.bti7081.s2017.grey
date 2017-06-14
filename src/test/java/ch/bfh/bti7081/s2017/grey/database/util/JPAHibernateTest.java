@@ -25,10 +25,11 @@ public class JPAHibernateTest {
   public static void init() throws FileNotFoundException, SQLException {
     emf = Persistence.createEntityManagerFactory("CRM-test");
     em = emf.createEntityManager();
+    initializeDatabase();
   }
 
-  @Before
-  public void initializeDatabase(){
+
+  public static void initializeDatabase(){
     Session session = em.unwrap(Session.class);
     session.doWork(new Work() {
       @Override

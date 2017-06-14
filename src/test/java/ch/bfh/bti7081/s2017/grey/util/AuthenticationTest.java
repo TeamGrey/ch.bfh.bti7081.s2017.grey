@@ -35,22 +35,9 @@ public class AuthenticationTest extends JPAHibernateTest {
 
   @Test
   public void testAuthentication() {
-    assertFalse(Authentication.authenticate("test", "wrong password"));
-    assertFalse(Authentication.authenticate("wrong username", "password"));
     Staff staff = staffService.findStaffByLogin("test");
     assertTrue(Authentication.authenticate(staff, "password"));
+    assertFalse(Authentication.authenticate(staff, "wrong pass"));
   }
 
-  @Ignore
-  @Test
-  public void generateHashandSalts() {
-    List<Staff> allStaff = staffService.getAllStaff();
-    for (Staff staff : allStaff) {
-      String salt = Authentication.generateSalt();
-      String hash = Authentication.generateHash("asdf", salt);
-      staff.setPwhash(hash);
-      staff.setSalt(salt);
-    }
-    staffService.saveAllStaff(allStaff);
-  }
 }
