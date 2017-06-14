@@ -102,6 +102,6 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 		MyUI.loggedIn();
 
 		Design design = new Design();
-		addComponent(design.insertContent(patientTab, true));
+		addComponent(design.insertContent(patientTab, true, true));
 	}
 }
