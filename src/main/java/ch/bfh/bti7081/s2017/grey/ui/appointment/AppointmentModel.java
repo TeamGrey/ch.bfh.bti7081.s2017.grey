@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.grey.ui.appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import ch.bfh.bti7081.s2017.grey.service.StaffService;
@@ -14,15 +15,18 @@ import javafx.scene.Parent;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.util.*;
+import javax.persistence.EntityManager;
 
 /**
  * Created by Nic on 15.05.17.
  * Model for the Appointment View
  */
 public class AppointmentModel {
-    private AppointmentService appointmentService = new AppointmentServiceImpl();
-    private PatientService patientService = new PatientServiceImpl();
-    private StaffService staffService = new StaffServiceImpl();
+    private AppointmentService appointmentService = new AppointmentServiceImpl(
+        EntityManagerSingleton.getInstance());
+    private EntityManager em = EntityManagerSingleton.getInstance();
+    private PatientService patientService = new PatientServiceImpl(em);
+    private StaffService staffService = new StaffServiceImpl(em);
 
     private Appointment appointment;
     private Staff staff;

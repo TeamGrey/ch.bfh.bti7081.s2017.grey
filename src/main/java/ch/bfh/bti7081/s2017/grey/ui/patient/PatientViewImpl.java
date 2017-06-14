@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.*;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
 import ch.bfh.bti7081.s2017.grey.service.impl.DrugServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.EmergencyContactServiceImpl;
@@ -14,6 +15,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,15 +35,16 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private TextField changed = new TextField();
     private TextField emcFirstname = new TextField();
     private TextField emcLastname = new TextField();
-    private PatientService patientService = new PatientServiceImpl();
+    private EntityManager em = EntityManagerSingleton.getInstance();
+    private PatientService patientService = new PatientServiceImpl(em);
     private TextField emcPhone = new TextField();
     private FormLayout patientinfo = new FormLayout();
     private FormLayout emcinfo = new FormLayout();
     private FormLayout drugInfo = new FormLayout();
     private FormLayout patientFormControls = new FormLayout();
-    private EmergencyContactServiceImpl emergencyContactService = new EmergencyContactServiceImpl();
+    private EmergencyContactServiceImpl emergencyContactService = new EmergencyContactServiceImpl(em);
     private Label emLabel = new Label();
-    private DrugServiceImpl drugService = new DrugServiceImpl();
+    private DrugServiceImpl drugService = new DrugServiceImpl(em);
     private Button emSaveButton;
 
     private List<Drug> drugSetlist = new ArrayList<>();
@@ -60,7 +63,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     public Button cancelButton = new Button("Abbrechen", VaadinIcons.WARNING);
     public Button addDrugButton = new Button("Medikation Hinzufügen", VaadinIcons.PILL);
     public Button addNewDrugButton = new Button("Hinzufügen");
-    private HabitServiceImpl habitService = new HabitServiceImpl();
+    private HabitServiceImpl habitService = new HabitServiceImpl(em);
     private ThemeResource resource = new ThemeResource(
             "img/profile.png");
     private Image image = new Image("Image from file", resource);

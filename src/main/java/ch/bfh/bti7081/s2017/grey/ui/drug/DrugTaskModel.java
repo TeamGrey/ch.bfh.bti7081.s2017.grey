@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.grey.ui.drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.DrugTaskAssociation;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.service.TaskService;
 import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
 
@@ -23,7 +24,7 @@ public class DrugTaskModel {
     }
 
     DrugTaskModel(Task task, DrugTaskAssociation asoc) {
-        taskService = new TaskServiceImpl();
+        taskService = new TaskServiceImpl(EntityManagerSingleton.getInstance());
         this.task = task;
         this.asoc = asoc;
     }

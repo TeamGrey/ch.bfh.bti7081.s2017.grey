@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.ui.tabs;
 
+import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.ui.Design;
 import ch.bfh.bti7081.s2017.grey.ui.MyUI;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
@@ -60,7 +61,7 @@ public class PatientTabsPresenter extends HorizontalLayout implements View {
 	private TodoListView todoTab(){
 		TodoListPresenter toDo = new TodoListPresenter(this, appointment);
 
-		TaskService taskservice = new TaskServiceImpl();
+		TaskService taskservice = new TaskServiceImpl(EntityManagerSingleton.getInstance());
 		List<Task> tasks = taskservice.getTasksByAppointment(appointment);
 		for (Task task: tasks){
 			toDo.getView().addTask(task);
