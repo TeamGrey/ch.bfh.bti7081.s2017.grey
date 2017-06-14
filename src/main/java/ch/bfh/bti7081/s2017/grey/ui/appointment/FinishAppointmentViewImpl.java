@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.grey.ui.appointment;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Task;
+import ch.bfh.bti7081.s2017.grey.ui.Design;
 import com.vaadin.data.Binder;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -58,10 +59,7 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
                 listener.finishClick();
             }
         });
-        addComponent(summary);
-        delayLayout.addComponents(delay, delayAmount, addDelay, subtractDelay);
-        addComponent(delayLayout);
-        addComponent(openTasks);
+
     }
 
     @Override
@@ -71,6 +69,12 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
 
     @Override
     public void setAppointment(Appointment appointment) {
+        layout.addComponent(summary);
+        setDelay(appointment.getDelay());
+        delayLayout.addComponents(delay, delayAmount, addDelay, subtractDelay);
+        layout.addComponent(delayLayout);
+        layout.addComponent(openTasks);
+        binder.forField(protocol).bind(Appointment::getProtocol, Appointment::setProtocol);
         binder.setBean(appointment);
         for (Task task : appointment.getTasks()) {
             Binder<Task> taskBinder = new Binder<>(Task.class);
@@ -81,10 +85,10 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
             taskBinder.forField(finished).bind(Task::isFinished, Task::toggleFinished);
             taskBinders.add(taskBinder);
             taskLayout.addComponents(description, finished);
-            addComponent(taskLayout);
+            layout.addComponent(taskLayout);
         }
-        addComponent(protocol);
-        addComponent(finish);
+        layout.addComponent(protocol);
+        layout.addComponent(finish);
     }
 
     @Override
@@ -95,8 +99,10 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         for (FinishAppointmentViewListener listener : listeners) {
-            // change later to dynamic
-            listener.viewEntered(1);
+            listener.viewEntered();
         }
+
+        Design design = new Design();
+        this.addComponent(design.insertContent(layout,false, false));
     }
 }

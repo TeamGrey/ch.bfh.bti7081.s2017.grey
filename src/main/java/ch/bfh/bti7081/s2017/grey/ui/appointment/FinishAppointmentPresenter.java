@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.ui.appointment;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Notification;
 
 /**
@@ -38,6 +39,7 @@ public class FinishAppointmentPresenter implements FinishAppointmentView.FinishA
     @Override
     public void finishClick() {
         finishAppointmentModel.finish();
+        Page.getCurrent().setUriFragment("!"+ AppointmentViewImpl.NAME);
     }
 
     private void updateDelay(int delay) {
