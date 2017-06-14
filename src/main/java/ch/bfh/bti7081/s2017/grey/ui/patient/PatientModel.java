@@ -1,10 +1,8 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
-import ch.bfh.bti7081.s2017.grey.database.entity.EmergencyContact;
-import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
-import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
+import ch.bfh.bti7081.s2017.grey.database.entity.*;
 import ch.bfh.bti7081.s2017.grey.service.impl.EmergencyContactServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.HabitServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 
 import java.util.ArrayList;
@@ -19,7 +17,8 @@ public class PatientModel {
    Patient patient = new Patient();
    List emContact = new ArrayList <>();
    List drugList = new ArrayList<>();
-
+   List habitList = new ArrayList<>();
+   HabitServiceImpl habitService = new HabitServiceImpl();
    public void setPatient(Patient newpatient) {
       this.patient = newpatient;
    }
@@ -35,14 +34,17 @@ public class PatientModel {
       patientService.updatePatient(patient);
   }
 
-  public List<Drug> getDrugList(){
+  public List<PatientDrugAssociation> getDrugList(){
       return this.drugList;
   }
-
   public void setDrugList(List <PatientDrugAssociation> drugList){
       this.drugList=drugList;
   }
+  public List <PatientHabitAssociation> getHabitList(){return this.habitList;}
 
+  public void setHabitList (List<PatientHabitAssociation> habitList){
+      this.habitList=habitList;
+  }
   public List<EmergencyContact> getEmContact(){
       return this.emContact;
   }

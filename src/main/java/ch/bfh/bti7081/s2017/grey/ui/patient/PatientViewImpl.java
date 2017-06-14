@@ -1,24 +1,19 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.*;
-import ch.bfh.bti7081.s2017.grey.service.DrugService;
 import ch.bfh.bti7081.s2017.grey.service.impl.DrugServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.EmergencyContactServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.HabitServiceImpl;
 import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
-import com.vaadin.server.FileResource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 
-import java.io.File;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
 
 /**
  * Created by hannes on 5/17/17.
@@ -28,6 +23,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private List<PatientViewListener> listeners = new ArrayList<PatientViewListener>();
     private Binder<Patient> binder = new Binder<>(Patient.class);
     private Binder<EmergencyContact> emBinder = new Binder<>(EmergencyContact.class);
+    private List <Habit> habitArray = new ArrayList();
     private TextField firstname = new TextField();
     private TextField lastname = new TextField();
     private TextField created = new TextField();
@@ -38,13 +34,14 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private FormLayout patientinfo = new FormLayout();
     private FormLayout emcinfo = new FormLayout();
     private FormLayout drugInfo = new FormLayout();
+    private FormLayout patientFormControls = new FormLayout();
     private EmergencyContactServiceImpl emergencyContactService = new EmergencyContactServiceImpl();
     private Label emLabel = new Label();
     private Button emSaveButton;
     private Grid <EmergencyContact> grid = new Grid<>();
     private Grid <Drug> drugGrid = new Grid<>();
-    final GridLayout profileLayout = new GridLayout(3,3);
-
+    private Grid <Habit> habitGrid = new Grid<>();
+    final GridLayout profileLayout = new GridLayout(5,5);
     private Window emergencyContactWindow = new Window("Notfallkontakt");
     private Window drugWindow = new Window("Medikation");
     private Button addNewEmcButon = new Button();
@@ -55,6 +52,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     public Button cancelButton = new Button("Abbrechen", VaadinIcons.WARNING);
     public Button addDrugButton = new Button("Medikation Hinzufügen", VaadinIcons.PILL);
     public Button addNewDrugButton = new Button("Hinzufügen");
+    private HabitServiceImpl habitService = new HabitServiceImpl();
     private ThemeResource resource = new ThemeResource(
             "img/profile.png");
     private Image image = new Image("Image from file", resource);
@@ -71,9 +69,10 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         grid.addColumn(EmergencyContact::getPhonenumber).setCaption("Telefonnummer");
         drugGrid.addColumn(Drug::getName).setCaption("Bezeichnung");
         grid.setWidth("100%");
-
+        habitGrid.addColumn(Habit::getName).setCaption("Gewohnheiten");
         grid.setCaptionAsHtml(true);
         emergencyContactWindow.setWidth("100%");
+        habitGrid.setWidth("100%");
         emergencyContactWindow.setModal(true);
         drugWindow.setWidth("100%");
         drugWindow.setModal(true);
@@ -96,16 +95,23 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         drugWindow.setContent(drugName);
         this.patientinfo.addComponents(firstname,lastname,created,changed);
         this.patientinfo.setEnabled(false);
+        patientFormControls.addComponents(editButton,saveButton);
         editButton.setVisible(true);
         saveButton.setVisible(false);
         cancelButton.setVisible(false);
 
+
+        /**
+        Putting everything inside the Gridlayout
+         **/
         profileLayout.addComponent(image,0,0);
         profileLayout.addComponent(patientinfo,1,0);
-        profileLayout.addComponent(addNewEmcButon,0,1);
-        profileLayout.addComponent(addDrugButton,1,1);
-        profileLayout.addComponent(grid,0,2);
-        profileLayout.addComponent(drugGrid,1,2);
+        profileLayout.addComponent(patientFormControls,1,1);
+        profileLayout.addComponent(addNewEmcButon,0,2);
+        profileLayout.addComponent(addDrugButton,1,2);
+        profileLayout.addComponent(grid,0,3);
+        profileLayout.addComponent(drugGrid,1,3);
+        profileLayout.addComponent(habitGrid,0,4);
         profileLayout.setSizeUndefined();
         profileLayout.setSpacing(true);
         setSizeUndefined();
@@ -206,13 +212,24 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     public void setEmContact(List<EmergencyContact> emContact) {
         //EmergencyContactServiceImpl emergencyContactService = new EmergencyContactServiceImpl();
         //emergencyContactService.createEmergencyContact("Stephan","Dor","031354773",this.binder.getBean());
-        this.grid.setItems(emContact);
+       this.grid.setItems(emContact);
 
     }
 
     @Override
-    public void setDrugList(List<Drug> drugList) {
-        this.drugGrid.setItems(drugList);
+    public void setDrugList(List<PatientDrugAssociation> drugList) {
+        //this.drugGrid.setItems(drugList);
+    }
+
+    @Override
+    public void setHabitList(List<PatientHabitAssociation> habitList) {
+        for(PatientHabitAssociation element : habitList) {
+            habitArray.add(habitService.findHabitById(element.getHabitId()));
+        }
+
+        this.habitGrid.setItems(habitArray);
+
+
     }
 
 
