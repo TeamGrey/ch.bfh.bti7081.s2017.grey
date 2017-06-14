@@ -26,7 +26,7 @@ public interface StaffService {
      * @param role Role that the staff should have
      * @return created staff
      */
-    Staff createStaff(String firstname, String lastname, String login, String pwhash, Role role);
+    Staff createStaff(String firstname, String lastname, String login, String password, Role role);
     /**
      * Deletes a staff
      *
