@@ -67,7 +67,7 @@ public class AppointmentPresenter implements AppointmentView.AppointmentViewList
     /** @see AppointmentView.AppointmentViewListener#appointmentMove(Date) */
     @Override
     public void appointmentMove(Date start) {
-        this.appointmentModel.moveApppointment(start);
+        this.appointmentModel.moveAppointment(start);
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
     }
 
