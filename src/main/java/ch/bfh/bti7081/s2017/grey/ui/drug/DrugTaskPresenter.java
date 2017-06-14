@@ -93,10 +93,7 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         }
     }
 
-    /**
-     * onCreateTask event from DrugTaskViewList
-     * show DrugTaskForm and listen to its event
-     */
+    /** @see DrugTaskListViewListener#onCreateTask() */
     @Override
     public void onCreateTask() {
         drugTaskFormView = new DrugTaskFormViewImpl();
@@ -104,10 +101,7 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         drugTaskFormView.setDrugList(drugTaskModelCollection.getDrugs());
     }
 
-    /**
-     * onFormClose event from DrugTaskView
-     * create new DrugTask from form data
-     */
+    /** @see DrugTaskFormViewListener#onFormClosed() */
     @Override
     public void onFormClosed() {
         // TODO handle case where task is only edited
@@ -120,10 +114,7 @@ public class DrugTaskPresenter implements DrugTaskListViewListener, DrugTaskForm
         }
     }
 
-    /**
-     * onCollectionChanged event from DrugTaskModeCollection
-     * update view
-     */
+    /** @see ModelCollectionListener#onCollectionChanged() */
     @Override
     public void onCollectionChanged() {
         try {
