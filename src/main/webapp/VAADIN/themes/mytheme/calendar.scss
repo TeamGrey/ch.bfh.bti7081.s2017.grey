@@ -1,0 +1,10 @@
+.v-calendar .v-calendar-event-selected:before {
+	color: red !important;
+}
+.v-calendar .v-calendar-event-selected-all-day {}
+.v-calendar .v-calendar-event-selected .v-calendar-event-caption {
+	color: black;
+}
+.v-calendar .v-calendar-event-selected .v-calendar-event-content {
+	background-color: red !important;
+}

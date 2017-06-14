@@ -1,36 +1,44 @@
 package ch.bfh.bti7081.s2017.grey.database;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.*;
+import static org.junit.Assert.assertEquals;
+
+import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
+import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
+import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
+import ch.bfh.bti7081.s2017.grey.database.util.JPAHibernateTest;
+import ch.bfh.bti7081.s2017.grey.service.DrugService;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
+import ch.bfh.bti7081.s2017.grey.service.impl.DrugServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * @Author Joel
  */
-public class DrugsOfPatientTest {
-    private Patient patient;
-    private PatientService patientService;
+public class DrugsOfPatientTest extends JPAHibernateTest{
 
-    @Before
-    public void setup() {
-        patientService = new PatientServiceImpl();
-        patient = patientService.getPatientById(4);
-    }
+  private Patient patient;
+  private PatientService patientService;
+  private DrugService drugService;
 
-    @Test
-    public void listDrugs() {
-        List<PatientDrugAssociation> drugs = patient.getDrugs();
+  @Before
+  public void setup() {
+    patientService = new PatientServiceImpl(em);
+    drugService = new DrugServiceImpl(em);
+    patient = patientService.getPatientById(4);
+  }
 
-        for(PatientDrugAssociation drugAsoc: drugs) {
-                System.out.println(drugAsoc.getDrug().getName());
-        }
+  @Test
+  public void listDrugs() {
+    List<Drug> drugs = new ArrayList<>();
+    drugs.add(drugService.getDrugById(0));
+    drugs.add(drugService.getDrugById(1));
+    patientService.addDrugsToPatient(patient, drugs);
 
-        assertEquals(2, drugs.size());
-    }
+    assertEquals(2, drugs.size());
+  }
 }
