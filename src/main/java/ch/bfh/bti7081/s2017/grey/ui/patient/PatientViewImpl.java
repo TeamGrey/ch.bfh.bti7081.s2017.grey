@@ -10,20 +10,30 @@ import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.components.grid.MultiSelectionModel;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by hannes on 5/17/17.
  */
 public class PatientViewImpl extends HorizontalLayout implements PatientView, View {
     public static final String NAME = "PatientViewImpl";
+    final GridLayout profileLayout = new GridLayout(5, 5);
+    public Button emcAddButton = new Button();
+    public Button editButton = new Button("Ändern", VaadinIcons.PENCIL);
+    public Button saveButton = new Button("Speichern", VaadinIcons.STORAGE);
+    public Button cancelButton = new Button("Abbrechen", VaadinIcons.WARNING);
+    public Button addDrugButton = new Button("Medikation Hinzufügen", VaadinIcons.PILL);
+    public Button closeDrugWindow = new Button("Schliessen");
     private List<PatientViewListener> listeners = new ArrayList<PatientViewListener>();
     private Binder<Patient> binder = new Binder<>(Patient.class);
     private Binder<EmergencyContact> emBinder = new Binder<>(EmergencyContact.class);
@@ -46,27 +56,20 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     private Label emLabel = new Label();
     private DrugServiceImpl drugService = new DrugServiceImpl(em);
     private Button emSaveButton;
-
     private List<Drug> drugSetlist = new ArrayList<>();
     private Grid <EmergencyContact> grid = new Grid<>();
     private Grid <Drug> drugGrid = new Grid<>();
     private Grid <Habit> habitGrid = new Grid<>();
     private Grid <Drug> drugSelector = new Grid<>();
-    final GridLayout profileLayout = new GridLayout(5,5);
     private Window emergencyContactWindow = new Window("Notfallkontakt");
     private Window drugWindow = new Window("Medikation");
     private Button addNewEmcButon = new Button();
-    public Button emcAddButton = new Button();
     private TextField drugName = new TextField();
-    public Button editButton = new Button("Ändern",VaadinIcons.PENCIL);
-    public Button saveButton = new Button("Speichern", VaadinIcons.STORAGE);
-    public Button cancelButton = new Button("Abbrechen", VaadinIcons.WARNING);
-    public Button addDrugButton = new Button("Medikation Hinzufügen", VaadinIcons.PILL);
-    public Button addNewDrugButton = new Button("Hinzufügen");
     private HabitServiceImpl habitService = new HabitServiceImpl(em);
     private ThemeResource resource = new ThemeResource(
             "img/profile.png");
     private Image image = new Image("Image from file", resource);
+    private MultiSelectionModel<Drug> drugMultiSelectionModel;
 
     public PatientViewImpl() {
         image.setId("profilbild");
@@ -177,23 +180,43 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
             UI.getCurrent().addWindow(emergencyContactWindow);
         });
 
-        addNewDrugButton.addClickListener((Button.ClickEvent e)->{
+        closeDrugWindow.addClickListener((event) -> UI.getCurrent().removeWindow(drugWindow));
 
+        drugMultiSelectionModel = (MultiSelectionModel<Drug>) drugSelector.setSelectionMode(Grid.SelectionMode.MULTI);
+        drugMultiSelectionModel.addMultiSelectionListener(event -> {
+            List<Drug> drugs = new LinkedList<>();
+            Set<Drug> selectedDrug = event.getNewSelection();
+            for (Drug drug : event.getAddedSelection()) {
+                if (drugArray.indexOf(drug) < 0) {
+                    drugs.add(drug);
+                    drugArray.add(drug);
+                }
+            }
+            Patient pat = binder.getBean();
+            patientService.addDrugsToPatient(pat, drugs);
+
+            drugs.clear();
+            for (Drug drug : drugArray) {
+                if (drugs.indexOf(drug) < 0) {
+                    drugArray.remove(drug);
+                    // TODO remove from db
+//                    patientService.removeDrugsFromPatient(pat, drugs);
+                }
+            }
         });
 
         addDrugButton.addClickListener((Button.ClickEvent e)->{
             drugSelector.setItems(drugService.getAllDrugs());
             drugSelector.addColumn(Drug::getName).setCaption("Medikament");
-            drugSelector.setSelectionMode(Grid.SelectionMode.MULTI);
-
-            drugInfo.addComponents(drugSelector,addNewDrugButton);
-           drugWindow.setContent(drugInfo);
-           UI.getCurrent().addWindow(drugWindow);
+            for (Drug drug : drugArray) {
+                drugSelector.select(drug);
+            }
+            drugInfo.addComponents(drugSelector, closeDrugWindow);
+            drugWindow.setContent(drugInfo);
+            UI.getCurrent().addWindow(drugWindow);
         });
 
-        drugSelector.addSelectionListener(e->{
-            patientService.addDrugsToPatient(binder.getBean(), (List<Drug>) e.getAllSelectedItems());
-            });
+
         emcAddButton.addClickListener((Button.ClickEvent e)->{
             emergencyContactService.createEmergencyContact(this.emcFirstname.getValue(),this.emcLastname.getValue(),this.emcPhone.getValue(),binder.getBean());
             UI.getCurrent().removeWindow(emergencyContactWindow);
@@ -237,9 +260,8 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
     @Override
     public void setDrugList(List<PatientDrugAssociation> drugList) {
         //this.drugGrid.setItems(drugList);
-        for(PatientDrugAssociation element : drugList){
-            drugArray.add(drugService.getDrugById(element.getId()));
-
+        for (PatientDrugAssociation element : drugList) {
+            drugArray.add(drugService.getDrugById(element.getDrugId()));
         }
         this.drugGrid.setItems(drugArray);
         System.out.println(habitArray);
