@@ -34,5 +34,5 @@ public interface PatientView {
         void viewEntered(String user);
     }
 
-    public void addListener(PatientViewListener listener);
+    void addListener(PatientViewListener listener);
 }
