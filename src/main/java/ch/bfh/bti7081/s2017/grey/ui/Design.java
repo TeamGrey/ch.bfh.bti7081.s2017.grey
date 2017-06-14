@@ -55,12 +55,7 @@ public class Design extends VerticalLayout {
 			}
 		});
 
-		finish.addClickListener(new ClickListener() {
-			@Override
-			public void buttonClick(Button.ClickEvent clickEvent) {
-				Page.getCurrent().setUriFragment("!"+ FinishAppointmentViewImpl.NAME);
-			}
-		});
+		finish.addClickListener((ClickListener) clickEvent -> Page.getCurrent().setUriFragment("!"+ FinishAppointmentViewImpl.NAME));
 	}
 
 	/**

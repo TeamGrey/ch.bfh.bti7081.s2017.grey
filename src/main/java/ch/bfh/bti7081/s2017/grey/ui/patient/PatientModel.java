@@ -1,15 +1,12 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.*;
-import ch.bfh.bti7081.s2017.grey.service.impl.EmergencyContactServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.HabitServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import javax.persistence.EntityManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

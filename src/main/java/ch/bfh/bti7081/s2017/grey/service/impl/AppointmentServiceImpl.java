@@ -5,7 +5,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import ch.bfh.bti7081.s2017.grey.service.AppointmentService;
-import ch.bfh.bti7081.s2017.grey.service.PatientService;
+
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;

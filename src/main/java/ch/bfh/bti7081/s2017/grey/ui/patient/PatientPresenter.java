@@ -1,5 +1,4 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
-import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.*;
 import ch.bfh.bti7081.s2017.grey.service.EmergencyContactService;

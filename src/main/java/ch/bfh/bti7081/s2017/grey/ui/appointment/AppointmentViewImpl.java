@@ -29,7 +29,7 @@ import java.util.*;
 public class AppointmentViewImpl extends HorizontalLayout implements AppointmentView, View{
 	public static final String NAME = "AppointmentViewImpl";
 
-	private List<AppointmentViewListener> listeners = new ArrayList<AppointmentViewListener>();
+	private List<AppointmentViewListener> listeners = new ArrayList<>();
 
 	private Binder<Appointment> binder = new Binder<>(Appointment.class);
 	private BeanItemContainer<AppointmentEvent> container;
@@ -115,9 +115,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
             }
 			UI.getCurrent().addWindow(appointmentWindow);
         });
-		editButton.addClickListener(e -> {
-			UI.getCurrent().addWindow(appointmentWindow);
-		});
+		editButton.addClickListener(e -> UI.getCurrent().addWindow(appointmentWindow));
 		deleteButton.addClickListener(e -> {
 			for(AppointmentViewListener listener : listeners) {
 				listener.deleteClick();
@@ -146,9 +144,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 			}
 		});
 
-		startDate.addFocusListener(e->{
-			this.setEnabled(true);
-		});
+		startDate.addFocusListener(e-> this.setEnabled(true));
 
 		cal.setHandler((CalendarComponentEvents.EventClickHandler) eventClick -> {
             AppointmentEvent event = (AppointmentEvent)eventClick.getCalendarEvent();
@@ -260,7 +256,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	 */
 	@Override
 	public void setAppointmentList(List<Appointment> appointmentList) {
-		container = new BeanItemContainer<AppointmentEvent>(AppointmentEvent.class);
+		container = new BeanItemContainer<>(AppointmentEvent.class);
 		for(Appointment appointment : appointmentList) {
 			container.addBean(new AppointmentEvent(appointment, Timestamp.valueOf(appointment.getDate()), Timestamp.valueOf(appointment.getEndDate()), appointment.getTitle(), appointment.getDescription()));
 		}

@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class PatientViewImpl extends HorizontalLayout implements PatientView, View {
     public static final String NAME = "PatientViewImpl";
-    private List<PatientViewListener> listeners = new ArrayList<PatientViewListener>();
+    private List<PatientViewListener> listeners = new ArrayList<>();
     private Binder<Patient> binder = new Binder<>(Patient.class);
     private Binder<EmergencyContact> emBinder = new Binder<>(EmergencyContact.class);
     private List <Habit> habitArray = new ArrayList();
@@ -191,9 +191,7 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
            UI.getCurrent().addWindow(drugWindow);
         });
 
-        drugSelector.addSelectionListener(e->{
-            patientService.addDrugsToPatient(binder.getBean(), (List<Drug>) e.getAllSelectedItems());
-            });
+        drugSelector.addSelectionListener(e-> patientService.addDrugsToPatient(binder.getBean(), (List<Drug>) e.getAllSelectedItems()));
         emcAddButton.addClickListener((Button.ClickEvent e)->{
             emergencyContactService.createEmergencyContact(this.emcFirstname.getValue(),this.emcLastname.getValue(),this.emcPhone.getValue(),binder.getBean());
             UI.getCurrent().removeWindow(emergencyContactWindow);

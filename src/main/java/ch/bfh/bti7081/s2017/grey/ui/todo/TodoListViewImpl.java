@@ -22,7 +22,7 @@ public class TodoListViewImpl extends VerticalLayout implements TodoListView {
 
 	private PatientTabsPresenter patientTabsPresenter;
 
-	private List<TodoListViewListener> listeners = new ArrayList<TodoListViewListener>();
+	private List<TodoListViewListener> listeners = new ArrayList<>();
 	private Button newTask = null;
 
     /**

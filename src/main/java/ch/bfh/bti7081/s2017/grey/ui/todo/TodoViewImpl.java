@@ -15,7 +15,7 @@ import com.vaadin.ui.Label;
 public class TodoViewImpl extends HorizontalLayout implements TodoView {
 	private static final long serialVersionUID = 1L;
 	
-	private List<TodoViewListener> listeners = new ArrayList<TodoViewListener>();
+	private List<TodoViewListener> listeners = new ArrayList<>();
 	private CustomLayout tasklayout = new CustomLayout("tasklayout");
 	private Label taskDesc = null;
 	private CheckBox checkbox = null;

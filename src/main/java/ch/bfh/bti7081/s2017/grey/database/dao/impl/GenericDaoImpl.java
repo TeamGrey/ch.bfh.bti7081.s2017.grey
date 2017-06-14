@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao.impl;
 
 import ch.bfh.bti7081.s2017.grey.database.dao.GenericDao;
-import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

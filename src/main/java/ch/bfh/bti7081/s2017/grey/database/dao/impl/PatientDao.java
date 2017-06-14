@@ -39,8 +39,7 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
         criteriaBuilder.equal(patient.get("lastname"), lastName));
 
     TypedQuery<Patient> query = em.createQuery(criteriaQuery);
-    Patient result = query.getSingleResult();
-    return result;
+    return query.getSingleResult();
   }
 
   /**

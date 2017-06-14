@@ -167,12 +167,7 @@ public class Appointment {
 
 
     public List<Task> getTasks() {
-        Collections.sort(tasks, new Comparator<Task>() {
-
-            public int compare(Task o1, Task o2) {
-                return o1.getId()<o2.getId()?-1:1;
-            }
-        });
+        tasks.sort((o1, o2) -> o1.getId() < o2.getId() ? -1 : 1);
         return tasks;
     }
 
