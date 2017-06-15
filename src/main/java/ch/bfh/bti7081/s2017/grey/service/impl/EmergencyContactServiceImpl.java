@@ -20,25 +20,13 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
     dao = new EmergencyContactDao(em);
   }
 
-  /**
-   * Finds an emergency contact by it's id
-   *
-   * @param id Id of the emergency contact
-   * @return Emergency contact if found
-   */
+  /** @see EmergencyContactService#getEmergencyContactById(long) */
   @Override
   public EmergencyContact getEmergencyContactById(long id) {
     return dao.find(id);
   }
 
-  /**
-   * Creates a new emergency contact
-   *
-   * @param firstName First name of the emergency contact
-   * @param lastName Last name of the emergency contact
-   * @param phoneNumber Phone number of the contact
-   * @param patient Patient for which it is an emergency contact
-   */
+  /** @see EmergencyContactService#createEmergencyContact(String, String, String, Patient) */
   @Override
   public void createEmergencyContact(String firstName, String lastName, String phoneNumber,
       Patient patient) {
@@ -56,12 +44,7 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
     dao.create(emergencyContact);
   }
 
-  /**
-   * Finds emergency contacts for the patient
-   *
-   * @param patient Patient whose emergency contacts you want
-   * @return List of emergency contacts
-   */
+  /** @see EmergencyContactService#findEmergencyContactForPatient(Patient) */
   @Override
   public List<EmergencyContact> findEmergencyContactForPatient(Patient patient) {
     return dao.findEmergencyContactForPatient(patient);

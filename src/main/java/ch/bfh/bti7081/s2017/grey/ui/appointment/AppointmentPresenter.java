@@ -32,9 +32,7 @@ public class AppointmentPresenter implements AppointmentView.AppointmentViewList
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
     }
 
-    /**
-     * If the ui is in edit mode then the appointment will be sent to the next ui
-     */
+    /** @see AppointmentView.AppointmentViewListener#startClick() */
     @Override
     public void startClick() {
         if(this.appointmentModel.isEditMode()) {
@@ -44,27 +42,21 @@ public class AppointmentPresenter implements AppointmentView.AppointmentViewList
         }
     }
 
-    /**
-     * A new appointment is generated and set to the model
-     */
+    /** @see AppointmentView.AppointmentViewListener#newClick() */
     @Override
     public void newClick() {
         this.appointmentModel.setNewAppointment();
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
     }
 
-    /**
-     * The selected appointment is saved by the model
-     */
+    /** @see AppointmentView.AppointmentViewListener#saveClick() */
     @Override
     public void saveClick() {
         this.appointmentModel.saveAppointment();
         this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
-    /**
-     * The selected appointment is deleted by the model
-     */
+    /** @see AppointmentView.AppointmentViewListener#deleteClick() */
     @Override
     public void deleteClick() {
         this.appointmentModel.deleteAppointment();
@@ -72,69 +64,49 @@ public class AppointmentPresenter implements AppointmentView.AppointmentViewList
         this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
-    /**
-     * The selected appointment is moved by the model
-     * @param start The new start date
-     */
+    /** @see AppointmentView.AppointmentViewListener#appointmentMove(Date) */
     @Override
     public void appointmentMove(Date start) {
-        this.appointmentModel.moveApppointment(start);
+        this.appointmentModel.moveAppointment(start);
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
     }
 
-    /**
-     * The selected appointment is resized by the model
-     * @param start The new start date
-     * @param end The new end date
-     */
+    /** @see AppointmentView.AppointmentViewListener#appointmentReisize(Date, Date) */
     @Override
     public void appointmentReisize(Date start, Date end) {
         this.appointmentModel.resizeAppointment(start, end);
         this.appointmentView.setAppointment(this.appointmentModel.getAppointment(), this.appointmentModel.isEditMode());
     }
 
-    /**
-     * The date range is set to the month ui by the model
-     */
+    /** @see AppointmentView.AppointmentViewListener#monthViewSelect() */
     @Override
     public void monthViewSelect() {
         this.appointmentModel.setMonthRange();
         this.updateDate();
     }
 
-    /**
-     * The date range is set to the week ui by the model
-     */
+    /** @see AppointmentView.AppointmentViewListener#weekViewSelect() */
     @Override
     public void weekViewSelect() {
         this.appointmentModel.setWeekRange();
         this.updateDate();
     }
 
-    /**
-     * The date range is set to the day ui by the model
-     */
+    /** @see AppointmentView.AppointmentViewListener#dayViewSelect() */
     @Override
     public void dayViewSelect() {
         this.appointmentModel.setDayRange();
         this.updateDate();
     }
 
-    /**
-     * The date range is set to a specific date by the model
-     * @param date The specific date
-     */
+    /** @see AppointmentView.AppointmentViewListener#dateSelect(Date) */
     @Override
     public void dateSelect(Date date) {
         this.appointmentModel.setDate(date);
         this.updateDate();
     }
 
-    /**
-     * The date range is set to a specific date range by the model
-     * @param start The specific start date
-     * @param end The specific end date
-     */
+    /** @see AppointmentView.AppointmentViewListener#dateRangeSelect(Date, Date) */
     @Override
     public void dateRangeSelect(Date start, Date end) {
         this.appointmentModel.setStart(start);
@@ -148,20 +120,14 @@ public class AppointmentPresenter implements AppointmentView.AppointmentViewList
         this.appointmentView.setAppointmentList(this.appointmentModel.getAppointmentList());
     }
 
-    /**
-     * The selected appointment is changed by the model
-     * @param appointment The selected appointment
-     */
+    /** @see AppointmentView.AppointmentViewListener#appointmentSelect(Appointment) */
     @Override
     public void appointmentSelect(Appointment appointment) {
         this.appointmentModel.setAppointment(appointment);
         this.appointmentView.setAppointment(appointment, this.appointmentModel.isEditMode());
     }
 
-    /**
-     * The current user is set by the model
-     * @param username The current user
-     */
+    /** @see AppointmentView.AppointmentViewListener#viewEntered(String) */
     @Override
     public void viewEntered(String username) {
         this.weekViewSelect();

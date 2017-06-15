@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.ui.finish_appointment;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
-import ch.bfh.bti7081.s2017.grey.database.entity.Task;
 
 /**
  * Created by gabor on 07/06/17.

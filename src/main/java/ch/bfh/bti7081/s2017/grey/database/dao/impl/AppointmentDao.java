@@ -42,8 +42,7 @@ public class AppointmentDao extends GenericDaoImpl<Appointment> implements Gener
             criteriaBuilder.equal(appointment.get("staff"), staff));
 
     TypedQuery<Appointment> query = em.createQuery(criteriaQuery);
-    List<Appointment> appointments = query.getResultList();
-    return appointments;
+    return query.getResultList();
   }
 
   /**
@@ -63,7 +62,6 @@ public class AppointmentDao extends GenericDaoImpl<Appointment> implements Gener
         criteriaBuilder.equal(appointment.get("staff"), staff));
 
     TypedQuery<Appointment> query = em.createQuery(criteriaQuery);
-    List<Appointment> appointments = query.getResultList();
-    return appointments;
+    return query.getResultList();
   }
 }

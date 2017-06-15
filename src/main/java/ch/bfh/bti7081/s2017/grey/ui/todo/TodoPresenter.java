@@ -15,7 +15,7 @@ public class TodoPresenter implements TodoView.TodoViewListener {
 
     /**
      * Create presenter with all its components
-     * @param patientTabsPresenter
+     * @param patientTabsPresenter	Parent presenter
      * @param task Task for this presenter
      */
     public TodoPresenter(PatientTabsPresenter patientTabsPresenter, Task task) {

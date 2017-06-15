@@ -19,9 +19,9 @@ public class FinishAppointmentViewImpl extends VerticalLayout implements FinishA
     private static final long serialVersionUID = 1L;
     public static final String NAME = "FinishAppointmentViewImpl";
 
-    private List<FinishAppointmentViewListener> listeners = new ArrayList<FinishAppointmentViewListener>();
+    private List<FinishAppointmentViewListener> listeners = new ArrayList<>();
     private Binder<Appointment> binder = new Binder<>(Appointment.class);
-    private List<Binder<Task>> taskBinders = new ArrayList<Binder<Task>>();
+    private List<Binder<Task>> taskBinders = new ArrayList<>();
 
     private Button addDelay = new Button();
     private Button subtractDelay = new Button();

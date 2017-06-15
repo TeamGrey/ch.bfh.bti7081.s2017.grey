@@ -37,8 +37,7 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
                 criteriaBuilder.equal(patient.get("lastname"), lastName));
 
         TypedQuery<Patient> query = em.createQuery(criteriaQuery);
-        Patient result = query.getSingleResult();
-        return result;
+        return query.getSingleResult();
     }
 
     /**
@@ -46,7 +45,7 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
      *
      * @param patient Patient to be checked
      * @param drug    Drug to be checked
-     * @return
+     * @return        Whether patient has drug
      */
     public boolean hasDrug(Patient patient, Drug drug) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -89,8 +88,8 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
     /**
      * remove association between patient and drug
      *
-     * @param patient
-     * @param drug
+     * @param patient   Patient to be edited
+     * @param drug      Drug to be removed
      */
     public void removeDrugFromPatient(Patient patient, Drug drug) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -119,8 +118,8 @@ public class PatientDao extends GenericDaoImpl<Patient> implements GenericDao<Pa
     /**
      * remove association between patient and habit
      *
-     * @param patient
-     * @param habit
+     * @param patient   Patient to be edited
+     * @param habit     Habit to be removed
      */
     public void removeHabitFromPatient(Patient patient, Habit habit) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

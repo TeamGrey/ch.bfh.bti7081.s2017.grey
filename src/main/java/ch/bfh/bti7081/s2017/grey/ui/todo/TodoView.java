@@ -29,20 +29,20 @@ public interface TodoView{
 	/**
 	 * @param listener Listener to be added to the view
 	 */
-	public void addListener(TodoViewListener listener);
+	void addListener(TodoViewListener listener);
 	
 	/**
 	 * @param labelName Name to be set of the task
 	 */
-	public void setName(String labelName);
+	void setName(String labelName);
 	
 	/**
 	 * @param status Status to be set of the task
 	 */
-	public void setStatus(boolean status);
+	void setStatus(boolean status);
 	
 	/**
 	 * @param time Time to be set of the task
 	 */
-	public void setEstimate(int time);
+	void setEstimate(int time);
 }

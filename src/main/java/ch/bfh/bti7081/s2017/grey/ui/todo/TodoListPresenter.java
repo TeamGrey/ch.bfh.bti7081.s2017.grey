@@ -16,7 +16,7 @@ public class TodoListPresenter implements TodoListView.TodoListViewListener {
 	
 	/**
 	 * Create presenter and link its View and model
-	 * @param patientTabsPresenter
+	 * @param patientTabsPresenter	Parent presenter
 	 * @param appointment Appointment for this presenter
 	 */
 	public TodoListPresenter(PatientTabsPresenter patientTabsPresenter, Appointment appointment){

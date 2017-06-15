@@ -79,9 +79,9 @@ public class PatientViewImpl extends HorizontalLayout implements PatientView, Vi
         addNewEmcButon.setCaption("Notfalkontakt Hinzufügen");
 
 
-        /**
+        /*
          Putting everything inside the Gridlayout
-         **/
+         */
         profileLayout.addComponent(image, 0, 0);
         profileLayout.addComponent(patientinfo, 1, 0);
         profileLayout.addComponent(patientFormControls, 1, 1);

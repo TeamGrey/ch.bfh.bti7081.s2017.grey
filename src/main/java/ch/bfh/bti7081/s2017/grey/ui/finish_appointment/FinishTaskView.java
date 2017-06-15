@@ -16,9 +16,9 @@ public class FinishTaskView extends HorizontalLayout{
     private Button finish;
     private Task task;
 
-    public FinishTaskView(Task task) {
+    public FinishTaskView(Task taskToCheck) {
         super();
-        this.task = task;
+        this.task = taskToCheck;
         status = new CheckBox("", task.isFinished());
         status.setReadOnly(true);
         addComponent(status);

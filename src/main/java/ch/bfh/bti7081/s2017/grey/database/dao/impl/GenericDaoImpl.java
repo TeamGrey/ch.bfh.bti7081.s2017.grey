@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.database.dao.impl;
 
 import ch.bfh.bti7081.s2017.grey.database.dao.GenericDao;
-import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -40,10 +39,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     return t;
   }
 
-  /**
-   * Delete an entity from the database
-   * @param id Id of the entity to be deleted
-   */
+  /** @see GenericDao#delete(Object) */
   @Override
   public void delete(Object id) {
     this.em.getTransaction().begin();
@@ -51,11 +47,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     this.em.getTransaction().commit();
   }
 
-  /**
-   * Find an entity by id
-   * @param id Id of the entity
-   * @return Entity if found
-   */
+  /** @see GenericDao#find(Object) */
   @Override
   public T find(Object id) {
     return this.em.find(type, id);
@@ -74,10 +66,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     return t;
   }
 
-  /**
-   * Return all entities of this type from the database
-   * @return List of entities
-   */
+  /** @see GenericDao#findAll() */
   @Override
   public List<T> findAll() {
     CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

@@ -21,27 +21,13 @@ public class StaffServiceImpl implements StaffService {
     dao = new StaffDao(em);
   }
 
-  /**
-   * Finds a task by login name
-   *
-   * @param login Login name
-   * @return Staff if found
-   */
+  /** @see StaffService#findStaffByLogin(String) */
   @Override
   public Staff findStaffByLogin(String login) {
     return dao.getStaffByLogin(login);
   }
 
-  /**
-   * Creates a new staff
-   *
-   * @param firstname First name of the staff
-   * @param lastname Last name of the staff
-   * @param login Login name of the staff
-   * @param password Password of the staff
-   * @param role Role that the staff should have
-   * @return created staff
-   */
+  /** @see StaffService#createStaff(String, String, String, String, Role) */
   @Override
   public Staff createStaff(String firstname, String lastname, String login, String password,
       Role role) {
@@ -62,31 +48,19 @@ public class StaffServiceImpl implements StaffService {
     return dao.create(staff);
   }
 
-  /**
-   * Deletes a staff
-   *
-   * @param staff staff to be deleted
-   */
+  /** @see StaffService#deleteStaff(Staff) */
   @Override
   public void deleteStaff(Staff staff) {
     dao.delete(staff.getId());
   }
 
-  /**
-   * Finds all staff
-   *
-   * @return List of staff
-   */
+  /** @see StaffService#getAllStaff() */
   @Override
   public List<Staff> getAllStaff() {
     return dao.findAll();
   }
 
-  /**
-   * Update a list of staff
-   *
-   * @param allStaff List of staff to be edited
-   */
+  /** @see StaffService#saveAllStaff(List<Staff>) */
   @Override
   public void saveAllStaff(List<Staff> allStaff) {
     for (Staff staff : allStaff) {

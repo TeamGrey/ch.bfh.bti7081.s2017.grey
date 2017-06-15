@@ -34,14 +34,12 @@ public class TodoModel {
      * @param duration Duration of the task
      * @return If the creation was successful
      */
-    public Boolean setDuration(int duration) {
+    public void setDuration(int duration) {
         singleton();
         try {
             taskService.setDuration(task, duration);
         } catch (NoResultException ex){
-            return false;
         }
-        return true;
     }
     
     /**
@@ -49,14 +47,12 @@ public class TodoModel {
      * @param status Status of the task
      * @return If the creation was successful
      */
-    public Boolean toggleStatus(Boolean status) {
+    public void toggleStatus(Boolean status) {
     	singleton();
         try {
             taskService.toggleActiveStatus(task, status);
         } catch (NoResultException ex){
-            return false;
         }
-        return true;
     }
     
     /**
@@ -79,16 +75,14 @@ public class TodoModel {
 	 * Delete the task
 	 * @return If the deletion was successful
 	 */
-	public Boolean removeTask() {
+	public void removeTask() {
 		singleton();
 		try {
             taskService.removeTask(task);
         } catch (NoResultException ex){
-            return false;
         }
-		return true;
-		
-	}
+
+    }
 
 	/**
 	 * Get the current duration of the task

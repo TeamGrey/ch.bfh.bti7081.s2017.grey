@@ -74,7 +74,7 @@ public class AppointmentModel {
      * Move the selected appointment to an other start date
      * @param start the new start date
      */
-    public void moveApppointment(Date start) {
+    public void moveAppointment(Date start) {
         long timeDifference = Date.from(appointment.getEndDate().atZone(ZoneId.systemDefault()).toInstant()).getTime() - Date.from(appointment.getDate().atZone(ZoneId.systemDefault()).toInstant()).getTime();
         int seconds = (int)(timeDifference / 1000);
 
@@ -168,7 +168,7 @@ public class AppointmentModel {
         Calendar end = getCalendarForNow();
         end.set(Calendar.DAY_OF_MONTH,
                 end.getActualMaximum(Calendar.DAY_OF_MONTH));
-        setTimeToEndofDay(end);
+        setTimeToEndOfDay(end);
         this.end = end.getTime();
     }
 
@@ -181,11 +181,11 @@ public class AppointmentModel {
                 start.getFirstDayOfWeek());
         Date s = start.getTime();
         setTimeToBeginningOfDay(start);
-        this.start = start.getTime();
+        this.start = s;
         Calendar end = getCalendarForNow();
         end.set(Calendar.DAY_OF_WEEK,
                 1);
-        setTimeToEndofDay(end);
+        setTimeToEndOfDay(end);
         this.end = end.getTime();
     }
 
@@ -197,7 +197,7 @@ public class AppointmentModel {
         setTimeToBeginningOfDay(start);
         this.start = start.getTime();
         Calendar end = getCalendarForNow();
-        setTimeToEndofDay(end);
+        setTimeToEndOfDay(end);
         this.end = end.getTime();
     }
 
@@ -212,7 +212,7 @@ public class AppointmentModel {
         this.start = start.getTime();
         Calendar end = Calendar.getInstance(Locale.GERMANY);
         end.setTime(date);
-        setTimeToEndofDay(end);
+        setTimeToEndOfDay(end);
         this.end = end.getTime();
     }
 
@@ -229,7 +229,7 @@ public class AppointmentModel {
         calendar.set(Calendar.MILLISECOND, 0);
     }
 
-    private static void setTimeToEndofDay(Calendar calendar) {
+    private static void setTimeToEndOfDay(Calendar calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 59);
