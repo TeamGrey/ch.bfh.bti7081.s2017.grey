@@ -1,7 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.ui;
 
 import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentViewImpl;
-import ch.bfh.bti7081.s2017.grey.ui.appointment.FinishAppointmentViewImpl;
+import ch.bfh.bti7081.s2017.grey.ui.finish_appointment.FinishAppointmentViewImpl;
 import ch.bfh.bti7081.s2017.grey.ui.login.LoginScreen;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Page;
