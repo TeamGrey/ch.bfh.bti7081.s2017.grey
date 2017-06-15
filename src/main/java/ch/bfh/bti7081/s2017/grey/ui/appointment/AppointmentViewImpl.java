@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.grey.ui.appointment;
 
+import ch.bfh.bti7081.s2017.grey.database.entity.AppointmentStatus;
 import ch.bfh.bti7081.s2017.grey.ui.Design;
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
@@ -51,7 +52,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	private ComboBox<Patient> patients = new ComboBox<>("Patients");
 
 	private Calendar cal = new Calendar("Termine");
-	private AppointmentEvent clickedEvent = new AppointmentEvent(null, null, null, "", "");
+	private AppointmentEvent clickedEvent;
 
 	private Window appointmentWindow = new Window("Termin");
 	private FormLayout appointmentLayout = new FormLayout();
@@ -152,11 +153,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 
 		cal.setHandler((CalendarComponentEvents.EventClickHandler) eventClick -> {
             AppointmentEvent event = (AppointmentEvent)eventClick.getCalendarEvent();
-
-            clickedEvent.setStyleName("");
-            clickedEvent = event;
-            event.setStyleName("selected");
-            cal.markAsDirty();
+			this.selectAppointment(event);
 
             for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
@@ -164,6 +161,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
         });
 		cal.setHandler((CalendarComponentEvents.EventResizeHandler) eventResize -> {
             AppointmentEvent event = (AppointmentEvent)eventResize.getCalendarEvent();
+			this.selectAppointment(event);
 
             for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
@@ -172,6 +170,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
         });
 		cal.setHandler((CalendarComponentEvents.EventMoveHandler) eventMove -> {
             AppointmentEvent event = (AppointmentEvent)eventMove.getCalendarEvent();
+			this.selectAppointment(event);
 
             for(AppointmentViewListener listener : listeners) {
                 listener.appointmentSelect(event.getAppointment());
@@ -223,6 +222,15 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 		this.addComponents(layout);
 	}
 
+	private void selectAppointment(AppointmentEvent appointmentEvent) {
+		if(clickedEvent != null) {
+			clickedEvent.setStyleName(clickedEvent.getAppointment().getStatus() == AppointmentStatus.FINISHED ? "finished" : "");
+		}
+		clickedEvent = appointmentEvent;
+		appointmentEvent.setStyleName("selected");
+		cal.markAsDirty();
+	}
+
 	/**
 	 * Adds a event listener
 	 * @param listener new event listener
@@ -262,7 +270,7 @@ public class AppointmentViewImpl extends HorizontalLayout implements Appointment
 	public void setAppointmentList(List<Appointment> appointmentList) {
 		container = new BeanItemContainer<AppointmentEvent>(AppointmentEvent.class);
 		for(Appointment appointment : appointmentList) {
-			container.addBean(new AppointmentEvent(appointment, Timestamp.valueOf(appointment.getDate()), Timestamp.valueOf(appointment.getEndDate()), appointment.getTitle(), appointment.getDescription()));
+			container.addBean(new AppointmentEvent(appointment, Timestamp.valueOf(appointment.getDate()), Timestamp.valueOf(appointment.getEndDate()), appointment.getTitle(), appointment.getDescription(), appointment.getStatus() == AppointmentStatus.FINISHED ? "finished" : ""));
 		}
 		container.sort(new Object[]{"start"}, new boolean[]{true});
 
