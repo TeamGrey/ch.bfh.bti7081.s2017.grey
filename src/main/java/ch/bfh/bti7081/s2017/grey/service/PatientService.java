@@ -14,6 +14,8 @@ public interface PatientService {
     void createPatient(String firstname, String lastname);
     Patient getPatientByName(String firstName, String lastName);
     void addDrugsToPatient(Patient patient, List<Drug> drugs);
-    void addHabitsToPatient(Patient patient, List<Habit> habits);
+    void removeDrugsFromPatient(Patient patient, List<Drug> drugs);
+    void addHabitsToPatient(Patient patient, List<Habit> added);
+    void removeHabitsFromPatient(Patient patient, List<Habit> removed);
     List<Patient> getAllPatients();
 }
