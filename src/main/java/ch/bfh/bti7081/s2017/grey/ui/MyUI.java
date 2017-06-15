@@ -4,6 +4,9 @@ import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.ui.appointment.*;
+import ch.bfh.bti7081.s2017.grey.ui.finish_appointment.FinishAppointmentModel;
+import ch.bfh.bti7081.s2017.grey.ui.finish_appointment.FinishAppointmentPresenter;
+import ch.bfh.bti7081.s2017.grey.ui.finish_appointment.FinishAppointmentViewImpl;
 import ch.bfh.bti7081.s2017.grey.ui.tabs.PatientTabsPresenter;
 import ch.bfh.bti7081.s2017.grey.ui.login.LoginScreen;
 import com.vaadin.annotations.Theme;

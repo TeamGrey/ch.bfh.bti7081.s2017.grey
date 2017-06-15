@@ -1,10 +1,21 @@
 .v-calendar .v-calendar-event-selected:before {
-	color: red !important;
+	color: #ff848a !important;
 }
 .v-calendar .v-calendar-event-selected-all-day {}
 .v-calendar .v-calendar-event-selected .v-calendar-event-caption {
 	color: black;
 }
 .v-calendar .v-calendar-event-selected .v-calendar-event-content {
-	background-color: red !important;
+	background-color: #ff848a !important;
+}
+
+.v-calendar .v-calendar-event-finished:before {
+	color: #9dff92 !important;
+}
+.v-calendar .v-calendar-event-finished-all-day {}
+.v-calendar .v-calendar-event-finished .v-calendar-event-caption {
+	color: black;
+}
+.v-calendar .v-calendar-event-finished .v-calendar-event-content {
+	background-color: #9dff92 !important;
 }

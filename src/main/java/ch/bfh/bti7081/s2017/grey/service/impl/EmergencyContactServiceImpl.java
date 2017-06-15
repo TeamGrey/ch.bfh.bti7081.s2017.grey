@@ -50,4 +50,9 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
     return dao.findEmergencyContactForPatient(patient);
   }
 
+  @Override
+  public void updateEmergencyContact(EmergencyContact contact) {
+    dao.update(contact);
+  }
+
 }

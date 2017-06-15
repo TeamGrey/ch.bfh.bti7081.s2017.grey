@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2017.grey.ui.appointment;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
+import ch.bfh.bti7081.s2017.grey.database.entity.AppointmentStatus;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
@@ -111,7 +112,7 @@ public class AppointmentModel {
      * @return true if the ui is in edit mode
      */
     public boolean isEditMode() {
-        return this.appointment.getId() != 0;
+        return this.appointment.getId() != 0 && this.appointment.getStatus() != AppointmentStatus.FINISHED;
     }
 
     /**

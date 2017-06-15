@@ -8,31 +8,17 @@ import java.util.List;
  * Created by hannes on 5/17/17.
  */
 public interface PatientView {
-    void setPatient(Patient randpat);
+    void setPatient(Patient patient);
 
     void setEmContact(List<EmergencyContact> emContact);
 
-    void setDrugList(List<PatientDrugAssociation> drugList);
+    void setDrugList(List<Drug> drugList);
 
-    void setHabitList(List<PatientHabitAssociation> habitList);
-
-    interface PatientViewListener {
-        void editClick();
-
-        void saveClick();
-
-        void cancelClick();
-
-        void setEmContact(List<EmergencyContact> emcontact);
-
-        void setDrugList(List<PatientDrugAssociation> drugList);
-
-        void setHabitList(List<PatientHabitAssociation> habitList);
-
-        void setPatient(Patient patient);
-
-        void viewEntered(String user);
-    }
+    void setHabitList(List<Habit> habitList);
 
     void addListener(PatientViewListener listener);
+
+    void setDrugOptions(List<Drug> allDrugs);
+
+    void setHabitOptions(List<Habit> allHabits);
 }

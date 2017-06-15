@@ -32,4 +32,5 @@ public interface EmergencyContactService {
      * @return List of emergency contacts
      */
     List<EmergencyContact> findEmergencyContactForPatient(Patient patient);
+    void updateEmergencyContact(EmergencyContact contact);
 }

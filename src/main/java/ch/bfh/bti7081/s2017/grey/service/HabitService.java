@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2017.grey.service;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
 
+import java.util.List;
+
 /**
  * @Author Quentin
  */
@@ -19,4 +21,5 @@ public interface HabitService {
      * @param name Name of the habit
      */
     void createHabit(String name);
+    List<Habit> getAllHabits();
 }

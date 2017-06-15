@@ -12,9 +12,6 @@ import java.sql.Timestamp;
 @IdClass(PatientHabitAssociationId.class)
 public class PatientHabitAssociation {
     @Id
-    @GeneratedValue
-    private long id;
-    @Id
     @Column(name = "patient_id")
     private long patientId;
     @Id
@@ -31,13 +28,6 @@ public class PatientHabitAssociation {
     @JoinColumn(name = "habit_id", updatable = false, insertable = false, referencedColumnName = "id")
     private Habit habit;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
     public long getPatientId() {
         return patientId;
     }
@@ -77,8 +67,6 @@ public class PatientHabitAssociation {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-
-
 
     public Habit getHabit() {
         return habit;

@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
 import ch.bfh.bti7081.s2017.grey.service.HabitService;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -36,5 +37,10 @@ public class HabitServiceImpl implements HabitService {
     habit.setChanged(timestamp);
 
     dao.create(habit);
+  }
+
+  @Override
+  public List<Habit> getAllHabits() {
+    return dao.findAll();
   }
 }

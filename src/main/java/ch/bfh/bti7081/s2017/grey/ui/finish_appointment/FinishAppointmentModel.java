@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.grey.ui.appointment;
+package ch.bfh.bti7081.s2017.grey.ui.finish_appointment;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;

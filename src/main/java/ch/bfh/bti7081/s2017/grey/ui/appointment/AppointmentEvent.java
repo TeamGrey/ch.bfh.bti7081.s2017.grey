@@ -20,12 +20,13 @@ public class AppointmentEvent implements CalendarEvent {
     private String styleName;
     private boolean allDay;
 
-    public AppointmentEvent(Appointment appointment, Date start, Date end, String caption, String description) {
+    public AppointmentEvent(Appointment appointment, Date start, Date end, String caption, String description, String styleName) {
         this.appointment = appointment;
         this.start = start;
         this.end = end;
         this.caption = caption;
         this.description = description;
+        this.styleName = styleName;
     }
 
     public Appointment getAppointment() {

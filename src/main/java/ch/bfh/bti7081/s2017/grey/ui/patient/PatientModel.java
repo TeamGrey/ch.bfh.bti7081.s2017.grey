@@ -2,8 +2,13 @@ package ch.bfh.bti7081.s2017.grey.ui.patient;
 
 import ch.bfh.bti7081.s2017.grey.database.util.EntityManagerSingleton;
 import ch.bfh.bti7081.s2017.grey.database.entity.*;
+import ch.bfh.bti7081.s2017.grey.service.EmergencyContactService;
+import ch.bfh.bti7081.s2017.grey.service.HabitService;
+import ch.bfh.bti7081.s2017.grey.service.impl.DrugServiceImpl;
+import ch.bfh.bti7081.s2017.grey.service.impl.EmergencyContactServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.HabitServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
+
 import javax.persistence.EntityManager;
 
 import java.util.ArrayList;
@@ -13,49 +18,72 @@ import java.util.List;
  * Created by hannes on 5/17/17.
  */
 public class PatientModel {
-   List emContact = new ArrayList <>();
-   List drugList = new ArrayList<>();
-   List habitList = new ArrayList<>();
-   private EntityManager em = EntityManagerSingleton.getInstance();
-   HabitServiceImpl habitService = new HabitServiceImpl(em);
+    private EntityManager em = EntityManagerSingleton.getInstance();
+    private EmergencyContactService emergencyContactService = new EmergencyContactServiceImpl(em);
+    private PatientServiceImpl patientService = new PatientServiceImpl(em);
+    private DrugServiceImpl drugService = new DrugServiceImpl(em);
+    private HabitService habitService = new HabitServiceImpl(em);
+    private Patient patient = null;
 
+    public void setPatient(Patient newpatient) {
+        this.patient = newpatient;
+    }
 
-  private PatientServiceImpl patientService = new PatientServiceImpl(em);
-  private Patient patient = new Patient();
+    public Patient getPatient() {
+        return patient;
+    }
 
-  public void setPatient(Patient newpatient) {
-    this.patient = newpatient;
-  }
+    public List<Drug> getAllDrugs() {
+        return drugService.getAllDrugs();
+    }
 
-  public void addPatient(Patient newpatient) {
-    patientService.createPatient(newpatient.getFirstname(), newpatient.getLastname());
-  }
+    public List<Drug> getDrugList() {
+        List<Drug> drugs = new ArrayList<>();
+        if (patient != null)
+            for (PatientDrugAssociation assoc : patient.getDrugs()) {
+                drugs.add(assoc.getDrug());
+            }
+        return drugs;
+    }
 
-  public Patient getPatient() {
-    return patient;
-  }
+    public void updateDrugs(List<Drug> add, List<Drug> remove) {
+        Patient pat = getPatient();
+        patientService.addDrugsToPatient(pat, add);
+        patientService.removeDrugsFromPatient(pat, remove);
+    }
 
-  public void editPatient(Patient changedpatient, int patientId) {
-    this.patient = changedpatient;
-    patientService.updatePatient(patient);
-  }
+    public List<Habit> getAllHabits() {
+        return habitService.getAllHabits();
+    }
 
-  public List<PatientDrugAssociation> getDrugList(){
-      return this.drugList;
-  }
-  public void setDrugList(List <PatientDrugAssociation> drugList){
-      this.drugList=drugList;
-  }
-  public List <PatientHabitAssociation> getHabitList(){return this.habitList;}
+    public List<Habit> getHabitList() {
+        List<Habit> habits = new ArrayList<>();
+        if (patient != null)
+            for (PatientHabitAssociation element : patient.getHabits()) {
+                habits.add(element.getHabit());
+            }
+        return habits;
+    }
 
-  public void setHabitList (List<PatientHabitAssociation> habitList){
-      this.habitList=habitList;
-  }
-  public List<EmergencyContact> getEmContact(){
-      return this.emContact;
-  }
+    public List<EmergencyContact> getEmContact() {
+        return emergencyContactService.findEmergencyContactForPatient(patient);
+    }
 
-    public void setEmContact(List <EmergencyContact> emContact) {
-        this.emContact = emContact;
+    public void updateHabits(List<Habit> added, List<Habit> removed) {
+        Patient pat = getPatient();
+        patientService.addHabitsToPatient(pat, added);
+        patientService.removeHabitsFromPatient(pat, removed);
+    }
+
+    public void addEemergenyContact(String firstName, String lastName, String phone) {
+        emergencyContactService.createEmergencyContact(firstName, lastName, phone, patient);
+    }
+
+    public void updateEmergencyContact(String firstName, String lastName, String phone, long id) {
+        EmergencyContact contact = emergencyContactService.getEmergencyContactById(id);
+        contact.setFirstname(firstName);
+        contact.setLastname(lastName);
+        contact.setPhonenumber(phone);
+        emergencyContactService.updateEmergencyContact(contact);
     }
 }

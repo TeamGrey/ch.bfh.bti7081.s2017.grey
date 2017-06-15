@@ -46,6 +46,8 @@ public interface PatientService {
      * @param habits Habits to be added
      */
     void addHabitsToPatient(Patient patient, List<Habit> habits);
+    void removeDrugsFromPatient(Patient patient, List<Drug> drugs);
+    void removeHabitsFromPatient(Patient patient, List<Habit> removed);
     /**
      * Returns all patients
      *

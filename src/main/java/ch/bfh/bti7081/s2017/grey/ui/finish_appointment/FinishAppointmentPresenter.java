@@ -1,5 +1,6 @@
-package ch.bfh.bti7081.s2017.grey.ui.appointment;
+package ch.bfh.bti7081.s2017.grey.ui.finish_appointment;
 
+import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentViewImpl;
 import com.vaadin.server.Page;
 import com.vaadin.ui.Notification;
 
