@@ -1,38 +1,255 @@
-// If you edit this file you need to compile the theme. See README.md for details.
+//Global Variables before import!!
 
-// Global variable overrides. Must be declared before importing Valo.
 
-// Defines the plaintext font size, weight and family. Font size affects general component sizing.
-//$v-font-size: 16px;
-//$v-font-weight: 300;
-//$v-font-family: "Open Sans", sans-serif;
+.mytheme.v-app, .mytheme .v-app-loading {
+	background: #00bfff !important;
+}
+.mytheme .v-margin-left {
+	padding-left: 0px !important;
+}
 
-// Defines the border used by all components.
-//$v-border: 1px solid (v-shade 0.7);
-//$v-border-radius: 4px;
+.mytheme .v-margin-right {
+	padding-right: 0px !important;
+}
 
-// Affects the color of some component elements, e.g Button, Panel title, etc
-//$v-background-color: hsl(210, 0%, 98%);
-// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
-//$v-app-background-color: $v-background-color;
+.mytheme .v-margin-top {
+	padding-top: 40px !important;
+}
 
-// Affects the visual appearance of all components
-//$v-gradient: v-linear 8%;
-//$v-bevel-depth: 30%;
-//$v-shadow-opacity: 5%;
+.mytheme .v-margin-bottom {
+	padding-bottom: 0px !important;
+}
+.v-grid-tablewrapper{
+	max-width: unset !important;
+}
 
-// Defines colors for indicating status (focus, success, failure)
-//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
-//$v-friendly-color: #2c9720;
-//$v-error-indicator-color: #ed473b;
+#loginlogo{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.v-widget{
+	table-layout: fixed !important;
+	word-break: break-all !important;
+	max-width: 100% ;
+}
 
-// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
-// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+.v-calendar-header-month-Hsized, .v-calendar-header-day{
+	word-break: unset;
+	max-width: 100%;
 
+}
+
+#av-buttonlayout{
+	white-space: pre-wrap;
+}
+
+.v-calendar tbody > tr td:first-child{
+	width: 5%;
+}
+
+#headerlogo{
+	height: 40px;
+	margin-top: -35px;
+}
+.v-widget{
+	vertical-align: middle;
+}
+
+#logincontent td{
+	float: left;
+	clear: both;
+	max-width: 80%;
+	padding: 0;
+}
+
+#content * {
+}
+#content table{
+	table-layout: fixed;
+	word-break: break-all;
+	width: 100%;
+	margin-left: -1px;
+}
+
+#profilbild{
+	width:250px;
+	height:250px;
+}
+
+#profilelayout{
+	padding: 5px;
+}
+.v-window{
+	padding: 20px !important;
+	margin-left: -40% !important;
+	left: 50% !important;
+	width: 80% !important;
+}
+
+
+#footer{
+	z-index: 0t;
+}
 @import "../valo/valo.scss";
 
 @mixin mytheme {
-  @include valo;
+	@include valo;
+	//Insert your own theme rules here
 
-  // Insert your own theme rules here
+	header {
+		width: 100%;
+		min-height: 50px;
+		position: fixed;
+		left: 0;
+		top: 0;
+		border-bottom: 1px solid white;
+		text-align: center;
+		z-index: 500;
+		background: white; /* Old browsers */
+
+
+	}
+
+	#logincontent *{
+		max-width:100%;
+		table-layout: fixed;
+		word-break: break-all;
+	}
+
+	footer {
+		width: 100%;
+		min-height: 50px;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		border-top: 1px solid #444;
+		text-align: center;
+		background: white;
+		color: black;
+		font-weight: 800;
+
+	}
+
+	#nav-bar .v-button{
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4df5b+0,b4df5b+100;Green+Semi+Flat */
+		background: #d2ff52; /* Old browsers */
+		background: -moz-linear-gradient(top,  #d2ff52 0%, #a1fc23 5%, #91e842 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  #d2ff52 0%,#a1fc23 5%,#91e842 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  #d2ff52 0%,#a1fc23 5%,#91e842 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 ); /* IE6-9 */
+
+		box-shadow: none;
+		border: 0px;
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
+	}
+	.v-app-loading::before{
+		position: absolute;
+		top: 50%;
+		right: 0;
+		z-index: 30000;
+		width: 128px;
+		height: 128px;
+		left: 50%;
+		margin-left: -64px;
+		background: transparent url(img/loading.gif);
+		margin-right: 0px;
+		margin-top: 0px;
+		padding: 0;
+		border-radius:100px;
+	}
+
+	.v-button.v-widget:hover{
+		margin-top: -5px;
+		height: 42px;
+	}
+	#middlebox{
+		background: white;
+		border-radius: 15px;
+		padding: 20px;
+		margin-left: 15%;
+		margin-right: 15%;
+		text-align: center;
+	}
+
+	main {
+		width: 100%;
+		margin:0 auto;
+		padding: 50px 0px 50px 0px;
+		text-align: center;
+	}
+
+	#nav-bar{
+		top: 15px;
+	}
+
+	#footer{
+		bottom: 15px;
+	}
+
+	#nav-bar, #footer, #content {
+		left: 50%;
+		width: 100%;
+		margin-left: -50%;
+		position: absolute;
+	}
+
+	#task-new {
+		margin-top: 10px;
+		width:100%;
+		text-align:center;
+		min-width: 500px;
+		overflow:hidden;
+	}
+
+	#task-left {
+		float:left;
+		min-width:50px;
+		overflow:hidden;
+	}
+
+	#task-center {
+		display: inline-block;
+		margin:0 auto;
+		min-width:100px;
+		overflow:hidden;
+	}
+
+	#task-right {
+		float:right;
+		min-width:100px;
+		overflow:hidden;
+	}
+
+	.newTaskButton{
+		margin-bottom: 50px;
+	}
+
+	.drug-item {
+		margin-top: 10px;
+		width: 100%;
+		text-align: center;
+		min-width: 500px;
+		overflow: hidden;
+	}
+
+	.drug-left {
+		float: left;
+		min-width: 50px;
+		overflow: hidden;
+	}
+
+	.drug-center {
+		display: inline-block;
+		margin: 0 auto;
+		min-width: 100px;
+		overflow: hidden;
+	}
+
+	.drug-right {
+		float: right;
+		min-width: 100px;
+		overflow: hidden;
+	}
+
 }
