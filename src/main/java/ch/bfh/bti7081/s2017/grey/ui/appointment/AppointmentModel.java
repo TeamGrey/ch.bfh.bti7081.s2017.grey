@@ -181,7 +181,7 @@ public class AppointmentModel {
                 start.getFirstDayOfWeek());
         Date s = start.getTime();
         setTimeToBeginningOfDay(start);
-        this.start = start.getTime();
+        this.start = s;
         Calendar end = getCalendarForNow();
         end.set(Calendar.DAY_OF_WEEK,
                 1);

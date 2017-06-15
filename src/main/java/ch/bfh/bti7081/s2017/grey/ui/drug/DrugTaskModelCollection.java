@@ -71,12 +71,12 @@ public class DrugTaskModelCollection {
         return drugTaskModels;
     }
 
-    public DrugTaskModel addDrugTask(String description, Drug drug, int amount, String unit) throws MissingAppointmentException {
+    public void addDrugTask(String description, Drug drug, int amount, String unit) throws MissingAppointmentException {
         if (appointment == null) throw new MissingAppointmentException();
         Task task = taskService.createTask(description, appointment);
         taskService.addDrugToTask(task, drug, amount, unit);
         onChange();
-        return new DrugTaskModel(task);
+        new DrugTaskModel(task);
     }
 
     public void removeDrugTask(DrugTaskModel drugTaskModel) {
