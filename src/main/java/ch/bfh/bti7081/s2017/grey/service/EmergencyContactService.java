@@ -12,4 +12,5 @@ public interface EmergencyContactService {
     EmergencyContact getEmergencyContactById(long id);
     void createEmergencyContact(String firstName, String lastName, String phoneNumber, Patient patient);
     List<EmergencyContact> findEmergencyContactForPatient(Patient patient);
+    void updateEmergencyContact(EmergencyContact contact);
 }

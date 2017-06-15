@@ -86,6 +86,18 @@ public class PatientServiceImpl implements PatientService {
   }
 
   /**
+   * Remove association between drugs and patient
+   * @param patient patient reference
+   * @param drugs list of drugs to remove
+   */
+  @Override
+  public void removeDrugsFromPatient(Patient patient, List<Drug> drugs) {
+    for(Drug drug: drugs) {
+      dao.removeDrugFromPatient(patient, drug);
+    }
+  }
+
+  /**
    * Associates habits with a patient
    *
    * @param patient Patient to be edited
@@ -94,6 +106,18 @@ public class PatientServiceImpl implements PatientService {
   @Override
   public void addHabitsToPatient(Patient patient, List<Habit> habits) {
     dao.addHabitsToPatient(patient, habits);
+  }
+
+  /**
+   * Remove association between patient and habit
+   * @param patient patient reference
+   * @param removed list of habits to remove
+   */
+  @Override
+  public void removeHabitsFromPatient(Patient patient, List<Habit> removed) {
+    for(Habit habit: removed) {
+      dao.removeHabitFromPatient(patient, habit);
+    }
   }
 
   /**
