@@ -15,45 +15,46 @@ import ch.bfh.bti7081.s2017.grey.service.impl.TaskServiceImpl;
  * @author Joel
  */
 public class DrugTaskModel {
-    private Task task;
-    private DrugTaskAssociation asoc;
-    private TaskService taskService;
 
-    DrugTaskModel(Task task) {
-        this(task, task.getDrugs().get(0));
-    }
+  private Task task;
+  private DrugTaskAssociation asoc;
+  private TaskService taskService;
 
-    DrugTaskModel(Task task, DrugTaskAssociation asoc) {
-        taskService = new TaskServiceImpl(EntityManagerSingleton.getInstance());
-        this.task = task;
-        this.asoc = asoc;
-    }
+  DrugTaskModel(Task task) {
+    this(task, task.getDrugs().get(0));
+  }
 
-    Task getTask() {
-        return task;
-    }
+  DrugTaskModel(Task task, DrugTaskAssociation asoc) {
+    taskService = new TaskServiceImpl(EntityManagerSingleton.getInstance());
+    this.task = task;
+    this.asoc = asoc;
+  }
 
-    public boolean isFinished() {
-        return task.isFinished();
-    }
+  Task getTask() {
+    return task;
+  }
 
-    public void setFinished(boolean finished) {
-        taskService.setFinishedStatus(task, finished);
-    }
+  public boolean isFinished() {
+    return task.isFinished();
+  }
 
-    public String getName() {
-        return task.getName();
-    }
+  public void setFinished(boolean finished) {
+    taskService.setFinishedStatus(task, finished);
+  }
 
-    public Drug getDrug() {
-        return this.asoc.getDrug();
-    }
+  public String getName() {
+    return task.getName();
+  }
 
-    public int getAmount() {
-        return asoc.getAmount();
-    }
+  public Drug getDrug() {
+    return this.asoc.getDrug();
+  }
 
-    public String getUnit() {
-        return asoc.getAmountUnits();
-    }
+  public int getAmount() {
+    return asoc.getAmount();
+  }
+
+  public String getUnit() {
+    return asoc.getAmountUnits();
+  }
 }

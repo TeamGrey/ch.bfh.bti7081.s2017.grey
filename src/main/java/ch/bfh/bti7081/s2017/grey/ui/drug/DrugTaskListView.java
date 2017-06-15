@@ -7,14 +7,15 @@ import com.vaadin.ui.Component;
  * View for a list of Drug Tasks
  */
 public interface DrugTaskListView extends Component {
-    void addDrugTaskListViewListener(DrugTaskListViewListener listener);
 
-    void addDrug(DrugTaskView drugTaskView);
+  void addDrugTaskListViewListener(DrugTaskListViewListener listener);
 
-    void removeDrug(DrugTaskView drugTaskView);
+  void addDrug(DrugTaskView drugTaskView);
 
-    /**
-     * clearing list of Drug Tasks
-     */
-    void clear();
+  void removeDrug(DrugTaskView drugTaskView);
+
+  /**
+   * clearing list of Drug Tasks
+   */
+  void clear();
 }

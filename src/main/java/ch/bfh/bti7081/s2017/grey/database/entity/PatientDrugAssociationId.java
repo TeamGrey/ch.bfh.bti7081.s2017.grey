@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @version 21.05.2017
  */
 public class PatientDrugAssociationId implements Serializable {
-    private long patientId;
-    private long drugId;
+
+  private long patientId;
+  private long drugId;
 }

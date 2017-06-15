@@ -1,7 +1,11 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * @Author Quentin
@@ -9,70 +13,71 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "emergencycontact")
 public class EmergencyContact {
-    @Id
-    @GeneratedValue
-    private long id;
-    private String firstname;
-    private String lastname;
-    private String phonenumber;
-    @ManyToOne
-    private Patient patient;
-    private Timestamp created;
-    private Timestamp changed;
 
-    public long getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue
+  private long id;
+  private String firstname;
+  private String lastname;
+  private String phonenumber;
+  @ManyToOne
+  private Patient patient;
+  private Timestamp created;
+  private Timestamp changed;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public String getFirstname() {
-        return firstname;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+  public String getFirstname() {
+    return firstname;
+  }
 
-    public String getLastname() {
-        return lastname;
-    }
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+  public String getLastname() {
+    return lastname;
+  }
 
-    public String getPhonenumber() {
-        return phonenumber;
-    }
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
+  public String getPhonenumber() {
+    return phonenumber;
+  }
 
-    public Patient getPatient() {
-        return patient;
-    }
+  public void setPhonenumber(String phonenumber) {
+    this.phonenumber = phonenumber;
+  }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
+  public Patient getPatient() {
+    return patient;
+  }
 
-    public Timestamp getCreated() {
-        return created;
-    }
+  public void setPatient(Patient patient) {
+    this.patient = patient;
+  }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
+  public Timestamp getCreated() {
+    return created;
+  }
 
-    public Timestamp getChanged() {
-        return changed;
-    }
+  public void setCreated(Timestamp created) {
+    this.created = created;
+  }
 
-    public void setChanged(Timestamp changed) {
-        this.changed = changed;
-    }
+  public Timestamp getChanged() {
+    return changed;
+  }
+
+  public void setChanged(Timestamp changed) {
+    this.changed = changed;
+  }
 }

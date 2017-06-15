@@ -12,15 +12,15 @@ import javax.persistence.Persistence;
  */
 public class EntityManagerSingleton {
 
-    private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("CRM");
-    private static EntityManager entityManager = emFactory.createEntityManager();
+  private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("CRM");
+  private static EntityManager entityManager = emFactory.createEntityManager();
 
-    private EntityManagerSingleton(){
-        // Singleton
-    }
+  private EntityManagerSingleton() {
+    // Singleton
+  }
 
-    public static EntityManager getInstance() {
-        return entityManager;
-    }
+  public static EntityManager getInstance() {
+    return entityManager;
+  }
 
 }

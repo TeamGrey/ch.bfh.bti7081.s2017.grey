@@ -1,24 +1,27 @@
 package ch.bfh.bti7081.s2017.grey.ui.patient;
 
-import ch.bfh.bti7081.s2017.grey.database.entity.*;
-
+import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
+import ch.bfh.bti7081.s2017.grey.database.entity.EmergencyContact;
+import ch.bfh.bti7081.s2017.grey.database.entity.Habit;
+import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
 import java.util.List;
 
 /**
  * Created by hannes on 5/17/17.
  */
 public interface PatientView {
-    void setPatient(Patient patient);
 
-    void setEmContact(List<EmergencyContact> emContact);
+  void setPatient(Patient patient);
 
-    void setDrugList(List<Drug> drugList);
+  void setEmContact(List<EmergencyContact> emContact);
 
-    void setHabitList(List<Habit> habitList);
+  void setDrugList(List<Drug> drugList);
 
-    void addListener(PatientViewListener listener);
+  void setHabitList(List<Habit> habitList);
 
-    void setDrugOptions(List<Drug> allDrugs);
+  void addListener(PatientViewListener listener);
 
-    void setHabitOptions(List<Habit> allHabits);
+  void setDrugOptions(List<Drug> allDrugs);
+
+  void setHabitOptions(List<Habit> allHabits);
 }

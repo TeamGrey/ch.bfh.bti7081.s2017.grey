@@ -1,7 +1,14 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * @author Quentin
@@ -11,99 +18,100 @@ import java.sql.Timestamp;
 @Table(name = "drug_task")
 @IdClass(DrugTaskAssociationId.class)
 public class DrugTaskAssociation {
-    @Id
-    @GeneratedValue
-    private long id;
-    @Id
-    @Column(name = "drug_id")
-    private long drugId;
-    @Id
-    @Column(name = "task_id")
-    private long taskId;
-    @Column(name = "amount")
-    private int amount;
-    @Column(name = "amount_units")
-    private String amountUnits;
-    @Column(name = "created")
-    private Timestamp created;
-    @Column(name = "changed")
-    private Timestamp changed;
-    @ManyToOne
-    @JoinColumn(name = "drug_id", updatable = false, insertable = false, referencedColumnName = "id")
-    private Drug drug;
-    @ManyToOne
-    @JoinColumn(name = "task_id", updatable = false, insertable = false, referencedColumnName = "id")
-    private Task task;
 
-    public long getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue
+  private long id;
+  @Id
+  @Column(name = "drug_id")
+  private long drugId;
+  @Id
+  @Column(name = "task_id")
+  private long taskId;
+  @Column(name = "amount")
+  private int amount;
+  @Column(name = "amount_units")
+  private String amountUnits;
+  @Column(name = "created")
+  private Timestamp created;
+  @Column(name = "changed")
+  private Timestamp changed;
+  @ManyToOne
+  @JoinColumn(name = "drug_id", updatable = false, insertable = false, referencedColumnName = "id")
+  private Drug drug;
+  @ManyToOne
+  @JoinColumn(name = "task_id", updatable = false, insertable = false, referencedColumnName = "id")
+  private Task task;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public long getDrugId() {
-        return drugId;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setDrugId(long drugId) {
-        this.drugId = drugId;
-    }
+  public long getDrugId() {
+    return drugId;
+  }
 
-    public long getTaskId() {
-        return taskId;
-    }
+  public void setDrugId(long drugId) {
+    this.drugId = drugId;
+  }
 
-    public void setTaskId(long taskId) {
-        this.taskId = taskId;
-    }
+  public long getTaskId() {
+    return taskId;
+  }
 
-    public int getAmount() {
-        return amount;
-    }
+  public void setTaskId(long taskId) {
+    this.taskId = taskId;
+  }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
+  public int getAmount() {
+    return amount;
+  }
 
-    public String getAmountUnits() {
-        return amountUnits;
-    }
+  public void setAmount(int amount) {
+    this.amount = amount;
+  }
 
-    public void setAmountUnits(String amountUnits) {
-        this.amountUnits = amountUnits;
-    }
+  public String getAmountUnits() {
+    return amountUnits;
+  }
 
-    public Timestamp getCreated() {
-        return created;
-    }
+  public void setAmountUnits(String amountUnits) {
+    this.amountUnits = amountUnits;
+  }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
+  public Timestamp getCreated() {
+    return created;
+  }
 
-    public Timestamp getChanged() {
-        return changed;
-    }
+  public void setCreated(Timestamp created) {
+    this.created = created;
+  }
 
-    public void setChanged(Timestamp changed) {
-        this.changed = changed;
-    }
+  public Timestamp getChanged() {
+    return changed;
+  }
 
-    public Drug getDrug() {
-        return drug;
-    }
+  public void setChanged(Timestamp changed) {
+    this.changed = changed;
+  }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
-    }
+  public Drug getDrug() {
+    return drug;
+  }
 
-    public Task getTask() {
-        return task;
-    }
+  public void setDrug(Drug drug) {
+    this.drug = drug;
+  }
 
-    public void setTask(Task task) {
-        this.task = task;
-    }
+  public Task getTask() {
+    return task;
+  }
+
+  public void setTask(Task task) {
+    this.task = task;
+  }
 }

@@ -8,15 +8,13 @@ import ch.bfh.bti7081.s2017.grey.database.entity.Staff;
 import ch.bfh.bti7081.s2017.grey.database.util.JPAHibernateTest;
 import ch.bfh.bti7081.s2017.grey.service.impl.RoleServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
-import javax.persistence.EntityManager;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Created by gabor on 29/05/17.
  */
-public class StaffServiceTest extends JPAHibernateTest{
+public class StaffServiceTest extends JPAHibernateTest {
 
   private StaffService staffService;
   private RoleService roleService;

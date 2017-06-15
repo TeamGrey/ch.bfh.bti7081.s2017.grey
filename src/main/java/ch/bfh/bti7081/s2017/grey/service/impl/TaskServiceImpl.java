@@ -21,13 +21,17 @@ public class TaskServiceImpl implements TaskService {
     dao = new TaskDao(em);
   }
 
-  /** @see TaskService#findTaskById(long) */
+  /**
+   * @see TaskService#findTaskById(long)
+   */
   @Override
   public Task findTaskById(long id) {
     return dao.find(id);
   }
 
-  /** @see TaskService#createTask(String, Appointment) */
+  /**
+   * @see TaskService#createTask(String, Appointment)
+   */
   @Override
   public Task createTask(String name, Appointment appointment) {
     Instant instant = Instant.now();
@@ -43,25 +47,33 @@ public class TaskServiceImpl implements TaskService {
     return task;
   }
 
-  /** @see TaskService#addDrugToTask(Task, Drug, int, String) */
+  /**
+   * @see TaskService#addDrugToTask(Task, Drug, int, String)
+   */
   @Override
   public void addDrugToTask(Task task, Drug drug, int amount, String units) {
     dao.addDrugToTask(task, drug, amount, units);
   }
 
-  /** @see TaskService#getAllTasks() */
+  /**
+   * @see TaskService#getAllTasks()
+   */
   @Override
   public List<Task> getAllTasks() {
     return dao.findAll();
   }
 
-  /** @see TaskService#getTasksByAppointment(Appointment) */
+  /**
+   * @see TaskService#getTasksByAppointment(Appointment)
+   */
   @Override
   public List<Task> getTasksByAppointment(Appointment appointment) {
     return dao.getTasksByAppointment(appointment);
   }
 
-  /** @see TaskService#setDuration(Task, int) */
+  /**
+   * @see TaskService#setDuration(Task, int)
+   */
   @Override
   public void setDuration(Task task, int amount) {
     Instant instant = Instant.now();
@@ -73,21 +85,27 @@ public class TaskServiceImpl implements TaskService {
     dao.update(task);
   }
 
-  /** @see TaskService#addToDuration(Task, int) */
+  /**
+   * @see TaskService#addToDuration(Task, int)
+   */
   @Override
   public void addToDuration(Task task, int amount) {
     int newAmount = task.getDuration() + amount;
     setDuration(task, newAmount);
   }
 
-  /** @see TaskService#removeFromDuration(Task, int) */
+  /**
+   * @see TaskService#removeFromDuration(Task, int)
+   */
   @Override
   public void removeFromDuration(Task task, int amount) {
     int newAmount = task.getDuration() - amount;
     setDuration(task, newAmount);
   }
 
-  /** @see TaskService#toggleActiveStatus(Task, Boolean) */
+  /**
+   * @see TaskService#toggleActiveStatus(Task, Boolean)
+   */
   @Override
   public void toggleActiveStatus(Task task, Boolean status) {
     Instant instant = Instant.now();
@@ -108,7 +126,9 @@ public class TaskServiceImpl implements TaskService {
     dao.update(task);
   }
 
-  /** @see TaskService#removeTask(Task) */
+  /**
+   * @see TaskService#removeTask(Task)
+   */
   @Override
   public void removeTask(Task task) {
     dao.delete(task.getId());

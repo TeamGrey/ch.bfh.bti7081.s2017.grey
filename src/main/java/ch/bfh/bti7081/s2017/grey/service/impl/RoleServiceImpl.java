@@ -18,13 +18,17 @@ public class RoleServiceImpl implements RoleService {
     dao = new RoleDao(em);
   }
 
-  /** @see RoleService#findRoleById(long) */
+  /**
+   * @see RoleService#findRoleById(long)
+   */
   @Override
   public Role findRoleById(long id) {
     return dao.find(id);
   }
 
-  /** @see RoleService#createRole(String) */
+  /**
+   * @see RoleService#createRole(String)
+   */
   @Override
   public void createRole(String name) {
     Instant instant = Instant.now();

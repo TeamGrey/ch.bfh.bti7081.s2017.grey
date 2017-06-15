@@ -25,6 +25,7 @@ public class AppointmentDao extends GenericDaoImpl<Appointment> implements Gener
 
   /**
    * Find all appointments for one staff at a specific date
+   *
    * @param staff Staff whose appointments you want
    * @param date Date of the appointments
    * @return List of appointments
@@ -47,6 +48,7 @@ public class AppointmentDao extends GenericDaoImpl<Appointment> implements Gener
 
   /**
    * Find all appointments for one staff in a date range
+   *
    * @param staff Staff whose appointments you want
    * @param start Start of Date range
    * @param end End of Date range
