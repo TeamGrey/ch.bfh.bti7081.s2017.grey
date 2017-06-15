@@ -20,13 +20,17 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
     dao = new EmergencyContactDao(em);
   }
 
-  /** @see EmergencyContactService#getEmergencyContactById(long) */
+  /**
+   * @see EmergencyContactService#getEmergencyContactById(long)
+   */
   @Override
   public EmergencyContact getEmergencyContactById(long id) {
     return dao.find(id);
   }
 
-  /** @see EmergencyContactService#createEmergencyContact(String, String, String, Patient) */
+  /**
+   * @see EmergencyContactService#createEmergencyContact(String, String, String, Patient)
+   */
   @Override
   public void createEmergencyContact(String firstName, String lastName, String phoneNumber,
       Patient patient) {
@@ -44,7 +48,9 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
     dao.create(emergencyContact);
   }
 
-  /** @see EmergencyContactService#findEmergencyContactForPatient(Patient) */
+  /**
+   * @see EmergencyContactService#findEmergencyContactForPatient(Patient)
+   */
   @Override
   public List<EmergencyContact> findEmergencyContactForPatient(Patient patient) {
     return dao.findEmergencyContactForPatient(patient);

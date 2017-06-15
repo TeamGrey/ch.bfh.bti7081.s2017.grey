@@ -1,98 +1,102 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * @Author Quentin
  */
 @Entity
 public class Staff {
-    @Id
-    @GeneratedValue
-    private long id;
-    private String firstname;
-    private String lastname;
-    private String pwhash;
-    private String login;
-    private String salt;
-    @ManyToOne
-    private Role role;
-    private Timestamp created;
-    private Timestamp changed;
 
-    public Staff() {
-    }
+  @Id
+  @GeneratedValue
+  private long id;
+  private String firstname;
+  private String lastname;
+  private String pwhash;
+  private String login;
+  private String salt;
+  @ManyToOne
+  private Role role;
+  private Timestamp created;
+  private Timestamp changed;
 
-    public long getId() {
-        return id;
-    }
+  public Staff() {
+  }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public String getFirstname() {
-        return firstname;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+  public String getFirstname() {
+    return firstname;
+  }
 
-    public String getLastname() {
-        return lastname;
-    }
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+  public String getLastname() {
+    return lastname;
+  }
 
-    public String getPwhash() {
-        return pwhash;
-    }
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 
-    public void setPwhash(String pwhash) {
-        this.pwhash = pwhash;
-    }
+  public String getPwhash() {
+    return pwhash;
+  }
 
-    public String getLogin() {
-        return login;
-    }
+  public void setPwhash(String pwhash) {
+    this.pwhash = pwhash;
+  }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+  public String getLogin() {
+    return login;
+  }
 
-    public Role getRoles() {
-        return role;
-    }
+  public void setLogin(String login) {
+    this.login = login;
+  }
 
-    public void setRoles(Role role) {
-        this.role = role;
-    }
+  public Role getRoles() {
+    return role;
+  }
 
-    public Timestamp getCreated() {
-        return created;
-    }
+  public void setRoles(Role role) {
+    this.role = role;
+  }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
+  public Timestamp getCreated() {
+    return created;
+  }
 
-    public Timestamp getChanged() {
-        return changed;
-    }
+  public void setCreated(Timestamp created) {
+    this.created = created;
+  }
 
-    public void setChanged(Timestamp changed) {
-        this.changed = changed;
-    }
+  public Timestamp getChanged() {
+    return changed;
+  }
 
-    public String getSalt() {
-        return salt;
-    }
+  public void setChanged(Timestamp changed) {
+    this.changed = changed;
+  }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
+  public String getSalt() {
+    return salt;
+  }
+
+  public void setSalt(String salt) {
+    this.salt = salt;
+  }
 }

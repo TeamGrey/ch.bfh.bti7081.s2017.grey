@@ -1,20 +1,20 @@
 package ch.bfh.bti7081.s2017.grey.database.dao.impl;
 
 import ch.bfh.bti7081.s2017.grey.database.dao.GenericDao;
-
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.List;
 
 /**
  * Created by gabor on 29/05/17.
  */
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
+
   protected EntityManager em;
 
   private Class<T> type;
@@ -28,6 +28,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
   /**
    * Add a entity to the database
+   *
    * @param t entity to be added
    * @return Entity with the id added
    */
@@ -39,7 +40,9 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     return t;
   }
 
-  /** @see GenericDao#delete(Object) */
+  /**
+   * @see GenericDao#delete(Object)
+   */
   @Override
   public void delete(Object id) {
     this.em.getTransaction().begin();
@@ -47,7 +50,9 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     this.em.getTransaction().commit();
   }
 
-  /** @see GenericDao#find(Object) */
+  /**
+   * @see GenericDao#find(Object)
+   */
   @Override
   public T find(Object id) {
     return this.em.find(type, id);
@@ -55,6 +60,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
   /**
    * Update an entity in the database
+   *
    * @param t Entity to be updated
    * @return Updated entity
    */
@@ -66,7 +72,9 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     return t;
   }
 
-  /** @see GenericDao#findAll() */
+  /**
+   * @see GenericDao#findAll()
+   */
   @Override
   public List<T> findAll() {
     CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

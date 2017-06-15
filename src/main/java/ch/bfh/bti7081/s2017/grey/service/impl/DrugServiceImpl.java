@@ -19,7 +19,9 @@ public class DrugServiceImpl implements DrugService {
     dao = new DrugDao(em);
   }
 
-  /** @see DrugService#createDrug(String) */
+  /**
+   * @see DrugService#createDrug(String)
+   */
   @Override
   public void createDrug(String name) {
     Instant instant = Instant.now();
@@ -31,7 +33,9 @@ public class DrugServiceImpl implements DrugService {
     dao.create(drug);
   }
 
-  /** @see DrugService#updateDrugName(Drug, String) */
+  /**
+   * @see DrugService#updateDrugName(Drug, String)
+   */
   @Override
   public void updateDrugName(Drug drug, String newName) {
     drug.setName(newName);
@@ -41,13 +45,17 @@ public class DrugServiceImpl implements DrugService {
     dao.update(drug);
   }
 
-  /** @see DrugService#getDrugById(long) */
+  /**
+   * @see DrugService#getDrugById(long)
+   */
   @Override
   public Drug getDrugById(long id) {
     return dao.find(id);
   }
 
-  /** @see DrugService#getAllDrugs() */
+  /**
+   * @see DrugService#getAllDrugs()
+   */
   @Override
   public List<Drug> getAllDrugs() {
     return dao.findAll();

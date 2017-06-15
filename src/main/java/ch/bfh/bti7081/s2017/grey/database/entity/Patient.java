@@ -1,80 +1,84 @@
 package ch.bfh.bti7081.s2017.grey.database.entity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @Author Quentin
  */
 @Entity
 public class Patient {
-    @Id
-    @GeneratedValue
-    private long id;
-    private String firstname;
-    private String lastname;
-    private Timestamp created;
-    private Timestamp changed;
-    @OneToMany(mappedBy = "patient")
-    private List<PatientDrugAssociation> drugs = new ArrayList<>();
-    @OneToMany(mappedBy = "patient")
-    private List<PatientHabitAssociation> habits = new ArrayList<>();
 
-    public long getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue
+  private long id;
+  private String firstname;
+  private String lastname;
+  private Timestamp created;
+  private Timestamp changed;
+  @OneToMany(mappedBy = "patient")
+  private List<PatientDrugAssociation> drugs = new ArrayList<>();
+  @OneToMany(mappedBy = "patient")
+  private List<PatientHabitAssociation> habits = new ArrayList<>();
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public String getFirstname() {
-        return firstname;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+  public String getFirstname() {
+    return firstname;
+  }
 
-    public String getLastname() {
-        return lastname;
-    }
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+  public String getLastname() {
+    return lastname;
+  }
 
-    public Timestamp getCreated() {
-        return created;
-    }
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
+  public Timestamp getCreated() {
+    return created;
+  }
 
-    public Timestamp getChanged() {
-        return changed;
-    }
+  public void setCreated(Timestamp created) {
+    this.created = created;
+  }
 
-    public void setChanged(Timestamp chnaged) {
-        this.changed = chnaged;
-    }
+  public Timestamp getChanged() {
+    return changed;
+  }
 
-    public List<PatientDrugAssociation> getDrugs() {
-        return drugs;
-    }
+  public void setChanged(Timestamp chnaged) {
+    this.changed = chnaged;
+  }
 
-    public void setDrugs(List<PatientDrugAssociation> drugs) {
-        this.drugs = drugs;
-    }
+  public List<PatientDrugAssociation> getDrugs() {
+    return drugs;
+  }
 
-    public List<PatientHabitAssociation> getHabits() {
-        return habits;
-    }
+  public void setDrugs(List<PatientDrugAssociation> drugs) {
+    this.drugs = drugs;
+  }
 
-    public void setHabits(List<PatientHabitAssociation> habits) {
-        this.habits = habits;
-    }
+  public List<PatientHabitAssociation> getHabits() {
+    return habits;
+  }
+
+  public void setHabits(List<PatientHabitAssociation> habits) {
+    this.habits = habits;
+  }
 }

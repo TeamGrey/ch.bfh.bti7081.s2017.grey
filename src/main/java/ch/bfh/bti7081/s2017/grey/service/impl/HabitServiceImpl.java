@@ -19,13 +19,17 @@ public class HabitServiceImpl implements HabitService {
     dao = new HabitDao(em);
   }
 
-  /** @see HabitService#findHabitById(long) */
+  /**
+   * @see HabitService#findHabitById(long)
+   */
   @Override
   public Habit findHabitById(long id) {
     return dao.find(id);
   }
 
-  /** @see HabitService#createHabit(String) */
+  /**
+   * @see HabitService#createHabit(String)
+   */
   @Override
   public void createHabit(String name) {
     Instant instant = Instant.now();

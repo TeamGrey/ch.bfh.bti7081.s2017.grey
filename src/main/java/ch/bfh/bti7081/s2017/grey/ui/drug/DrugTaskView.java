@@ -7,13 +7,14 @@ import com.vaadin.ui.Component;
  * View for a single Drug Task
  */
 public interface DrugTaskView extends Component {
-    void setFinished(boolean finished);
 
-    void setName(String name);
+  void setFinished(boolean finished);
 
-    void setUnit(String unit);
+  void setName(String name);
 
-    void setAmount(Integer amount);
+  void setUnit(String unit);
 
-    void addDrugTaskViewListener(DrugTaskViewListener listener);
+  void setAmount(Integer amount);
+
+  void addDrugTaskViewListener(DrugTaskViewListener listener);
 }

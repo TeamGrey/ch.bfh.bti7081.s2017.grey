@@ -21,13 +21,17 @@ public class PatientServiceImpl implements PatientService {
     dao = new PatientDao(em);
   }
 
-  /** @see PatientService#getPatientById(long) */
+  /**
+   * @see PatientService#getPatientById(long)
+   */
   @Override
   public Patient getPatientById(long id) {
     return dao.find(id);
   }
 
-  /** @see PatientService#createPatient(String, String) */
+  /**
+   * @see PatientService#createPatient(String, String)
+   */
   @Override
   public void createPatient(String firstname, String lastname) {
     Instant instant = Instant.now();
@@ -52,13 +56,17 @@ public class PatientServiceImpl implements PatientService {
     dao.update(patient);
   }
 
-  /** @see PatientService#getPatientByName(String, String) */
+  /**
+   * @see PatientService#getPatientByName(String, String)
+   */
   @Override
   public Patient getPatientByName(String firstName, String lastName) {
     return dao.getPatientByName(firstName, lastName);
   }
 
-  /** @see PatientService#addDrugsToPatient(Patient, List<Drug>) */
+  /**
+   * @see PatientService#addDrugsToPatient(Patient, List<Drug>)
+   */
   @Override
   public void addDrugsToPatient(Patient patient, List<Drug> drugs) {
     dao.addDrugsToPatient(patient, drugs);
@@ -66,17 +74,20 @@ public class PatientServiceImpl implements PatientService {
 
   /**
    * Remove association between drugs and patient
+   *
    * @param patient patient reference
    * @param drugs list of drugs to remove
    */
   @Override
   public void removeDrugsFromPatient(Patient patient, List<Drug> drugs) {
-    for(Drug drug: drugs) {
+    for (Drug drug : drugs) {
       dao.removeDrugFromPatient(patient, drug);
     }
   }
 
-  /** @see PatientService#addHabitsToPatient(Patient, List<Habit>) */
+  /**
+   * @see PatientService#addHabitsToPatient(Patient, List<Habit>)
+   */
   @Override
   public void addHabitsToPatient(Patient patient, List<Habit> habits) {
     dao.addHabitsToPatient(patient, habits);
@@ -84,17 +95,20 @@ public class PatientServiceImpl implements PatientService {
 
   /**
    * Remove association between patient and habit
+   *
    * @param patient patient reference
    * @param removed list of habits to remove
    */
   @Override
   public void removeHabitsFromPatient(Patient patient, List<Habit> removed) {
-    for(Habit habit: removed) {
+    for (Habit habit : removed) {
       dao.removeHabitFromPatient(patient, habit);
     }
   }
 
-  /** @see PatientService#getAllPatients() */
+  /**
+   * @see PatientService#getAllPatients()
+   */
   @Override
   public List<Patient> getAllPatients() {
     return dao.findAll();

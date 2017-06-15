@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import ch.bfh.bti7081.s2017.grey.database.entity.Drug;
 import ch.bfh.bti7081.s2017.grey.database.entity.Patient;
-import ch.bfh.bti7081.s2017.grey.database.entity.PatientDrugAssociation;
 import ch.bfh.bti7081.s2017.grey.database.util.JPAHibernateTest;
 import ch.bfh.bti7081.s2017.grey.service.DrugService;
 import ch.bfh.bti7081.s2017.grey.service.PatientService;
@@ -12,14 +11,13 @@ import ch.bfh.bti7081.s2017.grey.service.impl.DrugServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * @Author Joel
  */
-public class DrugsOfPatientTest extends JPAHibernateTest{
+public class DrugsOfPatientTest extends JPAHibernateTest {
 
   private Patient patient;
   private PatientService patientService;

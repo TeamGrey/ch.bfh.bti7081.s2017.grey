@@ -1,14 +1,14 @@
 package ch.bfh.bti7081.s2017.grey.ui;
 
-import javax.servlet.annotation.WebServlet;
-
 import ch.bfh.bti7081.s2017.grey.database.entity.Appointment;
-import ch.bfh.bti7081.s2017.grey.ui.appointment.*;
+import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentModel;
+import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentPresenter;
+import ch.bfh.bti7081.s2017.grey.ui.appointment.AppointmentViewImpl;
 import ch.bfh.bti7081.s2017.grey.ui.finish_appointment.FinishAppointmentModel;
 import ch.bfh.bti7081.s2017.grey.ui.finish_appointment.FinishAppointmentPresenter;
 import ch.bfh.bti7081.s2017.grey.ui.finish_appointment.FinishAppointmentViewImpl;
-import ch.bfh.bti7081.s2017.grey.ui.tabs.PatientTabsPresenter;
 import ch.bfh.bti7081.s2017.grey.ui.login.LoginScreen;
+import ch.bfh.bti7081.s2017.grey.ui.tabs.PatientTabsPresenter;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
@@ -17,68 +17,72 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
+import javax.servlet.annotation.WebServlet;
 
 /**
- * This UI is the application entry point. A UI may either represent a browser window 
+ * This UI is the application entry point. A UI may either represent a browser window
  * (or tab) or some part of a html page where a Vaadin application is embedded.
  * <p>
- * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be 
+ * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @SuppressWarnings("serial")
 @Theme("mytheme")
 @Widgetset("com.vaadin.v7.Vaadin7WidgetSet")
-public class MyUI extends UI implements AppointmentPresenter.AppointmentPresenterListener  {
-	private AppointmentPresenter appointmentPresenter;
-	private PatientTabsPresenter patientTabsPresenter;
-	private FinishAppointmentModel finishAppointmentModel;
+public class MyUI extends UI implements AppointmentPresenter.AppointmentPresenterListener {
 
-	@WebServlet(value = "/*", asyncSupported = true)
-	public static class Servlet extends VaadinServlet {
-	}
+  private AppointmentPresenter appointmentPresenter;
+  private PatientTabsPresenter patientTabsPresenter;
+  private FinishAppointmentModel finishAppointmentModel;
 
-	@Override
-	protected void init(VaadinRequest request) {
-		new Navigator(this, this);
+  @WebServlet(value = "/*", asyncSupported = true)
+  public static class Servlet extends VaadinServlet {
 
-		AppointmentViewImpl appointmentView = new AppointmentViewImpl();
-		AppointmentModel appointmentModel = new AppointmentModel();
-		appointmentPresenter = new AppointmentPresenter(appointmentView, appointmentModel);
-		appointmentPresenter.addListener(this);
+  }
 
-		finishAppointmentModel = new FinishAppointmentModel();
-		FinishAppointmentViewImpl finishAppointmentView = new FinishAppointmentViewImpl();
-		FinishAppointmentPresenter finishAppointmentPresenter = new FinishAppointmentPresenter(finishAppointmentModel, finishAppointmentView);
+  @Override
+  protected void init(VaadinRequest request) {
+    new Navigator(this, this);
 
-		patientTabsPresenter = new PatientTabsPresenter();
+    AppointmentViewImpl appointmentView = new AppointmentViewImpl();
+    AppointmentModel appointmentModel = new AppointmentModel();
+    appointmentPresenter = new AppointmentPresenter(appointmentView, appointmentModel);
+    appointmentPresenter.addListener(this);
 
-		getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
-		getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
-		getNavigator().addView(PatientTabsPresenter.NAME, patientTabsPresenter);
-		getNavigator().addView(FinishAppointmentViewImpl.NAME, finishAppointmentView);
-		getNavigator().setErrorView(LoginScreen.class);
+    finishAppointmentModel = new FinishAppointmentModel();
+    FinishAppointmentViewImpl finishAppointmentView = new FinishAppointmentViewImpl();
+    FinishAppointmentPresenter finishAppointmentPresenter = new FinishAppointmentPresenter(
+        finishAppointmentModel, finishAppointmentView);
 
-		router();
-	}
+    patientTabsPresenter = new PatientTabsPresenter();
 
-	@Override
-	public void appointmentSelected(Appointment appointment) {
-		patientTabsPresenter.setAppointment(appointment);
-		finishAppointmentModel.setAppointment(appointment);
-		getNavigator().navigateTo(PatientTabsPresenter.NAME);
-	}
+    getNavigator().addView(LoginScreen.NAME, LoginScreen.class);
+    getNavigator().addView(AppointmentViewImpl.NAME, appointmentView);
+    getNavigator().addView(PatientTabsPresenter.NAME, patientTabsPresenter);
+    getNavigator().addView(FinishAppointmentViewImpl.NAME, finishAppointmentView);
+    getNavigator().setErrorView(LoginScreen.class);
 
-	private void router(){
-		if(VaadinSession.getCurrent().getAttribute("user") != null){
-			getNavigator().navigateTo(AppointmentViewImpl.NAME);
-		} else {
-			getNavigator().navigateTo(LoginScreen.NAME);
-		}
-	}
-	
-	public static void loggedIn(){
-		if(VaadinSession.getCurrent().getAttribute("user") == null){
-			Page.getCurrent().setUriFragment("!"+LoginScreen.NAME);
-		}
-	}
+    router();
+  }
+
+  @Override
+  public void appointmentSelected(Appointment appointment) {
+    patientTabsPresenter.setAppointment(appointment);
+    finishAppointmentModel.setAppointment(appointment);
+    getNavigator().navigateTo(PatientTabsPresenter.NAME);
+  }
+
+  private void router() {
+    if (VaadinSession.getCurrent().getAttribute("user") != null) {
+      getNavigator().navigateTo(AppointmentViewImpl.NAME);
+    } else {
+      getNavigator().navigateTo(LoginScreen.NAME);
+    }
+  }
+
+  public static void loggedIn() {
+    if (VaadinSession.getCurrent().getAttribute("user") == null) {
+      Page.getCurrent().setUriFragment("!" + LoginScreen.NAME);
+    }
+  }
 }

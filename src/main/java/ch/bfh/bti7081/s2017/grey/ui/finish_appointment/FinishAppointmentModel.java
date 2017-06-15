@@ -9,32 +9,33 @@ import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
  * Created by gabor on 07/06/17.
  */
 public class FinishAppointmentModel {
-    private AppointmentService appointmentService = new AppointmentServiceImpl(
-            EntityManagerSingleton.getInstance());
 
-    private Appointment appointment;
-    private int delay;
+  private AppointmentService appointmentService = new AppointmentServiceImpl(
+      EntityManagerSingleton.getInstance());
 
-    public int getDelay() {
-        return delay;
-    }
+  private Appointment appointment;
+  private int delay;
 
-    public void setDelay(int delay) {
-        this.delay = delay;
-        appointment.setDelay(delay);
-        appointmentService.editAppointment(appointment);
-    }
+  public int getDelay() {
+    return delay;
+  }
 
-    public Appointment getAppointment() {
-        return this.appointment;
-    }
+  public void setDelay(int delay) {
+    this.delay = delay;
+    appointment.setDelay(delay);
+    appointmentService.editAppointment(appointment);
+  }
 
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
-    }
+  public Appointment getAppointment() {
+    return this.appointment;
+  }
 
-    public void finish() {
-        appointment.finish();
-        appointmentService.editAppointment(appointment);
-    }
+  public void setAppointment(Appointment appointment) {
+    this.appointment = appointment;
+  }
+
+  public void finish() {
+    appointment.finish();
+    appointmentService.editAppointment(appointment);
+  }
 }

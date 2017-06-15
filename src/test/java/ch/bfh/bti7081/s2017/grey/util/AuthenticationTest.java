@@ -10,11 +10,7 @@ import ch.bfh.bti7081.s2017.grey.service.RoleService;
 import ch.bfh.bti7081.s2017.grey.service.StaffService;
 import ch.bfh.bti7081.s2017.grey.service.impl.RoleServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
-import java.util.List;
-import javax.persistence.EntityManager;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

@@ -12,8 +12,6 @@ import ch.bfh.bti7081.s2017.grey.service.impl.AppointmentServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.PatientServiceImpl;
 import ch.bfh.bti7081.s2017.grey.service.impl.StaffServiceImpl;
 import java.time.LocalDateTime;
-import javax.persistence.EntityManager;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
