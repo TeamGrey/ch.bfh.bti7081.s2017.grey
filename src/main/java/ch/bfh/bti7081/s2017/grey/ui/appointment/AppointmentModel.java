@@ -63,10 +63,12 @@ public class AppointmentModel {
      * Save the currently selected appointment
      */
     public void saveAppointment() {
-        if(this.isEditMode()) {
-            this.appointmentService.editAppointment(appointment);
-        } else {
-            this.appointmentService.createAppointment(this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
+        if(this.appointment.getStatus() != AppointmentStatus.FINISHED) {
+            if(this.isEditMode()) {
+                this.appointmentService.editAppointment(appointment);
+            } else {
+                this.appointmentService.createAppointment(this.appointment.getPatient(), this.appointment.getStaff(), this.appointment.getDescription(), this.appointment.getTitle(), this.appointment.getDate(), this.appointment.getEndDate());
+            }
         }
     }
 

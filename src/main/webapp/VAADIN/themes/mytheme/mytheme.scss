@@ -1,9 +1,9 @@
 //Global Variables before import!!
 
 
-	.mytheme.v-app, .mytheme .v-app-loading {
-		background: #00bfff !important;
-	}
+.mytheme.v-app, .mytheme .v-app-loading {
+	background: #00bfff !important;
+}
 .mytheme .v-margin-left {
 	padding-left: 0px !important;
 }
@@ -27,6 +27,25 @@
 	width: 100%;
 	margin-bottom: 20px;
 }
+.v-widget{
+	table-layout: fixed !important;
+	word-break: break-all !important;
+	max-width: 100% ;
+}
+
+.v-calendar-header-month-Hsized, .v-calendar-header-day{
+	word-break: unset;
+	max-width: 100%;
+
+}
+
+#av-buttonlayout{
+	white-space: pre-wrap;
+}
+
+.v-calendar tbody > tr td:first-child{
+	width: 5%;
+}
 
 #headerlogo{
 	height: 40px;
@@ -34,6 +53,13 @@
 }
 .v-widget{
 	vertical-align: middle;
+}
+
+#logincontent td{
+	float: left;
+	clear: both;
+	max-width: 80%;
+	padding: 0;
 }
 
 #content * {
@@ -66,10 +92,10 @@
 }
 @import "../valo/valo.scss";
 
-@mixin mytheme { 
+@mixin mytheme {
 	@include valo;
 	//Insert your own theme rules here
-	
+
 	header {
 		width: 100%;
 		min-height: 50px;
@@ -88,8 +114,8 @@
 		max-width:100%;
 		table-layout: fixed;
 		word-break: break-all;
-}
-	
+	}
+
 	footer {
 		width: 100%;
 		min-height: 50px;
@@ -118,25 +144,25 @@
 		border-top-right-radius: 15px;
 	}
 	.v-app-loading::before{
-	position: absolute;
-	top: 50%;
-	right: 0;
-	z-index: 30000;
-	width: 128px;
-	height: 128px;
+		position: absolute;
+		top: 50%;
+		right: 0;
+		z-index: 30000;
+		width: 128px;
+		height: 128px;
 		left: 50%;
 		margin-left: -64px;
-	background: transparent url(img/loading.gif);
-	margin-right: 0px;
-	margin-top: 0px;
+		background: transparent url(img/loading.gif);
+		margin-right: 0px;
+		margin-top: 0px;
 		padding: 0;
 		border-radius:100px;
-}
+	}
 
-.v-button.v-widget:hover{
-	margin-top: -5px;
-	height: 42px;
-}
+	.v-button.v-widget:hover{
+		margin-top: -5px;
+		height: 42px;
+	}
 	#middlebox{
 		background: white;
 		border-radius: 15px;
@@ -145,56 +171,56 @@
 		margin-right: 15%;
 		text-align: center;
 	}
-	
+
 	main {
 		width: 100%;
 		margin:0 auto;
 		padding: 50px 0px 50px 0px;
 		text-align: center;
 	}
-	
+
 	#nav-bar{
 		top: 15px;
 	}
-	
+
 	#footer{
 		bottom: 15px;
 	}
-	
+
 	#nav-bar, #footer, #content {
-	    left: 50%;
-	    width: 100%;
-	    margin-left: -50%;
-	    position: absolute;
+		left: 50%;
+		width: 100%;
+		margin-left: -50%;
+		position: absolute;
 	}
-	
+
 	#task-new {
 		margin-top: 10px;
-	    width:100%;
-	    text-align:center;
-	    min-width: 500px;
-	    overflow:hidden;
+		width:100%;
+		text-align:center;
+		min-width: 500px;
+		overflow:hidden;
 	}
-	
+
 	#task-left {
-	    float:left;
-	    min-width:50px;
-	    overflow:hidden;
+		float:left;
+		min-width:50px;
+		overflow:hidden;
 	}
-	
+
 	#task-center {
-	    display: inline-block;
-	    margin:0 auto;
-	    min-width:100px;
-	    overflow:hidden;
+		display: inline-block;
+		margin:0 auto;
+		min-width:100px;
+		overflow:hidden;
 	}
-	
+
 	#task-right {
-	    float:right;
-	    min-width:100px;
-	    overflow:hidden;
+		float:right;
+		min-width:100px;
+		overflow:hidden;
 	}
-	
+
 	.newTaskButton{
 		margin-bottom: 50px;
 	}
